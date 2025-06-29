@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import Card from '../components/Card'
+import LandingFooter from '../components/LandingFooter'
 
 const LandingPage = () => {
   return (
@@ -11,7 +12,7 @@ const LandingPage = () => {
                 <h1>Conheça o Pork</h1>
                 <p>O porquinho ideal para conseguir gerenciar melhor suas economias</p>
                 <aside>
-                  <img src="C:\Users\berna\OneDrive\Documentos\Pork\Pork\src\assets\image.png" alt="Logo Pork" />
+                  <img src="./image.png" alt="Logo Pork" />
                 </aside>
             </div>
         </section>
@@ -23,7 +24,7 @@ const LandingPage = () => {
           <h1>Gostou do nosso trabalho?</h1>
           <p>Registre-se abaixo e deixe esse porquinho bem mais feliz!</p>
             <a href="#"><button>Registrar</button></a>
-          <Landingfooter />
+          <LandingFooter />
           
           
         </section>
