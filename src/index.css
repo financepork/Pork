@@ -2,11 +2,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 @import "tailwindcss";
 
-@theme{
-    --main-green-color: #06d6a0;
-    --main-white-color: #f8ffe5;
-    --all-white-color: #ffffff;
+*{
+    
+    box-sizing: border-box;
+}
 
-    --text-font: 'Nunito', serif;
-    --title-font: 'Oswald', serif;
+@theme {
+    --color-green: #06d6a0;
+    --color-beige: oklch(98.7% 0.022 95.277);
+    --color-white: #ffffff;
+    --color-dark-green: #058563;
+
+    --font-text: 'Nunito', sans-serif;
+    --font-title: 'Oswald', sans-serif;
+}
+
+body {
+    background-color: var(--color-beige);
+}
+
+@layer components {
+    .card {
+        @apply mt-3.5 bg-[var(--color-green)] px-8 py-6 rounded-2xl text-4xl h-130 max-w-330 w-auto min-h-100 m-10
+    }
+}
+
+@layer utilities {
+    .font-text {
+        font-family: var(--font-text);
+        font-weight: 700;
+    }
+
+    .font-title {
+        font-family: var(--font-title);
+        font-weight: 600
+    }
+
+}
+
+@layer base {
+    section {
+        background-color: var(--color-beige);
+        min-height: 45rem;
+    }
 }
