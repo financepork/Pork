@@ -2,13 +2,20 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-    <nav className='bg-[var(--color-green)] min-h-24 w-370 mx-10 my-8 rounded-4xl '>
-      <div className='flex justify-between text-[var(--color-white)] '>
-        <h1 className='text-5xl p-4 pl-8 ml-4 m-2 font-title'>Pork</h1>
-        <div className='m-4 text-3xl flex font-text items-center pr-12 space-x-8'>
-            <a href="$">Sobre</a>
-            <a href="$">Registrar</a>
-            <a href="$">Login</a>
+    <nav className='bg-[var(--color-gray)] min-h-23 w-auto top-0 pt-2 border-nav'>
+      <div className='flex justify-around text-[var(--color-white)] text-1xl'>
+        <div className='flex justify-center items-center'>
+          <img src="./icon.png" alt="Logo Pork" className='h-18' />
+          <h1 className='text-4xl font-title mt-3 ml-1'>Pork</h1>
+        </div>
+        <div className='flex space-x-10 items-center font-text'>
+          <a href="$">Apresentação</a>
+          <a href="$">Funcionamento</a>
+          <a href="$">Sobre Nós</a>
+        </div>
+        <div className='flex justify-center items-center  text-[var(--color-white)] font-text space-x-4'>
+          <a href="$" >Login</a>
+          <a href="$" className="border-3 text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-3 hover:bg-[var(--color-green)] hover:border-[var(--color-green)] hover:text-[var(--color-white)]"><button>Registre-se</button></a>
         </div>
       </div>
     </nav>
