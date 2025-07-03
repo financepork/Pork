@@ -12,31 +12,35 @@ const LandingPage = () => {
           <div className='space-y-13 flex flex-col items-start min-height-auto ml-19 pt-3 ' >
             <h1 className='text-[var(--color-white)] font-title text-8xl'>Conheça o <span className='text-[var(--color-green)]'>Pork</span>, seu auxiliar financeiro digital</h1>
             <p className='text-4xl font-text text-[var(--color-green)] ml-1'>Uma ferramenta criada para ajudar no controle de gastos.<br /> Organização e praticidade com seu cofrinho digital.</p>
-            <div className='space-x-4 text-2xl'>
+            <div className='space-x-4 text-2xl flex items-center'>
               <a href="#" className='bg-[var(--color-green)] rounded-2xl p-4 font-text hover:text-[var(--color-green)] hover:bg-[var(--color-white)] shadow-md transition-colors duration-400 ease-in-out'><button>Comece Já</button></a>
               <a href="#" className="border-3 rounded-2xl p-4 hover:bg-[var(--color-green)] hover:border-[var(--color-green)] text-[var(--color-white)] font-text space-x-4 shadow-md transition-colors duration-400 ease-in-out"><button >Repositório</button></a>
+              <img src="./github-icon.png" alt="Icone Github" className='h-10' />
             </div>
 
           </div>
         </div>
       </section>
-      <section>
-        <div className=' flex items-center flex-col bg-[var(--color-chumbo)] m-7 mt-0 rounded-3xl'>
+      <section className='bg-gradient-to-b from-[var(--color-chumbo)] to-[var(--color-lblack)]'>
+        <div className=' flex items-center flex-col'>
           <Card title="Como funciona?" text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" imgPath="" />
           <Card title="Motivação Principal " text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" imgPath="" />
         </div>
       </section>
-      <section>
-        <div className='space-y-13 flex flex-col items-start min-height-auto ml-35 pt-3 mt-15' >
+      <section className='bg-[url("/bgPig.png")] bg-cover bg-[100%_100%] '>
+        <div className='flex items-center'>
+          <div className='space-y-13 flex flex-col items-start min-height-auto ml-35 pt-3 mt-15' >
             <h1 className='text-[var(--color-white)] font-title text-8xl'>Principais Benefícios</h1>
-            <ul className='mt-7 text-[var(--color-white)] font-text text-4xl'>
-              <li></li>
-              <li></li>
-              <li></li>
+            <ul className='mt-7 text-[var(--color-white)] font-text text-5xl'>
+              <li className='m-8'><span className='text-[var(--color-green)]'>-</span> Auxílio na <span className='text-[var(--color-green)]'>Economia de Dinheiro</span>.</li>
+              <li className='m-8'><span className='text-[var(--color-green)]'>-</span> Melhor <span className='text-[var(--color-green)]'>Organização Financeira</span>.</li>
+              <li className='m-8'><span className='text-[var(--color-green)]'>-</span> Fácil ajuste, <span className='text-[var(--color-green)]'>Experiência Individualizada</span>.</li>
             </ul>
+
           </div>
-        <LandingFooter />
+        </div>
       </section>
+        <LandingFooter />
     </div>
 
 
