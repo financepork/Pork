@@ -11,10 +11,11 @@
     --color-green: oklch(76.5% 0.177 163.223);
     --color-beige: oklch(98.7% 0.022 95.277);
     --color-white: #ffffff;
+    --color-light-green: oklch(84.5% 0.143 164.978);
     --color-dark-green: #058563;
     --color-black: #000000;
     --color-gray: #0101100;
-    --color-chumbo: oklch(20.5% 0 0);
+    --color-chumbo: oklch(21% 0.006 285.885);
 
     --font-text: 'Roboto', sans-serif;
     --font-title: 'Oswald', sans-serif;
