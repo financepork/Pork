@@ -1,10 +1,9 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
-*{
-    
+* {
+
     box-sizing: border-box;
 }
 
@@ -35,6 +34,7 @@ body {
         font-family: var(--font-title);
         font-weight: 600
     }
+
     .border-nav {
         border-bottom: solid 0.1px;
         border-color: rgb(21, 21, 21);
