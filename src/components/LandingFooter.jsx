@@ -2,11 +2,8 @@ import React from 'react'
 
 const LandingFooter = () => {
   return (
-    <div>
-        <footer>
-            <a href="#"><img src="#" alt="" /></a>
-            <a href="#"><img src="#" alt="" /></a>
-            <a href="#"><img src="#" alt="" /></a>
+    <div  className='bg-[var(--color-white)] min-h-100'>
+        <footer className='bg-[var(--color-white)]'>
         </footer>
     </div>
   )
