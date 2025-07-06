@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
 
 * {
@@ -14,11 +15,13 @@
     --color-light-green: oklch(84.5% 0.143 164.978);
     --color-dark-green: #058563;
     --color-black: #000000;
-    --color-gray: #0101100;
+    --color-gray: #010100;
     --color-chumbo: oklch(21% 0.006 285.885);
+    --color-lgray: rgb(21, 21, 21);
 
     --font-text: 'Roboto', sans-serif;
     --font-title: 'Oswald', sans-serif;
+    --font-title-alt: 'Inter', sans-serif;
 }
 
 body {
@@ -35,10 +38,20 @@ body {
         font-family: var(--font-title);
         font-weight: 600
     }
+    .font-title-alt{
+        font-family: var(--font-title-alt);
+        font-weight: 400;
+    }
 
     .border-nav {
         border-bottom: solid 0.1px;
         border-color: rgb(21, 21, 21);
+    }
+
+    .border-footer {
+        border-top: 0.1px solid;
+        border-color: rgb(21, 21, 21);
+        
     }
 
 }

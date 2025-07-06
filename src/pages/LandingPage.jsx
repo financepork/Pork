@@ -2,7 +2,8 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Card from '../components/Card'
 import LandingFooter from '../components/LandingFooter'
-import CardApresentacao from '../components/CardApresentacao'
+import CardApresentacaoEsq from '../components/CardApresentacaoEsq'
+import CardApresentacaoDir from '../components/CardApresentacaoDir'
 
 const LandingPage = () => {
   return (
@@ -29,7 +30,7 @@ const LandingPage = () => {
           <Card title="Motivação Principal " text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" imgPath="" />
         </div>
       </section>
-      <section className='bg-[url("/bgPig.png")] bg-cover bg-[100%_100%] '>
+      <section className='bg-[url("/bgPig.png")] bg-cover bg-[120px_80%] '>
         <div className='flex items-center'>
           <div className='space-y-13 flex flex-col items-start min-height-auto ml-35 pt-3 mt-15' >
             <h1 className='text-[var(--color-white)] font-title text-8xl'>Principais Benefícios</h1>
@@ -45,8 +46,8 @@ const LandingPage = () => {
           <div className='space-y-13 min-height-auto ml-34 pt-3 mt-19 ' >
               <h1 className='text-[var(--color-white)] font-title text-8xl'>Conheça os <span className='bg-gradient-to-r from-[var(--color-white)] to-[var(--color-green)] bg-clip-text text-transparent'>Desenvolvedores</span> <span className='text-[var(--color-green)]'>:</span></h1>
           </div>
-          <CardApresentacao className="rounded-bl-full rounded-tl-full ml-15" DevName="Bernardo Soares" DevStack="Front-end Developer" DevDesc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" DevImgSrc='$'/>
-          <CardApresentacao className="rounded-br-full rounded-tr-full mr-15"DevName="João Vitor Chaves" DevStack="Back-end Developer" DevDesc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" DevImgSrc='$'/>
+          <CardApresentacaoDir className="rounded-bl-full rounded-tl-full ml-15" DevName="Bernardo Soares" DevStack="Front-end Developer" DevDesc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" DevImgSrc='./fotodevsoares.jpg'/>
+          <CardApresentacaoEsq DevName="João Vitor Chaves" DevStack="Back-end Developer" DevDesc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" DevImgSrc='./fotoDevChaves.jpg'/>
       </section>
         <LandingFooter />
     </div>
