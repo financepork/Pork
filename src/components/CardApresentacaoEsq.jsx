@@ -1,8 +1,16 @@
 import React from 'react'
+import AOS from 'aos';
+import { useEffect } from 'react';
+
 
 const CardApresentacaoEsq = ({ DevName, DevStack, DevDesc, DevImgSrc }) => {
+    
+    useEffect(() => {
+        AOS.init({ once: true }); // once:true anima só uma vez
+    }, []);
+
     return (
-        <div className={`bg-[var(--color-white)] mt-30 mb-15 rounded-br-full rounded-tr-full mr-15 p-17 max-h-130 animate-fade-right animate-delay-[400ms] animate-ease-in-out`}>
+        <div data-aos="fade-right" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out" className={`bg-[var(--color-white)] mt-30 mb-15 rounded-br-full rounded-tr-full mr-15 p-17 max-h-130`}>
             <div className='flex'>
                 <div>
                     <h1 className='text-5xl font-title ml-15'>{DevName}</h1>

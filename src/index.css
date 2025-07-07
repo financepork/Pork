@@ -7,6 +7,9 @@
 * {
     box-sizing: border-box;
 }
+body{
+    overflow-x: hidden;
+}
 
 @theme {
     --color-green: oklch(76.5% 0.177 163.223);

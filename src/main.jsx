@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Register from './pages/Register.jsx'
 import LandingPage from './pages/LandingPage.jsx'
+import 'aos/dist/aos.css';
 
 import './index.css'
 

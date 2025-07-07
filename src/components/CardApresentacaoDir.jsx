@@ -1,8 +1,17 @@
-import React from 'react'
+import React from 'react';
+import AOS from 'aos';
+import { useEffect } from 'react';
+
+
 
 const CardApresentacaoDir = ({ DevName, DevStack, DevDesc, DevImgSrc }) => {
+
+    useEffect(() => {
+        AOS.init({ once: true }); // once:true anima só uma vez
+    }, []);
+
     return (
-        <div className={`bg-[var(--color-white)] mt-30 mb-15 rounded-bl-full rounded-tl-full ml-15 p-15 max-h-130 animate-fade-left animate-delay-[400ms] animate-ease-in-out`}>
+        <div data-aos="fade-left" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out" className={`bg-[var(--color-white)] mt-30 mb-15 rounded-bl-full rounded-tl-full ml-15 p-15 max-h-130`}>
             <div className='flex'>
                 <div>
                     <aside>
