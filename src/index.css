@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
+@import "tailwindcss-animated";
 
 * {
-
     box-sizing: border-box;
 }
 
@@ -42,6 +42,10 @@ body {
         font-family: var(--font-title-alt);
         font-weight: 800;
         letter-spacing: -1.75px;
+    }
+    .font-text-small{
+         font-family: var(--font-text);
+         font-weight: 400;
     }
 
     .border-nav {
