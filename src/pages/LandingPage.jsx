@@ -24,10 +24,11 @@ const LandingPage = () => {
         </div>
       </section>
       <hr className='border-nav'/>
-      <section className='bg-[var(--color-white)]'>
+      <section className='bg-[var(--color-green)]'>
         <div className=' flex items-center flex-col'>
-          <Card title="Como funciona?" text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" imgPath="" />
-          <Card title="Motivação Principal " text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" imgPath="" />
+          <h1 className='text-8xl font-title-alt text-[var(--color-white)] m-9 mt-18'>Como Funciona?</h1>
+          <Card text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus! 
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!Lorem, ipsum dolor sit amet consectetur adipisicing elit." imgPath="" />
         </div>
       </section>
       <section className='bg-[url("/bgPig.png")] bg-cover bg-[120px_80%] '>
@@ -44,7 +45,7 @@ const LandingPage = () => {
       </section>
       <section>
           <div className='space-y-13 min-height-auto ml-34 pt-3 mt-19 ' >
-              <h1 className='text-[var(--color-white)] font-title text-8xl'>Conheça os <span className='bg-gradient-to-r from-[var(--color-white)] to-[var(--color-green)] bg-clip-text text-transparent'>Desenvolvedores</span> <span className='text-[var(--color-green)]'>:</span></h1>
+              <h1 className='text-[var(--color-white)] font-title text-7xl'>Conheça os <span className='bg-gradient-to-r from-[var(--color-white)] to-[var(--color-green)] bg-clip-text text-transparent'>Desenvolvedores</span> <span className='text-[var(--color-green)]'>:</span></h1>
           </div>
           <CardApresentacaoDir className="rounded-bl-full rounded-tl-full ml-15" DevName="Bernardo Soares" DevStack="Front-end Developer" DevDesc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" DevImgSrc='./fotodevsoares.jpg'/>
           <CardApresentacaoEsq DevName="João Vitor Chaves" DevStack="Back-end Developer" DevDesc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" DevImgSrc='./fotoDevChaves.jpg'/>

@@ -21,7 +21,7 @@
 
     --font-text: 'Roboto', sans-serif;
     --font-title: 'Oswald', sans-serif;
-    --font-title-alt: 'Inter', sans-serif;
+    --font-title-alt: 'Inter';
 }
 
 body {
@@ -40,7 +40,8 @@ body {
     }
     .font-title-alt{
         font-family: var(--font-title-alt);
-        font-weight: 400;
+        font-weight: 800;
+        letter-spacing: -1.75px;
     }
 
     .border-nav {
