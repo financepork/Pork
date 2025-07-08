@@ -1,12 +1,72 @@
-@import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+@import "tailwindcss-animated";
 
-@theme{
-    --main-green-color: #06d6a0;
-    --main-white-color: #f8ffe5;
-    --all-white-color: #ffffff;
+* {
+    box-sizing: border-box;
+}
+body{
+    overflow-x: hidden;
+}
 
-    --text-font: 'Nunito', serif;
-    --title-font: 'Oswald', serif;
+@theme {
+    --color-green: oklch(76.5% 0.177 163.223);
+    --color-beige: oklch(98.7% 0.022 95.277);
+    --color-white: #ffffff;
+    --color-light-green: oklch(84.5% 0.143 164.978);
+    --color-dark-green: #058563;
+    --color-black: #000000;
+    --color-gray: #010100;
+    --color-chumbo: oklch(21% 0.006 285.885);
+    --color-lgray: rgb(21, 21, 21);
+
+    --font-text: 'Roboto', sans-serif;
+    --font-title: 'Oswald', sans-serif;
+    --font-title-alt: 'Inter';
+}
+
+body {
+    background-color: var(--color-black);
+}
+
+@layer utilities {
+    .font-text {
+        font-family: var(--font-text);
+        font-weight: 700;
+    }
+
+    .font-title {
+        font-family: var(--font-title);
+        font-weight: 600
+    }
+    .font-title-alt{
+        font-family: var(--font-title-alt);
+        font-weight: 800;
+        letter-spacing: -1.75px;
+    }
+    .font-text-small{
+         font-family: var(--font-text);
+         font-weight: 400;
+    }
+
+    .border-nav {
+        border-bottom: solid 0.1px;
+        border-color: rgb(21, 21, 21);
+    }
+
+    .border-footer {
+        border-top: 0.1px solid;
+        border-color: rgb(21, 21, 21);
+        
+    }
+
+}
+
+@layer base {
+    section {
+        min-height: 45rem;
+        width: 100%;
+    }
 }
