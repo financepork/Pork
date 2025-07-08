@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 
 const LandingPage = () => {
   useEffect(() => {
-    AOS.init({ once: true }); // once:true anima só uma vez
+    AOS.init({ once: false }); // once:true anima só uma vez
   }, []);
   return (
     <div>
@@ -79,7 +79,7 @@ const LandingPage = () => {
         <CardApresentacaoDir className="rounded-bl-full rounded-tl-full ml-15" DevName="Bernardo Soares" DevStack="Front-end Developer" DevDesc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" DevImgSrc='./fotodevsoares.jpg' />
         <CardApresentacaoEsq DevName="João Vitor Chaves" DevStack="Back-end Developer" DevDesc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" DevImgSrc='./fotoDevChaves.jpg' />
       </section>
-      <LandingFooter />
+      <Footer />
     </div>
 
 
