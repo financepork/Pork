@@ -2,7 +2,7 @@ import React from 'react'
 
 const CardApresentacaoEsq = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub, devLinkedin }) => {
     return (
-        <div  data-aos="fade-right" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out"  className='bg-[var(--color-white)] rounded-tr-full rounded-br-full flex p-3 mt-9 mr-9 h-auto'>
+        <div  data-aos="fade-right" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out"  className='bg-[var(--color-white)] rounded-tr-full rounded-br-full flex p-3 mt-9 mr-9  h-auto'>
             <div className='flex'>
                 <div className='flex flex-col  ml-5 space-y-2'>
                     <div className='flex flex-col justify-center items-center'>

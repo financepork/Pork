@@ -7,10 +7,11 @@
 * {
     box-sizing: border-box;
 }
-html{
-    overflow-x: hidden;
-    width: 100%;
+html, body {
+  overflow-x: hidden;
+  width: 100%;
 }
+
 
 @theme {
     --color-green: oklch(76.5% 0.177 163.223);

@@ -12,7 +12,7 @@ const Footer = () => {
         <hr className='bg-[var(--color-lgray)] min-w-[75%] h-0.5 mt-6' />
           <p className='text-[var(--color-white)] text-xs mt-5'>© 2025 Bernardo Soares & João Vitor Chaves.</p>
           <p className='text-[var(--color-white)] text-xs'>Todos os direitos reservados.</p>
-        <p className='text-[var(--color-white)] mt-3'>v1.0.0</p>
+        <p className='text-[var(--color-white)] mt-3'>v0.0.1</p>
         </div>
           <div className='text-[var(--color-white)] mt-16 flex justify-center items-center'>
             <div className='flex flex-col justify-center items-center'>

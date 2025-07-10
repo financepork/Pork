@@ -22,23 +22,23 @@ const LandingPage = () => {
         <div className='m-5 flex flex-col space-y-5'>
           <div className='flex flex-col text-[var(--color-white)] space-y-4'>
             <h1 data-aos="fade-right" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
-            className='font-title text-5xl max-w-[85%]'>
-              Conheca o <span className='text-[var(--color-green)]'>Pork</span>, seu auxiliar financeiro digital
+              className='font-title text-5xl max-w-[85%]'>
+              Conheça o <span className='text-[var(--color-green)]'>Pork</span>, seu auxiliar financeiro digital
             </h1>
             <div className='max-w-[75%] space-y-1 ml-[1%]'>
               <p data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out"
-               className='font-text text-md text-[var(--color-green)]'>
+                className='font-text text-md text-[var(--color-green)]'>
                 Uma ferramenta criada para ajudar no controle de gastos.
               </p>
-              <p data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out" 
-              className='font-text text-md text-[var(--color-green)]'>
+              <p data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out"
+                className='font-text text-md text-[var(--color-green)]'>
                 Organização e praticidade com seu cofrinho digital.
               </p>
             </div>
 
           </div>
-          <div  data-aos="fade-right" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out"
-           className='flex space-x-3 font-text'>
+          <div data-aos="fade-right" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out"
+            className='flex space-x-3 font-text'>
             <a href="#" className='bg-[var(--color-green)] p-2 font-text hover:text-[var(--color-green)] hover:bg-[var(--color-white)] shadow-md 
           rounded-3xl transition-colors duration-400 ease-in-out w-[26%] flex justify-center items-center'><button>Comece Já</button></a>
             <a href="#" className='border-3 rounded-2xl p-2 hover:bg-[var(--color-green)] hover:border-[var(--color-green)] text-[var(--color-white)] font-text shadow-md transition-colors duration-400 ease-in-out w-[26%] flex justify-center items-center'><button>Repositório</button></a>
@@ -48,8 +48,8 @@ const LandingPage = () => {
       </section>
       <section className='bg-[var(--color-green)] h-auto flex justify-center items-center'>
         <div className='flex items-center flex-col h-auto'>
-          <h1  data-aos="fade-up"  data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
-          className='font-title-alt text-[var(--color-white)] mt-5 text-3xl'>Como Funciona?</h1>
+          <h1 data-aos="fade-up" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
+            className='font-title-alt text-[var(--color-white)] mt-5 text-3xl'>Como Funciona?</h1>
           <Card text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" imgPath="" />
         </div>
       </section>
@@ -59,7 +59,7 @@ const LandingPage = () => {
             <h1 className='text-[var(--color-black)] font-title-alt text-3xl'>Principais Benefícios</h1>
           </div>
           <div data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out"
-          className='flex flex-col md:flex-row md:flex-wrap space-y-8 w-[60%]'>
+            className='flex flex-col md:flex-row md:flex-wrap space-y-8 w-[60%]'>
             <SmallCard imgPath='./iconEco.png' text='Economia de Dinheiro' />
             <SmallCard imgPath='./iconExp.png' text='Experiência Individual' />
             <SmallCard imgPath='./iconOrg.png' text='Organização Financeira' />
@@ -71,13 +71,13 @@ const LandingPage = () => {
           <div className='flex flex-col justify-center items-center w-[80%] mt-8 space-y-3'>
             <h1 className='font-title-alt text-[var(--color-white)] text-3xl'>Gosta de Economizar?</h1>
             <p className='font-text-alt  text-[var(--color-white)] ml-3 text-lg'>Aproveite agora o seu mais novo Porquinho Digital!</p>
-             
+
           </div>
           <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out" className='flex justify-center items-center'>
             <img src="./fotoCofrinho.png" alt="" className='w-[70%] rounded-3xl' />
           </div>
           <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out" className='w-auto'>
-            <a href="$"  className="border-2 border-[var(--color-green)] text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-4 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] hover:border-[var(--color-white)] transition-colors duration-400 ease-in-out font-text text-center w-[50%] text-sm "><button  className='w-auto'>Venha Economizar uma Grana</button></a>
+            <a href="$" className="border-2 border-[var(--color-green)] text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-4 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] hover:border-[var(--color-white)] transition-colors duration-400 ease-in-out font-text text-center w-[50%] text-sm "><button className='w-auto'>Venha Economizar uma Grana</button></a>
           </div>
         </div>
       </section>
