@@ -7,8 +7,9 @@
 * {
     box-sizing: border-box;
 }
-body{
+html{
     overflow-x: hidden;
+    width: 100%;
 }
 
 @theme {
@@ -50,6 +51,13 @@ body {
          font-family: var(--font-text);
          font-weight: 400;
     }
+    .font-text-alt{
+        font-family: var(--font-title-alt);
+        font-weight: 700;
+        letter-spacing: -1.25px;
+    }
+    
+    
 
     .border-nav {
         border-bottom: solid 0.1px;
