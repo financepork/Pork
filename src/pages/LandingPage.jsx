@@ -14,37 +14,42 @@ const LandingPage = () => {
   useEffect(() => {
     AOS.init({ once: false }); // once:true anima só uma vez
   }, []);
-  
+
   return (
     <div>
       <section className='h-auto bg-[url("/background.png")] bg-cover bg-center'>
         <Navbar />
         <div className='m-5 flex flex-col space-y-5'>
           <div className='flex flex-col text-[var(--color-white)] space-y-4'>
-            <h1 className='font-title text-5xl max-w-[85%]'>
-              Conheca o Pork, seu auxiliar financeiro digital
+            <h1 data-aos="fade-right" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
+            className='font-title text-5xl max-w-[85%]'>
+              Conheca o <span className='text-[var(--color-green)]'>Pork</span>, seu auxiliar financeiro digital
             </h1>
             <div className='max-w-[75%] space-y-1 ml-[1%]'>
-              <p className='font-text text-md'>
+              <p data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out"
+               className='font-text text-md text-[var(--color-green)]'>
                 Uma ferramenta criada para ajudar no controle de gastos.
               </p>
-              <p className='font-text text-md'>
+              <p data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out" 
+              className='font-text text-md text-[var(--color-green)]'>
                 Organização e praticidade com seu cofrinho digital.
               </p>
             </div>
 
           </div>
-          <div className='flex space-x-3 font-text'>
+          <div  data-aos="fade-right" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out"
+           className='flex space-x-3 font-text'>
             <a href="#" className='bg-[var(--color-green)] p-2 font-text hover:text-[var(--color-green)] hover:bg-[var(--color-white)] shadow-md 
           rounded-3xl transition-colors duration-400 ease-in-out w-[26%] flex justify-center items-center'><button>Comece Já</button></a>
-            <a href="#" className='border-3 rounded-3xl p-2 hover:bg-[var(--color-green)] hover:border-[var(--color-green)] text-[var(--color-white)] font-text shadow-md transition-colors duration-400 ease-in-out w-[26%] flex justify-center items-center'><button>Repositório</button></a>
+            <a href="#" className='border-3 rounded-2xl p-2 hover:bg-[var(--color-green)] hover:border-[var(--color-green)] text-[var(--color-white)] font-text shadow-md transition-colors duration-400 ease-in-out w-[26%] flex justify-center items-center'><button>Repositório</button></a>
             <img src="./github-icon.png" alt="Icone Github" className='h-10' />
           </div>
         </div>
       </section>
       <section className='bg-[var(--color-green)] h-auto flex justify-center items-center'>
         <div className='flex items-center flex-col h-auto'>
-          <h1 className='font-title-alt text-[var(--color-white)] mt-5 text-3xl'>Como Funciona?</h1>
+          <h1  data-aos="fade-up"  data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
+          className='font-title-alt text-[var(--color-white)] mt-5 text-3xl'>Como Funciona?</h1>
           <Card text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" imgPath="" />
         </div>
       </section>
@@ -53,7 +58,8 @@ const LandingPage = () => {
           <div>
             <h1 className='text-[var(--color-black)] font-title-alt text-3xl'>Principais Benefícios</h1>
           </div>
-          <div className='flex flex-col md:flex-row md:flex-wrap space-y-8 w-[60%]'>
+          <div data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out"
+          className='flex flex-col md:flex-row md:flex-wrap space-y-8 w-[60%]'>
             <SmallCard imgPath='./iconEco.png' text='Economia de Dinheiro' />
             <SmallCard imgPath='./iconExp.png' text='Experiência Individual' />
             <SmallCard imgPath='./iconOrg.png' text='Organização Financeira' />
@@ -67,11 +73,11 @@ const LandingPage = () => {
             <p className='font-text-alt  text-[var(--color-white)] ml-3 text-lg'>Aproveite agora o seu mais novo Porquinho Digital!</p>
              
           </div>
-          <div className='flex justify-center items-center'>
-            <img src="fotoCofrinho.png" alt="" className='w-[70%] rounded-3xl' />
+          <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out" className='flex justify-center items-center'>
+            <img src="./fotoCofrinho.png" alt="" className='w-[70%] rounded-3xl' />
           </div>
-          <div>
-            <a href="$" data-aos="fade-left" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out" className="border-2 border-[var(--color-green)] text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-2 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] hover:border-[var(--color-white)] transition-colors duration-400 ease-in-out font-text text-lg text-center"><button>Registre-se</button></a>
+          <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out" className='w-auto'>
+            <a href="$"  className="border-2 border-[var(--color-green)] text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-4 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] hover:border-[var(--color-white)] transition-colors duration-400 ease-in-out font-text text-center w-[50%] text-sm "><button  className='w-auto'>Venha Economizar uma Grana</button></a>
           </div>
         </div>
       </section>
@@ -81,7 +87,7 @@ const LandingPage = () => {
             <h1 className='text-[var(--color-white)] font-title-alt text-3xl'>Conheça os <span className='text-[var(--color-green)]'>Desenvolvedores</span> <span className='text-[var(--color-green)]'>:</span></h1>
           </div>
           <CardApresentacaoDir DevName="Bernardo Soares" DevStack="Front-end Developer" DevImgSrc='./fotodevsoares.jpg' />
-          <CardApresentacaoEsq className=""DevName="João Vitor Chaves" DevStack="Back-end Developer" DevImgSrc='./fotoDevChaves.jpg' />
+          <CardApresentacaoEsq DevName="João Vitor Chaves" DevStack="Back-end Developer" DevImgSrc='./fotoDevChaves.jpg' />
         </div>
 
       </section>

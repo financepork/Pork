@@ -26,8 +26,11 @@ const Navbar = () => {
             
         </div>
         <div className='items-end'>
-          <button className='md:hidden text-[var(--color-white)] text-2xl flex justify-center items-center' onClick={()=> setIsOpen(isOpen)}>
-            ☰
+          <button className='md:hidden text-[var(--color-white)] text-2xl flex justify-center items-center' onClick={()=> setIsOpen(!isOpen)}>
+             <span className='h-0.5 w-6 bg-background transition-all duration-300'></span>
+          <span className='h-0.5 w-6 bg-background my-1 transition-all duration-300'></span>
+          <span className='h-0.5 w-6 bg-background transition-all duration-300 '></span>
+        
           </button>
         </div>
         {isOpen && (
