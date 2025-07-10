@@ -8,18 +8,18 @@ const Navbar = () => {
   return (
     <header className='relative'>
       <nav className='flex justify-between md:justify-around bg-[var(--color-black)] text-[var(--color-white)] w-full h-auto p-3 border-nav lg:space-x-8'>
-        <div className='flex justify-center items-center text-2xl md:text-3xl font-title space-x-1'>
-          <img src="./icon.png" alt="" className='h-9 md:h-12' />
+        <div className='flex justify-center items-center text-2xl md:text-3xl lg:text-4xl font-title space-x-1'>
+          <img src="./icon.png" alt="" className='h-9 md:h-12 lg:h-15' />
           <h1 className='align-middle'>Pork</h1>
         </div>
-        <div className='hidden md:flex text-sm text-[var(--color-white)] justify-center items-center space-x-3 lg:space-x-8 font-text'>
+        <div className='hidden md:flex text-sm lg:text-lg text-[var(--color-white)] justify-center items-center space-x-3 lg:space-x-8 font-text'>
 
-          <a href="">Apresentação</a>
-          <a href="">Funcionamento</a>
-          <a href="">Sobre Nós</a>
+           <a href="$" className='transform hover:scale-110 ease-in-out duration-700'>Apresentação</a>
+          <a href="$" className='transform hover:scale-110 ease-in-out duration-700'>Funcionamento</a>
+          <a href="$" className='transform hover:scale-110 ease-in-out duration-700'>Sobre Nós</a>
 
         </div>
-        <div className='hidden md:flex text-sm text-[var(--color-white)] justify-center items-center space-x-3 font-text'>
+        <div className='hidden md:flex text-sm lg:text-lg text-[var(--color-white)] justify-center items-center space-x-3 font-text'>
 
           <a href="$" className='transform hover:scale-105 ease-in-out duration-400'>Login</a>
           <a href="$" className="border-0 text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-3 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] transition-colors duration-400 ease-in-out"><button>Registre-se</button></a>
