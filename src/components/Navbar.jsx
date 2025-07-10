@@ -6,42 +6,52 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-      <nav className='flex justify-between bg-[var(--color-black)] text-[var(--color-white)] w-full h-auto p-3 border-nav'>
-        <div className='flex justify-center items-center text-2xl font-title space-x-1'>
-          <img src="./icon.png" alt="" className='h-9' />
-          <h1>Pork</h1>
+    <header className='relative'>
+      <nav className='flex justify-between md:justify-around bg-[var(--color-black)] text-[var(--color-white)] w-full h-auto p-3 border-nav lg:space-x-8'>
+        <div className='flex justify-center items-center text-2xl md:text-3xl font-title space-x-1'>
+          <img src="./icon.png" alt="" className='h-9 md:h-12' />
+          <h1 className='align-middle'>Pork</h1>
         </div>
-        <div className='hidden md:flex text-2xl text-[var(--color-white)]'>
-          
-              <a href="">Teste 1</a>
-              <a href="">Teste 2</a>
-              <a href="">Teste 3</a>
+        <div className='hidden md:flex text-sm text-[var(--color-white)] justify-center items-center space-x-3 lg:space-x-8 font-text'>
+
+          <a href="">Apresentação</a>
+          <a href="">Funcionamento</a>
+          <a href="">Sobre Nós</a>
 
         </div>
-        <div className='hidden md:flex text-2xl text-[var(--color-white)]'>
-  
-              <a href="">Teste 1</a>
-              <a href="">Teste 2</a>
+        <div className='hidden md:flex text-sm text-[var(--color-white)] justify-center items-center space-x-3 font-text'>
 
-            
+          <a href="$" className='transform hover:scale-105 ease-in-out duration-400'>Login</a>
+          <a href="$" className="border-0 text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-3 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] transition-colors duration-400 ease-in-out"><button>Registre-se</button></a>
+
+
         </div>
-        <div className='flex justify-center items-center'>
-          <button className='md:hidden text-[var(--color-white)] text-2xl flex flex-col justify-center items-center' onClick={()=> setIsOpen(!isOpen)}>
-             <span className='h-0.5 w-6 bg-[var(--color-white)] transition-all duration-300'></span>
-          <span className='h-0.5 w-6 bg-[var(--color-white)] my-1 transition-all duration-300'></span>
-          <span className='h-0.5 w-6 bg-[var(--color-white)] transition-all duration-300 '></span>
-        
+        <div className='flex md:hidden justify-center items-center'>
+          <button className='md:hidden text-[var(--color-white)] text-2xl flex flex-col justify-center items-center' onClick={() => setIsOpen(!isOpen)}>
+            <span className='h-0.5 w-6 bg-[var(--color-white)] transition-all duration-300'></span>
+            <span className='h-0.5 w-6 bg-[var(--color-white)] my-1 transition-all duration-300'></span>
+            <span className='h-0.5 w-6 bg-[var(--color-white)] transition-all duration-300 '></span>
+
           </button>
         </div>
-        {isOpen && (
-            <ul className='text-2xl text-[var(--color-white)]'>
-              <a href="">Teste 1</a>
-              <a href="">Teste 2</a>
-              <a href="">Teste 3</a>
-            </ul>
-        )
-         }
       </nav>
+      {isOpen && (
+        <div>
+          <div className='absolute md:hidden w-full bg-[var(--color-black)] text-white flex flex-col items-center space-y-3 py-4 shadow-md animate-slide-down z-1  transition-all duration-300 ease-out'>
+
+            <a href="">Teste 1</a>
+            <a href="">Teste 2</a>
+            <a href="">Teste 3</a>
+          </div>
+        </div>
+
+      )
+      }
+
+    </header>
+
+
+
   )
 }
 
