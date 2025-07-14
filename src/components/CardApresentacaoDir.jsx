@@ -13,7 +13,7 @@ const CardApresentacaoDir = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub
     return (
         <div data-aos="fade-left" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out" className='bg-[var(--color-white)] flex ml-9 xl:ml-18 mt-9 rounded-bl-full rounded-tl-full p-3 h-auto xl:h-100 '>
             <div className='flex '>
-                <div className="w-[50%] xl:w-[35%] overflow-hidden rounded-full">
+                <div className="w-[50%] xl:w-[35%] overflow-hidden aspect-square rounded-full">
                     <img
                         src={DevImgSrc}
                         alt="Foto Desenvolvedor"
