@@ -24,7 +24,7 @@ const CardApresentacaoEsq = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub
                 </div>
                 
                 {/* Container da imagem - ESSENCIAL para Safari */}
-                <div className='relative flex-shrink-0 w-[120px] h-[120px] md:w-[180px] md:h-[180px] xl:w-[250px] xl:h-[250px]'>
+                <div className='relative flex-shrink-0 w-[120px] h-[120px] md:w-[180px] md:h-[180px] lg:w-[350px] lg:h-[350px] xl:w-[380px] xl:h-[380px]'>
                     <img 
                         src={DevImgSrc} 
                         alt="Foto Desenvolvedor" 
