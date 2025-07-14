@@ -17,7 +17,7 @@ const LandingPage = () => {
 
   return (
     <div>
-      <section className='h-auto bg-[url("/background.png")] bg-cover bg-center'>
+      <section className='h-auto bg-[url("/background.png")] bg-cover bg-center '>
         <Navbar />
         <div className='m-5 flex flex-col space-y-5 lg:space-y-8 md:ml-[5%] lg:mt-9'>
           <div className='flex flex-col text-[var(--color-white)] space-y-4 lg:space-y-8'>
@@ -49,14 +49,14 @@ const LandingPage = () => {
       <section className='bg-[var(--color-green)] h-auto flex justify-center items-center'>
         <div className='flex items-center md:justify-center flex-col h-auto'>
           <h1 data-aos="fade-up" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
-            className='font-title-alt text-[var(--color-white)] mt-5 text-3xl md:text-6xl'>Como Funciona?</h1>
+            className='font-title-alt text-[var(--color-white)] mt-5 lg:mt-0 text-3xl md:text-6xl'>Como Funciona?</h1>
           <Card text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" imgPath="" />
         </div>
       </section>
       <section className='bg-[var(--color-white)] h-auto'>
         <div className='flex justify-center flex-col items-center space-y-8 md:space-y-15 lg:space-y-20  p-6'>
           <div>
-            <h1 className='text-[var(--color-black)] font-title-alt text-3xl md:text-5xl lg:text-6xl'>Principais Benefícios</h1>
+            <h1 className='text-[var(--color-black)] font-title-alt text-3xl md:text-5xl lg:text-6xl lg:mt-13'>Principais Benefícios</h1>
           </div>
           <div data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out"
             className='flex flex-col lg:flex-row space-y-8 lg:space-x-8 w-[60%] h-auto md:m-4'>
@@ -68,7 +68,7 @@ const LandingPage = () => {
       </section>
       <section className='bg-[var(--color-green)] max-h-auto md:h-auto'>
         <div className='flex flex-col justify-center items-center space-y-8 h-auto'>
-          <div className='flex flex-col justify-center items-center w-[80%] mt-8 space-y-3'>
+          <div className='flex flex-col justify-center items-center w-[80%] mt-8 space-y-3 lg:mt-20 '>
             <h1 className='font-title-alt text-[var(--color-white)] text-3xl md:text-6xl lg:text-8xl'>Gosta de Economizar?</h1>
             <p className='font-text-alt  text-[var(--color-white)] ml-3 text-lg md:text-2xl lg:text-4xl'>Aproveite agora o seu mais novo Porquinho Digital!</p>
 
@@ -76,7 +76,7 @@ const LandingPage = () => {
           <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out" className='flex justify-center items-center'>
             <img src="./fotoCofrinho.png" alt="" className='w-[70%] md:w-[50%] lg:w-[34%] rounded-3xl' />
           </div>
-          <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out" className='w-auto'>
+          <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out" className='w-auto '>
             <a href="$" className="border-2 border-[var(--color-green)] text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-4 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] hover:border-[var(--color-white)] transition-colors duration-400 ease-in-out font-text text-center w-[50%] text-sm md:text-lg "><button className='w-auto'>Venha Economizar uma Grana</button></a>
           </div>
         </div>

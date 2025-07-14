@@ -75,7 +75,7 @@ body {
 
 @layer base {
     section {
-        min-height: 45rem;
+        min-height: 50rem;
         width: 100%;
     }
 }
