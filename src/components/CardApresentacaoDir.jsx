@@ -13,22 +13,28 @@ const CardApresentacaoDir = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub
     return (
         <div data-aos="fade-left" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out" className='bg-[var(--color-white)] flex ml-9 xl:ml-18 mt-9 rounded-bl-full rounded-tl-full p-3 h-auto xl:h-100 '>
             <div className='flex '>
-                <img src={DevImgSrc} alt="Foto Desenvolvedor" className='h-[100%] rounded-full w-[50%] xl:w-[30%] object-cover' />
-                <div className='flex flex-col justify-center ml-5 space-y-2 md:space-y-4'>
-                    <div className='flex flex-col justify-center items-center md:space-y-1 xl:mt-35'>
-                        <h1 className='text-md md:text-3xl xl:text-6xl font-title'>{DevName}</h1>
-                        <h2 className='text-sm md:text-xl xl:text-3xl font-text text-[var(--color-green)] ml-1'>{DevStack}</h2>
-                    </div>
-                    <div className='flex justify-center'>
-                        <a href={devInsta}><img src="./instagram.png" alt="Logo Instagram" className='h-[50%] md:h-[65%] xl:h-[30%]' /></a>
-                        <a href={devGithub}><img src="./github.png" alt="Logo Github" className='h-[50%] md:h-[65%] xl:h-[30%]' /></a>
-                        <a href={devLinkedin}><img src="./linkedin.png" alt="Logo Linkedin" className='h-[50%] md:h-[65%] xl:h-[30%]' /></a>
+                <div className="w-[50%] xl:w-[35%] overflow-hidden rounded-full">
+                    <img
+                        src={DevImgSrc}
+                        alt="Foto Desenvolvedor"
+                        className="w-full h-full object-cover rounded-full"
+                    />
+                </div>
+                    <div className='flex flex-col justify-center ml-5 space-y-2 md:space-y-4'>
+                        <div className='flex flex-col justify-center items-center md:space-y-1 xl:mt-35'>
+                            <h1 className='text-md md:text-3xl xl:text-6xl font-title'>{DevName}</h1>
+                            <h2 className='text-sm md:text-xl xl:text-3xl font-text text-[var(--color-green)] ml-1'>{DevStack}</h2>
+                        </div>
+                        <div className='flex justify-center'>
+                            <a href={devInsta}><img src="./instagram.png" alt="Logo Instagram" className='h-[50%] md:h-[65%] xl:h-[30%]' /></a>
+                            <a href={devGithub}><img src="./github.png" alt="Logo Github" className='h-[50%] md:h-[65%] xl:h-[30%]' /></a>
+                            <a href={devLinkedin}><img src="./linkedin.png" alt="Logo Linkedin" className='h-[50%] md:h-[65%] xl:h-[30%]' /></a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
-    )
+            </div>
+            )
 }
 
-export default CardApresentacaoDir
+            export default CardApresentacaoDir
