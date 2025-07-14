@@ -14,9 +14,9 @@ const Navbar = () => {
         </div>
         <div className='hidden md:flex text-sm lg:text-lg text-[var(--color-white)] justify-center items-center space-x-3 lg:space-x-8 font-text'>
 
-           <a href="$" className='transform hover:scale-110 ease-in-out duration-700'>Apresentação</a>
-          <a href="$" className='transform hover:scale-110 ease-in-out duration-700'>Funcionamento</a>
-          <a href="$" className='transform hover:scale-110 ease-in-out duration-700'>Sobre Nós</a>
+           <a href="LandingPage.jsx" className='transform hover:scale-110 ease-in-out duration-700'>Apresentação</a>
+          <a href="LandingPage.jsx" className='transform hover:scale-110 ease-in-out duration-700'>Funcionamento</a>
+          <a href="LandingPage.jsx" className='transform hover:scale-110 ease-in-out duration-700'>Sobre Nós</a>
 
         </div>
         <div className='hidden md:flex text-sm lg:text-lg text-[var(--color-white)] justify-center items-center space-x-3 font-text'>
@@ -39,9 +39,9 @@ const Navbar = () => {
         <div>
           <div className='absolute md:hidden w-full bg-[var(--color-black)] text-white flex flex-col items-center space-y-3 py-4 shadow-md animate-slide-down z-1  transition-all duration-300 ease-out'>
 
-            <a href="">Teste 1</a>
-            <a href="">Teste 2</a>
-            <a href="">Teste 3</a>
+            <a href="LandingPage.jsx">Apresentação</a>
+            <a href="LandingPage.jsx">Funcionamento</a>
+            <a href="LandingPage.jsx">Sobre Nós</a>
           </div>
         </div>
 
