@@ -37,7 +37,7 @@ const Navbar = () => {
       </nav>
       {isOpen && (
         <div>
-          <div className='absolute md:hidden w-full bg-[var(--color-black)] text-white flex flex-col items-center space-y-3 py-4 shadow-md animate-slide-down z-1  transition-all duration-300 ease-out'>
+          <div className='absolute md:hidden w-full bg-[var(--color-black)] text-white font-title-alt flex flex-col items-center space-y-3 py-4 shadow-md animate-slide-down z-1  transition-all duration-300 ease-out'>
 
             <a href="LandingPage.jsx">Apresentação</a>
             <a href="LandingPage.jsx">Funcionamento</a>
