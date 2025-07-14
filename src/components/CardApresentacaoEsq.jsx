@@ -20,7 +20,7 @@ const CardApresentacaoEsq = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub
                     <img
                         src={DevImgSrc}
                         alt="Foto Desenvolvedor"
-                        className="w-full h-full object-cover rounded-full"
+                        className="w-full h-full object-cover rounded-full safari-img-fix"
                     />
                 </div>
             </div>

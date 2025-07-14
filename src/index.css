@@ -79,3 +79,16 @@ body {
         width: 100%;
     }
 }
+/* Ajustes específicos para Safari */
+@media not all and (min-resolution:.001dpcm) {
+  @supports (-webkit-appearance:none) {
+    .safari-img-fix {
+      /* Ajustes para resolver o bug no Safari */
+      height: auto !important; /* Evita distorções */
+      max-height: 200px; /* Controla o tamanho máximo */
+      object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+      width: auto !important; /* Pode ajudar se a largura estiver bugada */
+      border-radius: 50%; /* Alternativa para rounded-full */
+    }
+  }
+}
