@@ -6,7 +6,7 @@ const Footer = () => {
         <footer className='mb-5' >
         <div className='flex flex-col items-center'>
         <div className='flex justify-center items-center h-auto mt-10'>
-          <img src="./icon.png" alt="Logo Pork" className='h-9 md:h-12 xl:h-25' />
+          <img src="./icon.png" alt="Logo Pork" className='h-9 md:h-12 xl:h-25 object-cover' />
           <h1 className='text-lg md:text-3xl xl:text-6xl font-title mt-3 ml-1 text-[var(--color-white)]'>Pork</h1>
         </div>
         <hr className='bg-[var(--color-lgray)] min-w-[75%] xl:max-w-[75%] h-0.5 mt-6' />

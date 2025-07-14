@@ -13,7 +13,7 @@ const CardApresentacaoDir = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub
     return (
         <div data-aos="fade-left" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out" className='bg-[var(--color-white)] flex ml-9 xl:ml-18 mt-9 rounded-bl-full rounded-tl-full p-3 h-auto xl:h-100 '>
             <div className='flex '>
-                <img src={DevImgSrc} alt="Foto Desenvolvedor" className='h-[100%] rounded-full w-[50%] xl:w-[30%]' />
+                <img src={DevImgSrc} alt="Foto Desenvolvedor" className='h-[100%] rounded-full w-[50%] xl:w-[30%] object-cover' />
                 <div className='flex flex-col justify-center ml-5 space-y-2 md:space-y-4'>
                     <div className='flex flex-col justify-center items-center md:space-y-1 xl:mt-35'>
                         <h1 className='text-md md:text-3xl xl:text-6xl font-title'>{DevName}</h1>

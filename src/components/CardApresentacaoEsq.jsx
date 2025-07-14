@@ -16,7 +16,7 @@ const CardApresentacaoEsq = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub
                         <a href={devLinkedin}><img src="./linkedin.png" alt="Logo Linkedin" className='h-[50%]  md:h-[65%] xl:h-[30%]' /></a>
                     </div>
                 </div>
-                <img src={DevImgSrc} alt="Foto Desenvolvedor" className='h-[100%] rounded-full w-[50%] xl:w-[30%] ' />
+                <img src={DevImgSrc} alt="Foto Desenvolvedor" className='h-[100%] rounded-full w-[50%] xl:w-[30%] object-cover' />
             </div>
 
         </div>
