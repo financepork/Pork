@@ -1,35 +1,25 @@
 import React from 'react'
-import AOS from 'aos';
-import { useEffect } from 'react';
 
-
-const CardApresentacaoEsq = ({ DevName, DevStack, DevDesc, DevImgSrc }) => {
-    
-    useEffect(() => {
-        AOS.init({ once: true }); // once:true anima só uma vez
-    }, []);
-
+const CardApresentacaoEsq = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub, devLinkedin }) => {
     return (
-        <div data-aos="fade-right" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out" className={`bg-[var(--color-white)] mt-30 mb-15 rounded-br-full rounded-tr-full mr-15 p-17 max-h-130`}>
-            <div className='flex'>
-                <div>
-                    <h1 className='text-5xl font-title ml-15'>{DevName}</h1>
-                    <h2 className='text-3xl  mt-3 font-text ml-22 text-[var(--color-green)]'>{DevStack}</h2>
-                    <p className='text-3xl mt-9 mb-4 font-text mr-15 '>{DevDesc}</p>
-                </div>
-                <div>
-                    <aside>
-                        <img src={DevImgSrc} alt="Foto Desenvolvedor" className='rounded-full w-340 h-100 object-cover shadow-[var(--color-black)]' />
-                    </aside>
-                </div>
-            </div>
-            <div className='flex space-x-3.5 -mt-8 mb-6 self-end'>
-                <a href="#"><img src="./instagram.png" alt="Icone Instagram" className='h-15' /></a>
-                <a href="#"><img src="./github.png" alt="Icone Github" className='h-15' /></a>
-                <a href="#"><img src="./linkedin.png" alt="Icone LinkedIn" className='h-15' /></a>
-            </div>
-        </div>
+        <div data-aos="fade-right" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out" className='bg-[var(--color-white)] rounded-tr-full rounded-br-full flex p-3 mt-9 mr-9 lg:mr-18  h-auto lg:h-100'>
+            <div className='flex '>
+                <div className='flex flex-col justify-center  mr-5 space-y-2 md:space-y-4 lg:mt-35'>
+                    <div className='flex flex-col justify-center items-center md:space-y-1'>
+                        <h1 className='text-md md:text-3xl lg:text-6xl font-title'>{DevName}</h1>
+                        <h2 className='text-sm md:text-xl lg:text-3xl font-text text-[var(--color-green)] ml-1'>{DevStack}</h2>
 
+                    </div>
+                    <div className='flex justify-center'>
+                        <a href={devInsta}><img src="./instagram.png" alt="Logo Instagram" className='h-[50%]  md:h-[65%] lg:h-[30%]' /></a>
+                        <a href={devGithub}><img src="./github.png" alt="Logo Github" className='h-[50%]  md:h-[65%] lg:h-[30%]' /></a>
+                        <a href={devLinkedin}><img src="./linkedin.png" alt="Logo Linkedin" className='h-[50%]  md:h-[65%] lg:h-[30%]' /></a>
+                    </div>
+                </div>
+                <img src={DevImgSrc} alt="Foto Desenvolvedor" className='h-[100%] rounded-full w-[50%] lg:w-[30%] ' />
+            </div>
+
+        </div>
     )
 }
 

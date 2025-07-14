@@ -7,9 +7,11 @@
 * {
     box-sizing: border-box;
 }
-body{
-    overflow-x: hidden;
+html, body {
+  overflow-x: hidden;
+  width: 100%;
 }
+
 
 @theme {
     --color-green: oklch(76.5% 0.177 163.223);
@@ -50,6 +52,13 @@ body {
          font-family: var(--font-text);
          font-weight: 400;
     }
+    .font-text-alt{
+        font-family: var(--font-title-alt);
+        font-weight: 700;
+        letter-spacing: -1.25px;
+    }
+    
+    
 
     .border-nav {
         border-bottom: solid 0.1px;
@@ -66,7 +75,7 @@ body {
 
 @layer base {
     section {
-        min-height: 45rem;
+        min-height: 50rem;
         width: 100%;
     }
 }
