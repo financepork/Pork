@@ -2,7 +2,7 @@ import React from 'react'
 
 const Input = ({name, value, onChange, placeholder, type = "text"}) => {
   return (
-    <input className='p-2 bg-none rounded-4xl text-[var(--color-white)] text-xs md:text-lg xl:text-xl font-text-small'
+    <input className='p-2 bg-none border-none rounded-4xl text-[var(--color-white)] text-xs md:text-lg xl:text-xl font-text-small'
         type={type}
         name={name}
         value={value}
