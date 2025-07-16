@@ -3,10 +3,10 @@ import Input from './FormsComponents/Input';
 
 const Forms = () => {
 
-  const [form, setForm] = useState({nome: ''});
+  const [form, setForm] = useState({ nome: '' });
 
   const handleChange = (e) => {
-    setForm({...form, [e.target.name]: e.target.value});
+    setForm({ ...form, [e.target.name]: e.target.value });
   }
 
   const handleSubmit = (e) => {
@@ -15,20 +15,48 @@ const Forms = () => {
   }
 
   return (
-    <div className='flex flex-col bg-gray-200 w-min h-min
-     p-8 rounded-4xl gap-4'>
-      <form onSubmit={handleSubmit}>
-        <h1>Registrar</h1>
-        <label htmlFor="nomeCompleto">Nome Completo:</label>
-        <Input
-          name="nome" 
-          value={form.nome}
-          onChange={handleChange}
-          placeholder="Digite seu nome"
-        />
-        <button type='submit'>Enviar</button>
-      </form>
-    </div>
+
+    <form onSubmit={handleSubmit}>
+      <div className='flex flex-col bg-none shadow-lg 
+     p-6 rounded-4xl m-4 space-y-6 xl:space-y-10 max-w-[90%]'>
+        <div className='flex flex-col justify-center items-center space-y-1 md:space-y-2 xl:space-y-3 w-full whitespace-nowrap '>
+          <h1 className='text-3xl md:text-5xl xl:text-7xl text-[var(--color-green)] font-title-alt'>Resgistre-se</h1>
+          <p className='text-sm md:text-lg xl:text-2xl text-[var(--color-white)] font-text'>Insira seus dados</p>
+        </div>
+        <div className='flex flex-col justify-center items-center space-y-4 '>
+          <div className='flex flex-col w-full max-w-md space-y-1'>
+            <label htmlFor="nomeCompleto" className='text-sm md:text-xl xl:text-2xl font-title-alt ml-1 text-[var(--color-green)]'>Nome Completo:</label>
+            <Input
+              name="nome"
+              value={form.nome}
+              onChange={handleChange}
+              placeholder="Digite seu nome"
+            />
+          </div>
+          <div className='flex flex-col w-full max-w-md space-y-1'>
+            <label htmlFor="nomeCompleto" className='text-sm md:text-xl xl:text-2xl font-title-alt ml-1 text-[var(--color-green)]'>E-mail:</label>
+            <Input
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="Example@gmail.com"
+            />
+          </div>
+          <div className='flex flex-col w-full max-w-md space-y-1'>
+            <label htmlFor="nomeCompleto" className='text-sm md:text-xl xl:text-2xl font-title-alt ml-1 text-[var(--color-green)]'>Senha:</label>
+            <Input
+              name="senha"
+              value={form.senha}
+              onChange={handleChange}
+              placeholder="Digite sua senha"
+            />
+          </div>
+        </div>
+        <button type='submit' className="border-0 text-[var(--color-white)] bg-[var(--color-green)] rounded-2xl text-md font-text md:text-xl xl:text-2xl p-3 hover:bg-[var(--color-white)] 
+         hover:text-[var(--color-black)] transition-colors duration-400 ease-in-out">Enviar</button>
+      </div>
+    </form>
+
 
   )
 }
