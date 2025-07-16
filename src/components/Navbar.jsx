@@ -14,9 +14,9 @@ const Navbar = () => {
         </div>
         <div className='hidden md:flex text-sm xl:text-lg text-[var(--color-white)] justify-center items-center space-x-3 xl:space-x-8 font-text'>
 
-           <a href="LandingPage.jsx" className='transform hover:scale-110 ease-in-out duration-700'>Apresentação</a>
-          <a href="LandingPage.jsx" className='transform hover:scale-110 ease-in-out duration-700'>Funcionamento</a>
-          <a href="LandingPage.jsx" className='transform hover:scale-110 ease-in-out duration-700'>Sobre Nós</a>
+           <a href="/" className='transform hover:scale-110 ease-in-out duration-700'>Apresentação</a>
+          <a href="/" className='transform hover:scale-110 ease-in-out duration-700'>Funcionamento</a>
+          <a href="/" className='transform hover:scale-110 ease-in-out duration-700'>Sobre Nós</a>
 
         </div>
         <div className='hidden md:flex text-sm xl:text-lg text-[var(--color-white)] justify-center items-center space-x-3 font-text'>
