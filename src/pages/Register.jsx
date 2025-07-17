@@ -2,7 +2,7 @@ import React from 'react'
 import Forms from '../components/Forms'
 import Navbar from '../components/Navbar'
 import { div } from 'framer-motion/client'
-import Footer from '../components/Footer'
+import Footer from '../components/FormsComponents/Footer'
  
 
 const Register = () => {

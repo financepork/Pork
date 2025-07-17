@@ -6,6 +6,7 @@ import LandingPage from './pages/LandingPage.jsx'
 import Login from './pages/Login.jsx'
 import 'aos/dist/aos.css';
 import Verify from './pages/Verify.jsx'
+import MainPage from './pages/MainPage.jsx'
 
 import './index.css'
 
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/register" element={<Register />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/verify" element={<Verify />} />
+        <Route path="/mainpage" element={<MainPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

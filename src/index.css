@@ -71,6 +71,11 @@ body {
         
     }
 
+    .border-aside{
+        border-right: solid 0.1px;
+        border-color: rgb(21, 21, 21);
+    }
+
 }
 
 @layer base {
