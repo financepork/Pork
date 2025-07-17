@@ -1,0 +1,21 @@
+{
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+    "rewrites": [
+        {
+            "source": "/",
+            "destination": "/LandingPage.jsx"
+        },
+        {
+            "source": "/register",
+            "destination": "/Register.jsx"
+        },
+        {
+            "source": "/Login",
+            "destination": "/Login.jsx"
+        },
+        {
+            "source": "/verify",
+            "destination": "/Verify.jsx"
+        }
+    ]
+}
