@@ -18,13 +18,13 @@ const MainPage = () => {
           <div className='flex flex-col items-center space-y-10 font-text-alt'>
 
             <button onClick={() => setOpenWindow('Window1')}
-             className='xl:text-2xl md:text-xl text-[var(--color-white)]'>Plano Econômico</button>
+             className='xl:text-2xl md:text-xl text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-white)] transition-colors duration-400 ease-in-out rounded-2xl p-4'>Plano Econômico</button>
 
             <button onClick={() => setOpenWindow('Window2')}
-             className='xl:text-2xl md:text-xl text-[var(--color-white)]'>Registro de Gastos</button>
+             className='xl:text-2xl md:text-xl text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-white)] transition-colors duration-400 ease-in-out rounded-2xl p-4'>Registro de Gastos</button>
 
             <button onClick={() => setOpenWindow('Window3')}
-             className='xl:text-2xl md:text-xl text-[var(--color-white)]'>Metas </button>
+             className='xl:text-2xl md:text-xl text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-white)] transition-colors duration-400 ease-in-out rounded-2xl p-4 '>Metas </button>
 
              
 
