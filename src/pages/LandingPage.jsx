@@ -39,7 +39,7 @@ const LandingPage = () => {
           </div>
           <div data-aos="fade-right" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out"
             className='flex space-x-3 font-text md:ml-[1%] items-center h-auto'>
-            <a href="/login" className='bg-[var(--color-green)] border-0 p-2 font-text hover:text-[var(--color-green)] hover:bg-[var(--color-white)] shadow-md 
+            <a href="/Register" className='bg-[var(--color-green)] border-0 p-2 font-text hover:text-[var(--color-green)] hover:bg-[var(--color-white)] shadow-md 
           rounded-2xl transition-colors duration-400 ease-in-out w-[26%] xl:w-[15%] flex justify-center items-center text-sm md:text-md xl:text-2xl'><button>Comece Já</button></a>
             <a href="https://github.com/dev-Chaves/Pork" className='border-3 rounded-2xl p-2 sm:p-2 hover:bg-[var(--color-green)] hover:border-[var(--color-green)] text-[var(--color-white)] font-text shadow-md transition-colors duration-400 ease-in-out w-[26%] xl:w-[15%] xl:h-[100%] flex justify-center items-center text-sm md:text-md xl:text-2xl '><button>Repositório</button></a>
             <img src="./github-icon.png" alt="Icone Github" className='h-12 md:h-10' />
@@ -76,8 +76,8 @@ const LandingPage = () => {
           <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out" className='flex justify-center items-center'>
             <img src="./fotoCofrinho.png" alt="" className='w-[70%] md:w-[50%] xl:w-[34%] rounded-3xl' />
           </div>
-          <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out" className='w-auto xl:mb-36 lg:mb-36 '>
-            <a href="$" className="border-2 border-[var(--color-green)] text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-4 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] hover:border-[var(--color-white)] transition-colors duration-400 ease-in-out font-text text-center w-[50%] text-sm md:text-lg "><button className='w-auto'>Venha Economizar uma Grana</button></a>
+          <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="1500" data-aos-easing="ease-in-out" className='w-auto xl:mb-36 lg:mb-36 '>
+            <a href="/Register" className="border-2 border-[var(--color-green)] text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-4 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] hover:border-[var(--color-white)] transition-colors duration-400 ease-in-out font-text text-center w-[50%] text-sm md:text-lg "><button className='w-auto'>Venha Economizar uma Grana</button></a>
           </div>
         </div>
       </section>

@@ -23,14 +23,13 @@ const CardApresentacaoEsq = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub
                     </div>
                 </div>
                 
-                {/* Container da imagem - ESSENCIAL para Safari */}
                 <div className='relative flex-shrink-0 w-[120px] h-[120px] md:w-[180px] md:h-[180px] lg:w-[350px] lg:h-[350px] xl:w-[380px] xl:h-[380px]'>
                     <img 
                         src={DevImgSrc} 
                         alt="Foto Desenvolvedor" 
                         className='absolute inset-0 w-full h-full rounded-full object-cover border-2 border-[var(--color-green)]'
                         style={{
-                            WebkitMaskImage: '-webkit-radial-gradient(white, black)' // Corrige border-radius no Safari
+                            WebkitMaskImage: '-webkit-radial-gradient(white, black)' 
                         }}
                     />
                 </div>
