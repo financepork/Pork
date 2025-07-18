@@ -40,8 +40,8 @@ const LandingPage = () => {
           <div data-aos="fade-right" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out"
             className='flex space-x-3 font-text md:ml-[1%] items-center h-auto'>
             <a href="/Register" className='bg-[var(--color-green)] border-0 p-2 font-text hover:text-[var(--color-green)] hover:bg-[var(--color-white)] shadow-md 
-          rounded-2xl transition-colors duration-400 ease-in-out w-[26%] xl:w-[15%] flex justify-center items-center text-sm md:text-md xl:text-2xl'><button>Comece Já</button></a>
-            <a href="https://github.com/dev-Chaves/Pork" className='border-3 rounded-2xl p-2 sm:p-2 hover:bg-[var(--color-green)] hover:border-[var(--color-green)] text-[var(--color-white)] font-text shadow-md transition-colors duration-400 ease-in-out w-[26%] xl:w-[15%] xl:h-[100%] flex justify-center items-center text-sm md:text-md xl:text-2xl '><button>Repositório</button></a>
+          rounded-2xl transition-colors duration-400 ease-in-out w-[26%] xl:w-[15%] flex justify-center items-center text-sm md:text-md xl:text-2xl min-h-15'><button>Comece Já</button></a>
+            <a href="https://github.com/dev-Chaves/Pork" className='border-3 rounded-2xl p-2 hover:bg-[var(--color-green)] hover:border-[var(--color-green)] text-[var(--color-white)] font-text shadow-md transition-colors duration-400 ease-in-out w-[26%] xl:w-[15%] xl:h-[100%] flex justify-center items-center text-sm md:text-md xl:text-2xl min-h-15 '><button>Repositório</button></a>
             <img src="./github-icon.png" alt="Icone Github" className='h-12 md:h-10' />
           </div>
         </div>
