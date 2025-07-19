@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap');
 @import "tailwindcss";
 @import "tailwindcss-animated";
 
@@ -21,12 +23,15 @@ html, body {
     --color-dark-green: #058563;
     --color-black: #000000;
     --color-gray: #010100;
+    --color-light-black:#101010;
     --color-chumbo: oklch(21% 0.006 285.885);
     --color-lgray: rgb(21, 21, 21);
 
     --font-text: 'Roboto', sans-serif;
     --font-title: 'Oswald', sans-serif;
     --font-title-alt: 'Inter';
+    --font-title-app: 'Lato', sans-serif;
+    --font-text-app: 'TikTok Sans', sans-serif;
 }
 
 body {
@@ -56,6 +61,19 @@ body {
         font-family: var(--font-title-alt);
         font-weight: 700;
         letter-spacing: -1.25px;
+    }
+    .font-title-app{
+        font-family: var(--font-title-app);
+        font-weight: 900;
+        letter-spacing: -1.25px;
+    }
+    .font-text-app{
+        font-family: var(--font-text);
+        font-weight: bold;
+        letter-spacing: -0.5px;
+    }
+    .bg-nav-app{
+        background-color: rgba(9, 9, 9, 0.95)
     }
 
     .border-nav {

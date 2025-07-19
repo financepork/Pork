@@ -4,32 +4,27 @@ import { useEffect } from 'react'
 import CardWindow from './cardWindow' 
 
 
-const MainWindow = ({ setOpenWindow }) => {
+const MainWindow = ({setOpenWindow}) => {
   useEffect(() => {
     AOS.init({ once: false }); // once:true anima só uma vez
   }, []);
   return (
     <div
-      className=' h-full w-full flex flex-col items-center   '>
+      className=' h-full w-full flex flex-col  '>
       <div 
-        className='flex flex-col items-center h-[35%] w-full space-y-4 bg-none p-12 mt-2 xl:mt-0 rounded-b-4xl'>
-        <h1 className='font-title-alt text-4xl text-[var(--color-white)] md:text-5xl xl:text-6xl text-center'>Olá, Usuário!</h1>
-        <p className='font-text-alt text-xl md:text-2xl xl:text-3xl text-[var(--color-white)] text-center'>Seja bem-vindo ao Pork, seu Cofrinho Digital!</p>
+        className='flex flex-col  h-[50%] xl:h-[60%] w-full p-6 xl:ml-15 rounded-b-4xl'>
+        <h1 className='font-title-app text-4xl text-[var(--color-white)] md:text-5xl xl:text-7xl '>Bem Vindo,</h1>
+        <h1 className='font-title-app text-4xl text-[var(--color-white)] md:text-5xl xl:text-8xl '>Bernardo Soares</h1>
+        <p className='font-text-alt text-xl md:text-2xl xl:text-4xl text-[var(--color-white)] mt-2 xl:mt-4 '>Seja bem-vindo ao Pork, seu Cofrinho Digital!</p>
       </div>
       <div 
-       className='flex flex-col md:flex-row items-center justify-center h-full w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl space-y-5 p-2 '>
+       className='flex flex-wrap h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-2 '>
       
-          <button className='w-[100%] h-[20%] md:h-[70%] flex justify-center' onClick={() => setOpenWindow('Window1')}>
-            <CardWindow titleText="Plano Econômico" imgSrc='planoEconomico.png' />
-        </button>
-        
-        <button className='w-[100%] h-[20%] md:h-[70%] flex justify-center'  onClick={() => setOpenWindow('Window2')}>
-          <CardWindow titleText="Registro de Gastos" imgSrc='registroGastos.png' />
+            {/*<CardWindow titleText="Plano Econômico" imgSrc='planejamentoEco.png' windowOpen={'Window1'} setOpenWindow={setOpenWindow} />
+      
+          <CardWindow titleText="Registro de Gastos" imgSrc='' windowOpen={'Window2'} setOpenWindow={setOpenWindow} />
                  
-        </button>
-        <button className='w-[100%] h-[20%] md:h-[70%] flex justify-center md:mb-5'  onClick={() => setOpenWindow('Window3')}>
-          <CardWindow titleText="Metas de Economia" imgSrc='metasEconomicas.png' />
-        </button>
+          <CardWindow titleText="Metas de Economia" imgSrc='' windowOpen={'Window3'} setOpenWindow={setOpenWindow} />*/}
 
       </div>
     </div>
