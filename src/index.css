@@ -107,4 +107,15 @@ body {
     -webkit-backface-visibility: hidden; /* Prevent rendering artifacts */
   }
 }
+::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
 

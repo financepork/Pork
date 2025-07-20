@@ -2,9 +2,11 @@ import React from 'react'
 
 const CardWindow = ({titleText, imgSrc, windowOpen, setOpenWindow}) => {
   return (
-    <button className='flex h-[50%] w-40 bg-gradient-to-r from-[var(--color-green)] to-[var(--color-dark-green)]  rounded-2xl  justify-center items-center p-4 shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out m-4 '
+    <button className='flex flex-col md:min-h-[90%] h-auto w-[47%] max-w-100 md:max-w-80 xl:max-w-100 bg-[var(--color-green)] text-[var(--color-white)]  rounded-2xl justify-between  items-center p-4 shadow-md hover:scale-105 transition-all duration-500 ease-in space-y-2 md:space-y-4 cursor-pointer hover:bg-[var(--color-white)] hover:text-[var(--color-green)]
+    '
      onClick={() => setOpenWindow(windowOpen)}>
-
+      <img src={imgSrc} alt="Foto da Função" className=' h-[75%] w-[90%] md:w-[90%] rounded-2xl' />
+      <h2 className=' font-title-app text-center text-xl md:text-4xl  m-2'>{titleText}</h2>
     </button>
     
   )

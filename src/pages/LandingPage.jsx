@@ -50,7 +50,7 @@ const LandingPage = () => {
         <div className='flex items-center md:justify-center flex-col h-auto'>
           <h1 data-aos="fade-up" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
             className='font-title-alt text-[var(--color-white)] mt-5 xl:mt-0 text-3xl md:text-6xl'>Como Funciona?</h1>
-          <Card text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" imgPath="" />
+          <Card text="O Pork oferece diversas ferramentas para ajudar você a juntar dinheiro para poder cumprir seus objetivos, desde um planejamento econômico personalizado de acordo com sua realidade financeira, até um sistema que registra suas metas a serem cumpridas! " imgPath="cardIcon.png" />
         </div>
       </section>
       <section className='bg-[var(--color-white)] h-auto 2xl:min-h-screen'>
