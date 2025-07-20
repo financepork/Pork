@@ -11,7 +11,17 @@ const Window1 = () => {
         <p className='font-text-alt text-xl md:text-2xl xl:text-4xl text-[var(--color-white)] mt-2 xl:mt-4 '>Defina como você irá gerenciar seu dinheiro!</p>
       </div>
       <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
-       className='flex flex-wrap h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-8 space-y-8 overflow-y-auto justify-center '>
+       className='flex flex-wrap h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-8 space-y-8 overflow-y-auto justify-center 2xl:justify-between '>
+        <div className='flex p-7 md:p-10 lg:p-12 xl:p-16 xl:w-[80%] w-full bg-[var(--color-white)] min-h-[80%] rounded-4xl'>
+          <div className='flex flex-col space-y-4'>
+            <h2 className='text-[var(--color-green)] font-title-app text-3xl md:text-4xl lg:text-5xl leading-relaxed'>Renda Mensal :</h2>
+            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>R$ 750,00</p>
+            <h2 className='text-[var(--color-green)] font-title-app text-3xl leading-relaxed  md:text-4xl lg:text-5xl'>Plano Selecionado :</h2>
+            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>Nenhum plano selecionado</p>
+            <h2 className='text-[var(--color-green)] font-title-app text-3xl leading-relaxed  md:text-4xl lg:text-5xl'>Economia Ideal :</h2>
+            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>R$ 150,00 /Mês</p>
+          </div>
+        </div>
         <div className='flex flex-col items-center rounded-t-2xl space-y-6 p-4 '>
           <div className='flex flex-col items-center rounded-t-2xl space-y-6 p-4 '>
               <h2  className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl' >Renda :</h2>
@@ -36,9 +46,9 @@ const Window1 = () => {
           </select>
           <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl'>Descrição dos planos:</h2>
           <ul className='text-[var(--color-white)] font-text-app text-lg space-y-4 md:space-y-8 decoration-none list-disc md:text-xl lg:text-3xl '>
-            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 bg-gradient-to-r transition-color from-[var(--color-green)] to-[var(--color-white)] bg-clip-text text-transparent '>Escorpião no Bolso :</span><br /> Destinado à usuários com uma quantidade maior de renda, podendo economizar mais dinheiro sem problemas</li>
-            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 bg-gradient-to-r transition-color from-[var(--color-green)] to-[var(--color-white)] bg-clip-text text-transparent'>Normal :</span><br />Destinado à Usuários que desejam economizar uma quantidade básica, sem exagero ou falta</li>
-            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 bg-gradient-to-r transition-color from-[var(--color-green)] to-[var(--color-white)] bg-clip-text text-transparent'>Mão de Vaca :</span><br />Destinados à usuários que não tem uma renda tão alta, ou que não querem economizar muito dinheiro</li>
+            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Escorpião no Bolso :</span><br /> Destinado à usuários com uma quantidade maior de renda, podendo economizar mais dinheiro sem problemas</li>
+            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Normal :</span><br />Destinado à Usuários que desejam economizar uma quantidade básica, sem exagero ou falta</li>
+            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)] '>Mão de Vaca :</span><br />Destinados à usuários que não tem uma renda tão alta, ou que não querem economizar muito dinheiro</li>
             
           </ul>
         </div>
