@@ -12,7 +12,7 @@ const Window1 = () => {
       </div>
       <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
        className='flex flex-wrap h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-8 space-y-8 overflow-y-auto justify-center 2xl:justify-between '>
-        <div className='flex p-7 md:p-10 lg:p-12 xl:p-16 xl:w-[80%] w-full bg-[var(--color-white)] min-h-[80%] rounded-4xl'>
+        <div className='flex p-7 md:p-10 lg:p-12 xl:p-16 xl:w-[70%] lg:w-[60%]  w-full bg-[var(--color-white)] min-h-[80%] rounded-4xl'>
           <div className='flex flex-col space-y-4'>
             <h2 className='text-[var(--color-green)] font-title-app text-3xl md:text-4xl lg:text-5xl leading-relaxed'>Renda Mensal :</h2>
             <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>R$ 750,00</p>
@@ -23,13 +23,13 @@ const Window1 = () => {
           </div>
         </div>
         <div className='flex flex-col items-center rounded-t-2xl space-y-6 p-4 '>
-          <div className='flex flex-col items-center rounded-t-2xl space-y-6 p-4 '>
-              <h2  className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl' >Renda :</h2>
-            <input type="number" name="renda" id="renda" placeholder='Insira sua Renda' className='bg-[var(--color-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg p-2' />
+          <div className='flex flex-col items-center rounded-t-2xl space-y-6 xl:space-y-10 p-4 '>
+              <h2  className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl xl:text-6xl' >Renda :</h2>
+            <input type="number" name="renda" id="renda" placeholder='Insira sua Renda' className='bg-[var(--color-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg xl:text-2xl xl:h-15  xl:w-110 p-2' />
             <div className='flex flex-row items-center justify-center space-x-4'>
-              <label htmlFor="rendaVariavel" className='text-md text-[var(--color-white)] font-title-alt text-xl md:text-2xl lg:text-3xl'>Variável</label>
+              <label htmlFor="rendaVariavel" className='text-md text-[var(--color-white)] font-title-alt text-xl md:text-2xl lg:text-3xl xl:text-4xl  '>Variável</label>
               <input type="checkbox" name="rendaVariavel" id="rendaVariavel" className="w-5 md:w-6 md:h-6 lg:w-7 lg:h-7 h-5 accent-[var(--color-green)] rounded border-2 border-[var(--color-green)] focus:ring-2 focus:ring-[var(--color-green)]" />
-              <label htmlFor="rendaFixa" className='text-md text-[var(--color-white)] font-title-alt text-xl md:text-2xl lg:text-3xl'>Fixa</label>
+              <label htmlFor="rendaFixa" className='text-md text-[var(--color-white)] font-title-alt text-xl md:text-2xl lg:text-3xl xl:text-4xl'>Fixa</label>
             <input type="checkbox" name="rendaFixa" id="rendaFixa" className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 accent-[var(--color-green)] rounded border-2 border-[var(--color-green)] focus:ring-2 focus:ring-[var(--color-green)]"  />
             </div>
             
