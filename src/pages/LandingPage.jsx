@@ -17,7 +17,7 @@ const LandingPage = () => {
 
   return (
     <div>
-      <section className='h-auto bg-[url("/background.png")] bg-cover bg-center '>
+      <section className='h-auto bg-[url("/background.png")] bg-cover bg-center 2xl:min-h-screen'>
         <Navbar />
         <div className='m-5 flex flex-col space-y-5 xl:space-y-8 md:ml-[5%] xl:mt-9'>
           <div className='flex flex-col text-[var(--color-white)] space-y-4 xl:space-y-8'>
@@ -40,20 +40,20 @@ const LandingPage = () => {
           <div data-aos="fade-right" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out"
             className='flex space-x-3 font-text md:ml-[1%] items-center h-auto'>
             <a href="/Register" className='bg-[var(--color-green)] border-0 p-2 font-text hover:text-[var(--color-green)] hover:bg-[var(--color-white)] shadow-md 
-          rounded-2xl transition-colors duration-400 ease-in-out w-[26%] xl:w-[15%] flex justify-center items-center text-sm md:text-md xl:text-2xl'><button>Comece Já</button></a>
-            <a href="https://github.com/dev-Chaves/Pork" className='border-3 rounded-2xl p-2 sm:p-2 hover:bg-[var(--color-green)] hover:border-[var(--color-green)] text-[var(--color-white)] font-text shadow-md transition-colors duration-400 ease-in-out w-[26%] xl:w-[15%] xl:h-[100%] flex justify-center items-center text-sm md:text-md xl:text-2xl '><button>Repositório</button></a>
+          rounded-2xl transition-colors duration-400 ease-in-out w-[26%] xl:w-[15%] flex justify-center items-center text-sm md:text-md xl:text-2xl min-h-15'><button>Comece Já</button></a>
+            <a href="https://github.com/dev-Chaves/Pork" className='border-3 rounded-2xl p-2 hover:bg-[var(--color-green)] hover:border-[var(--color-green)] text-[var(--color-white)] font-text shadow-md transition-colors duration-400 ease-in-out w-[26%] xl:w-[15%] xl:h-[100%] flex justify-center items-center text-sm md:text-md xl:text-2xl min-h-15 '><button>Repositório</button></a>
             <img src="./github-icon.png" alt="Icone Github" className='h-12 md:h-10' />
           </div>
         </div>
       </section>
-      <section className='bg-[var(--color-green)] h-auto flex justify-center items-center'>
+      <section className='bg-[var(--color-green)] h-auto flex justify-center items-center 2xl:min-h-screen'>
         <div className='flex items-center md:justify-center flex-col h-auto'>
           <h1 data-aos="fade-up" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
             className='font-title-alt text-[var(--color-white)] mt-5 xl:mt-0 text-3xl md:text-6xl'>Como Funciona?</h1>
-          <Card text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium enim in, voluptas soluta quis veritatis, rem odio libero dolor doloremque doloribus assumenda architecto reprehenderit tempore dolore qui, officia possimus!" imgPath="" />
+          <Card text="O Pork oferece diversas ferramentas para ajudar você a juntar dinheiro para poder cumprir seus objetivos, desde um planejamento econômico personalizado de acordo com sua realidade financeira, até um sistema que registra suas metas a serem cumpridas! " imgPath="cardIcon.png" />
         </div>
       </section>
-      <section className='bg-[var(--color-white)] h-auto'>
+      <section className='bg-[var(--color-white)] h-auto 2xl:min-h-screen'>
         <div className='flex justify-center flex-col items-center space-y-8 md:space-y-15 xl:space-y-20  p-6'>
           <div>
             <h1 className='text-[var(--color-black)] font-title-alt text-3xl md:text-5xl xl:text-6xl xl:mt-13'>Principais Benefícios</h1>
@@ -66,7 +66,7 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-      <section className='bg-[var(--color-green)] max-h-auto md:h-auto'>
+      <section className='bg-[var(--color-green)] max-h-auto md:h-auto 2xl:min-h-screen'>
         <div className='flex flex-col justify-center items-center space-y-8 h-auto'>
           <div className='flex flex-col justify-center items-center w-[80%] mt-8 space-y-3 xl:mt-20 '>
             <h1 className='font-title-alt text-[var(--color-white)] text-3xl md:text-6xl xl:text-8xl'>Gosta de Economizar?</h1>
@@ -81,7 +81,7 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-      <section className='bg-[var(--color-black)] max-h-auto'>
+      <section className='bg-[var(--color-black)] max-h-auto 2xl:min-h-screen'>
         <div className='flex flex-col h-auto'>
           <div className='mt-5 ml-5 flex md:justify-center items-center xl:m-10'>
             <h1 className='text-[var(--color-white)] font-title-alt text-3xl md:text-5xl xl:text-6xl'>Conheça os <span className='text-[var(--color-green)]'>Desenvolvedores</span> <span className='text-[var(--color-green)]'>:</span></h1>
