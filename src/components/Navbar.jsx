@@ -39,7 +39,7 @@ const Navbar = () => {
         <nav>
           <div className='absolute md:hidden w-full bg-[var(--color-black)] text-white font-title-alt flex flex-col items-center space-y-6 py-4 shadow-md  z-50'>
 
-            <a href="LandingPage.jsx">Apresentação</a>
+            <a href="/mainpage">Apresentação</a>
             <a href="LandingPage.jsx">Funcionamento</a>
             <a href="LandingPage.jsx">Sobre Nós</a>
             <a href="/Login" className='transform hover:scale-105 ease-in-out duration-400'>Login</a>
