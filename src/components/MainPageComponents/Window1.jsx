@@ -4,6 +4,7 @@ import axios from 'axios'
 
 const Window1 = () => {
 
+
   const [valueRenda, setValueRenda] = useState('Nenhum valor inserido')
 
   const [valuePlan, setValuePlan] = useState('Nenhum Plano Selecionado')

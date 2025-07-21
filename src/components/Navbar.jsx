@@ -30,9 +30,11 @@ const Navbar = () => {
       </nav>
       {isOpen && (
         <nav>
+
           <div className='absolute md:hidden w-full bg-[var(--color-black)] text-white font-title-alt flex flex-row justify-center items-center space-x-2  py-4 shadow-md z-50'>
             <a href="/login" className="border-0 text-[var(--color-black)] bg-[var(--color-green)] rounded-2xl p-3 hover:bg-[var(--color-white)] hover:text-[var(--color-green)] transition-colors duration-400 ease-in-out w-[30%] text-center mb-0"><button>Login</button></a>
             <a href="/Register" className="border-0 text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-3 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] transition-colors duration-400 ease-in-out w-[30%] text-center"><button>Registre-se</button></a>
+    
           </div>
         </nav>
 
