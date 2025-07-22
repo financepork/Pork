@@ -14,7 +14,7 @@ const MainWindow = ({setOpenWindow}) => {
       <div data-aos="fade-right" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
         className='flex flex-col  h-[50%] xl:h-[60%] w-full p-6 xl:ml-15 rounded-b-4xl'>
         <h1 className='font-title-app text-4xl text-[var(--color-white)] md:text-5xl xl:text-7xl '>Bem Vindo,</h1>
-        <h1 className='font-title-app text-4xl text-[var(--color-white)] md:text-5xl xl:text-8xl '>João Vitor Chaves</h1>
+        <h1 className='font-title-app text-4xl text-[var(--color-white)] md:text-5xl xl:text-8xl '>Usuário</h1>
         <p className='font-text-alt text-xl md:text-2xl xl:text-4xl text-[var(--color-white)] mt-2 xl:mt-4 '>Seja bem-vindo ao Pork, seu Cofrinho Digital!</p>
       </div>
       <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
