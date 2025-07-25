@@ -4,7 +4,7 @@ import Footer from '../components/Footer'
 
 const Login = () => {
   return (
-    <div>
+    <main>
       <Navbar />
       <div data className=' bg-[url("/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%]  min-h-screen flex justify-center items-center'>
       <div className='flex flex-col justify-center items-center'>
@@ -14,7 +14,7 @@ const Login = () => {
         
       </div>
       <Footer />
-    </div>
+    </main>
   )
 }
 

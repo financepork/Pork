@@ -9,7 +9,7 @@ const MainWindow = ({setOpenWindow}) => {
     AOS.init({ once: false }); // once:true anima só uma vez
   }, []);
   return (
-    <div
+    <main
       className=' scroll-smooth h-full w-full '>
       <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
        className='flex flex-wrap h-auto w-full bg-[var(--color-black)] rounded-t-4xl p-8 xl:p-16 gap-4 xl:gap-12  overflow-y-none justify-center'>
@@ -21,7 +21,7 @@ const MainWindow = ({setOpenWindow}) => {
           <CardWindow titleText="Metas de Economia" imgSrc='metas.png' windowOpen={'Window3'} setOpenWindow={setOpenWindow} />
       
       </div>
-    </div>
+    </main>
   )
 }
 

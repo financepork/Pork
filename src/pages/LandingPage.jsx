@@ -16,7 +16,7 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div>
+    <main>
       <section className='h-auto bg-[url("/background.png")] bg-cover bg-center 2xl:min-h-screen'>
         <Navbar />
         <div className='m-5 flex flex-col space-y-5 xl:space-y-8 md:ml-[5%] xl:mt-9'>
@@ -92,7 +92,7 @@ const LandingPage = () => {
 
       </section>
       <Footer />
-    </div>
+    </main>
 
 
   )

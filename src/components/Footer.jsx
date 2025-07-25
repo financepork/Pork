@@ -2,8 +2,8 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div  className='bg-[var(--color-gray)] h-auto border-footer '>
-        <footer className='mb-5' >
+    <footer  className='bg-[var(--color-gray)] h-auto border-footer '>
+        <div className='mb-5' >
         <div className='flex flex-col items-center'>
         <div className='flex justify-center items-center h-auto mt-10'>
           <img src="./icon.png" alt="Logo Pork" className='h-9 md:h-12 xl:h-25 object-cover' />
@@ -21,8 +21,8 @@ const Footer = () => {
             </div>
             
           </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 
   )
 }

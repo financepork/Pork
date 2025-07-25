@@ -21,8 +21,8 @@ const MainPage = () => {
   }, []);
 
   return (
-    <div>
-      <div className='h-max-screen overflow-x-hidden bg-gradient-to-tr from-[var(--color-green)] to-[var(--color-dark-green)] rounded-b-2xl '>
+    <main>
+      <header className='h-max-screen overflow-x-hidden bg-gradient-to-tr from-[var(--color-green)] to-[var(--color-dark-green)] rounded-b-2xl '>
         <aside className=''>
           <div className='flex justify-between items-center h-auto p-2 ml-2 bg-none'>
             <div>
@@ -86,14 +86,14 @@ const MainPage = () => {
         </div>
             
         
-      </div>
+      </header>
       <main className=' min-h-screen h-auto '>
         {openWindow == 'mainWindow' && <MainWindow setOpenWindow={setOpenWindow} />
           || openWindow == 'Window1' && <Window1 />
           || openWindow == 'Window2' && <Window2 />
           || openWindow == 'Window3' && <Window3 />}
       </main>
-    </div>
+    </main>
   )
 }
 
