@@ -11,7 +11,7 @@ const Register = () => {
       <Navbar />
       <div 
        className=' bg-[url("/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%]  min-h-screen flex justify-center items-center'>
-        <Forms mainText='Registre-se' altText='Insira seus dados' />
+        <Forms mainText='Registre-se' altText='Insira seus dados' nomeCompleto={true} />
       </div>
       <Footer />
     </main>
