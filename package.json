@@ -21,6 +21,7 @@
     "react-router-dom": "^7.6.3",
     "react-select": "^5.10.2",
     "select": "^1.1.2",
+    "sweetalert2": "^11.6.13",
     "tailwindcss": "^4.1.11",
     "tailwindcss-animated": "^2.0.0"
   },

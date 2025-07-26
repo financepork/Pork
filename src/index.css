@@ -26,6 +26,7 @@ html, body {
     --color-light-black:#101010;
     --color-chumbo: oklch(21% 0.006 285.885);
     --color-lgray: rgb(21, 21, 21);
+    --color-red: rgb(256, 0, 0);
 
     --font-text: 'Roboto', sans-serif;
     --font-title: 'Oswald', sans-serif;
@@ -118,4 +119,9 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #333;
 }
-
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-background-fill-color: inherit !important;
+  -webkit-text-fill-color: #fff !important;
+  transition: background-color 9999s ease-in-out 0s !important;
+}
