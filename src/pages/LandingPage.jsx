@@ -1,31 +1,31 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
-import Card from '../components/Card'
 import Footer from '../components/Footer'
 import CardApresentacaoDir from '../components/CardApresentacaoDir'
 import CardApresentacaoEsq from '../components/CardApresentacaoEsq'
 import AOS from 'aos';
 import { useEffect } from 'react';
 import SmallCard from '../components/SmallCard'
+import Card from '../components/Card'
 
 
 
 const LandingPage = () => {
   useEffect(() => {
-    AOS.init({ once: false }); // once:true anima só uma vez
+    AOS.init({ once: true }); // once:true anima só uma vez
   }, []);
 
   return (
     <main>
       <section className='h-auto bg-[url("/background.png")] bg-cover bg-center 2xl:min-h-screen'>
         <Navbar />
-        <div className='m-5 flex flex-col space-y-5 xl:space-y-8 md:ml-[5%] xl:mt-9'>
-          <div className='flex flex-col text-[var(--color-white)] space-y-4 xl:space-y-8'>
+        <div className='m-5 p-1 flex flex-col space-y-5 xl:space-y-8 md:ml-[5%] xl:mt-9'>
+          <div className='flex flex-col text-[var(--color-white)] space-y-4 xl:space-y-8 max-w-[80%]'>
             <h1 data-aos="fade-right" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
               className='font-title text-5xl md:text-6xl xl:text-8xl max-w-[85%] text-[var(--color-white)]'>
               Conheça o <span className='text-[var(--color-green)]'>Pork</span>, seu auxiliar financeiro digital
             </h1>
-            <div className='max-w-[75%] space-y-1 ml-[1%]'>
+            <div className='max-w-[75%] space-y-1 '>
               <p data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out"
                 className='font-text text-md md:text-lg xl:text-3xl text-[var(--color-green)]'>
                 Uma ferramenta criada para ajudar no controle de gastos.
@@ -38,20 +38,25 @@ const LandingPage = () => {
 
           </div>
           <div data-aos="fade-right" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out"
-            className='flex space-x-3 font-text md:ml-[1%] items-center h-auto'>
+            className='flex space-x-3 font-text items-center h-auto'>
             <a href="/Register" className='bg-[var(--color-green)] border-0 p-2 font-text hover:text-[var(--color-green)] hover:bg-[var(--color-white)] shadow-md 
           rounded-2xl transition-colors duration-400 ease-in-out w-[26%] xl:w-[15%] flex justify-center items-center text-sm md:text-md xl:text-2xl min-h-15'><button>Comece Já</button></a>
             <a href="https://github.com/dev-Chaves/Pork" className='border-3 rounded-2xl p-2 hover:bg-[var(--color-green)] hover:border-[var(--color-green)] text-[var(--color-white)] font-text shadow-md transition-colors duration-400 ease-in-out w-[26%] xl:w-[15%] xl:h-[100%] flex justify-center items-center text-sm md:text-md xl:text-2xl min-h-15 '><button>Repositório</button></a>
-            <img src="./github-icon.png" alt="Icone Github" className='h-12 md:h-10' />
+            
           </div>
         </div>
       </section>
-      <section className='bg-[var(--color-green)] h-auto flex justify-center items-center 2xl:min-h-screen'>
-        <div className='flex items-center md:justify-center flex-col h-auto'>
-          <h1 data-aos="fade-up" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
-            className='font-title-alt text-[var(--color-white)] mt-5 xl:mt-0 text-3xl md:text-6xl'>Como Funciona?</h1>
-          <Card text="O Pork oferece diversas ferramentas para ajudar você a juntar dinheiro para poder cumprir seus objetivos, desde um planejamento econômico personalizado de acordo com sua realidade financeira, até um sistema que registra suas metas a serem cumpridas! " imgPath="cardIcon.png" />
+      <section className='bg-[var(--color-green)] h-auto  p-6 2xl:min-h-screen'>
+        <div className='flex items-center flex-col h-auto p-6'>
+          <h1 data-aos="fade-right" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
+            className='font-title-alt text-[var(--color-white)] mt-5 xl:mt-0 text-3xl md:text-6xl lg:text-7xl text-center'>Tudo o que você precisa e muito mais. </h1>
         </div>
+        <div data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out" className='flex flex-wrap gap-4 xl:gap-8 justify-center items-center w-full h-full space-y-4 p-6 mt-4'>
+              <Card imgPath='planEco.png' title='Planejamento Econômico' />
+              <Card imgPath='registroGastos.png' title='Registro de Gastos' />
+              <Card imgPath='metas.png' title='Metas de Economia' />
+  
+      </div>
       </section>
       <section className='bg-[var(--color-white)] h-auto 2xl:min-h-screen'>
         <div className='flex justify-center flex-col items-center space-y-8 md:space-y-15 xl:space-y-20  p-6'>
@@ -69,28 +74,28 @@ const LandingPage = () => {
       <section className='bg-[var(--color-green)] max-h-auto md:h-auto 2xl:min-h-screen'>
         <div className='flex flex-col justify-center items-center space-y-8 h-auto'>
           <div className='flex flex-col justify-center items-center w-[80%] mt-8 space-y-3 xl:mt-20 '>
-            <h1 className='font-title-alt text-[var(--color-white)] text-3xl md:text-6xl xl:text-8xl'>Gosta de Economizar?</h1>
-            <p className='font-text-alt  text-[var(--color-white)] ml-3 text-lg md:text-2xl xl:text-4xl'>Aproveite agora o seu mais novo Porquinho Digital!</p>
+            <h1 className='font-title-alt text-[var(--color-white)] text-3xl md:text-6xl xl:text-7xl text-center'>A Organização deixou de ser um Desafio.</h1>
+            <p className='font-text-alt  text-[var(--color-white)] ml-3 text-lg md:text-2xl xl:text-4xl text-center'>Apenas alguns cliques, sua vida financeira de cara nova </p>
 
           </div>
           <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out" className='flex justify-center items-center'>
             <img src="./fotoCofrinho.png" alt="" className='w-[70%] md:w-[50%] xl:w-[34%] rounded-3xl' />
           </div>
           <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="1500" data-aos-easing="ease-in-out" className='w-auto xl:mb-36 lg:mb-36 '>
-            <a href="/Register" className="border-2 border-[var(--color-green)] text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-4 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] hover:border-[var(--color-white)] transition-colors duration-400 ease-in-out font-text text-center w-[50%] text-sm md:text-lg "><button className='w-auto'>Venha Economizar uma Grana</button></a>
+            <a href="/mainpage" className="border-2 border-[var(--color-green)] text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-4 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] hover:border-[var(--color-white)] transition-colors duration-400 ease-in-out font-text text-center w-[50%] text-sm md:text-lg "><button className='w-auto'>Venha Economizar uma Grana</button></a>
           </div>
         </div>
       </section>
-      <section className='bg-[var(--color-black)] max-h-auto 2xl:min-h-screen'>
+      <article className='bg-[var(--color-black)] max-h-auto h-auto py-6 2xl:min-h-screen'>
         <div className='flex flex-col h-auto'>
-          <div className='mt-5 ml-5 flex md:justify-center items-center xl:m-10'>
+          <div className='mt-5 ml-5 flex md:justify-center items-center xl:m-10 max-w-[80%] self-center'>
             <h1 className='text-[var(--color-white)] font-title-alt text-3xl md:text-5xl xl:text-6xl'>Conheça os <span className='text-[var(--color-green)]'>Desenvolvedores</span> <span className='text-[var(--color-green)]'>:</span></h1>
           </div>
           <CardApresentacaoDir DevName="Bernardo Soares" DevStack="Front-end Developer" DevImgSrc='./fotodevsoares.jpg' devInsta='https://www.instagram.com/__soaresbernardo/' devGithub='https://github.com/Dev-Soares' devLinkedin='https://www.linkedin.com/in/bernardo-soares-150096364' />
           <CardApresentacaoEsq DevName="João Vitor Chaves" DevStack="Back-end Developer" DevImgSrc='./fotoDevChaves.jpg' devGithub='https://github.com/dev-Chaves' devInsta='https://www.instagram.com/user_joaocs/' devLinkedin='https://www.linkedin.com/in/jo%C3%A3o-vitor-chaves-silva-9412912b7' />
         </div>
 
-      </section>
+      </article>
       <Footer />
     </main>
 

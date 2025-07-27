@@ -1,16 +1,13 @@
 import React from 'react'
 
-const Card = ({ text, imgPath }) => {
+const Card = ({title, imgPath}) => {
     return (
-        <div data-aos="fade-up" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out" className='bg-[var(--color-white)] h-auto w-[75%] rounded-3xl m-8 p-8 md:p-12 xl:mt-20  '>
-            <div className='flex flex-col xl:flex-row justify-center items-center space-y-5'>
-                <div className='flex justify-center items-center w-auto xl:m-8  '>
-                    <img src={imgPath} alt="Foto Card" className=' h-1/2 md:h-100 xl:h-80 xl:w-450 w-[95%] rounded-2xl img-center'/>
-                </div>
-
-                <div>
-                    <p className='bg-gradient-to-b from-[var(--color-green)] to-[var(--color-light-green)] bg-clip-text text-3xl md:text-4xl xl:text-4xl font-text text-transparent xl:m-8'>{text}</p> 
-                </div>
+        <div className='bg-white w-full md:w-[60%] lg:w-[45%] 2xl:w-[40%] h-full p-8 md:p-12 lg:p-16 flex flex-row justify-center rounded-3xl'>
+            <img src={imgPath} alt="Foto da ferramenta" className='w-[50%] h-[50%]' />
+            <div className='flex flex-col space-y-4 justify-center mx-4'>
+                <h3 className='font-title-app text-[var(--color-green)] text-2xl md:text-4xl 2xl:text-6xl text-center'>
+                    {title}
+                </h3>
             </div>
         </div>
     )
