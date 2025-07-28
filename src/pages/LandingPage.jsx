@@ -6,7 +6,7 @@ import CardApresentacaoEsq from '../components/CardApresentacaoEsq'
 import AOS from 'aos';
 import { useEffect } from 'react';
 import SmallCard from '../components/SmallCard'
-import Card from '../components/Card'
+
 
 
 
@@ -49,14 +49,8 @@ const LandingPage = () => {
       <section className='bg-[var(--color-green)] h-auto  p-6 2xl:min-h-screen'>
         <div className='flex items-center flex-col h-auto p-6'>
           <h1 data-aos="fade-right" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
-            className='font-title-alt text-[var(--color-white)] mt-5 xl:mt-0 text-3xl md:text-6xl lg:text-7xl text-center'>Tudo o que você precisa e muito mais. </h1>
+            className='font-title-alt text-[var(--color-white)] mt-5 xl:mt-0 text-3xl md:text-6xl lg:text-6xl text-center'>Tudo o que você precisa e muito mais. </h1>
         </div>
-        <div data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out" className='flex flex-wrap gap-4 xl:gap-8 justify-center items-center w-full h-full space-y-4 p-6 mt-4'>
-              <Card imgPath='planEco.png' title='Planejamento Econômico' />
-              <Card imgPath='registroGastos.png' title='Registro de Gastos' />
-              <Card imgPath='metas.png' title='Metas de Economia' />
-  
-      </div>
       </section>
       <section className='bg-[var(--color-white)] h-auto 2xl:min-h-screen'>
         <div className='flex justify-center flex-col items-center space-y-8 md:space-y-15 xl:space-y-20  p-6'>
