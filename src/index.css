@@ -9,9 +9,11 @@
 * {
     box-sizing: border-box;
 }
-html, body {
-  overflow-x: hidden;
-  width: 100%;
+
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
 }
 
 
@@ -23,9 +25,10 @@ html, body {
     --color-dark-green: #058563;
     --color-black: #000000;
     --color-gray: #010100;
-    --color-light-black:#101010;
+    --color-light-black: #101010;
     --color-chumbo: oklch(21% 0.006 285.885);
     --color-lgray: rgb(21, 21, 21);
+    --color-red: rgb(256, 0, 0);
 
     --font-text: 'Roboto', sans-serif;
     --font-title: 'Oswald', sans-serif;
@@ -48,31 +51,37 @@ body {
         font-family: var(--font-title);
         font-weight: 600
     }
-    .font-title-alt{
+
+    .font-title-alt {
         font-family: var(--font-title-alt);
         font-weight: 800;
         letter-spacing: -1px;
     }
-    .font-text-small{
-         font-family: var(--font-text);
-         font-weight: 400;
+
+    .font-text-small {
+        font-family: var(--font-text);
+        font-weight: 400;
     }
-    .font-text-alt{
+
+    .font-text-alt {
         font-family: var(--font-title-alt);
         font-weight: 700;
         letter-spacing: -1.25px;
     }
-    .font-title-app{
+
+    .font-title-app {
         font-family: var(--font-title-app);
         font-weight: 900;
         letter-spacing: -1.25px;
     }
-    .font-text-app{
+
+    .font-text-app {
         font-family: var(--font-text);
         font-weight: bold;
         letter-spacing: -0.5px;
     }
-    .bg-nav-app{
+
+    .bg-nav-app {
         background-color: rgba(9, 9, 9, 0.95)
     }
 
@@ -84,14 +93,13 @@ body {
     .border-footer {
         border-top: 0.1px solid;
         border-color: rgb(21, 21, 21);
-        
+
     }
 
-    .border-aside{
+    .border-aside {
         border-right: solid 0.1px;
         border-color: rgb(21, 21, 21);
     }
-
 }
 
 @layer base {
@@ -100,22 +108,34 @@ body {
         width: 100%;
     }
 }
+
 /* Ajustes específicos para Safari */
 @supports (-webkit-touch-callout: none) {
-  .safari-img-container img {
-    -webkit-transform: translateZ(0); /* Force GPU acceleration */
-    -webkit-backface-visibility: hidden; /* Prevent rendering artifacts */
-  }
-}
-::-webkit-scrollbar {
-  width: 8px;
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: #1a1a1a;
-  border-radius: 8px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #333;
+    .safari-img-container img {
+        -webkit-transform: translateZ(0);
+        /* Force GPU acceleration */
+        -webkit-backface-visibility: hidden;
+        /* Prevent rendering artifacts */
+    }
 }
 
+::-webkit-scrollbar {
+    width: 8px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1a1a1a;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #333;
+}
+
+input:-webkit-autofill {
+    box-shadow: 0 0 0 1000px transparent inset !important;
+    -webkit-background-fill-color: inherit !important;
+    -webkit-text-fill-color: #fff !important;
+    transition: background-color 9999s ease-in-out 0s !important;
+}

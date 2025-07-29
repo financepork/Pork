@@ -7,9 +7,13 @@ import Window3 from '../components/MainPageComponents/Window3.jsx'
 import AOS from 'aos';
 import { useEffect } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
+import { div } from 'framer-motion/client'
+import HeaderPages from '../components/MainPageComponents/headerPages.jsx'
+
 
 const MainPage = () => {
-  const [openWindow, setOpenWindow] = useState('mainWindow')
+  const [openWindow, setOpenWindow] = useState('mainWindow');
+
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -17,8 +21,9 @@ const MainPage = () => {
   }, []);
 
   return (
-      <div className='h-max-screen overflow-x-hidden bg-gradient-to-tr from-[var(--color-green)] to-[var(--color-dark-green)] '>
-        <aside>
+    <main>
+      <header className='h-max-screen overflow-x-hidden bg-gradient-to-tr from-[var(--color-green)] to-[var(--color-dark-green)] rounded-b-2xl '>
+        <aside className=''>
           <div className='flex justify-between items-center h-auto p-2 ml-2 bg-none'>
             <div>
               <button className={`${isOpen ? 'hidden' : ''} text-[var(--color-white)] flex flex-col justify-center items-center cursor-pointer`} onClick={() => setIsOpen(true)}>
@@ -36,7 +41,7 @@ const MainPage = () => {
           </div>
 
           {isOpen && (
-            <aside data-aos="fade-right" data-aos-delay="200" data-aos-duration="800" data-aos-easing="ease-in-out" className='top-0 fixed w-[30%] h-full bg-nav-app text-white font-title-alt flex flex-col items-center space-y-3 py-4 shadow-md z-1  transition-all duration-300 ease-out justify-between'>
+            <aside data-aos="fade-right" data-aos-delay="200" data-aos-duration="800" data-aos-easing="ease-in-out" className='top-0 fixed w-[45%] md:w-[30%] h-full bg-nav-app text-white font-title-alt flex flex-col items-center space-y-3 py-4 shadow-md z-1  transition-all duration-300 ease-out justify-between'>
               <div className='flex flex-col items-center justify-center mt-3.5'>
                 <button className={`${isOpen ? '' : 'hidden'} text-[var(--color-white)] flex flex-col justify-center items-center`} onClick={() => setIsOpen(false)}>
                   <XMarkIcon className="h-10 md:h-15 w-10 md:w-15  text-white cursor-pointer" />
@@ -49,7 +54,7 @@ const MainPage = () => {
                   setOpenWindow('Window1');
                   setIsOpen(false);
                 }}
-                  className='text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 md:text-2xl xl:text-4xl cursor-pointer'>Plano Econômico</button>
+                  className='text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer'>Plano Econômico</button>
 
                 <button onClick={() => {
                   setOpenWindow('Window2');
@@ -57,13 +62,13 @@ const MainPage = () => {
                 }
 
                 }
-                  className=' text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 md:text-2xl xl:text-4xl cursor-pointer'>Registro de Gastos</button>
+                  className=' text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer'>Registro de Gastos</button>
 
                 <button onClick={() => {
                   setOpenWindow('Window3');
                   setIsOpen(false);
                 }}
-                  className=' text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 md:text-2xl xl:text-4xl cursor-pointer'>Metas de Economia </button>
+                  className=' text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer'>Metas de Economia </button>
 
               </div>
               <div className='flex flex-col items-center w-full '>
@@ -73,16 +78,22 @@ const MainPage = () => {
           )}
 
         </aside>
-
-
-        <main className=' h-screen '>
-          {openWindow == 'mainWindow' && <MainWindow setOpenWindow={setOpenWindow} />
-            || openWindow == 'Window1' && <Window1 />
-            || openWindow == 'Window2' && <Window2 />
-            || openWindow == 'Window3' && <Window3 />}
-        </main>
-
-      </div>
+        <div  data-aos="fade-right" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in">
+          {openWindow == 'mainWindow' && <HeaderPages firstLineText={"Bem Vindo,"} secLineText={"Usuário"} altText={"Seja bem-vindo ao Pork, seu Cofrinho Digital!"}/>
+          || openWindow == 'Window1' && <HeaderPages firstLineText={"Planejamento"} secLineText={"Econômico"} altText={"Defina como você vai gerenciar seu dinheiro!"}/>
+          || openWindow == 'Window2' && <HeaderPages firstLineText={"Registro de"} secLineText={"Gastos"} altText={"Organize suas despesas como ninguém!"}/>
+          || openWindow == 'Window3' && <HeaderPages firstLineText={"Metas"} secLineText={"e Objetivos"} altText={"Defina objetivos que incentivem a Economia de dinheiro!"}/> }
+        </div>
+            
+        
+      </header>
+      <main className=' min-h-screen h-auto '>
+        {openWindow == 'mainWindow' && <MainWindow setOpenWindow={setOpenWindow} />
+          || openWindow == 'Window1' && <Window1 />
+          || openWindow == 'Window2' && <Window2 />
+          || openWindow == 'Window3' && <Window3 />}
+      </main>
+    </main>
   )
 }
 
