@@ -22,16 +22,16 @@ const LandingPage = () => {
         <div className='m-5 p-1 flex flex-col space-y-5 xl:space-y-8 md:ml-[5%] xl:mt-9'>
           <div className='flex flex-col text-[var(--color-white)] space-y-4 xl:space-y-8 max-w-[80%]'>
             <h1 data-aos="fade-right" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
-              className='font-title text-5xl md:text-6xl xl:text-8xl max-w-[85%] text-[var(--color-white)]'>
+              className='font-title text-5xl md:text-6xl  xl:text-7xl max-w-[85%] text-[var(--color-white)]'>
               Conheça o <span className='text-[var(--color-green)]'>Pork</span>, seu auxiliar financeiro digital
             </h1>
             <div className='max-w-[75%] space-y-1 '>
               <p data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out"
-                className='font-text text-md md:text-lg xl:text-3xl text-[var(--color-green)]'>
+                className='font-text text-md md:text-lg xl:text-2xl text-[var(--color-green)]'>
                 Uma ferramenta criada para ajudar no controle de gastos.
               </p>
               <p data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out"
-                className='font-text text-md md:text-lg xl:text-3xl  text-[var(--color-green)]'>
+                className='font-text text-md md:text-lg xl:text-2xl  text-[var(--color-green)]'>
                 Organização e praticidade com seu cofrinho digital.
               </p>
             </div>

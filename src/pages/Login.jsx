@@ -116,7 +116,7 @@ const Login = () => {
                     type={ viewPassword? 'text' : 'password'}
                     required
                   />
-                  <button className=' inset-y-0 right-0 pr-4 flex items-center cursor-pointer' onClick={(e) => {
+                  <button type='button' className=' inset-y-0 right-0 pr-4 flex items-center cursor-pointer' onClick={(e) => {
                     e.preventDefault()
                     setViewPassword(!viewPassword)}
                   }>{viewPassword? (
