@@ -28,10 +28,8 @@ const Register = () => {
   const [erroConfirmPassword, setErroConfirmPassword] = useState(false)
 
   const [viewPassword, setViewPassword] = useState(false)
-
+  
   const [viewConfirmPassword, setViewConfirmPassword] = useState(false)
-
-
 
   const errorMessage = (error) => {
     Swal.fire({
