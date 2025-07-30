@@ -112,10 +112,10 @@ const Register = () => {
     const dataUser = {
       nome: inputNome,
       email: inputEmail,
-      password: inputPassword
+      senha: inputPassword
     }
     try {
-      //await axios.post('url', dataUser);
+      await axios.post('http://financepork.site/api/auth/register', dataUser);
       sucessMessage()
       resetInputs()
     } catch (error) {
@@ -148,7 +148,7 @@ const Register = () => {
                   placeholder="Digite seu nome"
                   required
                 />
-                {erroNome && <p className='text-red text-sm md:text-md xl:text-lg font-title-alt ml-1 ' >Digite um Nome válido</p>}
+                {erroNome && <p className='text-red text-sm md:text-md xl:text-lg font-text-alt ml-1 ' >Digite um Nome válido</p>}
 
               </div>
 
@@ -190,9 +190,6 @@ const Register = () => {
                   )}</button>
                 </div>
                 {erroPassword && <p className='text-red text-sm md:text-md xl:text-lg font-title-alt ml-1 ' >Digite uma senha válida</p>}
-
-
-
               </div>
               <div className='flex flex-col w-full max-w-md space-y-1'>
 
@@ -217,6 +214,14 @@ const Register = () => {
                   )}</button>
                   </div>
                 {erroConfirmPassword && <p className='text-red text-sm md:text-md xl:text-lg font-title-alt ml-1 ' >Digite as senhas iguais</p>}
+                <p className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)] m-3'>A Senha precisa possuir :
+                  <ul className='space-y-2 m-4 text-sm list-disc'>
+                    <li>No Mínimo 8 caracteres</li>
+                    <li>No Mínimo 1 letra Maiúscula e 1 letra Minúscula</li>
+                    <li>No Mínimo 1 Número</li>
+                    <li>No Mínimo 1 Caractere Especial (Símbolos como: @, #, !...)</li>
+                  </ul>
+                </p>
 
               </div>
             </div>

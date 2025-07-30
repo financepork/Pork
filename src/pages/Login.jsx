@@ -3,6 +3,8 @@ import { useState } from 'react'
 import Footer from '../components/Footer'
 import Input from '../components/FormsComponents/Input'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 
 
@@ -56,6 +58,8 @@ const Login = () => {
   }
 
   const loginVerify = async (e) => {
+    const navigate = useNavigate();
+
     e.preventDefault()
     if (!validateLogin()) {
       errorMessage('Campos Inválidos');
@@ -63,10 +67,11 @@ const Login = () => {
     }
     const dataUser = {
       email: inputEmail,
-      password: inputPassword
+      senha: inputPassword
     }
     try {
-      //await axios.post('url', dataUser);
+      await axios.post('http://financepork.ste/api/auth/login', dataUser);
+      navigate('/mainpage')
     } catch (error) {
       errorMessage(error)
     }
