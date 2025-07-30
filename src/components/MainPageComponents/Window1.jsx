@@ -15,42 +15,88 @@ const Window1 = () => {
   const [inputPlan, setInputPlan] = useState('')
 
   const optionsSelect = [
-    { value: 'Escorpião no Bolso', label: 'Escorpião no Bolso' },
-    { value: 'Normal', label: 'Normal' },
-    { value: 'Mão de Vaca', label: 'Mão de Vaca' }
+    { value: 'HARD', label: 'Escorpião no Bolso' },
+    { value: 'MID', label: 'Normal' },
+    { value: 'EASY', label: 'Mão de Vaca' }
   ]
 
-  const setarPlan = async () => {
+  const convertePlan = (plan) => {
+    switch (plan) {
+      case 'HARD':
+        return 'Escorpião no Bolso'
 
-    const planInput = inputPlan
-    const planTyped = {
-      planType: planInput
+      case 'MID':
+        return 'Normal'
+
+      case 'EASY':
+        return 'Mão de Vaca'
     }
-    //await axios.post('url', planTyped);
+  }
+
+  const getRenda = async () => {
+    try {
+      await axios.get('http://financepork.site/api/despesas/consultar-receita')
+        .then((response) => {
+          const valorRenda = response.valor;
+          setValueRenda(`R$ ${valorRenda}`);
+        })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const getPlan = async () => {
+    try {
+      await axios.get('http://financepork.site/api/investimento/consultar-investimento')
+        .then((response) => {
+          const valorPlan = convertePlan(response.categoria)
+          const valorEconomia = response.valor
+          setValuePlan(valorPlan)
+          return valorEconomia
+        })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+  useEffect(async () => {
+    getRenda();
+    getPlan();
+    setValueEco(valorEconomia)
+  }, [])
+
+  const setarPlan = async () => {
+    const planTyped = {
+      tipo: inputPlan
+    }
+    await axios.put('http://financepork.site/api/investimento/alterar-investimento', planTyped);
     return setValuePlan(planInput);
   }
 
   const setarValor = async () => {
-    const rendaInput = inputRenda
     const valueTyped = {
-      renda: rendaInput
+      receita: inputRenda
     }
-    //await axios.post('url', valueTyped);
+    await axios.put('http://financepork.site/api/despesas/atualizar-receita', valueTyped);
     return setValueRenda(`R$ ${valueTyped.renda}`);
   }
 
-  const getEco = async (e) => {
-    e.preventDefault();
-    await setarValor()
-    await setarPlan()
-    /*await axios.get('url')
+  const geraEconomia = async () => {
+    await axios.get('http://financepork.site/api/investimento/consultar-investimento')
       .then((response) => {
-        const planEco = response
+        const planEco = response.valor
+        setValueEco(`${planEco} /Mês`)
       }).catch((error) => {
         console.log(error)
-      }) */
-    return setValueEco(`${planEco} /Mês`)
+      })
+  }
 
+  const formaEconomia = async (e) => {
+    e.preventDefault();
+    await setarValor();
+    await setarPlan();
+    await geraEconomia();
   }
 
 
@@ -69,7 +115,7 @@ const Window1 = () => {
             <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>{valueEco}</p>
           </div>
         </div>
-        <form onSubmit={getEco} className='flex flex-col items-center rounded-t-2xl space-y-6 p-4 '>
+        <form onSubmit={formaEconomia} className='flex flex-col items-center rounded-t-2xl space-y-6 p-4 '>
           <div className='flex flex-col items-center rounded-t-2xl space-y-6 xl:space-y-10 p-4 '>
             <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl xl:text-6xl' >Renda :</h2>
             <input type="number" name="renda" id="renda" placeholder='Insira sua Renda' className='bg-[var(--color-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg xl:text-2xl xl:h-15  xl:w-110 p-2' value={inputRenda} onChange={e => setInputRenda(e.target.value)} />

@@ -7,8 +7,9 @@ import Window3 from '../components/MainPageComponents/Window3.jsx'
 import AOS from 'aos';
 import { useEffect } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
-import { div } from 'framer-motion/client'
+
 import HeaderPages from '../components/MainPageComponents/headerPages.jsx'
+import axios from 'axios'
 
 
 const MainPage = () => {
@@ -16,8 +17,23 @@ const MainPage = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const [userName, setUserName] = useState('Usuário')
+
   useEffect(() => {
     AOS.init({ once: false }); // once:true anima só uma vez
+  }, []);
+
+  useEffect(()=> {
+      try{
+        axios.get('http://financepork.site/api/usuario/info')
+          .then((response) => {
+            const userName = response.nome
+            setUserName(userName)
+
+          })
+      } catch (error){
+        console.log(error)
+      }
   }, []);
 
   return (
@@ -79,7 +95,7 @@ const MainPage = () => {
 
         </aside>
         <div  data-aos="fade-right" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in">
-          {openWindow == 'mainWindow' && <HeaderPages firstLineText={"Bem Vindo,"} secLineText={"Usuário"} altText={"Seja bem-vindo ao Pork, seu Cofrinho Digital!"}/>
+          {openWindow == 'mainWindow' && <HeaderPages firstLineText={"Bem Vindo,"} secLineText={userName} altText={"Seja bem-vindo ao Pork, seu Cofrinho Digital!"}/>
           || openWindow == 'Window1' && <HeaderPages firstLineText={"Planejamento"} secLineText={"Econômico"} altText={"Defina como você vai gerenciar seu dinheiro!"}/>
           || openWindow == 'Window2' && <HeaderPages firstLineText={"Registro de"} secLineText={"Gastos"} altText={"Organize suas despesas como ninguém!"}/>
           || openWindow == 'Window3' && <HeaderPages firstLineText={"Metas"} secLineText={"e Objetivos"} altText={"Defina objetivos que incentivem a Economia de dinheiro!"}/> }
