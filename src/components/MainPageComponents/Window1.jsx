@@ -37,7 +37,7 @@ const Window1 = () => {
     try {
       await axios.get('http://financepork.site/api/despesas/consultar-receita')
         .then((response) => {
-          const valorRenda = response.valor;
+          const valorRenda = response.data.valor;
           setValueRenda(`R$ ${valorRenda}`);
         })
     } catch (error) {
@@ -47,10 +47,10 @@ const Window1 = () => {
 
   const getPlan = async () => {
     try {
-      await axios.get('http://financepork.site/api/investimento/consultar-investimento')
+      axios.get('http://financepork.site/api/investimento/consultar-investimento')
         .then((response) => {
-          const valorPlan = convertePlan(response.categoria)
-          const valorEconomia = response.valor
+          const valorPlan = convertePlan(response.data.categoria)
+          const valorEconomia = response.data.valor
           setValuePlan(valorPlan)
           return valorEconomia
         })

@@ -27,8 +27,7 @@ const MainPage = () => {
       try{
         axios.get('http://financepork.site/api/usuario/info')
           .then((response) => {
-            const userName = response.nome
-            setUserName(userName)
+            setUserName(response.data.nome)
 
           })
       } catch (error){
