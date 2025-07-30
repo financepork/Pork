@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { XMarkIcon, CheckIcon  } from '@heroicons/react/24/solid'
+import axios from 'axios'
 
 
 const Window2 = () => {
@@ -10,22 +11,48 @@ const Window2 = () => {
 
   const [gastos, setGastos] = useState([])
 
+  const fetchGastos = async () => {
 
-  /*const sendGasto = async () => {
+       try {
+       axios.get('http://financepork.site/api/despesas/consultar-despesas')
+      .then((response) => {
+        const gastosGerais = [...response.data.todasasDespesas]
+        setGastos([...gastosGerais])
+      })
+    } catch(error){
+      console.log(error)
+    }
+
+  }
+
+  useEffect(() => {    
+  fetchGastos()
+  }, [])
+
+  const limpaInputs = () => {
+    setInputValorGasto('')
+    setInputDescGasto('')
+  }
+
+
+  const sendGasto = async () => {
     const gastoEnviado = {
       valor: inputValorGasto,
       descricao: inputDescGasto,
+      categoria: 'FIXA'
     }
-    await axios.post('url', gastoEnviado);
+    await axios.post('http://financepork.site/api/despesas/anotar-despesas', gastoEnviado)
+  }
 
-  }*/
-
-  const listarGasto = (e) => {
+  const listarGasto = async (e) => {
     e.preventDefault();
-    //sendGasto();
-    setGastos([...gastos, { descricao: inputDescGasto, valor: inputValorGasto }])
-    setInputValorGasto('')
-    setInputDescGasto('')
+     await sendGasto();
+     await fetchGastos();
+    limpaInputs();
+  }
+
+  const deleteGasto = () => {
+    //...
   }
 
   return (
@@ -39,7 +66,7 @@ const Window2 = () => {
             <label htmlFor="descGasto" className='text-md text-[var(--color-white)] font-title-alt text-xl md:text-2xl lg:text-3xl xl:text-4xl ml-2'>Descrição :</label>
             <input type="text" maxLength={40} name="descGasto" id="descGasto" placeholder='Descreva seu Gasto' className='bg-[var(--color-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg md:text-xl xl:text-2xl  p-2 md:p-4' value={inputDescGasto} onChange={e => setInputDescGasto(e.target.value)} required />
             <label htmlFor="valorGasto" className='text-md  text-[var(--color-white)] font-title-alt text-xl md:text-2xl lg:text-3xl xl:text-4xl ml-2'>Valor :</label>
-            <input type="number" name="descGasto" id="descGasto" placeholder='Valor Gasto' className='bg-[var(--color-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg md:text-xl xl:text-2xl p-2 md:p-4' value={inputValorGasto} onChange={e => setInputValorGasto(e.target.value)} required />
+            <input type="number" name="valorGasto" id="valorGasto" placeholder='Valor Gasto' className='bg-[var(--color-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg md:text-xl xl:text-2xl p-2 md:p-4' value={inputValorGasto} onChange={e => setInputValorGasto(e.target.value)} required />
             <button className="border-0 text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-3 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] transition-colors duration-400 ease-in-out w-[75%] text-center font-text-alt md:text-2xl xl:text-3xl xl:mb-4 xl:w-[60%] cursor-pointer self-center" type='submit'>Registrar</button>
           </form>
 
@@ -47,20 +74,16 @@ const Window2 = () => {
         <div className='flex flex-col bg-[var(--color-white)] space-y-4 md:space-y-6 xl:space-y-10 bg-none p-8 xl:p-12 rounded-4xl h-fit min-w-[50%] mt-8 self-center items-center'>
           <h2 className='text-2xl md:text-4xl xl:text-6xl text-center font-title-app text-[var(--color-green)]'>Gastos Registrados</h2>
           <ul className='text-lg md:text-2xl lg:text-3xl xl:text-5xl text-[var(--color-black)] font-text-alt space-y-2 xl:space-y-12 list-disc m-4 xl:p-5' >
-            {gastos.map((gasto, idx) => (
-              <div className='flex flex-col justify-center items-center space-y-4 '>
-                <li className='text-[var(--color-green)] flex flex-col space-y-4 border-2 p-4 rounded-4xl' key={idx}>
+            {gastos.map((gasto) => (
+              <div key={gasto.id} className='flex flex-col justify-center items-center space-y-4 '>
+                <li className='text-[var(--color-green)] flex flex-col space-y-4 border-2 p-4 rounded-4xl' >
                   <p>Gasto: {gasto.descricao}</p>
                   <p>Valor: {gasto.valor}</p>
                 </li>
                 <div className='flex space-x-4 justify-center w-full'>
-                  <button className='bg-red-700 rounded-2xl'>
+                  <button onClick={deleteGasto} className='bg-red-700 rounded-2xl'>
                     <XMarkIcon className="h-10 md:h-15 w-10 md:w-15  text-white cursor-pointer" />
                   </button>
-                  <button className='bg-[var(--color-green)] rounded-2xl'>
-                    <CheckIcon  className="h-10 md:h-15 w-10 md:w-15  text-white cursor-pointer" />
-                  </button>
-
                 </div>
               </div>
             )
