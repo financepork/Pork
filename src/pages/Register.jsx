@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Input from '../components/FormsComponents/Input'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import axios from 'axios'
+
 import Swal from 'sweetalert2'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import apiClient from '../services/api';
 
 
 
@@ -116,7 +117,7 @@ const Register = () => {
       "senha": inputPassword
     }
     try {
-      await axios.post('/auth/register', dataUser);
+      await apiClient.post('/auth/register', dataUser);
       sucessMessage()
       resetInputs()
     } catch (error) {

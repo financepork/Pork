@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Select from 'react-select'
-import axios from 'axios'
+
+import apiClient from '../services/api';
 
 const Window1 = () => {
 
@@ -35,7 +36,7 @@ const Window1 = () => {
 
   const getRenda = async () => {
     try {
-      const response = axios.get('/despesas/consultar-receita')
+      const response = apiClient.get('/despesas/consultar-receita')
       const valorRenda = response.data.valor;
       setValueRenda(`R$ ${valorRenda}`);
     } catch (error) {
@@ -45,7 +46,7 @@ const Window1 = () => {
 
   const getPlan = async () => {
     try {
-      const response = axios.get('/investimento/consultar-investimento')
+      const response = apiClient.get('/investimento/consultar-investimento')
       const valorPlan = convertePlan(response.data.categoria);
       const valorEconomia = response.data.valor;
       setValuePlan(valorPlan);
@@ -72,7 +73,7 @@ const Window1 = () => {
       "tipo": inputPlan
     }
     try {
-      await axios.put('/investimento/alterar-investimento', planTyped);
+      await apiClient.put('/investimento/alterar-investimento', planTyped);
       return setValuePlan(inputPlan);
     } catch (error) {
       console.log(error)
@@ -84,7 +85,7 @@ const Window1 = () => {
       "receita": inputRenda
     }
     try {
-      await axios.put('/despesas/atualizar-receita', valueTyped);
+      await apiClient.put('/despesas/atualizar-receita', valueTyped);
       return setValueRenda(`R$ ${valueTyped.receita}`);
     } catch (error) {
       console.log(error)
@@ -94,7 +95,7 @@ const Window1 = () => {
 
   const geraEconomia = async () => {
     try {
-      const response = axios.get('/investimento/consultar-investimento')
+      const response = apiClient.get('/investimento/consultar-investimento')
       const planEco = response.data.valor
       setValueEco(`${planEco} /Mês`)
     }

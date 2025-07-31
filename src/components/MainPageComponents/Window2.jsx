@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { XMarkIcon, CheckIcon } from '@heroicons/react/24/solid'
-import axios from 'axios'
+import apiClient from '../services/api';
 
 
 const Window2 = () => {
@@ -14,7 +14,7 @@ const Window2 = () => {
   const fetchGastos = async () => {
 
     try {
-      const response = await axios.get('/despesas/consultar-despesas')
+      const response = await apiClient.get('/despesas/consultar-despesas')
           const gastosGerais = [...response.data.todasasDespesas]
           setGastos([...gastosGerais])
     } catch (error) {
@@ -40,7 +40,7 @@ const Window2 = () => {
       "categoria": 'FIXA'
     }
     try{
-      await axios.post('/despesas/anotar-despesas', gastoEnviado)
+      await apiClient.post('/despesas/anotar-despesas', gastoEnviado)
     } catch(error) {
       console.log(error)
     }

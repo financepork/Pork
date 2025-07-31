@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import { useEffect, useState } from 'react'
+
+import apiClient from '../services/api';
 
 const Window3 = () => {
 
@@ -10,7 +11,7 @@ const Window3 = () => {
 
   const fetchMetas = async () => {
     try {
-       const response = axios.get('/metas/consultar-metas')
+       const response = apiClient.get('/metas/consultar-metas')
           const metasUser = [...response.data.metas]
           setMetas([...metasUser])
     } catch (error) {
@@ -35,7 +36,7 @@ const Window3 = () => {
         "valor": inputValue,
         "data": inputData
       }
-      await axios.post('/metas/cadastrar-metas', metaEnviada)
+      await apiClient.post('/metas/cadastrar-metas', metaEnviada)
     } catch (error) {
       console.log(error)
     }

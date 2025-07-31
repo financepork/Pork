@@ -3,8 +3,8 @@ import { useState } from 'react'
 import Footer from '../components/Footer'
 import Input from '../components/FormsComponents/Input'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import axios from 'axios';
 import { useNavigate } from 'react-router';
+import apiClient from '../services/api';
 
 
 
@@ -61,7 +61,7 @@ const Login = () => {
   const sendLogin = async (dataUser) => {
     
     try {
-      await axios.post('/auth/login', dataUser);
+      await apiClient.post('/auth/login', dataUser);
       navigate('/mainpage')
     } catch (error) {
       errorMessage(error)

@@ -7,12 +7,9 @@ import Login from './pages/Login.jsx'
 import 'aos/dist/aos.css';
 import Verify from './pages/Verify.jsx'
 import MainPage from './pages/MainPage.jsx'
-import axios from 'axios'
+import apiClient from 'apiClient'
 
 import './index.css'
-
-axios.defaults.withCredentials = true;
-axios.defaults.baseURL = 'http://financepork.site/api';
 
 
 createRoot(document.getElementById('root')).render(

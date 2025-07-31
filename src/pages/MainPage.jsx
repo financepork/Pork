@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { useState } from 'react'
 import MainWindow from '../components/MainPageComponents/MainWindow.jsx'
 import Window1 from '../components/MainPageComponents/Window1.jsx'
@@ -7,9 +7,9 @@ import Window3 from '../components/MainPageComponents/Window3.jsx'
 import AOS from 'aos';
 import { useEffect } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
-
+import apiClient from '../services/api';
 import HeaderPages from '../components/MainPageComponents/headerPages.jsx'
-import axios from 'axios'
+
 
 
 const MainPage = () => {
@@ -25,7 +25,7 @@ const MainPage = () => {
 
   useEffect(()=> {
       try{
-        const response = axios.get('/usuario/info')
+        const response = apiClient.get('/usuario/info')
             setUserName(response.data.nome)
       } catch (error){
         console.log(error)
