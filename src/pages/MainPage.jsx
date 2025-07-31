@@ -25,11 +25,8 @@ const MainPage = () => {
 
   useEffect(()=> {
       try{
-        axios.get('http://financepork.site/api/usuario/info')
-          .then((response) => {
+        const response = axios.get('/usuario/info')
             setUserName(response.data.nome)
-
-          })
       } catch (error){
         console.log(error)
       }

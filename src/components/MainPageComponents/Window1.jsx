@@ -35,11 +35,9 @@ const Window1 = () => {
 
   const getRenda = async () => {
     try {
-      await axios.get('http://financepork.site/api/despesas/consultar-receita')
-        .then((response) => {
-          const valorRenda = response.data.valor;
-          setValueRenda(`R$ ${valorRenda}`);
-        })
+      const response = axios.get('/despesas/consultar-receita')
+      const valorRenda = response.data.valor;
+      setValueRenda(`R$ ${valorRenda}`);
     } catch (error) {
       console.log(error);
     }
@@ -47,49 +45,62 @@ const Window1 = () => {
 
   const getPlan = async () => {
     try {
-      axios.get('http://financepork.site/api/investimento/consultar-investimento')
-        .then((response) => {
-          const valorPlan = convertePlan(response.data.categoria)
-          const valorEconomia = response.data.valor
-          setValuePlan(valorPlan)
-          return valorEconomia
-        })
+      const response = axios.get('/investimento/consultar-investimento')
+      const valorPlan = convertePlan(response.data.categoria);
+      const valorEconomia = response.data.valor;
+      setValuePlan(valorPlan);
+      setValueEco(valorEconomia);
     } catch (error) {
       console.log(error)
     }
   }
 
 
-  useEffect(async () => {
-    getRenda();
-    getPlan();
-    setValueEco(valorEconomia)
+  useEffect(() => {
+    try {
+      getRenda();
+      getPlan();
+    } catch (error) {
+      console.log(error)
+    }
+
+
   }, [])
 
   const setarPlan = async () => {
     const planTyped = {
-      tipo: inputPlan
+      "tipo": inputPlan
     }
-    await axios.put('http://financepork.site/api/investimento/alterar-investimento', planTyped);
-    return setValuePlan(planInput);
+    try {
+      await axios.put('/investimento/alterar-investimento', planTyped);
+      return setValuePlan(inputPlan);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const setarValor = async () => {
     const valueTyped = {
-      receita: inputRenda
+      "receita": inputRenda
     }
-    await axios.put('http://financepork.site/api/despesas/atualizar-receita', valueTyped);
-    return setValueRenda(`R$ ${valueTyped.renda}`);
+    try {
+      await axios.put('/despesas/atualizar-receita', valueTyped);
+      return setValueRenda(`R$ ${valueTyped.receita}`);
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 
   const geraEconomia = async () => {
-    await axios.get('http://financepork.site/api/investimento/consultar-investimento')
-      .then((response) => {
-        const planEco = response.valor
-        setValueEco(`${planEco} /Mês`)
-      }).catch((error) => {
-        console.log(error)
-      })
+    try {
+      const response = axios.get('/investimento/consultar-investimento')
+      const planEco = response.data.valor
+      setValueEco(`${planEco} /Mês`)
+    }
+    catch (error) {
+      console.log(error)
+    }
   }
 
   const formaEconomia = async (e) => {

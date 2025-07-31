@@ -30,6 +30,7 @@ const Register = () => {
   const [viewPassword, setViewPassword] = useState(false)
   
   const [viewConfirmPassword, setViewConfirmPassword] = useState(false)
+  
 
   const errorMessage = (error) => {
     Swal.fire({
@@ -110,12 +111,12 @@ const Register = () => {
       return;
     }
     const dataUser = {
-      nome: inputNome,
-      email: inputEmail,
-      senha: inputPassword
+      "nome": inputNome,
+      "email": inputEmail,
+      "senha": inputPassword
     }
     try {
-      await axios.post('http://financepork.site/api/auth/register', dataUser);
+      await axios.post('/auth/register', dataUser);
       sucessMessage()
       resetInputs()
     } catch (error) {
@@ -215,13 +216,13 @@ const Register = () => {
                   </div>
                 {erroConfirmPassword && <p className='text-red text-sm md:text-md xl:text-lg font-title-alt ml-1 ' >Digite as senhas iguais</p>}
                 <p className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)] m-3'>A Senha precisa possuir :
-                  <ul className='space-y-2 m-4 text-sm list-disc'>
-                    <li>No Mínimo 8 caracteres</li>
-                    <li>No Mínimo 1 letra Maiúscula e 1 letra Minúscula</li>
-                    <li>No Mínimo 1 Número</li>
-                    <li>No Mínimo 1 Caractere Especial (Símbolos como: @, #, !...)</li>
-                  </ul>
                 </p>
+                 <ul className='space-y-2 m-4 text-sm lg:text-lg list-disc font-title-alt ml-1 text-[var(--color-green)]'>
+                    <li>No Mínimo 8 caracteres</li>
+                    <li>No Mínimo 1  letra Maiúscula e 1 letra Minúscula</li>
+                    <li>No Mínimo 1  Número</li>
+                    <li>No Mínimo 1  Caractere Especial (Símbolos como: @, #, !...)</li>
+                  </ul>
 
               </div>
             </div>

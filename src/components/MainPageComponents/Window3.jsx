@@ -10,11 +10,9 @@ const Window3 = () => {
 
   const fetchMetas = async () => {
     try {
-       axios.get('cade meu endpoint chaves')
-        .then((response) => {
+       const response = axios.get('/metas/consultar-metas')
           const metasUser = [...response.data.metas]
           setMetas([...metasUser])
-        })
     } catch (error) {
       console.log(error)
     }
@@ -33,11 +31,11 @@ const Window3 = () => {
   const sendMeta = async () => {
     try {
       const metaEnviada = {
-        meta: inputMeta,
-        valor: inputValue,
-        data: inputData
+       "meta": inputMeta,
+        "valor": inputValue,
+        "data": inputData
       }
-      await axios.post('http://financepork.site/api/metas/cadastrar-metas', metaEnviada)
+      await axios.post('/metas/cadastrar-metas', metaEnviada)
     } catch (error) {
       console.log(error)
     }

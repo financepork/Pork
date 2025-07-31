@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router';
 
 const Login = () => {
 
+  const navigate = useNavigate();
 
   const [inputEmail, setInputEmail] = useState('')
 
@@ -22,32 +23,32 @@ const Login = () => {
   const [viewPassword, setViewPassword] = useState(false)
 
   const errorMessage = (error) => {
-      Swal.fire({
-        title: 'Ocorreu um Erro',
-        text: 'Verifique as Informações digitadas ou tente novamente mais tarde',
-        icon: 'error',
-        color: 'var(--color-red)',
-        background: 'var(--color-white)',
-        footer: error.message || String(error),
-        customClass: {
-          popup: '!rounded-2xl !p-6 !shadow-xl',
-          confirmButton: '!text-white-500 !bg-red-500 !border-white  '
-        }
-      })
-    }
+    Swal.fire({
+      title: 'Ocorreu um Erro',
+      text: 'Verifique as Informações digitadas ou tente novamente mais tarde',
+      icon: 'error',
+      color: 'var(--color-red)',
+      background: 'var(--color-white)',
+      footer: error.message || String(error),
+      customClass: {
+        popup: '!rounded-2xl !p-6 !shadow-xl',
+        confirmButton: '!text-white-500 !bg-red-500 !border-white  '
+      }
+    })
+  }
 
-   const validateEmail = (email) => {
+  const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const isValid = emailPattern.test(email)
-      setErroEmail(!isValid);
-      return isValid;
+    setErroEmail(!isValid);
+    return isValid;
   }
 
   const validatePassword = (password, confirmPassword) => {
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
     const isValid = passwordPattern.test(password);
-      setErroPassword(!isValid);
-      return isValid;
+    setErroPassword(!isValid);
+    return isValid;
   }
 
   const validateLogin = () => {
@@ -57,24 +58,29 @@ const Login = () => {
     return isEmailValid && isPasswordValid
   }
 
-  const loginVerify = async (e) => {
-    const navigate = useNavigate();
-
-    e.preventDefault()
-    if (!validateLogin()) {
-      errorMessage('Campos Inválidos');
-      return;
-    }
-    const dataUser = {
-      email: inputEmail,
-      senha: inputPassword
-    }
+  const sendLogin = async (dataUser) => {
+    
     try {
-      await axios.post('http://financepork.ste/api/auth/login', dataUser);
+      await axios.post('/auth/login', dataUser);
       navigate('/mainpage')
     } catch (error) {
       errorMessage(error)
     }
+  }
+
+  const loginVerify = async (e) => {
+    
+    e.preventDefault();
+    /*if (!validateLogin()) {
+      errorMessage('Campos Inválidos');
+      return;
+    }*/
+    const dataUser = {
+      "email": inputEmail,
+      "senha": inputPassword
+    }
+    sendLogin(dataUser);
+    
 
   }
 
@@ -82,7 +88,7 @@ const Login = () => {
   return (
     <main>
       <Navbar />
-      <div data className=' bg-[url("/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%]  min-h-screen flex justify-center items-center'>
+      <div className=' bg-[url("/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%]  min-h-screen flex justify-center items-center'>
         <div className='flex flex-col justify-center items-center'>
           <form onSubmit={loginVerify}>
             <div className='flex flex-col bg-none shadow-lg 
@@ -95,44 +101,45 @@ const Login = () => {
               <div className='flex flex-col justify-center items-center space-y-8 '>
                 <div className='flex flex-col w-full max-w-md space-y-1'>
 
-                <label htmlFor="Email" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>E-mail :</label>
-                <Input
-                  name="email"
-                  value={inputEmail}
-                  onChange={e => setInputEmail(e.target.value)}
-                  onBlur={(e) => validateEmail(e.target.value)}
-                  placeholder="Example@gmail.com"
-                  type='email'
-                  required
-                />
-                {erroEmail && <p className='text-red text-md md:text-xl xl:text-2xl font-title-alt ml-1 ' >Digite um E-mail válido</p>}
-              </div>
-
-              <div className='flex flex-col w-full max-w-md space-y-1'>
-
-                <label htmlFor="Senha" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>Senha :</label>
-                <div className='flex flex-row justify-between'>
+                  <label htmlFor="Email" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>E-mail :</label>
                   <Input
-                    name="senha"
-                    value={inputPassword}
-                    onChange={e => setInputPassword(e.target.value)}
-                    onBlur={(e) => validatePassword(e.target.value, inputConfirmPassword)}
-                    placeholder="Digite sua senha"
-                    type={ viewPassword? 'text' : 'password'}
+                    name="email"
+                    value={inputEmail}
+                    onChange={e => setInputEmail(e.target.value)}
+                    onBlur={(e) => validateEmail(e.target.value)}
+                    placeholder="Example@gmail.com"
+                    type='email'
                     required
                   />
-                  <button type='button' className=' inset-y-0 right-0 pr-4 flex items-center cursor-pointer' onClick={(e) => {
-                    e.preventDefault()
-                    setViewPassword(!viewPassword)}
-                  }>{viewPassword? (
-                    <FaEyeSlash className="text-gray-400 text-xl" />
-                  ) : (
-                    <FaEye className="text-gray-400 text-xl" />
-                  )}</button>
+                  {erroEmail && <p className='text-red text-md md:text-xl xl:text-2xl font-title-alt ml-1 ' >Digite um E-mail válido</p>}
                 </div>
-                {erroPassword && <p className='text-red text-md md:text-xl xl:text-2xl font-title-alt ml-1 ' >Digite uma senha válida</p>}
 
-              </div>
+                <div className='flex flex-col w-full max-w-md space-y-1'>
+
+                  <label htmlFor="Senha" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>Senha :</label>
+                  <div className='flex flex-row justify-between'>
+                    <Input
+                      name="senha"
+                      value={inputPassword}
+                      onChange={e => setInputPassword(e.target.value)}
+                      onBlur={(e) => validatePassword(e.target.value, inputConfirmPassword)}
+                      placeholder="Digite sua senha"
+                      type={viewPassword ? 'text' : 'password'}
+                      required
+                    />
+                    <button type='button' className=' inset-y-0 right-0 pr-4 flex items-center cursor-pointer' onClick={(e) => {
+                      e.preventDefault()
+                      setViewPassword(!viewPassword)
+                    }
+                    }>{viewPassword ? (
+                      <FaEyeSlash className="text-gray-400 text-xl" />
+                    ) : (
+                      <FaEye className="text-gray-400 text-xl" />
+                    )}</button>
+                  </div>
+                  {erroPassword && <p className='text-red text-md md:text-xl xl:text-2xl font-title-alt ml-1 ' >Digite uma senha válida</p>}
+
+                </div>
               </div>
               <button type='submit' className="border-0 text-[var(--color-white)] bg-[var(--color-green)] rounded-2xl text-md font-text md:text-xl xl:text-2xl p-3 hover:bg-[var(--color-white)] 
          hover:text-[var(--color-black)] transition-colors duration-400 ease-in-out">Enviar</button>

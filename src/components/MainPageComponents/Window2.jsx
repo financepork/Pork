@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { XMarkIcon, CheckIcon  } from '@heroicons/react/24/solid'
+import { XMarkIcon, CheckIcon } from '@heroicons/react/24/solid'
 import axios from 'axios'
 
 
@@ -13,20 +13,18 @@ const Window2 = () => {
 
   const fetchGastos = async () => {
 
-       try {
-       axios.get('http://financepork.site/api/despesas/consultar-despesas')
-      .then((response) => {
-        const gastosGerais = [...response.data.todasasDespesas]
-        setGastos([...gastosGerais])
-      })
-    } catch(error){
+    try {
+      const response = await axios.get('/despesas/consultar-despesas')
+          const gastosGerais = [...response.data.todasasDespesas]
+          setGastos([...gastosGerais])
+    } catch (error) {
       console.log(error)
     }
 
   }
 
-  useEffect(() => {    
-  fetchGastos()
+  useEffect(() => {
+    fetchGastos()
   }, [])
 
   const limpaInputs = () => {
@@ -37,23 +35,28 @@ const Window2 = () => {
 
   const sendGasto = async () => {
     const gastoEnviado = {
-      valor: inputValorGasto,
-      descricao: inputDescGasto,
-      categoria: 'FIXA'
+      "valor": inputValorGasto,
+      "descricao": inputDescGasto,
+      "categoria": 'FIXA'
     }
-    await axios.post('http://financepork.site/api/despesas/anotar-despesas', gastoEnviado)
+    try{
+      await axios.post('/despesas/anotar-despesas', gastoEnviado)
+    } catch(error) {
+      console.log(error)
+    }
+    
   }
 
   const listarGasto = async (e) => {
     e.preventDefault();
-     await sendGasto();
-     await fetchGastos();
+    await sendGasto();
+    await fetchGastos();
     limpaInputs();
   }
 
-  const deleteGasto = () => {
+  //const deleteGasto = () => {
     //...
-  }
+  //}
 
   return (
     <main
