@@ -35,7 +35,9 @@ const Window1 = () => {
 
   const getRenda = async () => {
     try {
-      const response = axios.get('/despesas/consultar-receita')
+      const response = axios.get('/despesas/consultar-receita', {
+        withCredentials: true
+      })
       const valorRenda = response.data.valor;
       setValueRenda(`R$ ${valorRenda}`);
     } catch (error) {
@@ -45,7 +47,9 @@ const Window1 = () => {
 
   const getPlan = async () => {
     try {
-      const response = axios.get('/investimento/consultar-investimento')
+      const response = axios.get('/investimento/consultar-investimento', {
+        withCredentials: true
+      })
       const valorPlan = convertePlan(response.data.categoria);
       const valorEconomia = response.data.valor;
       setValuePlan(valorPlan);
@@ -72,7 +76,9 @@ const Window1 = () => {
       "tipo": inputPlan
     }
     try {
-      await axios.put('/investimento/alterar-investimento', planTyped);
+      await axios.put('/investimento/alterar-investimento', planTyped,  {
+        withCredentials: true
+      });
       return setValuePlan(inputPlan);
     } catch (error) {
       console.log(error)
@@ -84,7 +90,9 @@ const Window1 = () => {
       "receita": inputRenda
     }
     try {
-      await axios.put('/despesas/atualizar-receita', valueTyped);
+      await axios.put('/despesas/atualizar-receita', valueTyped,  {
+        withCredentials: true
+      });
       return setValueRenda(`R$ ${valueTyped.receita}`);
     } catch (error) {
       console.log(error)
@@ -94,7 +102,9 @@ const Window1 = () => {
 
   const geraEconomia = async () => {
     try {
-      const response = axios.get('/investimento/consultar-investimento')
+      const response = axios.get('/investimento/consultar-investimento', {
+        withCredentials: true
+      })
       const planEco = response.data.valor
       setValueEco(`${planEco} /Mês`)
     }

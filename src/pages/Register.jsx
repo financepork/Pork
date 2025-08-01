@@ -116,7 +116,9 @@ const Register = () => {
       "senha": inputPassword
     }
     try {
-      await axios.post('/auth/register', dataUser);
+      await axios.post('/auth/register', dataUser, {
+        withCredentials: true
+      });
       sucessMessage()
       resetInputs()
     } catch (error) {

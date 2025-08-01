@@ -61,7 +61,9 @@ const Login = () => {
   const sendLogin = async (dataUser) => {
     
     try {
-      await axios.post('/auth/login', dataUser);
+      await axios.post('/auth/login', dataUser, {
+        withCredentials: true
+      });
       navigate('/mainpage')
     } catch (error) {
       errorMessage(error)
@@ -71,10 +73,10 @@ const Login = () => {
   const loginVerify = async (e) => {
     
     e.preventDefault();
-    /*if (!validateLogin()) {
+    if (!validateLogin()) {
       errorMessage('Campos Inválidos');
       return;
-    }*/
+    }
     const dataUser = {
       "email": inputEmail,
       "senha": inputPassword

@@ -25,7 +25,9 @@ const MainPage = () => {
 
   useEffect(()=> {
       try{
-        const response = axios.get('/usuario/info')
+        const response = axios.get('/usuario/info', {
+        withCredentials: true
+      })
             setUserName(response.data.nome)
       } catch (error){
         console.log(error)

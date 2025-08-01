@@ -14,7 +14,9 @@ const Window2 = () => {
   const fetchGastos = async () => {
 
     try {
-      const response = await axios.get('/despesas/consultar-despesas')
+      const response = await axios.get('/despesas/consultar-despesas',  {
+        withCredentials: true
+      })
           const gastosGerais = [...response.data.todasasDespesas]
           setGastos([...gastosGerais])
     } catch (error) {
@@ -40,7 +42,9 @@ const Window2 = () => {
       "categoria": 'FIXA'
     }
     try{
-      await axios.post('/despesas/anotar-despesas', gastoEnviado)
+      await axios.post('/despesas/anotar-despesas', gastoEnviado,  {
+        withCredentials: true
+      })
     } catch(error) {
       console.log(error)
     }

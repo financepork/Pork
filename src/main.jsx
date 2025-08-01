@@ -11,7 +11,6 @@ import axios from 'axios'
 
 import './index.css'
 
-axios.defaults.withCredentials = true;
 axios.defaults.baseURL = 'http://financepork.site/api';
 
 

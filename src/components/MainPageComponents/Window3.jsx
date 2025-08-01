@@ -10,7 +10,9 @@ const Window3 = () => {
 
   const fetchMetas = async () => {
     try {
-       const response = axios.get('/metas/consultar-metas')
+       const response = axios.get('/metas/consultar-metas',  {
+        withCredentials: true
+      })
           const metasUser = [...response.data.metas]
           setMetas([...metasUser])
     } catch (error) {
@@ -35,7 +37,9 @@ const Window3 = () => {
         "valor": inputValue,
         "data": inputData
       }
-      await axios.post('/metas/cadastrar-metas', metaEnviada)
+      await axios.post('/metas/cadastrar-metas', metaEnviada,  {
+        withCredentials: true
+      })
     } catch (error) {
       console.log(error)
     }
