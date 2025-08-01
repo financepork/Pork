@@ -10,7 +10,7 @@ import MainPage from './pages/MainPage.jsx'
 import axios from 'axios'
 import './index.css'
 
-axios.defaults.baseURL = 'http://financepork.site/api';
+axios.defaults.baseURL = 'https://financepork.site/api';
 
 
 createRoot(document.getElementById('root')).render(

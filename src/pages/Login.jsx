@@ -22,20 +22,6 @@ const Login = () => {
 
   const [viewPassword, setViewPassword] = useState(false)
 
-  const errorMessage = (error) => {
-    Swal.fire({
-      title: 'Ocorreu um Erro',
-      text: 'Verifique as Informações digitadas ou tente novamente mais tarde',
-      icon: 'error',
-      color: 'var(--color-red)',
-      background: 'var(--color-white)',
-      footer: error.message || String(error),
-      customClass: {
-        popup: '!rounded-2xl !p-6 !shadow-xl',
-        confirmButton: '!text-white-500 !bg-red-500 !border-white  '
-      }
-    })
-  }
 
   const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -66,7 +52,7 @@ const Login = () => {
       });
       navigate('/mainpage')
     } catch (error) {
-      errorMessage(error)
+      <ErrorMessage errorText={'Erro ao logar no servidor, tente novamente'} errorMessage={error.response.data}/>;
     }
   }
 

@@ -7,7 +7,7 @@ import Window3 from '../components/MainPageComponents/Window3.jsx'
 import AOS from 'aos';
 import { useEffect } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
-import apiClient from '../services/api';
+import axios from 'axios'
 import HeaderPages from '../components/MainPageComponents/headerPages.jsx'
 
 
@@ -30,7 +30,7 @@ const MainPage = () => {
       })
             setUserName(response.data.nome)
       } catch (error){
-        console.log(error)
+        <ErrorMessage errorText={'Erro ao contatar o Servidor, tente novamente'} errorMessage={error.response.data}/>;
       }
   }, []);
 

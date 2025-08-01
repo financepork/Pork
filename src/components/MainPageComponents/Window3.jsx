@@ -16,7 +16,7 @@ const Window3 = () => {
           const metasUser = [...response.data.metas]
           setMetas([...metasUser])
     } catch (error) {
-      console.log(error)
+      <ErrorMessage errorText={'Erro receber dados do Servidor, tente novamente'} errorMessage={error.response.data}/>;
     }
   }
 
@@ -41,7 +41,7 @@ const Window3 = () => {
         withCredentials: true
       })
     } catch (error) {
-      console.log(error)
+      <ErrorMessage errorText={'Erro ao enviar dados ao Servidor, tente novamente'} errorMessage={error.response.data}/>;
     }
   }
 

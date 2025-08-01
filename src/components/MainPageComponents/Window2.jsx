@@ -20,7 +20,7 @@ const Window2 = () => {
           const gastosGerais = [...response.data.todasasDespesas]
           setGastos([...gastosGerais])
     } catch (error) {
-      console.log(error)
+      <ErrorMessage errorText={'Erro ao receber dados do Servidor, tente novamente'} errorMessage={error.response.data}/>;
     }
 
   }
@@ -46,7 +46,7 @@ const Window2 = () => {
         withCredentials: true
       })
     } catch(error) {
-      console.log(error)
+      <ErrorMessage errorText={'Erro ao enviar dados ao Servidor, tente novamente'} errorMessage={error.response.data}/>;
     }
     
   }

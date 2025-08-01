@@ -2,10 +2,9 @@ import { useState } from 'react'
 import Input from '../components/FormsComponents/Input'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-
 import Swal from 'sweetalert2'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import apiClient from '../services/api';
+import axios from 'axios'
 
 
 
@@ -32,21 +31,6 @@ const Register = () => {
   
   const [viewConfirmPassword, setViewConfirmPassword] = useState(false)
   
-
-  const errorMessage = (error) => {
-    Swal.fire({
-      title: 'Ocorreu um Erro',
-      text: 'Verifique as Informações digitadas ou tente novamente mais tarde',
-      icon: 'error',
-      color: 'var(--color-red)',
-      background: 'var(--color-white)',
-      footer: error.message || String(error),
-      customClass: {
-        popup: '!rounded-2xl !p-6 !shadow-xl',
-        confirmButton: '!text-white-500 !bg-red-500 !border-white  '
-      }
-    })
-  }
 
   const sucessMessage = () => {
     Swal.fire({
@@ -108,7 +92,7 @@ const Register = () => {
   const sendDataRegister = async (e) => {
     e.preventDefault()
     if (!validateForm()) {
-      errorMessage('Campos Inválidos');
+      <ErrorMessage errorText={'Verifique as informações digitadas'} errorMessage={'Campos Inválidos'}/>;
       return;
     }
     const dataUser = {
@@ -123,7 +107,7 @@ const Register = () => {
       sucessMessage()
       resetInputs()
     } catch (error) {
-      errorMessage(error)
+     <ErrorMessage errorText={'Verifique as informações digitadas ou tente novamente mais tarde'} errorMessage={'Erro ao enviar registro'}/>; 
     }
 
   }

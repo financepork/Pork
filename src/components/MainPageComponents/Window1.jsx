@@ -41,7 +41,7 @@ const Window1 = () => {
       const valorRenda = response.data.valor;
       setValueRenda(`R$ ${valorRenda}`);
     } catch (error) {
-      console.log(error);
+      <ErrorMessage errorText={'Erro ao enviar dados ao Servidor, tente novamente'} errorMessage={error.response.data}/>;
     }
   }
 
@@ -55,7 +55,7 @@ const Window1 = () => {
       setValuePlan(valorPlan);
       setValueEco(valorEconomia);
     } catch (error) {
-      console.log(error)
+      <ErrorMessage errorText={'Erro ao enviar dados ao Servidor, tente novamente'} errorMessage={error.response.data}/>;
     }
   }
 
@@ -65,7 +65,7 @@ const Window1 = () => {
       getRenda();
       getPlan();
     } catch (error) {
-      console.log(error)
+      <ErrorMessage errorText={'Erro ao enviar dados ao Servidor, tente novamente'} errorMessage={error.response.data}/>;
     }
 
 
@@ -81,7 +81,7 @@ const Window1 = () => {
       });
       return setValuePlan(inputPlan);
     } catch (error) {
-      console.log(error)
+      <ErrorMessage errorText={'Erro ao enviar dados ao Servidor, tente novamente'} errorMessage={error.response.data}/>;
     }
   }
 
@@ -95,7 +95,7 @@ const Window1 = () => {
       });
       return setValueRenda(`R$ ${valueTyped.receita}`);
     } catch (error) {
-      console.log(error)
+      <ErrorMessage errorText={'Erro ao enviar dados ao Servidor, tente novamente'} errorMessage={error.response.data}/>;
     }
 
   }
@@ -109,7 +109,7 @@ const Window1 = () => {
       setValueEco(`${planEco} /Mês`)
     }
     catch (error) {
-      console.log(error)
+      <ErrorMessage errorText={'Erro ao enviar dados ao Servidor, tente novamente'} errorMessage={error.response.data}/>;
     }
   }
 
