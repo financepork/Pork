@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { XMarkIcon, CheckIcon } from '@heroicons/react/24/solid'
 import axios from 'axios'
 

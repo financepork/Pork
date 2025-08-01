@@ -8,7 +8,6 @@ import 'aos/dist/aos.css';
 import Verify from './pages/Verify.jsx'
 import MainPage from './pages/MainPage.jsx'
 import axios from 'axios'
-
 import './index.css'
 
 axios.defaults.baseURL = 'http://financepork.site/api';

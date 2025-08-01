@@ -3,8 +3,8 @@ import { useState } from 'react'
 import Footer from '../components/Footer'
 import Input from '../components/FormsComponents/Input'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import axios from 'axios';
 import { useNavigate } from 'react-router';
+import axios from 'axios';
 
 
 
