@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import axios from 'axios'
 import HeaderPages from '../components/MainPageComponents/headerPages.jsx'
+import ErrorMessage from '../components/ErrorMessage.jsx'
 
 
 
