@@ -32,10 +32,10 @@ const Register = () => {
   const [viewConfirmPassword, setViewConfirmPassword] = useState(false)
   
 
-  const errorMessage = (errorText,error) => {
+  const errorMessage = (error) => {
     Swal.fire({
       title: 'Ocorreu um Erro',
-      text: errorText,
+      text: 'Verifique as Informações digitadas ou tente novamente mais tarde',
       icon: 'error',
       color: 'var(--color-red)',
       background: 'var(--color-white)',
@@ -107,7 +107,7 @@ const Register = () => {
   const sendDataRegister = async (e) => {
     e.preventDefault()
     if (!validateForm()) {
-      errorMessage('Campos Inválidos');
+      <ErrorMessage errorText={'Verifique as informações digitadas'} errorMessage={'Campos Inválidos'}/>;
       return;
     }
     const dataUser = {
@@ -122,7 +122,7 @@ const Register = () => {
       sucessMessage()
       resetInputs()
     } catch (error) {
-      errorMessage('Erro ao registrar conta, tente novamente mais tarde' ,error.response.data)
+      errorMessage(error)
     }
 
   }

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Select from 'react-select'
 import axios from 'axios'
 
+
 const Window1 = () => {
 
   const [valueRenda, setValueRenda] = useState('Nenhum valor inserido')

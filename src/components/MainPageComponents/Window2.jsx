@@ -3,6 +3,7 @@ import { XMarkIcon, CheckIcon } from '@heroicons/react/24/solid'
 import axios from 'axios'
 
 
+
 const Window2 = () => {
 
   const [inputValorGasto, setInputValorGasto] = useState('')

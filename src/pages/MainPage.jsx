@@ -12,6 +12,7 @@ import HeaderPages from '../components/MainPageComponents/headerPages.jsx'
 
 
 
+
 const MainPage = () => {
   const [openWindow, setOpenWindow] = useState('mainWindow');
 
