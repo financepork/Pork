@@ -2,10 +2,9 @@ import { useState } from 'react'
 import Input from '../components/FormsComponents/Input'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-
 import Swal from 'sweetalert2'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import apiClient from '../services/api';
+import axios from 'axios'
 
 
 
@@ -33,10 +32,10 @@ const Register = () => {
   const [viewConfirmPassword, setViewConfirmPassword] = useState(false)
   
 
-  const errorMessage = (error) => {
+  const errorMessage = (errorText,error) => {
     Swal.fire({
       title: 'Ocorreu um Erro',
-      text: 'Verifique as Informações digitadas ou tente novamente mais tarde',
+      text: errorText,
       icon: 'error',
       color: 'var(--color-red)',
       background: 'var(--color-white)',
@@ -123,7 +122,7 @@ const Register = () => {
       sucessMessage()
       resetInputs()
     } catch (error) {
-      errorMessage(error)
+      errorMessage('Erro ao registrar conta, tente novamente mais tarde' ,error.response.data)
     }
 
   }

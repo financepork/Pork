@@ -7,7 +7,7 @@ import Window3 from '../components/MainPageComponents/Window3.jsx'
 import AOS from 'aos';
 import { useEffect } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
-import apiClient from '../services/api';
+import axios from 'axios'
 import HeaderPages from '../components/MainPageComponents/headerPages.jsx'
 
 
@@ -18,6 +18,21 @@ const MainPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const [userName, setUserName] = useState('Usuário')
+
+  const errorMessage = (errorText,error) => {
+    Swal.fire({
+      title: 'Ocorreu um Erro',
+      text: errorText,
+      icon: 'error',
+      color: 'var(--color-red)',
+      background: 'var(--color-white)',
+      footer: error.message || String(error),
+      customClass: {
+        popup: '!rounded-2xl !p-6 !shadow-xl',
+        confirmButton: '!text-white-500 !bg-red-500 !border-white  '
+      }
+    })
+  }
 
   useEffect(() => {
     AOS.init({ once: false }); // once:true anima só uma vez
@@ -30,7 +45,7 @@ const MainPage = () => {
       })
             setUserName(response.data.nome)
       } catch (error){
-        console.log(error)
+        errorMessage('Erro ao contatar o servidor',error.response.data)
       }
   }, []);
 

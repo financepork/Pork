@@ -8,6 +8,7 @@ import axios from 'axios';
 
 
 
+
 const Login = () => {
 
   const navigate = useNavigate();
@@ -22,10 +23,10 @@ const Login = () => {
 
   const [viewPassword, setViewPassword] = useState(false)
 
-  const errorMessage = (error) => {
+  const errorMessage = (errorText,error) => {
     Swal.fire({
       title: 'Ocorreu um Erro',
-      text: 'Verifique as Informações digitadas ou tente novamente mais tarde',
+      text: errorText,
       icon: 'error',
       color: 'var(--color-red)',
       background: 'var(--color-white)',
@@ -66,7 +67,7 @@ const Login = () => {
       });
       navigate('/mainpage')
     } catch (error) {
-      errorMessage(error)
+      errorMessage( 'Erro ao fazer login, tente novamente', error.response.data)
     }
   }
 

@@ -8,6 +8,21 @@ const Window3 = () => {
   const [inputData, setInputData] = useState('')
   const [metas, setMetas] = useState([])
 
+  const errorMessage = (errorText,error) => {
+    Swal.fire({
+      title: 'Ocorreu um Erro',
+      text: errorText,
+      icon: 'error',
+      color: 'var(--color-red)',
+      background: 'var(--color-white)',
+      footer: error.message || String(error),
+      customClass: {
+        popup: '!rounded-2xl !p-6 !shadow-xl',
+        confirmButton: '!text-white-500 !bg-red-500 !border-white  '
+      }
+    })
+  }
+
   const fetchMetas = async () => {
     try {
        const response = axios.get('/metas/consultar-metas',  {
@@ -16,7 +31,7 @@ const Window3 = () => {
           const metasUser = [...response.data.metas]
           setMetas([...metasUser])
     } catch (error) {
-      console.log(error)
+       errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data);
     }
   }
 
@@ -41,7 +56,7 @@ const Window3 = () => {
         withCredentials: true
       })
     } catch (error) {
-      console.log(error)
+       errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' ,error.response.data);
     }
   }
 

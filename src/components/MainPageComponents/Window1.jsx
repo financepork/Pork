@@ -20,6 +20,21 @@ const Window1 = () => {
     { value: 'EASY', label: 'Mão de Vaca' }
   ]
 
+  const errorMessage = (errorText,error) => {
+    Swal.fire({
+      title: 'Ocorreu um Erro',
+      text: errorText,
+      icon: 'error',
+      color: 'var(--color-red)',
+      background: 'var(--color-white)',
+      footer: error.message || String(error),
+      customClass: {
+        popup: '!rounded-2xl !p-6 !shadow-xl',
+        confirmButton: '!text-white-500 !bg-red-500 !border-white  '
+      }
+    })
+  }
+
   const convertePlan = (plan) => {
     switch (plan) {
       case 'HARD':
@@ -35,19 +50,19 @@ const Window1 = () => {
 
   const getRenda = async () => {
     try {
-      const response = axios.get('/despesas/consultar-receita', {
+      const response = await axios.get('/despesas/consultar-receita', {
         withCredentials: true
       })
       const valorRenda = response.data.valor;
       setValueRenda(`R$ ${valorRenda}`);
     } catch (error) {
-      console.log(error);
+      errorMessage( 'Erro ao receber informações do servidor, tente novamente',error.response.data);
     }
   }
 
   const getPlan = async () => {
     try {
-      const response = axios.get('/investimento/consultar-investimento', {
+      const response = await axios.get('/investimento/consultar-investimento', {
         withCredentials: true
       })
       const valorPlan = convertePlan(response.data.categoria);
@@ -55,7 +70,7 @@ const Window1 = () => {
       setValuePlan(valorPlan);
       setValueEco(valorEconomia);
     } catch (error) {
-      console.log(error)
+      errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data);
     }
   }
 
@@ -65,7 +80,7 @@ const Window1 = () => {
       getRenda();
       getPlan();
     } catch (error) {
-      console.log(error)
+      errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data);
     }
 
 
@@ -81,7 +96,7 @@ const Window1 = () => {
       });
       return setValuePlan(inputPlan);
     } catch (error) {
-      console.log(error)
+      errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data);
     }
   }
 
@@ -95,7 +110,7 @@ const Window1 = () => {
       });
       return setValueRenda(`R$ ${valueTyped.receita}`);
     } catch (error) {
-      console.log(error)
+      errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' ,error.response.data);
     }
 
   }
@@ -109,7 +124,7 @@ const Window1 = () => {
       setValueEco(`${planEco} /Mês`)
     }
     catch (error) {
-      console.log(error)
+      errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' ,error.response.data);
     }
   }
 

@@ -11,6 +11,21 @@ const Window2 = () => {
 
   const [gastos, setGastos] = useState([])
 
+  const errorMessage = (errorText,error) => {
+    Swal.fire({
+      title: 'Ocorreu um Erro',
+      text: errorText,
+      icon: 'error',
+      color: 'var(--color-red)',
+      background: 'var(--color-white)',
+      footer: error.message || String(error),
+      customClass: {
+        popup: '!rounded-2xl !p-6 !shadow-xl',
+        confirmButton: '!text-white-500 !bg-red-500 !border-white  '
+      }
+    })
+  }
+
   const fetchGastos = async () => {
 
     try {
@@ -20,7 +35,7 @@ const Window2 = () => {
           const gastosGerais = [...response.data.todasasDespesas]
           setGastos([...gastosGerais])
     } catch (error) {
-      console.log(error)
+      errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' ,error.response.data);
     }
 
   }
@@ -46,7 +61,7 @@ const Window2 = () => {
         withCredentials: true
       })
     } catch(error) {
-      console.log(error)
+      errorMessage( 'Erro ao enviar informações ao servidor, tente novamente', error.response.data);
     }
     
   }
