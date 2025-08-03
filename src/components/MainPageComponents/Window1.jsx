@@ -28,7 +28,7 @@ const Window1 = () => {
       icon: 'error',
       color: 'var(--color-red)',
       background: 'var(--color-white)',
-      footer: error.message || String(error),
+      footer: error || String(error),
       customClass: {
         popup: '!rounded-2xl !p-6 !shadow-xl',
         confirmButton: '!text-white-500 !bg-red-500 !border-white  '
@@ -77,14 +77,8 @@ const Window1 = () => {
 
 
   useEffect(() => {
-    try {
       getRenda();
       getPlan();
-    } catch (error) {
-      errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data);
-    }
-
-
   }, [])
 
   const setarPlan = async () => {
@@ -118,7 +112,7 @@ const Window1 = () => {
 
   const geraEconomia = async () => {
     try {
-      const response = axios.get('/investimento/consultar-investimento', {
+      const response = await axios.get('/investimento/consultar-investimento', {
         withCredentials: true
       })
       const planEco = response.data.valor

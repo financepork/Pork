@@ -3,8 +3,9 @@ import { useState } from 'react'
 import Footer from '../components/Footer'
 import Input from '../components/FormsComponents/Input'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 
@@ -24,14 +25,14 @@ const Login = () => {
 
   const [viewPassword, setViewPassword] = useState(false)
 
-  const errorMessage = (errorText,error) => {
+  const errorMessage = (errorText, error) => {
     Swal.fire({
       title: 'Ocorreu um Erro',
       text: errorText,
       icon: 'error',
       color: 'var(--color-red)',
       background: 'var(--color-white)',
-      footer: error.message || String(error),
+      footer: error || String(error),
       customClass: {
         popup: '!rounded-2xl !p-6 !shadow-xl',
         confirmButton: '!text-white-500 !bg-red-500 !border-white  '
@@ -41,51 +42,44 @@ const Login = () => {
 
   const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const isValid = emailPattern.test(email)
-    setErroEmail(!isValid);
-    return isValid;
+    return emailPattern.test(email)
   }
 
-  const validatePassword = (password, confirmPassword) => {
+  const validatePassword = (password) => {
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-    const isValid = passwordPattern.test(password);
-    setErroPassword(!isValid);
-    return isValid;
+    return passwordPattern.test(password);
   }
 
-  const validateLogin = () => {
-    const isEmailValid = validateEmail(inputEmail)
-    const isPasswordValid = validatePassword(inputPassword, inputPassword)
-
-    return isEmailValid && isPasswordValid
-  }
-
-  const sendLogin = async (dataUser) => {
-    
+  const sendLogin = async () => {
+    const dataUser = {
+      "email": inputEmail,
+      "senha": inputPassword
+    }
     try {
       await axios.post('/auth/login', dataUser, {
         withCredentials: true
       });
       navigate('/mainpage')
     } catch (error) {
-      errorMessage( 'Erro ao fazer login, tente novamente', error.response.data)
+      errorMessage('Erro ao fazer login, tente novamente', error.response.data)
     }
   }
 
-  const loginVerify = async (e) => {
-    
-    e.preventDefault();
-    if (!validateLogin()) {
-      errorMessage('Campos Inválidos');
-      return;
-    }
-    const dataUser = {
-      "email": inputEmail,
-      "senha": inputPassword
-    }
-    sendLogin(dataUser);
-    
+  const handleLogin = async (e) => {
+    e.preventDefault()
+    const isEmailValid = validateEmail(inputEmail)
+    const isPasswordValid = validatePassword(inputPassword)
 
+    setErroEmail(!isEmailValid)
+    setErroPassword(!isPasswordValid)
+
+    const isLoginValid = isEmailValid && isPasswordValid
+
+    if (isLoginValid) {
+      await sendLogin();
+    } else {
+      errorMessage('E-mail ou Senha Inválidos, tente novamente')
+    }
   }
 
 
@@ -94,7 +88,7 @@ const Login = () => {
       <Navbar />
       <div className=' bg-[url("/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%]  min-h-screen flex justify-center items-center'>
         <div className='flex flex-col justify-center items-center'>
-          <form onSubmit={loginVerify}>
+          <form onSubmit={handleLogin}>
             <div className='flex flex-col bg-none shadow-lg 
      p-6 rounded-4xl m-4 space-y-6 xl:space-y-16 max-w-[90%] min-w-[80%]  animate-fade-up animate-duration-1000 animate-delay-100 animate-ease-in'>
               <div className='flex flex-col justify-center items-center space-y-1 md:space-y-2 xl:space-y-3 w-full whitespace-nowrap '>
@@ -110,7 +104,7 @@ const Login = () => {
                     name="email"
                     value={inputEmail}
                     onChange={e => setInputEmail(e.target.value)}
-                    onBlur={(e) => validateEmail(e.target.value)}
+                    onBlur={(e) => setErroEmail(!validateEmail(e.target.value))}
                     placeholder="Example@gmail.com"
                     type='email'
                     required
@@ -126,7 +120,7 @@ const Login = () => {
                       name="senha"
                       value={inputPassword}
                       onChange={e => setInputPassword(e.target.value)}
-                      onBlur={(e) => validatePassword(e.target.value, inputConfirmPassword)}
+                      onBlur={(e) => setErroPassword(!validatePassword(e.target.value))}
                       placeholder="Digite sua senha"
                       type={viewPassword ? 'text' : 'password'}
                       required

@@ -16,7 +16,7 @@ const Window3 = () => {
       icon: 'error',
       color: 'var(--color-red)',
       background: 'var(--color-white)',
-      footer: error.message || String(error),
+      footer: error || String(error),
       customClass: {
         popup: '!rounded-2xl !p-6 !shadow-xl',
         confirmButton: '!text-white-500 !bg-red-500 !border-white  '
@@ -26,7 +26,7 @@ const Window3 = () => {
 
   const fetchMetas = async () => {
     try {
-       const response = axios.get('/metas/consultar-metas',  {
+       const response = await axios.get('/metas/consultar-metas',  {
         withCredentials: true
       })
           const metasUser = [...response.data.metas]
@@ -63,14 +63,15 @@ const Window3 = () => {
 
   const registraMeta = async (e) => {
     e.preventDefault()
+    if(inputData === '' || inputMeta === '' || inputValue === '') return errorMessage('Por favor, preencha todos os campos', 'informações incompletas')
     await sendMeta()
     await fetchMetas()
     limpaInputs()
   }
 
-  const deleteMeta = (id) => {
+  // const deleteMeta = (id) => {
     //preciso ver como essa porra vai funcionar 
-  }
+  //}
 
   return (
     <main
@@ -82,7 +83,7 @@ const Window3 = () => {
             <h2 className='text-3xl lg:text-4xl xl:text-6xl text-center font-title-app text-[var(--color-white)]'>Definir Meta</h2>
             <label htmlFor="descMeta" className='text-md text-[var(--color-white)] font-title-alt text-xl md:text-2xl lg:text-3xl xl:text-4xl ml-2'>Objetivo :</label>
             <input type="text" maxLength={40} name="descMeta" id="descMeta" placeholder='Coloque sua meta' className='bg-[var(--color-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg md:text-xl xl:text-2xl  p-2 md:p-4' value={inputMeta} onChange={e => setInputMeta(e.target.value)} />
-            <label htmlFor="valorMeta" className='text-md text-[var(--color-white)] font-title-alt text-xl md:text-2xl lg:text-3xl xl:text-4xl ml-2'>Objetivo :</label>
+            <label htmlFor="valorMeta" className='text-md text-[var(--color-white)] font-title-alt text-xl md:text-2xl lg:text-3xl xl:text-4xl ml-2'>Valor :</label>
             <input type="text" maxLength={40} name="valorMeta" id="valorMeta" placeholder='Insira o Valor' className='bg-[var(--color-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg md:text-xl xl:text-2xl  p-2 md:p-4' value={inputValue} onChange={e => setInputValue(e.target.value)} />
             <label htmlFor="dataMeta" className='text-md  text-[var(--color-white)] font-title-alt text-xl md:text-2xl lg:text-3xl xl:text-4xl ml-2'>Data limite :</label>
             <input type="date" name="dataMeta" id="dataMeta" className='bg-[var(--color-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg md:text-xl xl:text-2xl p-2 md:p-4' value={inputData} onChange={e => setInputData(e.target.value)} />

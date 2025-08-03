@@ -39,7 +39,7 @@ const Register = () => {
       icon: 'error',
       color: 'var(--color-red)',
       background: 'var(--color-white)',
-      footer: error.message || String(error),
+      footer: error || String(error),
       customClass: {
         popup: '!rounded-2xl !p-6 !shadow-xl',
         confirmButton: '!text-white-500 !bg-red-500 !border-white  '
@@ -63,36 +63,25 @@ const Register = () => {
     })
   }
 
-  const validateEmail = (email) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const isValid = emailPattern.test(email)
-    setErroEmail(!isValid)
-    return isValid
+  const emailIsValid = (email) => {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailPattern.test(email)
   }
 
-  const validateName = (nome) => {
-    const namePattern = /^[A-Za-zÀ-ÿ\s]{2,}$/;
-    const isValid = namePattern.test(nome)
-    setErroNome(!isValid)
-    return isValid
+  const nameIsValid = (name) => {
+      const namePattern = /^[A-Za-zÀ-ÿ\s]{2,}$/;
+      return namePattern.test(name)
   }
 
-  const validatePassword = (password, confirmPassword) => {
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-    const isValid = passwordPattern.test(password);
-    setErroPassword(!isValid)
-    const confirmIsValid = password === confirmPassword
-    setErroConfirmPassword(!confirmIsValid)
-    return isValid && confirmIsValid
+  const isEqualPassword = (password, confirmPassword) => {
+    return password === confirmPassword 
   }
 
-  const validateForm = () => {
-    const isEmailValid = validateEmail(inputEmail);
-    const isNameValid = validateName(inputNome);
-    const isPasswordValid = validatePassword(inputPassword, inputConfirmPassword);
-
-    return isNameValid && isEmailValid && isPasswordValid;
+  const passwordIsValid = (password) => {
+      const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+      return passwordPattern.test(password)
   }
+
 
   const resetInputs = () => {
     setInputEmail('')
@@ -104,12 +93,7 @@ const Register = () => {
     setErroPassword(false)
   }
 
-  const sendDataRegister = async (e) => {
-    e.preventDefault()
-    if (!validateForm()) {
-      <ErrorMessage errorText={'Verifique as informações digitadas'} errorMessage={'Campos Inválidos'}/>;
-      return;
-    }
+  const sendDataRegister = async () => {
     const dataUser = {
       "nome": inputNome,
       "email": inputEmail,
@@ -127,12 +111,33 @@ const Register = () => {
 
   }
 
+  const handleRegister = (e) => {
+    e.preventDefault()
+    const isEmailValid = emailIsValid(inputEmail);
+    const isNameValid = nameIsValid(inputNome);
+    const isPasswordValid = passwordIsValid(inputPassword);
+    const passwordMatches = isEqualPassword(inputPassword, inputConfirmPassword);
+
+    setErroConfirmPassword(!passwordMatches);
+    setErroPassword(!isPasswordValid);
+    setErroNome(!isNameValid);
+    setErroEmail(!isEmailValid);
+
+    const formIsValid = isEmailValid && isNameValid && isPasswordValid && passwordMatches
+    if(formIsValid){
+      sendDataRegister()
+    } else{
+      errorMessage('Campos Inválidos')
+    }
+    
+  }
+
   return (
     <main>
       <Navbar />
       <div
         className=' bg-[url("/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%]  min-h-screen flex justify-center items-center'>
-        <form onSubmit={sendDataRegister}>
+        <form onSubmit={handleRegister}>
           <div className='flex flex-col bg-none shadow-lg 
      p-6 rounded-4xl m-4 space-y-6 xl:space-y-16 max-w-[90%] min-w-[80%]  animate-fade-up animate-duration-1000 animate-delay-100 animate-ease-in'>
             <div className='flex flex-col justify-center items-center space-y-1 md:space-y-2 xl:space-y-3 w-full whitespace-nowrap '>
@@ -217,7 +222,7 @@ const Register = () => {
                   )}</button>
                   </div>
                 {erroConfirmPassword && <p className='text-red text-sm md:text-md xl:text-lg font-title-alt ml-1 ' >Digite as senhas iguais</p>}
-                <p className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)] m-3'>A Senha precisa possuir :
+                <p className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 mt-6 text-[var(--color-green)] m-3'>A Senha precisa possuir :
                 </p>
                  <ul className='space-y-2 m-4 text-sm lg:text-lg list-disc font-title-alt ml-1 text-[var(--color-green)]'>
                     <li>No Mínimo 8 caracteres</li>

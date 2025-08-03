@@ -19,7 +19,7 @@ const Window2 = () => {
       icon: 'error',
       color: 'var(--color-red)',
       background: 'var(--color-white)',
-      footer: error.message || String(error),
+      footer: error || String(error),
       customClass: {
         popup: '!rounded-2xl !p-6 !shadow-xl',
         confirmButton: '!text-white-500 !bg-red-500 !border-white  '
@@ -69,6 +69,7 @@ const Window2 = () => {
 
   const listarGasto = async (e) => {
     e.preventDefault();
+    if (inputDescGasto === '' || inputValorGasto === '') return errorMessage('Por favor, preencha todos os campos', 'informações incompletas')
     await sendGasto();
     await fetchGastos();
     limpaInputs();
