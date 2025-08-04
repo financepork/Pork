@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { XMarkIcon, CheckIcon } from '@heroicons/react/24/solid'
 
 
 const Window3 = () => {
@@ -48,11 +49,15 @@ const Window3 = () => {
 
   const sendMeta = async () => {
     try {
+
+      const [year, month, day] = inputData.split('-');
+      const dataFormatada = `${day}/${month}/${year}`;
+
       const metaEnviada = [
         {
        "meta": inputMeta,
-        "valor": inputValue,
-        "data": inputData
+        "valor": Number(inputValue),
+        "data": dataFormatada
       }
     ]
       await axios.post('/metas/cadastrar-metas', metaEnviada,  {
@@ -71,9 +76,9 @@ const Window3 = () => {
     limpaInputs()
   }
 
-  // const deleteMeta = (id) => {
-    //preciso ver como essa porra vai funcionar 
-  //}
+  const deleteMeta = () => {
+    // preciso ver como essa porra vai funcionar 
+  }
 
   return (
     <main
