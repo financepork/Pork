@@ -1,9 +1,9 @@
 
 import { useState } from 'react'
 import MainWindow from '../components/MainPageComponents/MainWindow.jsx'
-import Window1 from '../components/MainPageComponents/Window1.jsx'
-import Window2 from '../components/MainPageComponents/Window2.jsx'
-import Window3 from '../components/MainPageComponents/Window3.jsx'
+import PlanejamentoEconomico from '../components/MainPageComponents/PlanejamentoEconomico.jsx'
+import RegistroGastos from '../components/MainPageComponents/RegistroGastos.jsx'
+import DefinirMetas from '../components/MainPageComponents/DefinirMetas.jsx'
 import AOS from 'aos';
 import { useEffect } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
@@ -86,13 +86,13 @@ const MainPage = () => {
               <div className='flex flex-col items-center  space-y-5 xl:space-y-10 font-text-alt'>
 
                 <button onClick={() => {
-                  setOpenWindow('Window1');
+                  setOpenWindow('PlanejamentoEconomico');
                   setIsOpen(false);
                 }}
                   className='text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer'>Plano Econômico</button>
 
                 <button onClick={() => {
-                  setOpenWindow('Window2');
+                  setOpenWindow('RegistroGastos');
                   setIsOpen(false);
                 }
 
@@ -100,7 +100,7 @@ const MainPage = () => {
                   className=' text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer'>Registro de Gastos</button>
 
                 <button onClick={() => {
-                  setOpenWindow('Window3');
+                  setOpenWindow('DefinirMetas');
                   setIsOpen(false);
                 }}
                   className=' text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer'>Metas de Economia </button>
@@ -115,18 +115,18 @@ const MainPage = () => {
         </aside>
         <div  data-aos="fade-right" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in">
           {openWindow == 'mainWindow' && <HeaderPages firstLineText={"Bem Vindo,"} secLineText={userName} altText={"Seja bem-vindo ao Pork, seu Cofrinho Digital!"}/>
-          || openWindow == 'Window1' && <HeaderPages firstLineText={"Planejamento"} secLineText={"Econômico"} altText={"Defina como você vai gerenciar seu dinheiro!"}/>
-          || openWindow == 'Window2' && <HeaderPages firstLineText={"Registro de"} secLineText={"Gastos"} altText={"Organize suas despesas como ninguém!"}/>
-          || openWindow == 'Window3' && <HeaderPages firstLineText={"Metas"} secLineText={"e Objetivos"} altText={"Defina objetivos que incentivem a Economia de dinheiro!"}/> }
+          || openWindow == 'PlanejamentoEconomico' && <HeaderPages firstLineText={"Planejamento"} secLineText={"Econômico"} altText={"Defina como você vai gerenciar seu dinheiro!"}/>
+          || openWindow == 'RegistroGastos' && <HeaderPages firstLineText={"Registro de"} secLineText={"Gastos"} altText={"Organize suas despesas como ninguém!"}/>
+          || openWindow == 'DefinirMetas' && <HeaderPages firstLineText={"Metas"} secLineText={"e Objetivos"} altText={"Defina objetivos que incentivem a Economia de dinheiro!"}/> }
         </div>
             
         
       </header>
       <main className=' min-h-screen h-auto '>
         {openWindow == 'mainWindow' && <MainWindow setOpenWindow={setOpenWindow} />
-          || openWindow == 'Window1' && <Window1 />
-          || openWindow == 'Window2' && <Window2 />
-          || openWindow == 'Window3' && <Window3 />}
+          || openWindow == 'PlanejamentoEconomico' && <PlanejamentoEconomico />
+          || openWindow == 'RegistroGastos' && <RegistroGastos />
+          || openWindow == 'DefinirMetas' && <DefinirMetas />}
       </main>
     </main>
   )
