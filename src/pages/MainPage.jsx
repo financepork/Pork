@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import axios from 'axios'
 import HeaderPages from '../components/MainPageComponents/headerPages.jsx'
+import Swal from 'sweetalert2'
 
 
 
@@ -35,19 +36,23 @@ const MainPage = () => {
     })
   }
 
+  const fetchUsername = async () => {
+    try{
+        const response = await axios.get('/usuario/info', {
+        withCredentials: true
+      })
+        setUserName(response.data.nome)
+      } catch (error){
+        errorMessage('Erro ao contatar o servidor', error.response.data)
+      }
+  }
+
   useEffect(() => {
     AOS.init({ once: false }); // once:true anima só uma vez
   }, []);
 
   useEffect(()=> {
-      try{
-        const response = axios.get('/usuario/info', {
-        withCredentials: true
-      })
-            setUserName(response.data.nome)
-      } catch (error){
-        errorMessage('Erro ao contatar o servidor',error.response.data)
-      }
+    fetchUsername()
   }, []);
 
   return (

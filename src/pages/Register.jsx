@@ -30,6 +30,8 @@ const Register = () => {
   const [viewPassword, setViewPassword] = useState(false)
   
   const [viewConfirmPassword, setViewConfirmPassword] = useState(false)
+
+  
   
 
   const errorMessage = (error) => {
@@ -106,7 +108,7 @@ const Register = () => {
       sucessMessage()
       resetInputs()
     } catch (error) {
-      errorMessage(error)
+      errorMessage(error.response.data)
     }
 
   }

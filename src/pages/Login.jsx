@@ -19,11 +19,96 @@ const Login = () => {
 
   const [inputPassword, setInputPassword] = useState('')
 
-  const [erroEmail, setErroEmail] = useState(false)
-
-  const [erroPassword, setErroPassword] = useState(false)
-
   const [viewPassword, setViewPassword] = useState(false)
+  
+  const msgRedefinePassword = () => {
+        Swal.fire({
+      title: "Digite o E-mail que deseja Verificar",
+      input: "text",
+      inputAttributes: {
+        autocapitalize: "off"
+      },
+      showCancelButton: true,
+      confirmButtonText: "Reenviar",
+      cancelButtonText: "Cancelar",
+      showLoaderOnConfirm: true,
+      customClass: {
+        popup: '!rounded-2xl !p-6 !shadow-xl',
+        confirmButton: '!text-white-500 !bg-green-500 !border-white  ',
+        cancelButton: '!text-white-500 !bg-red-500 !border-white  ',
+      },
+      preConfirm: async (email) => {
+        try {
+          const emailUser = {
+            "email": email
+          }
+          await axios.post('/auth/reenviar-email', emailUser, {
+            withCredentials: true
+          })
+        } catch (error) {
+          Swal.showValidationMessage(`
+    ${error.response.data}
+      `);
+        }
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: `Pronto! Agora cheque o seu E-mail (Verificação expira em 10min)`,
+        });
+      }
+    });
+  }
+
+  const msgResendEmail = () => {
+    Swal.fire({
+      title: "Digite o E-mail que deseja Verificar",
+      input: "text",
+      inputAttributes: {
+        autocapitalize: "off"
+      },
+      showCancelButton: true,
+      confirmButtonText: "Reenviar",
+      cancelButtonText: "Cancelar",
+      showLoaderOnConfirm: true,
+      customClass: {
+        popup: '!rounded-2xl !p-6 !shadow-xl',
+        confirmButton: '!text-white-500 !bg-green-500 !border-white  ',
+        cancelButton: '!text-white-500 !bg-red-500 !border-white  ',
+      },
+      preConfirm: async (email) => {
+        try {
+          const emailResent = {
+            "email": email
+          }
+          await axios.post('/auth/reenviar-email', emailResent, {
+            withCredentials: true
+          })
+        } catch (error) {
+          Swal.showValidationMessage(`
+    ${error.response.data}
+      `);
+        }
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: `Pronto! Agora cheque o seu E-mail (Verificação expira em 10min)`,
+        });
+      }
+    });
+  }
+
+  const redefinePassword = () => {
+    msgRedefinePassword()
+  }
+
+  const resendEmail = async () => {
+    msgResendEmail()
+  }
+
 
   const errorMessage = (errorText, error) => {
     Swal.fire({
@@ -40,15 +125,7 @@ const Login = () => {
     })
   }
 
-  const validateEmail = (email) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email)
-  }
-
-  const validatePassword = (password) => {
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-    return passwordPattern.test(password);
-  }
+ 
 
   const sendLogin = async () => {
     const dataUser = {
@@ -67,19 +144,11 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault()
-    const isEmailValid = validateEmail(inputEmail)
-    const isPasswordValid = validatePassword(inputPassword)
-
-    setErroEmail(!isEmailValid)
-    setErroPassword(!isPasswordValid)
-
-    const isLoginValid = isEmailValid && isPasswordValid
-
-    if (isLoginValid) {
       await sendLogin();
-    } else {
-      errorMessage('E-mail ou Senha Inválidos, tente novamente')
-    }
+  }
+
+  const goTo = (url) => {
+    navigate(url)
   }
 
 
@@ -104,12 +173,10 @@ const Login = () => {
                     name="email"
                     value={inputEmail}
                     onChange={e => setInputEmail(e.target.value)}
-                    onBlur={(e) => setErroEmail(!validateEmail(e.target.value))}
                     placeholder="Example@gmail.com"
                     type='email'
                     required
                   />
-                  {erroEmail && <p className='text-red text-md md:text-xl xl:text-2xl font-title-alt ml-1 ' >Digite um E-mail válido</p>}
                 </div>
 
                 <div className='flex flex-col w-full max-w-md space-y-1'>
@@ -120,7 +187,6 @@ const Login = () => {
                       name="senha"
                       value={inputPassword}
                       onChange={e => setInputPassword(e.target.value)}
-                      onBlur={(e) => setErroPassword(!validatePassword(e.target.value))}
                       placeholder="Digite sua senha"
                       type={viewPassword ? 'text' : 'password'}
                       required
@@ -135,15 +201,20 @@ const Login = () => {
                       <FaEye className="text-gray-400 text-xl" />
                     )}</button>
                   </div>
-                  {erroPassword && <p className='text-red text-md md:text-xl xl:text-2xl font-title-alt ml-1 ' >Digite uma senha válida</p>}
-
                 </div>
               </div>
               <button type='submit' className="border-0 text-[var(--color-white)] bg-[var(--color-green)] rounded-2xl text-md font-text md:text-xl xl:text-2xl p-3 hover:bg-[var(--color-white)] 
          hover:text-[var(--color-black)] transition-colors duration-400 ease-in-out">Enviar</button>
             </div>
           </form>
-          <a href="/Register" className='text-[var(--color-white)] text-xl underline '><p>Não se registrou?</p></a>
+          <div className='flex flex-col'>
+            <div className='flex flex-col md:flex-row justify-center items-center'>
+              <button type='button' onClick={()=> goTo('/register')} className="border-0 text-center text-[var(--color-white)] rounded-2xl text-sm font-text md:text-lg xl:text-xl p-3 bg-none underline cursor-pointer ">Não se registrou?</button>
+              <button type='button' onClick={() => resendEmail()} className="border-0 text-center text-[var(--color-white)] rounded-2xl text-sm font-text md:text-lg xl:text-xl p-3 bg-none underline cursor-pointer ">Verificar E-mail</button>
+              <button type='button' onClick={()=> redefinePassword()} className="border-0 text-center text-[var(--color-white)] rounded-2xl text-sm font-text md:text-lg xl:text-xl p-3 bg-none underline cursor-pointer ">Redefinir Senha</button>
+            </div>
+          </div>
+
         </div>
 
       </div>
