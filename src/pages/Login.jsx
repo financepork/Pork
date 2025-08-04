@@ -23,18 +23,18 @@ const Login = () => {
   
   const msgRedefinePassword = () => {
         Swal.fire({
-      title: "Digite o E-mail que deseja Verificar",
+      title: "Precisamos do seu E-mail para redefinir sua senha, digite-o abaixo",
       input: "text",
       inputAttributes: {
         autocapitalize: "off"
       },
       showCancelButton: true,
-      confirmButtonText: "Reenviar",
+      confirmButtonText: "Enviar E-mail",
       cancelButtonText: "Cancelar",
       showLoaderOnConfirm: true,
       customClass: {
         popup: '!rounded-2xl !p-6 !shadow-xl',
-        confirmButton: '!text-white-500 !bg-green-500 !border-white  ',
+        confirmButton: '!text-white-500 !bg-green-400 !border-white  ',
         cancelButton: '!text-white-500 !bg-red-500 !border-white  ',
       },
       preConfirm: async (email) => {
@@ -74,7 +74,7 @@ const Login = () => {
       showLoaderOnConfirm: true,
       customClass: {
         popup: '!rounded-2xl !p-6 !shadow-xl',
-        confirmButton: '!text-white-500 !bg-green-500 !border-white  ',
+        confirmButton: '!text-white-500 !bg-green-400 !border-white  ',
         cancelButton: '!text-white-500 !bg-red-500 !border-white  ',
       },
       preConfirm: async (email) => {
@@ -168,7 +168,7 @@ const Login = () => {
               <div className='flex flex-col justify-center items-center space-y-8 '>
                 <div className='flex flex-col w-full max-w-md space-y-1'>
 
-                  <label htmlFor="Email" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>E-mail :</label>
+                  <label htmlFor="Email" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>E-mail </label>
                   <Input
                     name="email"
                     value={inputEmail}
@@ -181,7 +181,7 @@ const Login = () => {
 
                 <div className='flex flex-col w-full max-w-md space-y-1'>
 
-                  <label htmlFor="Senha" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>Senha :</label>
+                  <label htmlFor="Senha" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>Senha </label>
                   <div className='flex flex-row justify-between'>
                     <Input
                       name="senha"

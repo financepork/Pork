@@ -149,7 +149,7 @@ const Register = () => {
             <div className='flex flex-col justify-center items-center space-y-8 '>
               <div className='flex flex-col w-full max-w-md space-y-1'>
 
-                <label htmlFor="Nome Completo" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>Nome Completo :</label>
+                <label htmlFor="Nome Completo" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>Nome Completo </label>
                 <Input
                   name="nome"
                   value={inputNome}
@@ -164,7 +164,7 @@ const Register = () => {
 
               <div className='flex flex-col w-full max-w-md space-y-1'>
 
-                <label htmlFor="Email" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>E-mail :</label>
+                <label htmlFor="Email" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>E-mail </label>
                 <Input
                   name="email"
                   value={inputEmail}
@@ -179,13 +179,13 @@ const Register = () => {
 
               <div className='flex flex-col w-full max-w-md space-y-1'>
 
-                <label htmlFor="Senha" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>Senha :</label>
+                <label htmlFor="Senha" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>Senha </label>
                 <div className='flex flex-row justify-between'>
                   <Input
                     name="senha"
                     value={inputPassword}
                     onChange={e => setInputPassword(e.target.value)}
-                    onBlur={(e) => validatePassword(e.target.value, inputConfirmPassword)}
+                    onBlur={(e) => passwordIsValid(e.target.value, inputConfirmPassword)}
                     placeholder="Digite sua senha"
                     type={ viewPassword? 'text' : 'password'}
                     required
@@ -200,16 +200,25 @@ const Register = () => {
                   )}</button>
                 </div>
                 {erroPassword && <p className='text-red text-sm md:text-md xl:text-lg font-title-alt ml-1 ' >Digite uma senha válida</p>}
+                <p className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 mt-6 text-[var(--color-green)] m-3'>A Senha precisa possuir 
+                </p>
+                 <ul className='space-y-2 m-4 text-sm lg:text-lg list-disc font-title-alt ml-1 text-[var(--color-green)]'>
+                    <li>No Mínimo 8 caracteres</li>
+                    <li>No Mínimo 1  letra Maiúscula e 1 letra Minúscula</li>
+                    <li>No Mínimo 1  Número</li>
+                    <li>No Mínimo 1  Caractere Especial (Símbolos como: @, #, !...)</li>
+                  </ul>
+
               </div>
               <div className='flex flex-col w-full max-w-md space-y-1'>
 
-                <label htmlFor="Confirmar Senha" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>Confirmar Senha :</label>
+                <label htmlFor="Confirmar Senha" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>Confirmar Senha </label>
                 <div className='flex flex-row justify-between'>
                 <Input
                   name="Confirmar senha"
                   value={inputConfirmPassword}
                   onChange={e => setInputConfirmPassword(e.target.value)}
-                  onBlur={(e) => validatePassword(inputPassword, e.target.value)}
+                  onBlur={(e) => isEqualPassword(inputPassword, e.target.value)}
                   placeholder="Digite sua senha"
                   type={ viewConfirmPassword? 'text' : 'password'}
                   required
@@ -224,15 +233,7 @@ const Register = () => {
                   )}</button>
                   </div>
                 {erroConfirmPassword && <p className='text-red text-sm md:text-md xl:text-lg font-title-alt ml-1 ' >Digite as senhas iguais</p>}
-                <p className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 mt-6 text-[var(--color-green)] m-3'>A Senha precisa possuir :
-                </p>
-                 <ul className='space-y-2 m-4 text-sm lg:text-lg list-disc font-title-alt ml-1 text-[var(--color-green)]'>
-                    <li>No Mínimo 8 caracteres</li>
-                    <li>No Mínimo 1  letra Maiúscula e 1 letra Minúscula</li>
-                    <li>No Mínimo 1  Número</li>
-                    <li>No Mínimo 1  Caractere Especial (Símbolos como: @, #, !...)</li>
-                  </ul>
-
+                
               </div>
             </div>
 

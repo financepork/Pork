@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
-const Verify = () => {
+const Verified = () => {
     return (
         <div>
             <Navbar />
@@ -23,4 +23,4 @@ const Verify = () => {
     )
 }
 
-export default Verify
+export default Verified

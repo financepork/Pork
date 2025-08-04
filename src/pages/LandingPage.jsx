@@ -22,16 +22,16 @@ const LandingPage = () => {
         <div className='m-5 p-1 flex flex-col space-y-5 xl:space-y-8 md:ml-[5%] xl:mt-9'>
           <div className='flex flex-col text-[var(--color-white)] space-y-4 xl:space-y-8 max-w-[80%]'>
             <h1 data-aos="fade-right" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
-              className='font-title text-5xl md:text-6xl  xl:text-7xl max-w-[85%] text-[var(--color-white)]'>
+              className='font-title text-5xl md:text-6xl lg:text-7xl  xl:text-8xl max-w-[85%] text-[var(--color-white)]'>
               Conheça o <span className='text-[var(--color-green)]'>Pork</span>, seu auxiliar financeiro digital
             </h1>
             <div className='max-w-[75%] space-y-1 '>
               <p data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out"
-                className='font-text text-md md:text-lg xl:text-2xl text-[var(--color-green)]'>
+                className='font-text text-md md:text-lg xl:text-3xl text-[var(--color-green)]'>
                 Uma ferramenta criada para ajudar no controle de gastos.
               </p>
               <p data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out"
-                className='font-text text-md md:text-lg xl:text-2xl  text-[var(--color-green)]'>
+                className='font-text text-md md:text-lg xl:text-3xl  text-[var(--color-green)]'>
                 Organização e praticidade com seu cofrinho digital.
               </p>
             </div>
@@ -81,9 +81,9 @@ const LandingPage = () => {
         </div>
       </section>
       <article className='bg-[var(--color-black)] max-h-auto h-auto py-6 2xl:min-h-screen'>
-        <div className='flex flex-col h-auto'>
+        <div className='flex flex-col justify-center items-center h-auto'>
           <div className='mt-5 ml-5 flex md:justify-center items-center xl:m-10 max-w-[80%] self-center'>
-            <h1 className='text-[var(--color-white)] font-title-alt text-3xl md:text-5xl xl:text-6xl'>Conheça os <span className='text-[var(--color-green)]'>Desenvolvedores</span> <span className='text-[var(--color-green)]'>:</span></h1>
+            <h1 className='text-[var(--color-white)] font-title-alt text-3xl md:text-5xl xl:text-6xl'>Conheça os <span className='text-[var(--color-green)]'>Desenvolvedores</span></h1>
           </div>
           <CardApresentacaoDir DevName="Bernardo Soares" DevStack="Front-end Developer" DevImgSrc='./fotodevsoares.jpg' devInsta='https://www.instagram.com/__soaresbernardo/' devGithub='https://github.com/Dev-Soares' devLinkedin='https://www.linkedin.com/in/bernardo-soares-150096364' />
           <CardApresentacaoEsq DevName="João Vitor Chaves" DevStack="Back-end Developer" DevImgSrc='./fotoDevChaves.jpg' devGithub='https://github.com/dev-Chaves' devInsta='https://www.instagram.com/user_joaocs/' devLinkedin='https://www.linkedin.com/in/jo%C3%A3o-vitor-chaves-silva-9412912b7' />

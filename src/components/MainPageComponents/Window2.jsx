@@ -102,8 +102,8 @@ const RegistroGastos = () => {
           <h2 className='text-2xl md:text-4xl xl:text-6xl text-center font-title-app text-[var(--color-green)]'>Gastos Registrados</h2>
           <ul className='text-lg md:text-2xl lg:text-3xl xl:text-5xl text-[var(--color-black)] font-text-alt space-y-2 xl:space-y-12 list-disc m-4 xl:p-5' >
             {gastos.map((gasto) => (
-              <div key={gasto.id} className='flex flex-col justify-center items-center space-y-4 '>
-                <li className='text-[var(--color-green)] flex flex-col space-y-4 border-2 p-4 rounded-4xl' >
+              <div key={gasto.id} className='flex flex-row justify-center items-center space-y-4 '>
+                <li className='text-[var(--color-green)] flex flex-col space-y-4 p-4' >
                   <p>Gasto: {gasto.descricao}</p>
                   <p>Valor: {gasto.valor}</p>
                 </li>
