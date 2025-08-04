@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 
 const Window3 = () => {
@@ -29,8 +30,7 @@ const Window3 = () => {
        const response = await axios.get('/metas/consultar-metas',  {
         withCredentials: true
       })
-          const metasUser = [...response.data.metas]
-          setMetas([...metasUser])
+          setMetas(response.data)
     } catch (error) {
        errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data);
     }
@@ -48,16 +48,18 @@ const Window3 = () => {
 
   const sendMeta = async () => {
     try {
-      const metaEnviada = {
+      const metaEnviada = [
+        {
        "meta": inputMeta,
         "valor": inputValue,
         "data": inputData
       }
+    ]
       await axios.post('/metas/cadastrar-metas', metaEnviada,  {
         withCredentials: true
       })
     } catch (error) {
-       errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' ,error.response.data);
+       errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' , error.response.data);
     }
   }
 

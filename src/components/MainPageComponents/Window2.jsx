@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { XMarkIcon, CheckIcon } from '@heroicons/react/24/solid'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 
 
@@ -12,7 +13,7 @@ const Window2 = () => {
 
   const [gastos, setGastos] = useState([])
 
-  const errorMessage = (errorText,error) => {
+  const errorMessage = (errorText, error) => {
     Swal.fire({
       title: 'Ocorreu um Erro',
       text: errorText,
@@ -30,13 +31,13 @@ const Window2 = () => {
   const fetchGastos = async () => {
 
     try {
-      const response = await axios.get('/despesas/consultar-despesas',  {
+      const response = await axios.get('/despesas/consultar-despesas', {
         withCredentials: true
       })
-          const gastosGerais = [...response.data.todasasDespesas]
-          setGastos([...gastosGerais])
+      const gastosGerais = [...response.data.todasDespesas]
+      setGastos([...gastosGerais])
     } catch (error) {
-      errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' ,error.response.data);
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data);
     }
 
   }
@@ -52,19 +53,21 @@ const Window2 = () => {
 
 
   const sendGasto = async () => {
-    const gastoEnviado = {
-      "valor": inputValorGasto,
-      "descricao": inputDescGasto,
-      "categoria": 'FIXA'
-    }
-    try{
-      await axios.post('/despesas/anotar-despesas', gastoEnviado,  {
+    const gastoEnviado = [
+      {
+        "valor": inputValorGasto,
+        "descricao": inputDescGasto,
+        "categoria": 'FIXA'
+      }
+    ]
+    try {
+      await axios.post('/despesas/anotar-despesas', gastoEnviado, {
         withCredentials: true
       })
-    } catch(error) {
-      errorMessage( 'Erro ao enviar informações ao servidor, tente novamente', error.response.data);
+    } catch (error) {
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data);
     }
-    
+
   }
 
   const listarGasto = async (e) => {
@@ -76,7 +79,7 @@ const Window2 = () => {
   }
 
   //const deleteGasto = () => {
-    //...
+  //...
   //}
 
   return (
@@ -105,7 +108,7 @@ const Window2 = () => {
                   <p>Valor: {gasto.valor}</p>
                 </li>
                 <div className='flex space-x-4 justify-center w-full'>
-                  <button onClick={deleteGasto} className='bg-red-700 rounded-2xl'>
+                  <button className='bg-red-700 rounded-2xl'>
                     <XMarkIcon className="h-10 md:h-15 w-10 md:w-15  text-white cursor-pointer" />
                   </button>
                 </div>

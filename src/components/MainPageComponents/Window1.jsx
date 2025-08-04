@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Select from 'react-select'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 
 const Window1 = () => {
@@ -116,7 +117,7 @@ const Window1 = () => {
         withCredentials: true
       })
       const planEco = response.data.valor
-      setValueEco(`${planEco} /Mês`)
+      setValueEco(`R$${planEco} /Mês`)
     }
     catch (error) {
       errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' ,error.response.data);
