@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { XMarkIcon, CheckIcon } from '@heroicons/react/24/solid'
 
 
 const DefinirMetas = () => {
@@ -49,15 +48,11 @@ const DefinirMetas = () => {
 
   const sendMeta = async () => {
     try {
-
-      const [year, month, day] = inputData.split('-');
-      const dataFormatada = `${day}/${month}/${year}`;
-
       const metaEnviada = [
         {
        "meta": inputMeta,
-        "valor": Number(inputValue),
-        "data": dataFormatada
+        "valor": inputValue,
+        "data": inputData
       }
     ]
       await axios.post('/metas/cadastrar-metas', metaEnviada,  {
@@ -76,9 +71,9 @@ const DefinirMetas = () => {
     limpaInputs()
   }
 
-  const deleteMeta = () => {
-    // preciso ver como essa porra vai funcionar 
-  }
+  // const deleteMeta = (id) => {
+    //preciso ver como essa porra vai funcionar 
+  //}
 
   return (
     <main
@@ -109,7 +104,7 @@ const DefinirMetas = () => {
                   <p>Data Limite: {meta.data}</p>
                 </li>
                 <div className='flex space-x-4 justify-center w-full'>
-                  <button onClick={deleteMeta} className='bg-red-700 rounded-2xl'>
+                  <button className='bg-red-700 rounded-2xl'>
                     <XMarkIcon className="h-10 md:h-15 w-10 md:w-15  text-white cursor-pointer" />
                   </button>
                   <button className='bg-[var(--color-green)] rounded-2xl'>
