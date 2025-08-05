@@ -104,8 +104,10 @@ body {
 
 @layer base {
     section {
-        min-height: 50rem;
         width: 100%;
+    }
+    .slick-slide {
+      padding-bottom: 5rem !important;
     }
 }
 

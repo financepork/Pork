@@ -23,7 +23,11 @@ const Login = () => {
   
   const msgRedefinePassword = () => {
         Swal.fire({
+<<<<<<< HEAD
       title: "Precisamos do seu E-mail para redefinir sua senha, digite-o abaixo",
+=======
+      title: "Digite seu email para redefinir a senha",
+>>>>>>> 99a5120e4314373d37173b487188a1dec98b8deb
       input: "text",
       inputAttributes: {
         autocapitalize: "off"
@@ -42,12 +46,16 @@ const Login = () => {
           const emailUser = {
             "email": email
           }
-          await axios.post('/auth/reenviar-email', emailUser, {
+
+          const response = await axios.post('/auth/redefinir-email-senha', emailUser, {
             withCredentials: true
-          })
+          });
+
         } catch (error) {
+          console.error('Erro na requisição:', error);
+          console.error('URL da requisição:', error.config?.url);
           Swal.showValidationMessage(`
-    ${error.response.data}
+    ${error.response?.data || error.message}
       `);
         }
       },
