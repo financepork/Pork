@@ -106,6 +106,10 @@ body {
         border-color: var(--color-green) transparent 
         var(--color-green) transparent !important ;
     }
+
+    .max-w-carousel {
+        max-width: 90rem;
+    }
 }
 
 @layer base {

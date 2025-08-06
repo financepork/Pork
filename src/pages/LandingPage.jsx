@@ -47,7 +47,7 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-      <section className='bg-[var(--color-green)] h-auto w-full flex flex-col items-center justify-center  p-6 2xl:min-h-screen'>
+      <section className='bg-[var(--color-green)] h-auto w-full flex flex-col items-center justify-center p-8 md:p-10 lg:p-12 2xl:min-h-screen'>
         <div className='flex items-center flex-col h-auto p-6'>
           <h1 data-aos="fade-right" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
             className='font-title-alt text-[var(--color-white)] mt-5 xl:mt-0 text-3xl md:text-6xl lg:text-6xl text-center'>Tudo o que você precisa e muito mais. </h1>

@@ -7,29 +7,47 @@ import CardCarousel from "./CardCarousel";
 function CarouselLanding() {
 
     const settings = {
-        dots: true,
-        infinite: true,
-        speed: 1000,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2500,
-        centerMode: true,       
-        centerPadding: '40px',
-      
-
-        responsive: [
-            {
-                breakpoint: 768, 
-                settings: {
-                    centerPadding: '40px' 
-                }
-            }
-        ]
-    };
-
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1, 
+    slidesToScroll: 1,
+    
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+          centerMode: true,
+          centerPadding: '0px', 
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
+          centerMode: true,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+          centerMode: true,
+        },
+      },
+    ],
+  };
     return (
-        <div className="py-10 w-full h-full m-4 "> 
+        <div className="py-10 w-full h-full m-4 mx-auto max-w-carousel "> 
             <Slider {...settings}>
                 <div className="px-3"> 
                     <CardCarousel titleText="Plano de Economia" imgSrc='planEco.png' />
