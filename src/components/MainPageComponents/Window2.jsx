@@ -23,6 +23,9 @@ const RegistroGastos = () => {
       showConfirmButton: false,
       didOpen: () => {
         Swal.showLoading();
+      },
+      customClass: {
+        popup: 'custom-swal' 
       }
     });
   }

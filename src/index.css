@@ -102,11 +102,9 @@ body {
         border-color: rgb(21, 21, 21);
     }
 
-    .custom-loading-spinner {
-        border-color: var(--color-green) transparent var(--color-green) transparent !important ;
-    }
-    .swal2-loading {
-        border-color: var(--color-green) transparent var(--color-green) transparent !important ; 
+    .custom-swal .swal2-loader  {
+        border-color: var(--color-green) transparent 
+        var(--color-green) transparent !important ;
     }
 }
 

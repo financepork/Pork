@@ -21,6 +21,9 @@ const DefinirMetas = () => {
       showConfirmButton: false,
       didOpen: () => {
         Swal.showLoading();
+      },
+      customClass: {
+        popup: 'custom-swal' 
       }
     });
   }

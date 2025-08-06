@@ -24,11 +24,11 @@ const PlanejamentoEconomico = () => {
       text: 'Por favor, aguarde.',
       allowOutsideClick: false,
       showConfirmButton: false,
-      customClass: {
-        loading: 'custom-loading-spinner' 
-      },
       didOpen: () => {
         Swal.showLoading();
+      },
+      customClass: {
+        popup: 'custom-swal' 
       }
     });
   }
