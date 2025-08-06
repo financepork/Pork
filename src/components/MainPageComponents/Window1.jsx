@@ -39,13 +39,13 @@ const PlanejamentoEconomico = () => {
 
   const convertePlan = (plan) => {
     switch (plan) {
-      case 'HARD':
+      case HARD:
         return 'Escorpião no Bolso'
 
-      case 'MID':
+      case MID:
         return 'Normal'
 
-      case 'EASY':
+      case EASY:
         return 'Mão de Vaca'
     }
   }
@@ -56,7 +56,7 @@ const PlanejamentoEconomico = () => {
         withCredentials: true
       })
       const valorRenda = response.data.valor;
-      setValueRenda(`R$ ${valorRenda}`);
+      setValueRenda(`${valorRenda}`);
     } catch (error) {
       errorMessage( 'Erro ao receber informações do servidor, tente novamente',error.response.data);
     }
@@ -90,7 +90,8 @@ const PlanejamentoEconomico = () => {
       await axios.put('/investimento/alterar-investimento', planTyped,  {
         withCredentials: true
       });
-      return setValuePlan(inputPlan);
+      const valuePlan = convertePlan(inputPlan)
+      return setValuePlan(valuePlan);
     } catch (error) {
       errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data);
     }
@@ -104,7 +105,7 @@ const PlanejamentoEconomico = () => {
       await axios.put('/despesas/atualizar-receita', valueTyped,  {
         withCredentials: true
       });
-      return setValueRenda(`R$ ${valueTyped.receita}`);
+      return setValueRenda(`${valueTyped.receita}`);
     } catch (error) {
       errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' ,error.response.data);
     }
@@ -117,7 +118,7 @@ const PlanejamentoEconomico = () => {
         withCredentials: true
       })
       const planEco = response.data.valor
-      setValueEco(`R$${planEco} /Mês`)
+      setValueEco(`${planEco}`)
     }
     catch (error) {
       errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' ,error.response.data);
@@ -139,19 +140,19 @@ const PlanejamentoEconomico = () => {
         className='flex flex-wrap h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-16 space-y-8 overflow-y-none justify-center 2xl:justify-around  '>
         <div className='flex p-5 md:p-10 lg:p-12 xl:p-16 xl:w-[60%] lg:w-[60%]  w-full bg-[var(--color-white)] max-h-[81%] rounded-4xl'>
           <div className='flex flex-col space-y-4 lg:space-y-6'>
-            <h2 className='text-[var(--color-green)] font-title-app text-3xl md:text-4xl lg:text-5xl leading-relaxed'>Renda Mensal :</h2>
-            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>{valueRenda}</p>
-            <h2 className='text-[var(--color-green)] font-title-app text-3xl leading-relaxed  md:text-4xl lg:text-5xl'>Plano Selecionado :</h2>
+            <h2 className='text-[var(--color-green)] font-title-app text-3xl md:text-4xl lg:text-5xl leading-relaxed'>Renda Mensal </h2>
+            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>R${valueRenda}</p>
+            <h2 className='text-[var(--color-green)] font-title-app text-3xl leading-relaxed  md:text-4xl lg:text-5xl'>Plano Selecionado </h2>
             <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>{valuePlan}</p>
-            <h2 className='text-[var(--color-green)] font-title-app text-3xl leading-relaxed  md:text-4xl lg:text-5xl'>Economia Ideal :</h2>
-            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>{valueEco}</p>
+            <h2 className='text-[var(--color-green)] font-title-app text-3xl leading-relaxed  md:text-4xl lg:text-5xl'>Economia Ideal </h2>
+            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>R${valueEco} /Mês</p>
           </div>
         </div>
         <form onSubmit={formaEconomia} className='flex flex-col items-center rounded-t-2xl space-y-6 p-4 '>
           <div className='flex flex-col items-center rounded-t-2xl space-y-6 xl:space-y-10 p-4 '>
-            <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl xl:text-6xl' >Renda :</h2>
+            <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl xl:text-6xl' >Renda </h2>
             <input type="number" name="renda" id="renda" placeholder='Insira sua Renda' className='bg-[var(--color-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg xl:text-2xl xl:h-15  xl:w-110 p-2' value={inputRenda} onChange={e => setInputRenda(e.target.value)} />
-            <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl'>Planejamento Escolhido:</h2>
+            <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl'>Planejamento Escolhido</h2>
             <Select
               options={optionsSelect}
               value={optionsSelect.find(opt => opt.value === inputPlan)}
@@ -167,9 +168,9 @@ const PlanejamentoEconomico = () => {
 
           <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl'>Descrição dos planos:</h2>
           <ul className='text-[var(--color-white)] font-text-app text-lg space-y-4 md:space-y-8 decoration-none list-disc md:text-xl lg:text-3xl '>
-            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Escorpião no Bolso :</span><br /><br /> Destinado à usuários com uma quantidade maior de renda, podendo economizar mais dinheiro sem problemas</li>
-            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Normal :</span><br /><br />Destinado à Usuários que desejam economizar uma quantidade básica, sem exagero ou falta</li>
-            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)] '>Mão de Vaca :</span><br /><br />Destinados à usuários que não tem uma renda tão alta, ou que não querem economizar muito dinheiro</li>
+            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Escorpião no Bolso </span><br /><br /> Destinado à usuários com uma quantidade maior de renda, podendo economizar mais dinheiro sem problemas</li>
+            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Normal </span><br /><br />Destinado à Usuários que desejam economizar uma quantidade básica, sem exagero ou falta</li>
+            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)] '>Mão de Vaca </span><br /><br />Destinados à usuários que não tem uma renda tão alta, ou que não querem economizar muito dinheiro</li>
 
           </ul>
         </div>

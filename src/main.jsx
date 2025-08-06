@@ -5,11 +5,12 @@ import Register from './pages/Register.jsx'
 import LandingPage from './pages/LandingPage.jsx'
 import Login from './pages/Login.jsx'
 import 'aos/dist/aos.css';
-import Verify from './pages/Verify.jsx'
+import Verified from './pages/Verified.jsx'
 import MainPage from './pages/MainPage.jsx'
 import ChangePassword from './pages/ChangePassword.jsx'
 import axios from 'axios'
 import './index.css'
+import ChangePassword from './pages/ChangePassword.jsx'
 
 axios.defaults.baseURL = 'https://financepork.site/api';
 

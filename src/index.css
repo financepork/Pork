@@ -109,6 +109,9 @@ body {
     section {
         width: 100%;
     }
+    .slick-slide {
+      padding-bottom: 5rem !important;
+    }
 }
 
 /* Ajustes específicos para Safari */
