@@ -6,6 +6,7 @@ import CardApresentacaoEsq from '../components/CardApresentacaoEsq'
 import AOS from 'aos';
 import { useEffect } from 'react';
 import SmallCard from '../components/SmallCard'
+import CarouselLanding from '../components/CarouselLanding'
 
 
 
@@ -17,7 +18,7 @@ const LandingPage = () => {
 
   return (
     <main>
-      <section className='h-auto bg-[url("/background.png")] bg-cover bg-center 2xl:min-h-screen'>
+      <section className='h-auto bg-[url("/background.png")] bg-cover bg-center min-h-200 2xl:min-h-screen'>
         <Navbar />
         <div className='m-5 p-1 flex flex-col space-y-5 xl:space-y-8 md:ml-[5%] xl:mt-9'>
           <div className='flex flex-col text-[var(--color-white)] space-y-4 xl:space-y-8 max-w-[80%]'>
@@ -51,21 +52,24 @@ const LandingPage = () => {
           <h1 data-aos="fade-right" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
             className='font-title-alt text-[var(--color-white)] mt-5 xl:mt-0 text-3xl md:text-6xl lg:text-6xl text-center'>Tudo o que você precisa e muito mais. </h1>
         </div>
+        <div className='w-[90%] flex justify-center items-center m-auto'>
+          <CarouselLanding />    
+        </div>     
       </section>
-      <section className='bg-[var(--color-white)] h-auto 2xl:min-h-screen'>
+      <section className='bg-[var(--color-white)] h-auto 2xl:min-h-screen p-4'>
         <div className='flex justify-center flex-col items-center space-y-8 md:space-y-15 xl:space-y-20  p-6'>
           <div>
             <h1 className='text-[var(--color-black)] font-title-alt text-3xl md:text-5xl xl:text-6xl xl:mt-13'>Principais Benefícios</h1>
           </div>
           <div data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out"
-            className='flex flex-col xl:flex-row space-y-8 xl:space-x-8 w-[60%] h-auto md:m-4'>
+            className='flex flex-col xl:flex-row space-y-8 xl:space-x-8 w-full h-full justify-center items-center md:m-4 gap-4'>
             <SmallCard imgPath='./iconEco.png' text='Economia de Dinheiro' />
             <SmallCard imgPath='./iconExp.png' text='Experiência Individual' />
             <SmallCard imgPath='./iconOrg.png' text='Organização Financeira' />
           </div>
         </div>
       </section>
-      <section className='bg-[var(--color-green)] max-h-auto md:h-auto 2xl:min-h-screen'>
+      <section className='bg-gradient-to-tr from-[var(--color-green)] to-[var(--color-dark-green)] h-auto'>
         <div className='flex flex-col justify-center items-center space-y-8 h-auto'>
           <div className='flex flex-col justify-center items-center w-[80%] mt-8 space-y-3 xl:mt-20 '>
             <h1 className='font-title-alt text-[var(--color-white)] text-3xl md:text-6xl xl:text-7xl text-center'>A Organização deixou de ser um Desafio.</h1>

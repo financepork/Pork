@@ -100,11 +100,13 @@ body {
         border-right: solid 0.1px;
         border-color: rgb(21, 21, 21);
     }
+    .slick-slide {
+      padding-bottom: 5rem !important;
+    }
 }
 
 @layer base {
     section {
-        min-height: 50rem;
         width: 100%;
     }
 }

@@ -43,7 +43,7 @@ const Login = () => {
             "email": email
           }
 
-          const response = await axios.post('/auth/redefinir-email-senha', emailUser, {
+          await axios.post('/auth/redefinir-email-senha', emailUser, {
             withCredentials: true
           });
 
