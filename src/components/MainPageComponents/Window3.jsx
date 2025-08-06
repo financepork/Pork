@@ -11,7 +11,30 @@ const DefinirMetas = () => {
   const [inputData, setInputData] = useState('')
   const [metas, setMetas] = useState([])
 
-  const errorMessage = (errorText,error) => {
+  const [isLoading, setIsLoading] = useState(false)
+
+  const loadingMessage = () => {
+    Swal.fire({
+      title: 'Carregando Dados...',
+      text: 'Por favor, aguarde.',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+  }
+
+  useEffect(() => {
+    if (isLoading) {
+      loadingMessage()
+    } else {
+      Swal.close()
+    }
+
+  }, [isLoading])
+
+  const errorMessage = (errorText, error) => {
     Swal.fire({
       title: 'Ocorreu um Erro',
       text: errorText,
@@ -28,17 +51,26 @@ const DefinirMetas = () => {
 
   const fetchMetas = async () => {
     try {
-       const response = await axios.get('/metas/consultar-metas',  {
+      const response = await axios.get('/metas/consultar-metas', {
         withCredentials: true
       })
-          setMetas(response.data)
+      setMetas(response.data)
     } catch (error) {
-       errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
+    }
+  }
+
+  const getInitialValues = async () => {
+    try {
+      setIsLoading(true)
+      await fetchMetas()
+    } finally {
+      setIsLoading(false)
     }
   }
 
   useEffect(() => {
-    fetchMetas();
+    getInitialValues()
   }, [])
 
   const limpaInputs = () => {
@@ -55,25 +87,31 @@ const DefinirMetas = () => {
 
       const metaEnviada = [
         {
-       "meta": inputMeta,
-        "valor": Number(inputValue),
-        "data": dataFormatada
-      }
-    ]
-      await axios.post('/metas/cadastrar-metas', metaEnviada,  {
+          "meta": inputMeta,
+          "valor": Number(inputValue),
+          "data": dataFormatada
+        }
+      ]
+      await axios.post('/metas/cadastrar-metas', metaEnviada, {
         withCredentials: true
       })
     } catch (error) {
-       errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' , error.response.data || error?.message || String(error));
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
     }
   }
 
   const registraMeta = async (e) => {
     e.preventDefault()
-    if(inputData === '' || inputMeta === '' || inputValue === '') return errorMessage('Por favor, preencha todos os campos', 'informações incompletas')
-    await sendMeta()
-    await fetchMetas()
-    limpaInputs()
+    try {
+      if (inputData === '' || inputMeta === '' || inputValue === '') return errorMessage('Por favor, preencha todos os campos', 'informações incompletas')
+      setIsLoading(true)
+      await sendMeta()
+      await fetchMetas()
+      limpaInputs()
+
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const deleteMeta = () => {

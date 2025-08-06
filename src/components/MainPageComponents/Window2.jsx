@@ -13,6 +13,29 @@ const RegistroGastos = () => {
 
   const [gastos, setGastos] = useState([])
 
+  const [isLoading, setIsLoading] = useState(false)
+
+  const loadingMessage = () => {
+    Swal.fire({
+      title: 'Carregando Dados...',
+      text: 'Por favor, aguarde.',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+  }
+
+  useEffect(() => {
+    if (isLoading) {
+      loadingMessage()
+    } else {
+      Swal.close()
+    }
+
+  }, [isLoading])
+
   const errorMessage = (errorText, error) => {
     Swal.fire({
       title: 'Ocorreu um Erro',
@@ -29,7 +52,7 @@ const RegistroGastos = () => {
   }
 
   const fetchGastos = async () => {
-
+    
     try {
       const response = await axios.get('/despesas/consultar-despesas', {
         withCredentials: true
@@ -39,11 +62,17 @@ const RegistroGastos = () => {
     } catch (error) {
       errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
     }
+    
+  }
 
+  const getInitialValues = async () => {
+    setIsLoading(true)
+    await fetchGastos()
+    setIsLoading(false)
   }
 
   useEffect(() => {
-    fetchGastos()
+    getInitialValues()
   }, [])
 
   const limpaInputs = () => {
@@ -72,10 +101,16 @@ const RegistroGastos = () => {
 
   const listarGasto = async (e) => {
     e.preventDefault();
-    if (inputDescGasto === '' || inputValorGasto === '') return errorMessage('Por favor, preencha todos os campos', 'informações incompletas')
+    try {
+      if (inputDescGasto === '' || inputValorGasto === '') return errorMessage('Por favor, preencha todos os campos', 'informações incompletas')
+    setIsLoading(true)
     await sendGasto();
     await fetchGastos();
     limpaInputs();
+    } finally {
+      setIsLoading(false)
+    }
+    
   }
 
   //const deleteGasto = () => {

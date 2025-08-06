@@ -16,13 +16,39 @@ const PlanejamentoEconomico = () => {
 
   const [inputPlan, setInputPlan] = useState('')
 
+  const [isLoading, setIsLoading] = useState(false)
+
+  const loadingMessage = () => {
+    Swal.fire({
+      title: 'Carregando...',
+      text: 'Por favor, aguarde.',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      customClass: {
+        loading: 'custom-loading-spinner' 
+      },
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+  }
+
+  useEffect(() => {
+    if (isLoading) {
+      loadingMessage()
+    } else {
+      Swal.close()
+    }
+
+  }, [isLoading])
+
   const optionsSelect = [
     { value: 'HARD', label: 'Escorpião no Bolso' },
     { value: 'MID', label: 'Normal' },
     { value: 'EASY', label: 'Mão de Vaca' }
   ]
 
-  const errorMessage = (errorText,error) => {
+  const errorMessage = (errorText, error) => {
     Swal.fire({
       title: 'Ocorreu um Erro',
       text: errorText,
@@ -58,7 +84,7 @@ const PlanejamentoEconomico = () => {
       const valorRenda = response.data.valor;
       setValueRenda(`${valorRenda}`);
     } catch (error) {
-      errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
     }
   }
 
@@ -72,14 +98,23 @@ const PlanejamentoEconomico = () => {
       setValuePlan(valorPlan);
       setValueEco(valorEconomia);
     } catch (error) {
-      errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
+    }
+  }
+
+  const getInitialValues = async () => {
+    try {
+      setIsLoading(true);
+      await getRenda();
+      await getPlan();
+    } finally {
+      setIsLoading(false);
     }
   }
 
 
   useEffect(() => {
-      getRenda();
-      getPlan();
+    getInitialValues();
   }, [])
 
   const setarPlan = async () => {
@@ -87,13 +122,13 @@ const PlanejamentoEconomico = () => {
       "tipo": inputPlan
     }
     try {
-      await axios.put('/investimento/alterar-investimento', planTyped,  {
+      await axios.put('/investimento/alterar-investimento', planTyped, {
         withCredentials: true
       });
       const valuePlan = convertePlan(inputPlan)
       return setValuePlan(valuePlan);
     } catch (error) {
-      errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
     }
   }
 
@@ -102,12 +137,12 @@ const PlanejamentoEconomico = () => {
       "receita": inputRenda
     }
     try {
-      await axios.put('/despesas/atualizar-receita', valueTyped,  {
+      await axios.put('/despesas/atualizar-receita', valueTyped, {
         withCredentials: true
       });
       return setValueRenda(`${valueTyped.receita}`);
     } catch (error) {
-      errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' , error.response.data || error?.message || String(error));
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
     }
 
   }
@@ -121,19 +156,27 @@ const PlanejamentoEconomico = () => {
       setValueEco(`${planEco}`)
     }
     catch (error) {
-      errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' ,error.response.data || error?.message || String(error));
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
     }
   }
 
   const formaEconomia = async (e) => {
     e.preventDefault();
-    await setarValor();
-    await setarPlan();
-    await geraEconomia();
+    try {
+      setIsLoading(true)
+      await setarValor();
+      await setarPlan();
+      await geraEconomia();
+    } finally {
+      setIsLoading(false)
+    }
+
+
   }
 
 
   return (
+    
     <main
       className=' h-full w-full flex flex-col mb-32  '>
       <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
