@@ -14,7 +14,7 @@ const CardApresentacaoDir = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub
             data-aos-delay="400" 
             data-aos-duration="1500" 
             data-aos-easing="ease-in-out" 
-            className='bg-[var(--color-white)] flex mt-9 rounded-full p-3 w-[70%] h-auto xl:h-[400px]'
+            className='bg-[var(--color-white)] flex mt-9 rounded-full p-3 w-[80%] h-auto xl:h-[400px]'
         >
             <div className='flex flex-row items-center w-full'>
                 {/* Container da imagem - ESSENCIAL para Safari */}

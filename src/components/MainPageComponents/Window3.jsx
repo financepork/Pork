@@ -33,7 +33,7 @@ const DefinirMetas = () => {
       })
           setMetas(response.data)
     } catch (error) {
-       errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data);
+       errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
     }
   }
 
@@ -64,7 +64,7 @@ const DefinirMetas = () => {
         withCredentials: true
       })
     } catch (error) {
-       errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' , error.response.data);
+       errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' , error.response.data || error?.message || String(error));
     }
   }
 
@@ -102,20 +102,16 @@ const DefinirMetas = () => {
           <h2 className='text-2xl md:text-4xl xl:text-6xl text-center font-title-app text-[var(--color-green)]'>Metas Pendentes</h2>
           <ul className='text-lg md:text-2xl lg:text-3xl xl:text-5xl text-[var(--color-black)] font-text-alt space-y-2 xl:space-y-12 list-disc m-4 xl:p-5'>
             {metas.map((meta) => (
-              <div key={meta.id} className='flex flex-col justify-center items-center space-y-4 '>
-                <li className='text-[var(--color-green)] flex flex-col space-y-4 border-2 p-4 rounded-4xl' >
-                  <p>Meta: {meta.meta}</p>
-                  <p>Valor: {meta.valor}</p>
-                  <p>Data Limite: {meta.data}</p>
+              <div key={meta.id} className='flex flex-col bg-[var(--color-green)] justify-start rounded-3xl items-start space-y-4 p-4'>
+                <li className='text-[var(--color-white)] flex flex-col space-y-2 md:space-y-6 border-none p-1 rounded-4xl w-full' >
+                  <p>{meta.meta}</p>
+                  <p>R${meta.valor}</p>
+                  <p>{meta.data}</p>
                 </li>
                 <div className='flex space-x-4 justify-center w-full'>
                   <button onClick={deleteMeta} className='bg-red-700 rounded-2xl'>
                     <XMarkIcon className="h-10 md:h-15 w-10 md:w-15  text-white cursor-pointer" />
                   </button>
-                  <button className='bg-[var(--color-green)] rounded-2xl'>
-                    <CheckIcon className="h-10 md:h-15 w-10 md:w-15  text-white cursor-pointer" />
-                  </button>
-
                 </div>
               </div>
             ))

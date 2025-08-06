@@ -47,43 +47,48 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-      <section className='bg-[var(--color-green)] h-auto  p-6 2xl:min-h-screen'>
+      <section className='bg-[var(--color-green)] h-auto w-full flex flex-col items-center justify-center  p-6 2xl:min-h-screen'>
         <div className='flex items-center flex-col h-auto p-6'>
           <h1 data-aos="fade-right" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
             className='font-title-alt text-[var(--color-white)] mt-5 xl:mt-0 text-3xl md:text-6xl lg:text-6xl text-center'>Tudo o que você precisa e muito mais. </h1>
             
         </div>  
-        <div className='w-[90%] flex justify-center items-center m-auto'>
+        <div className='w-full flex justify-center items-center'>
           <CarouselLanding />    
         </div>     
           
       </section>
-      <section className='bg-[var(--color-white)] h-auto 2xl:min-h-screen p-4'>
+      <section className='bg-[var(--color-white)] h-auto 2xl:min-h-screen w-full p-4'>
         <div className='flex justify-center flex-col items-center space-y-8 md:space-y-15 xl:space-y-20  p-6'>
           <div>
             <h1 className='text-[var(--color-black)] font-title-alt text-3xl md:text-5xl xl:text-6xl xl:mt-13'>Principais Benefícios</h1>
           </div>
           <div data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out"
-            className='flex flex-col xl:flex-row space-y-8 xl:space-x-8 w-full h-full justify-center items-center md:m-4 gap-4'>
+            className='flex flex-col xl:flex-row space-y-8 xl:space-x-8 w-full justify-center items-center md:m-4 gap-4'>
             <SmallCard imgPath='./iconEco.png' text='Economia de Dinheiro' />
             <SmallCard imgPath='./iconExp.png' text='Experiência Individual' />
             <SmallCard imgPath='./iconOrg.png' text='Organização Financeira' />
           </div>
         </div>
       </section>
-      <section className='bg-gradient-to-tr from-[var(--color-green)] to-[var(--color-dark-green)] h-auto'>
-        <div className='flex flex-col justify-center items-center space-y-8 h-auto'>
-          <div className='flex flex-col justify-center items-center w-[80%] mt-8 space-y-3 xl:mt-20 '>
+      <section className='bg-[var(--color-green)] min-h-fit w-full h-full p-5 py-10'>
+        <div className='flex justify-center items-center flex-col gap-4 h-full w-full'>
+           <div className='flex flex-col justify-center items-center w-[80%] space-y-1 '>
             <h1 className='font-title-alt text-[var(--color-white)] text-3xl md:text-6xl xl:text-7xl text-center'>A Organização deixou de ser um Desafio.</h1>
-            <p className='font-text-alt  text-[var(--color-white)] ml-3 text-lg md:text-2xl xl:text-4xl text-center'>Apenas alguns cliques, sua vida financeira de cara nova </p>
-            <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="1500" data-aos-easing="ease-in-out" className='w-auto xl:mb-36 lg:mb-36 z-10'>
-            <a href="/mainpage" className="border-2 border-[var(--color-green)] text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-4 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] hover:border-[var(--color-white)] transition-colors duration-400 ease-in-out font-text text-center w-[50%] text-sm md:text-lg "><button className='w-auto'>Venha Economizar uma Grana</button></a>
+            <p className='font-text-alt  text-[var(--color-white)] text-lg md:text-2xl xl:text-4xl text-center'>Apenas alguns cliques, sua vida financeira de cara nova </p>
           </div>
+          <div className='h-full w-full flex justify-center items-center'>
+            <img /* src="" alt="foto cofrinho" className='rounded-3xl w-[60%] h-[60%]' */ />
           </div>
-          
+          <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="1500" data-aos-easing="ease-in-out" className='w-auto m-10 flex items-center justify-center'>
+            <div>
+                <a href="/mainpage" className=" text-[var(--color-black)] bg-[var(--color-white)] rounded-4xl p-5 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] hover:border-2 hover:border-[var(--color-white)] transition-colors duration-400 ease-in-out font-text text-center w-[50%] text-sm md:text-lg "><button className='w-auto'>Venha Economizar uma Grana</button></a>
+            </div>
+            
+          </div>
         </div>
       </section>
-      <article className='bg-[var(--color-black)] max-h-auto h-auto py-6 2xl:min-h-screen'>
+      <section className='bg-[var(--color-black)] max-h-auto h-auto py-6 2xl:min-h-screen'>
         <div className='flex flex-col justify-center items-center h-auto'>
           <div className='mt-5 ml-5 flex md:justify-center items-center xl:m-10 max-w-[80%] self-center'>
             <h1 className='text-[var(--color-white)] font-title-alt text-3xl md:text-5xl xl:text-6xl'>Conheça os <span className='text-[var(--color-green)]'>Desenvolvedores</span></h1>
@@ -92,7 +97,7 @@ const LandingPage = () => {
           <CardApresentacaoEsq DevName="João Vitor Chaves" DevStack="Back-end Developer" DevImgSrc='./fotoDevChaves.jpg' devGithub='https://github.com/dev-Chaves' devInsta='https://www.instagram.com/user_joaocs/' devLinkedin='https://www.linkedin.com/in/jo%C3%A3o-vitor-chaves-silva-9412912b7' />
         </div>
 
-      </article>
+      </section>
       <Footer />
     </main>
 

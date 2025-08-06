@@ -37,7 +37,7 @@ const RegistroGastos = () => {
       const gastosGerais = [...response.data.todasDespesas]
       setGastos([...gastosGerais])
     } catch (error) {
-      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data);
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
     }
 
   }
@@ -65,7 +65,7 @@ const RegistroGastos = () => {
         withCredentials: true
       })
     } catch (error) {
-      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data);
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
     }
 
   }

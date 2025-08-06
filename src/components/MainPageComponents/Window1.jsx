@@ -39,13 +39,13 @@ const PlanejamentoEconomico = () => {
 
   const convertePlan = (plan) => {
     switch (plan) {
-      case HARD:
+      case 'HARD':
         return 'Escorpião no Bolso'
 
-      case MID:
+      case 'MID':
         return 'Normal'
 
-      case EASY:
+      case 'EASY':
         return 'Mão de Vaca'
     }
   }
@@ -58,7 +58,7 @@ const PlanejamentoEconomico = () => {
       const valorRenda = response.data.valor;
       setValueRenda(`${valorRenda}`);
     } catch (error) {
-      errorMessage( 'Erro ao receber informações do servidor, tente novamente',error.response.data);
+      errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
     }
   }
 
@@ -72,7 +72,7 @@ const PlanejamentoEconomico = () => {
       setValuePlan(valorPlan);
       setValueEco(valorEconomia);
     } catch (error) {
-      errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data);
+      errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
     }
   }
 
@@ -93,7 +93,7 @@ const PlanejamentoEconomico = () => {
       const valuePlan = convertePlan(inputPlan)
       return setValuePlan(valuePlan);
     } catch (error) {
-      errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data);
+      errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
     }
   }
 
@@ -107,7 +107,7 @@ const PlanejamentoEconomico = () => {
       });
       return setValueRenda(`${valueTyped.receita}`);
     } catch (error) {
-      errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' ,error.response.data);
+      errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' , error.response.data || error?.message || String(error));
     }
 
   }
@@ -121,7 +121,7 @@ const PlanejamentoEconomico = () => {
       setValueEco(`${planEco}`)
     }
     catch (error) {
-      errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' ,error.response.data);
+      errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' ,error.response.data || error?.message || String(error));
     }
   }
 

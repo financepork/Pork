@@ -42,6 +42,7 @@ body {
 }
 
 @layer utilities {
+    
     .font-text {
         font-family: var(--font-text);
         font-weight: 700;
@@ -100,19 +101,18 @@ body {
         border-right: solid 0.1px;
         border-color: rgb(21, 21, 21);
     }
-    .slick-slide {
-      padding-bottom: 5rem !important;
-    }
 }
 
 @layer base {
     section {
         width: 100%;
     }
+
     .slick-slide {
-      padding-bottom: 5rem !important;
+        padding-bottom: 5rem !important;
     }
 }
+
 
 /* Ajustes específicos para Safari */
 @supports (-webkit-touch-callout: none) {

@@ -10,7 +10,7 @@ import MainPage from './pages/MainPage.jsx'
 import ChangePassword from './pages/ChangePassword.jsx'
 import axios from 'axios'
 import './index.css'
-import ChangePassword from './pages/ChangePassword.jsx'
+
 
 axios.defaults.baseURL = 'https://financepork.site/api';
 
@@ -22,7 +22,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<LandingPage/>}/>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/verify" element={<Verify />} />
+        <Route path="/verify" element={<Verified />} />
         <Route path="/mainpage" element={<MainPage />} />
         <Route path="/redefinir-senha" element={<ChangePassword />} />
       </Routes>

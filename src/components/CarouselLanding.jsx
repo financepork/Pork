@@ -9,14 +9,13 @@ function CarouselLanding() {
     const settings = {
         dots: true,
         infinite: true,
-        speed: 500,
+        speed: 1000,
         slidesToShow: 1,
         slidesToScroll: 1,
-        autoplay: false,
+        autoplay: true,
         autoplaySpeed: 2500,
-
         centerMode: true,       
-        centerPadding: '60px',
+        centerPadding: '40px',
       
 
         responsive: [
