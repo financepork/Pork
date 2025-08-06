@@ -118,6 +118,7 @@ const PlanejamentoEconomico = () => {
   }, [])
 
   const setarPlan = async () => {
+    if (inputPlan === null || inputPlan === '') return
     const planTyped = {
       "tipo": inputPlan
     }
@@ -133,6 +134,7 @@ const PlanejamentoEconomico = () => {
   }
 
   const setarValor = async () => {
+    if(inputRenda === null || inputRenda === '') return
     const valueTyped = {
       "receita": inputRenda
     }
