@@ -5,7 +5,8 @@ import CardApresentacaoDir from '../components/CardApresentacaoDir'
 import CardApresentacaoEsq from '../components/CardApresentacaoEsq'
 import AOS from 'aos';
 import { useEffect } from 'react';
-import SmallCard from '../components/SmallCard'
+import CarouselLanding from '../components/CarouselLanding'
+import CardCarousel from '../components/CardCarousel'
 
 
 
@@ -16,22 +17,22 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <main>
-      <section className='h-auto bg-[url("/background.png")] bg-cover bg-center 2xl:min-h-screen'>
+    <main className='scroll-smooth'>
+      <section className='h-auto bg-[url("/background.png")] bg-cover bg-center min-h-200 2xl:min-h-screen'>
         <Navbar />
         <div className='m-5 p-1 flex flex-col space-y-5 xl:space-y-8 md:ml-[5%] xl:mt-9'>
           <div className='flex flex-col text-[var(--color-white)] space-y-4 xl:space-y-8 max-w-[80%]'>
             <h1 data-aos="fade-right" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
-              className='font-title text-5xl md:text-6xl  xl:text-7xl max-w-[85%] text-[var(--color-white)]'>
+              className='font-title text-5xl md:text-6xl lg:text-7xl  xl:text-8xl max-w-[85%] text-[var(--color-white)]'>
               Conheça o <span className='text-[var(--color-green)]'>Pork</span>, seu auxiliar financeiro digital
             </h1>
             <div className='max-w-[75%] space-y-1 '>
               <p data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out"
-                className='font-text text-md md:text-lg xl:text-2xl text-[var(--color-green)]'>
+                className='font-text text-md md:text-lg xl:text-3xl text-[var(--color-green)]'>
                 Uma ferramenta criada para ajudar no controle de gastos.
               </p>
               <p data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out"
-                className='font-text text-md md:text-lg xl:text-2xl  text-[var(--color-green)]'>
+                className='font-text text-md md:text-lg xl:text-3xl  text-[var(--color-green)]'>
                 Organização e praticidade com seu cofrinho digital.
               </p>
             </div>
@@ -40,56 +41,83 @@ const LandingPage = () => {
           <div data-aos="fade-right" data-aos-delay="400" data-aos-duration="1500" data-aos-easing="ease-in-out"
             className='flex space-x-3 font-text items-center h-auto'>
             <a href="/Register" className='bg-[var(--color-green)] border-0 p-2 font-text hover:text-[var(--color-green)] hover:bg-[var(--color-white)] shadow-md 
-          rounded-2xl transition-colors duration-400 ease-in-out w-[26%] xl:w-[15%] flex justify-center items-center text-sm md:text-md xl:text-2xl min-h-15'><button>Comece Já</button></a>
-            <a href="https://github.com/dev-Chaves/Pork" className='border-3 rounded-2xl p-2 hover:bg-[var(--color-green)] hover:border-[var(--color-green)] text-[var(--color-white)] font-text shadow-md transition-colors duration-400 ease-in-out w-[26%] xl:w-[15%] xl:h-[100%] flex justify-center items-center text-sm md:text-md xl:text-2xl min-h-15 '><button>Repositório</button></a>
+          rounded-2xl transition-colors duration-400 ease-in-out w-[30%] xl:w-[15%] flex justify-center items-center text-sm md:text-md xl:text-2xl min-h-13'><button>Comece Já</button></a>
+            <a href="https://github.com/dev-Chaves/Pork" target="_blank" rel="noopener noreferrer" className='border-3 rounded-2xl p-2 hover:bg-[var(--color-green)] hover:border-[var(--color-green)] text-[var(--color-white)] font-text shadow-md transition-colors duration-400 ease-in-out w-[30%] xl:w-[15%] xl:h-[100%] flex justify-center items-center text-sm md:text-md xl:text-2xl min-h-13 '>Repositório</a>
             
           </div>
         </div>
       </section>
-      <section className='bg-[var(--color-green)] h-auto  p-6 2xl:min-h-screen'>
-        <div className='flex items-center flex-col h-auto p-6'>
+      <section className='bg-[var(--color-green)] h-auto w-full flex flex-col items-center justify-center p-8 md:p-10 lg:p-12 '>
+        <div className='flex items-center flex-col h-auto p-2'>
           <h1 data-aos="fade-right" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out"
-            className='font-title-alt text-[var(--color-white)] mt-5 xl:mt-0 text-3xl md:text-6xl lg:text-6xl text-center'>Tudo o que você precisa e muito mais. </h1>
+            className='font-title-alt text-[var(--color-white)] mt-5 xl:mt-0 text-3xl md:text-5xl lg:text-6xl text-center'>Tudo o que você precisa e muito mais. </h1>
+            
+        </div>  
+        <div className='w-full flex justify-center items-center'>
+          <CarouselLanding />    
         </div>
+          
       </section>
-      <section className='bg-[var(--color-white)] h-auto 2xl:min-h-screen'>
-        <div className='flex justify-center flex-col items-center space-y-8 md:space-y-15 xl:space-y-20  p-6'>
-          <div>
-            <h1 className='text-[var(--color-black)] font-title-alt text-3xl md:text-5xl xl:text-6xl xl:mt-13'>Principais Benefícios</h1>
+        <section className='bg-[var(--color-white)] h-auto w-full p-8 lg:p-12 '>
+          <div className='flex flex-col md:flex-row justify-center 2xl:justify-around gap-3 lg:gap-4 xl:gap-5 2xl:gap-5  items-center h-auto w-full md:'>
+            <div className=' md:w-[170%] xl:w-[100%] 2xl:w-[50%] h-full  m-4 flex justify-center items-center '>
+                <img src="../economia.jpg" alt="Foto Economia" className='h-[80%] w-[100%] md:w-[190%] lg:w-[90%] xl:w-[80%] 2xl:w-[85%]  md:h-65 lg:h-70 xl:h-85 2xl:h-95 rounded-3xl shadow-2xl' />
+            </div>
+            <div className='text-[var(--color-green)] flex flex-col justify-center space-y-3 md:space-y-4 xl:space-y-6 md:m-4 2xl:m-12'>
+              <h2 className='text-left font-title-alt text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>Economia de Dinheiro</h2>
+              <p className='text-left font-text-alt text-lg md:text-xl lg:text-2xl xl:text-3xl'> Com o Pork, a economia de dinheiro deixa de ser um desafio e se torna um hábito recompensador, graças aos nossos planos predefinidos</p>
+            </div>
           </div>
-          <div data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500" data-aos-easing="ease-in-out"
-            className='flex flex-col xl:flex-row space-y-8 xl:space-x-8 w-[60%] h-auto md:m-4'>
-            <SmallCard imgPath='./iconEco.png' text='Economia de Dinheiro' />
-            <SmallCard imgPath='./iconExp.png' text='Experiência Individual' />
-            <SmallCard imgPath='./iconOrg.png' text='Organização Financeira' />
-          </div>
-        </div>
       </section>
-      <section className='bg-[var(--color-green)] max-h-auto md:h-auto 2xl:min-h-screen'>
-        <div className='flex flex-col justify-center items-center space-y-8 h-auto'>
-          <div className='flex flex-col justify-center items-center w-[80%] mt-8 space-y-3 xl:mt-20 '>
-            <h1 className='font-title-alt text-[var(--color-white)] text-3xl md:text-6xl xl:text-7xl text-center'>A Organização deixou de ser um Desafio.</h1>
-            <p className='font-text-alt  text-[var(--color-white)] ml-3 text-lg md:text-2xl xl:text-4xl text-center'>Apenas alguns cliques, sua vida financeira de cara nova </p>
-
+      <section className='bg-[var(--color-gray-light)] h-auto w-full p-8 lg:p-12  '>
+          <div className='flex flex-col md:flex-row justify-center 2xl:justify-around gap-3 lg:gap-4 xl:gap-5 2xl:gap-5  items-center h-auto w-full md:'>
+           
+            <div className='text-[var(--color-black)] flex flex-col justify-center space-y-3 md:space-y-4 xl:space-y-6 xl:m-8 xl:w-[80%] md:m-4 2xl:m-12'>
+              <h2 className='text-left font-title-alt text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>Experiência Individual</h2>
+              <p className='text-left font-text-alt text-lg md:text-xl lg:text-2xl xl:text-3xl'> Personalize metas de acordo com os seus sonhos, monitore seus ganhos e despesas de uma forma que faça sentido. Tudo foi pensado para se adaptar a você.</p>
+            </div>
+             <div className=' md:w-[170%] xl:w-[100%] 2xl:w-[50%] h-full  m-4 flex justify-center items-center '>
+                <img src="../experiencia.jpg" alt="Foto Economia" className='h-[80%] w-[100%] md:w-[190%] lg:w-[90%] xl:w-[90%] 2xl:w-[100%]  md:h-65 lg:h-70 xl:h-85 2xl:h-95 rounded-3xl shadow-2xl' />
+            </div>
           </div>
-          <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1500" data-aos-easing="ease-in-out" className='flex justify-center items-center'>
-            <img src="./fotoCofrinho.png" alt="" className='w-[70%] md:w-[50%] xl:w-[34%] rounded-3xl' />
-          </div>
-          <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="1500" data-aos-easing="ease-in-out" className='w-auto xl:mb-36 lg:mb-36 '>
-            <a href="/mainpage" className="border-2 border-[var(--color-green)] text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-4 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] hover:border-[var(--color-white)] transition-colors duration-400 ease-in-out font-text text-center w-[50%] text-sm md:text-lg "><button className='w-auto'>Venha Economizar uma Grana</button></a>
-          </div>
-        </div>
       </section>
-      <article className='bg-[var(--color-black)] max-h-auto h-auto py-6 2xl:min-h-screen'>
-        <div className='flex flex-col h-auto'>
+      <section className='bg-[var(--color-chumbo)] h-auto w-full p-8 lg:p-12 '>
+          <div className='flex flex-col md:flex-row justify-center 2xl:justify-around gap-3 lg:gap-4 xl:gap-5 2xl:gap-5  items-center h-auto w-full md:'>
+            <div className=' md:w-[170%] xl:w-[100%] 2xl:w-[50%] h-full  m-4 flex justify-center items-center '>
+                <img src="../organizacao.jpg" alt="Foto Economia" className='h-[80%] w-[100%] md:w-[150%] lg:w-[100%] xl:w-[90%] 2xl:w-[100%]  md:h-70 lg:h-75 xl:h-95 2xl:h-95 rounded-3xl shadow-2xl' />
+            </div>
+            <div className='text-[var(--color-white)] flex flex-col justify-center space-y-3 md:space-y-4 xl:space-y-6 md:m-4 2xl:m-12'>
+              <h2 className='text-left font-title-alt text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>Organização Financeira</h2>
+              <p className='text-left font-text-alt text-lg md:text-xl lg:text-2xl xl:text-3xl'> Tenha uma visão clara de onde seu dinheiro está indo, categorize despesas de forma automática e gerencie suas contas em um só lugar.</p>
+            </div>
+          </div>
+      </section>
+      <section className='bg-[var(--color-green)] h-auto w-full p-8 lg:p-12 '>
+          <div className='flex flex-col md:flex-row justify-center 2xl:justify-around gap-3 lg:gap-4 xl:gap-5 2xl:gap-5  items-center h-auto w-full md:'>
+            
+            <div className='text-[var(--color-white)] flex flex-col justify-center space-y-3 md:space-y-4 xl:space-y-6  md:m-4 2xl:m-6'>
+              <h2 className='text-center font-title-alt text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>A Economia deixou de ser um desafio </h2>
+              <p className='text-center font-title-alt text-lg md:text-xl lg:text-2xl xl:text-3xl'>Apenas alguns cliques, sua vida financeira de cara nova</p>
+              <a href="/register" target="_blank" rel="noopener noreferrer" className='border-3 rounded-2xl p-2 hover:bg-[var(--color-white)] hover:border-transparent hover:text-[var(--color-green)] text-[var(--color-white)] font-text shadow-md transition-all duration-500 ease-in-out w-[60%] xl:w-[50%] 2xl:w-[30%] xl:h-[100%] flex justify-center items-center text-sm md:text-md xl:text-2xl min-h-15 lg:text-lg self-center text-center'>Venha economizar uma grana</a>
+            </div>
+            <div className=' md:w-[100%] xl:w-[100%] 2xl:w-[50%] h-full  m-4 flex justify-center items-center '>
+                <img src="../desafio.jpg" alt="Foto Economia" className='h-[80%] w-[100%] md:w-[90%] lg:w-[90%] xl:w-[70%] 2xl:w-[55%]  md:h-65 lg:h-90 xl:h-95 2xl:h-85 rounded-3xl shadow-2xl'/>
+            </div>
+          </div>
+      </section>
+      <section className='bg-[var(--color-green)] min-h-fit w-full h-full p-5 py-10'>
+       
+      </section>
+      <section className='bg-[var(--color-black)] max-h-auto h-auto py-6 2xl:min-h-screen'>
+        <div className='flex flex-col justify-center items-center h-auto'>
           <div className='mt-5 ml-5 flex md:justify-center items-center xl:m-10 max-w-[80%] self-center'>
-            <h1 className='text-[var(--color-white)] font-title-alt text-3xl md:text-5xl xl:text-6xl'>Conheça os <span className='text-[var(--color-green)]'>Desenvolvedores</span> <span className='text-[var(--color-green)]'>:</span></h1>
+            <h1 className='text-[var(--color-white)] font-title-alt text-3xl md:text-5xl xl:text-6xl'>Conheça os <span className='text-[var(--color-green)]'>Desenvolvedores</span></h1>
           </div>
           <CardApresentacaoDir DevName="Bernardo Soares" DevStack="Front-end Developer" DevImgSrc='./fotodevsoares.jpg' devInsta='https://www.instagram.com/__soaresbernardo/' devGithub='https://github.com/Dev-Soares' devLinkedin='https://www.linkedin.com/in/bernardo-soares-150096364' />
           <CardApresentacaoEsq DevName="João Vitor Chaves" DevStack="Back-end Developer" DevImgSrc='./fotoDevChaves.jpg' devGithub='https://github.com/dev-Chaves' devInsta='https://www.instagram.com/user_joaocs/' devLinkedin='https://www.linkedin.com/in/jo%C3%A3o-vitor-chaves-silva-9412912b7' />
         </div>
 
-      </article>
+      </section>
       <Footer />
     </main>
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { XMarkIcon, CheckIcon } from '@heroicons/react/24/solid'
 
 
 const DefinirMetas = () => {
@@ -10,7 +11,33 @@ const DefinirMetas = () => {
   const [inputData, setInputData] = useState('')
   const [metas, setMetas] = useState([])
 
-  const errorMessage = (errorText,error) => {
+  const [isLoading, setIsLoading] = useState(false)
+
+  const loadingMessage = () => {
+    Swal.fire({
+      title: 'Carregando Dados...',
+      text: 'Por favor, aguarde.',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+      customClass: {
+        popup: 'custom-swal'
+      }
+    });
+  }
+
+  useEffect(() => {
+    if (isLoading) {
+      loadingMessage()
+    } else {
+      Swal.getPopup() && Swal.getPopup().classList.contains('custom-swal') ? Swal.close() : ''
+    }
+
+  }, [isLoading])
+
+  const errorMessage = (errorText, error) => {
     Swal.fire({
       title: 'Ocorreu um Erro',
       text: errorText,
@@ -27,17 +54,27 @@ const DefinirMetas = () => {
 
   const fetchMetas = async () => {
     try {
-       const response = await axios.get('/metas/consultar-metas',  {
+      const response = await axios.get('/metas/consultar-metas', {
         withCredentials: true
       })
-          setMetas(response.data)
+      setMetas(response.data)
     } catch (error) {
-       errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data);
+      isLoading(false)
+      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
+    }
+  }
+
+  const getInitialValues = async () => {
+    try {
+      setIsLoading(true)
+      await fetchMetas()
+    } finally {
+      setIsLoading(false)
     }
   }
 
   useEffect(() => {
-    fetchMetas();
+    getInitialValues()
   }, [])
 
   const limpaInputs = () => {
@@ -48,32 +85,53 @@ const DefinirMetas = () => {
 
   const sendMeta = async () => {
     try {
+
+      const [year, month, day] = inputData.split('-');
+      const dataFormatada = `${day}/${month}/${year}`;
+
       const metaEnviada = [
         {
-       "meta": inputMeta,
-        "valor": inputValue,
-        "data": inputData
-      }
-    ]
-      await axios.post('/metas/cadastrar-metas', metaEnviada,  {
+          "meta": inputMeta,
+          "valor": Number(inputValue),
+          "data": dataFormatada
+        }
+      ]
+      await axios.post('/metas/cadastrar-metas', metaEnviada, {
         withCredentials: true
       })
     } catch (error) {
-       errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' , error.response.data);
+      isLoading(false)
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
     }
   }
 
   const registraMeta = async (e) => {
     e.preventDefault()
-    if(inputData === '' || inputMeta === '' || inputValue === '') return errorMessage('Por favor, preencha todos os campos', 'informações incompletas')
-    await sendMeta()
-    await fetchMetas()
-    limpaInputs()
+    try {
+      if (inputData === '' || inputMeta === '' || inputValue === '') return errorMessage('Por favor, preencha todos os campos', 'informações incompletas')
+      setIsLoading(true)
+      await sendMeta()
+      await fetchMetas()
+      limpaInputs()
+
+    } finally {
+      setIsLoading(false)
+    }
   }
 
-  // const deleteMeta = (id) => {
-    //preciso ver como essa porra vai funcionar 
-  //}
+  const deleteMeta = async (id) => {
+    setIsLoading(true)
+    try {
+
+      await axios.delete(`/metas/deletar-meta/${id}`)
+      await fetchMetas()
+    } catch (error) {
+      isLoading(false)
+      errorMessage('Erro ao enviar remover meta, tente novamente', error.response.data || error?.message || String(error));
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return (
     <main
@@ -97,20 +155,16 @@ const DefinirMetas = () => {
           <h2 className='text-2xl md:text-4xl xl:text-6xl text-center font-title-app text-[var(--color-green)]'>Metas Pendentes</h2>
           <ul className='text-lg md:text-2xl lg:text-3xl xl:text-5xl text-[var(--color-black)] font-text-alt space-y-2 xl:space-y-12 list-disc m-4 xl:p-5'>
             {metas.map((meta) => (
-              <div key={meta.id} className='flex flex-col justify-center items-center space-y-4 '>
-                <li className='text-[var(--color-green)] flex flex-col space-y-4 border-2 p-4 rounded-4xl' >
-                  <p>Meta: {meta.meta}</p>
-                  <p>Valor: {meta.valor}</p>
-                  <p>Data Limite: {meta.data}</p>
+              <div key={meta.id} className='flex flex-col bg-[var(--color-green)] justify-start rounded-3xl items-start space-y-4 p-4'>
+                <li className='text-[var(--color-white)] flex flex-col space-y-2 md:space-y-6 border-none p-1 rounded-4xl w-full' >
+                  <p>{meta.meta}</p>
+                  <p>R${meta.valor}</p>
+                  <p>{meta.data}</p>
                 </li>
                 <div className='flex space-x-4 justify-center w-full'>
-                  <button className='bg-red-700 rounded-2xl'>
+                  <button onClick={() => deleteMeta(meta.id)} className='bg-red-700 rounded-2xl'>
                     <XMarkIcon className="h-10 md:h-15 w-10 md:w-15  text-white cursor-pointer" />
                   </button>
-                  <button className='bg-[var(--color-green)] rounded-2xl'>
-                    <CheckIcon className="h-10 md:h-15 w-10 md:w-15  text-white cursor-pointer" />
-                  </button>
-
                 </div>
               </div>
             ))

@@ -16,13 +16,39 @@ const PlanejamentoEconomico = () => {
 
   const [inputPlan, setInputPlan] = useState('')
 
+  const [isLoading, setIsLoading] = useState(false)
+
+  const loadingMessage = () => {
+    Swal.fire({
+      title: 'Carregando...',
+      text: 'Por favor, aguarde.',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+      customClass: {
+        popup: 'custom-swal' 
+      }
+    });
+  }
+
+  useEffect(() => {
+    if (isLoading) {
+      loadingMessage()
+    } else {
+      Swal.getPopup() && Swal.getPopup().classList.contains('custom-swal')? Swal.close() : ''
+    }
+
+  }, [isLoading])
+
   const optionsSelect = [
     { value: 'HARD', label: 'Escorpião no Bolso' },
     { value: 'MID', label: 'Normal' },
     { value: 'EASY', label: 'Mão de Vaca' }
   ]
 
-  const errorMessage = (errorText,error) => {
+  const errorMessage = (errorText, error) => {
     Swal.fire({
       title: 'Ocorreu um Erro',
       text: errorText,
@@ -56,9 +82,10 @@ const PlanejamentoEconomico = () => {
         withCredentials: true
       })
       const valorRenda = response.data.valor;
-      setValueRenda(`R$ ${valorRenda}`);
+      setValueRenda(`${valorRenda}`);
     } catch (error) {
-      errorMessage( 'Erro ao receber informações do servidor, tente novamente',error.response.data);
+      isLoading(false)
+      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
     }
   }
 
@@ -72,41 +99,56 @@ const PlanejamentoEconomico = () => {
       setValuePlan(valorPlan);
       setValueEco(valorEconomia);
     } catch (error) {
-      errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data);
+      isLoading(false)
+      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
+    }
+  }
+
+  const getInitialValues = async () => {
+    try {
+      setIsLoading(true);
+      await getRenda();
+      await getPlan();
+    } finally {
+      setIsLoading(false);
     }
   }
 
 
   useEffect(() => {
-      getRenda();
-      getPlan();
+    getInitialValues();
   }, [])
 
   const setarPlan = async () => {
+    if (inputPlan === null || inputPlan === '') return
     const planTyped = {
       "tipo": inputPlan
     }
     try {
-      await axios.put('/investimento/alterar-investimento', planTyped,  {
+      await axios.put('/investimento/alterar-investimento', planTyped, {
         withCredentials: true
       });
-      return setValuePlan(inputPlan);
+      const valuePlan = convertePlan(inputPlan)
+      return setValuePlan(valuePlan);
     } catch (error) {
-      errorMessage( 'Erro ao receber informações do servidor, tente novamente', error.response.data);
+      isLoading(false)
+      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
     }
   }
 
   const setarValor = async () => {
+    if(inputRenda === null || inputRenda === '') return
     const valueTyped = {
       "receita": inputRenda
     }
     try {
-      await axios.put('/despesas/atualizar-receita', valueTyped,  {
+      await axios.put('/despesas/atualizar-receita', valueTyped, {
         withCredentials: true
       });
-      return setValueRenda(`R$ ${valueTyped.receita}`);
+      return setValueRenda(`${valueTyped.receita}`);
     } catch (error) {
-      errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' ,error.response.data);
+      isLoading(false)
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
     }
 
   }
@@ -117,41 +159,50 @@ const PlanejamentoEconomico = () => {
         withCredentials: true
       })
       const planEco = response.data.valor
-      setValueEco(`R$${planEco} /Mês`)
+      setValueEco(`${planEco}`)
     }
     catch (error) {
-      errorMessage( 'Erro ao enviar informações ao servidor, tente novamente' ,error.response.data);
+      isLoading(false)
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
     }
   }
 
   const formaEconomia = async (e) => {
     e.preventDefault();
-    await setarValor();
-    await setarPlan();
-    await geraEconomia();
+    try {
+      setIsLoading(true)
+      await setarValor();
+      await setarPlan();
+      await geraEconomia();
+    } finally {
+      setIsLoading(false)
+    }
+
+
   }
 
 
   return (
+    
     <main
       className=' h-full w-full flex flex-col mb-32  '>
       <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
         className='flex flex-wrap h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-16 space-y-8 overflow-y-none justify-center 2xl:justify-around  '>
         <div className='flex p-5 md:p-10 lg:p-12 xl:p-16 xl:w-[60%] lg:w-[60%]  w-full bg-[var(--color-white)] max-h-[81%] rounded-4xl'>
           <div className='flex flex-col space-y-4 lg:space-y-6'>
-            <h2 className='text-[var(--color-green)] font-title-app text-3xl md:text-4xl lg:text-5xl leading-relaxed'>Renda Mensal :</h2>
-            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>{valueRenda}</p>
-            <h2 className='text-[var(--color-green)] font-title-app text-3xl leading-relaxed  md:text-4xl lg:text-5xl'>Plano Selecionado :</h2>
+            <h2 className='text-[var(--color-green)] font-title-app text-3xl md:text-4xl lg:text-5xl leading-relaxed'>Renda Mensal </h2>
+            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>R${valueRenda}</p>
+            <h2 className='text-[var(--color-green)] font-title-app text-3xl leading-relaxed  md:text-4xl lg:text-5xl'>Plano Selecionado </h2>
             <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>{valuePlan}</p>
-            <h2 className='text-[var(--color-green)] font-title-app text-3xl leading-relaxed  md:text-4xl lg:text-5xl'>Economia Ideal :</h2>
-            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>{valueEco}</p>
+            <h2 className='text-[var(--color-green)] font-title-app text-3xl leading-relaxed  md:text-4xl lg:text-5xl'>Economia Ideal </h2>
+            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>R${valueEco} /Mês</p>
           </div>
         </div>
         <form onSubmit={formaEconomia} className='flex flex-col items-center rounded-t-2xl space-y-6 p-4 '>
           <div className='flex flex-col items-center rounded-t-2xl space-y-6 xl:space-y-10 p-4 '>
-            <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl xl:text-6xl' >Renda :</h2>
+            <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl xl:text-6xl' >Renda </h2>
             <input type="number" name="renda" id="renda" placeholder='Insira sua Renda' className='bg-[var(--color-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg xl:text-2xl xl:h-15  xl:w-110 p-2' value={inputRenda} onChange={e => setInputRenda(e.target.value)} />
-            <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl'>Planejamento Escolhido:</h2>
+            <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl'>Planejamento Escolhido</h2>
             <Select
               options={optionsSelect}
               value={optionsSelect.find(opt => opt.value === inputPlan)}
@@ -167,9 +218,9 @@ const PlanejamentoEconomico = () => {
 
           <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl'>Descrição dos planos:</h2>
           <ul className='text-[var(--color-white)] font-text-app text-lg space-y-4 md:space-y-8 decoration-none list-disc md:text-xl lg:text-3xl '>
-            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Escorpião no Bolso :</span><br /><br /> Destinado à usuários com uma quantidade maior de renda, podendo economizar mais dinheiro sem problemas</li>
-            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Normal :</span><br /><br />Destinado à Usuários que desejam economizar uma quantidade básica, sem exagero ou falta</li>
-            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)] '>Mão de Vaca :</span><br /><br />Destinados à usuários que não tem uma renda tão alta, ou que não querem economizar muito dinheiro</li>
+            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Escorpião no Bolso </span><br /><br /> Destinado à usuários com uma quantidade maior de renda, podendo economizar mais dinheiro sem problemas</li>
+            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Normal </span><br /><br />Destinado à Usuários que desejam economizar uma quantidade básica, sem exagero ou falta</li>
+            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)] '>Mão de Vaca </span><br /><br />Destinados à usuários que não tem uma renda tão alta, ou que não querem economizar muito dinheiro</li>
 
           </ul>
         </div>

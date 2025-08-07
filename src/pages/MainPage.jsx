@@ -1,9 +1,9 @@
 
 import { useState } from 'react'
 import MainWindow from '../components/MainPageComponents/MainWindow.jsx'
-import PlanejamentoEconomico from '../components/MainPageComponents/Window1.jsx'
-import RegistroGastos from '../components/MainPageComponents/Window2.jsx'
-import DefinirMetas from '../components/MainPageComponents/Window3.jsx'
+import PlanejamentoEconomico from '../components/MainPageComponents/PlanejamentoEconomico.jsx'
+import RegistroGastos from '../components/MainPageComponents/RegistroGastos.jsx'
+import DefinirMetas from '../components/MainPageComponents/DefinirMetas.jsx'
 import AOS from 'aos';
 import { useEffect } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';

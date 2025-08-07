@@ -13,6 +13,32 @@ const RegistroGastos = () => {
 
   const [gastos, setGastos] = useState([])
 
+  const [isLoading, setIsLoading] = useState(false)
+
+  const loadingMessage = () => {
+    Swal.fire({
+      title: 'Carregando Dados...',
+      text: 'Por favor, aguarde.',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+      customClass: {
+        popup: 'custom-swal' 
+      }
+    });
+  }
+
+  useEffect(() => {
+    if (isLoading) {
+      loadingMessage()
+    } else {
+      Swal.getPopup() && Swal.getPopup().classList.contains('custom-swal')? Swal.close() : ''
+    }
+
+  }, [isLoading])
+
   const errorMessage = (errorText, error) => {
     Swal.fire({
       title: 'Ocorreu um Erro',
@@ -29,7 +55,7 @@ const RegistroGastos = () => {
   }
 
   const fetchGastos = async () => {
-
+    
     try {
       const response = await axios.get('/despesas/consultar-despesas', {
         withCredentials: true
@@ -37,13 +63,20 @@ const RegistroGastos = () => {
       const gastosGerais = [...response.data.todasDespesas]
       setGastos([...gastosGerais])
     } catch (error) {
-      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data);
+      setIsLoading(false)
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
     }
+    
+  }
 
+  const getInitialValues = async () => {
+    setIsLoading(true)
+    await fetchGastos()
+    setIsLoading(false)
   }
 
   useEffect(() => {
-    fetchGastos()
+    getInitialValues()
   }, [])
 
   const limpaInputs = () => {
@@ -65,22 +98,38 @@ const RegistroGastos = () => {
         withCredentials: true
       })
     } catch (error) {
-      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data);
+      setIsLoading(false)
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
     }
 
   }
 
   const listarGasto = async (e) => {
     e.preventDefault();
-    if (inputDescGasto === '' || inputValorGasto === '') return errorMessage('Por favor, preencha todos os campos', 'informações incompletas')
+    try {
+      if (inputDescGasto === '' || inputValorGasto === '') return errorMessage('Por favor, preencha todos os campos', 'informações incompletas')
+    setIsLoading(true)
     await sendGasto();
     await fetchGastos();
     limpaInputs();
+    } finally {
+      setIsLoading(false)
+    }
+    
   }
 
-  //const deleteGasto = () => {
-  //...
-  //}
+  const deleteGasto = async (id) => {
+    setIsLoading(true)
+    try{
+      await axios.delete(`/despesas/apagar-despesa/${id}`)
+      await fetchGastos()
+    } catch (error) {
+      setIsLoading(false)
+      errorMessage('Erro ao remover gasto, tente novamente', error.response.data || error?.message || String(error));
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return (
     <main
@@ -102,13 +151,13 @@ const RegistroGastos = () => {
           <h2 className='text-2xl md:text-4xl xl:text-6xl text-center font-title-app text-[var(--color-green)]'>Gastos Registrados</h2>
           <ul className='text-lg md:text-2xl lg:text-3xl xl:text-5xl text-[var(--color-black)] font-text-alt space-y-2 xl:space-y-12 list-disc m-4 xl:p-5' >
             {gastos.map((gasto) => (
-              <div key={gasto.id} className='flex flex-col justify-center items-center space-y-4 '>
-                <li className='text-[var(--color-green)] flex flex-col space-y-4 border-2 p-4 rounded-4xl' >
+              <div key={gasto.id} className='flex flex-row justify-center items-center space-y-4 '>
+                <li className='text-[var(--color-green)] flex flex-col space-y-4 p-4' >
                   <p>Gasto: {gasto.descricao}</p>
                   <p>Valor: {gasto.valor}</p>
                 </li>
                 <div className='flex space-x-4 justify-center w-full'>
-                  <button className='bg-red-700 rounded-2xl'>
+                  <button onClick={() => deleteGasto(gasto.id)} className='bg-red-700 rounded-2xl'>
                     <XMarkIcon className="h-10 md:h-15 w-10 md:w-15  text-white cursor-pointer" />
                   </button>
                 </div>

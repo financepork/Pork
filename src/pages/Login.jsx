@@ -23,18 +23,18 @@ const Login = () => {
   
   const msgRedefinePassword = () => {
         Swal.fire({
-      title: "Digite o E-mail que deseja Verificar",
+      title: "Precisamos do seu E-mail para redefinir sua senha, digite-o abaixo",
       input: "text",
       inputAttributes: {
         autocapitalize: "off"
       },
       showCancelButton: true,
-      confirmButtonText: "Reenviar",
+      confirmButtonText: "Enviar E-mail",
       cancelButtonText: "Cancelar",
       showLoaderOnConfirm: true,
       customClass: {
         popup: '!rounded-2xl !p-6 !shadow-xl',
-        confirmButton: '!text-white-500 !bg-green-500 !border-white  ',
+        confirmButton: '!text-white-500 !bg-green-400 !border-white  ',
         cancelButton: '!text-white-500 !bg-red-500 !border-white  ',
       },
       preConfirm: async (email) => {
@@ -42,12 +42,16 @@ const Login = () => {
           const emailUser = {
             "email": email
           }
-          await axios.post('/auth/reenviar-email', emailUser, {
+
+          await axios.post('/auth/redefinir-email-senha', emailUser, {
             withCredentials: true
-          })
+          });
+
         } catch (error) {
+          console.error('Erro na requisição:', error);
+          console.error('URL da requisição:', error.config?.url);
           Swal.showValidationMessage(`
-    ${error.response.data}
+    ${error.response?.data || error.message}
       `);
         }
       },
@@ -74,7 +78,7 @@ const Login = () => {
       showLoaderOnConfirm: true,
       customClass: {
         popup: '!rounded-2xl !p-6 !shadow-xl',
-        confirmButton: '!text-white-500 !bg-green-500 !border-white  ',
+        confirmButton: '!text-white-500 !bg-green-400 !border-white  ',
         cancelButton: '!text-white-500 !bg-red-500 !border-white  ',
       },
       preConfirm: async (email) => {
@@ -161,14 +165,14 @@ const Login = () => {
             <div className='flex flex-col bg-none shadow-lg 
      p-6 rounded-4xl m-4 space-y-6 xl:space-y-16 max-w-[90%] min-w-[80%]  animate-fade-up animate-duration-1000 animate-delay-100 animate-ease-in'>
               <div className='flex flex-col justify-center items-center space-y-1 md:space-y-2 xl:space-y-3 w-full whitespace-nowrap '>
-                <h1 className='text-5xl md:text-7xl xl:text-8xl text-amber-600 font-title-alt'>Login</h1>
+                <h1 className='text-5xl md:text-7xl xl:text-8xl text-[var(--color-green)] font-title-alt'>Login</h1>
                 <p className='text-lg md:text-xl xl:text-3xl text-[var(--color-white)] font-text'>Insira seus Dados</p>
               </div>
 
               <div className='flex flex-col justify-center items-center space-y-8 '>
                 <div className='flex flex-col w-full max-w-md space-y-1'>
 
-                  <label htmlFor="Email" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>E-mail :</label>
+                  <label htmlFor="Email" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>E-mail </label>
                   <Input
                     name="email"
                     value={inputEmail}
@@ -181,7 +185,7 @@ const Login = () => {
 
                 <div className='flex flex-col w-full max-w-md space-y-1'>
 
-                  <label htmlFor="Senha" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>Senha :</label>
+                  <label htmlFor="Senha" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>Senha </label>
                   <div className='flex flex-row justify-between'>
                     <Input
                       name="senha"

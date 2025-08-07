@@ -5,10 +5,12 @@ import Register from './pages/Register.jsx'
 import LandingPage from './pages/LandingPage.jsx'
 import Login from './pages/Login.jsx'
 import 'aos/dist/aos.css';
-import Verify from './pages/Verify.jsx'
+import Verified from './pages/Verified.jsx'
 import MainPage from './pages/MainPage.jsx'
+import ChangePassword from './pages/ChangePassword.jsx'
 import axios from 'axios'
 import './index.css'
+
 
 axios.defaults.baseURL = 'https://financepork.site/api';
 
@@ -19,9 +21,10 @@ createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<LandingPage/>}/>
         <Route path="/register" element={<Register />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/verify" element={<Verify />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/verify" element={<Verified />} />
         <Route path="/mainpage" element={<MainPage />} />
+        <Route path="/redefinir-senha" element={<ChangePassword />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

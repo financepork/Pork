@@ -29,6 +29,7 @@ body {
     --color-chumbo: oklch(21% 0.006 285.885);
     --color-lgray: rgb(21, 21, 21);
     --color-red: rgb(256, 0, 0);
+    --color-gray-light: rgb(200, 200, 200);
 
     --font-text: 'Roboto', sans-serif;
     --font-title: 'Oswald', sans-serif;
@@ -42,6 +43,7 @@ body {
 }
 
 @layer utilities {
+    
     .font-text {
         font-family: var(--font-text);
         font-weight: 700;
@@ -100,14 +102,27 @@ body {
         border-right: solid 0.1px;
         border-color: rgb(21, 21, 21);
     }
+
+    .custom-swal .swal2-loader  {
+        border-color: var(--color-green) transparent 
+        var(--color-green) transparent !important ;
+    }
+
+    .max-w-carousel {
+        max-width: 90rem;
+    }
 }
 
 @layer base {
     section {
-        min-height: 50rem;
         width: 100%;
     }
+
+    .slick-slide {
+        padding-bottom: 5rem !important;
+    }
 }
+
 
 /* Ajustes específicos para Safari */
 @supports (-webkit-touch-callout: none) {
