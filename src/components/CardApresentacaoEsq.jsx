@@ -4,10 +4,10 @@ const CardApresentacaoEsq = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub
     return (
         <div 
             data-aos="fade-right" 
-            data-aos-delay="400" 
+            data-aos-delay="000" 
             data-aos-duration="1500" 
             data-aos-easing="ease-in-out" 
-            className='bg-[var(--color-white)] rounded-full flex p-3 mt-9 h-auto w-[80%] xl:h-[400px]'
+            className='bg-[var(--color-white)] rounded-full flex p-3 mt-9 h-auto w-[80%] xl:h-[320px]'
         >
             <div className='flex flex-row items-center w-full'>
                 {/* Texto e ícones */}
@@ -23,7 +23,7 @@ const CardApresentacaoEsq = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub
                     </div>
                 </div>
                 
-                <div className='relative flex-shrink-0 w-[120px] h-[120px] md:w-[180px] md:h-[180px] lg:w-[350px] lg:h-[350px] xl:w-[380px] xl:h-[380px]'>
+                <div className='relative flex-shrink-0 w-[120px] h-[120px] md:w-[180px] md:h-[180px] lg:w-[350px] lg:h-[350px] xl:w-[300px] xl:h-[300px]'>
                     <img 
                         src={DevImgSrc} 
                         alt="Foto Desenvolvedor" 
