@@ -113,7 +113,7 @@ const MainPage = () => {
           )}
 
         </aside>
-        <div  data-aos="fade-right" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in">
+        <div  data-aos="fade-right" data-aos-delay="300" data-aos-duration="900" data-aos-easing="ease-in">
           {openWindow == 'mainWindow' && <HeaderPages firstLineText={"Bem Vindo,"} secLineText={userName} altText={"Seja bem-vindo ao Pork, seu Cofrinho Digital!"}/>
           || openWindow == 'PlanejamentoEconomico' && <HeaderPages firstLineText={"Planejamento"} secLineText={"Econômico"} altText={"Defina como você vai gerenciar seu dinheiro!"}/>
           || openWindow == 'RegistroGastos' && <HeaderPages firstLineText={"Registro de"} secLineText={"Gastos"} altText={"Organize suas despesas como ninguém!"}/>

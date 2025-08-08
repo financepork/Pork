@@ -74,7 +74,7 @@ function CarouselLanding() {
           <CardCarousel titleText="Plano de Economia" imgSrc='planEco.png' contentText='Faça da economia parte de sua rotina, com a ajuda dos nossos planos personalizados ' />
         </div>
         <div className="px-7 lg:p-10 xl:px-0">
-          <CardCarousel titleText="Registro de Gastos" imgSrc='registroGastos.png' contentText='Registre suas despesas e organize-as como quiser' />
+          <CardCarousel titleText="Registro de Gastos" imgSrc='registroGastos.png' contentText='Registre suas despesas e as organize como quiser' />
         </div>
         <div className="px-7 lg:p-10 xl:px-0">
           <CardCarousel titleText="Metas de Economia" imgSrc='metas.png' contentText='Defina objetivos que te motivem a se manter economizando' />

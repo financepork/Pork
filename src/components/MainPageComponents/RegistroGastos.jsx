@@ -138,6 +138,7 @@ const RegistroGastos = () => {
   const deleteGasto = async (id) => {
     setIsLoading(true)
     try {
+      console.log(id)
       await axios.delete(`/despesas/apagar-despesa/${id}`)
       const gastosPegos = await fetchGastos()
       pegaGastosTotais(gastosPegos)
@@ -157,7 +158,7 @@ const RegistroGastos = () => {
       <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
         className='flex flex-col xl:flex-row h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-8 xl:p-16 overflow-y-none items-center justify-around'>
         
-        <div className='bg-[var(--color-white)] w-full md:w-[80%] h-full flex items place-self-auto flex-col p-7 xl:p-12 min-h-[70%] rounded-xl gap-8 xl:gap-12'>
+        <div className='bg-[var(--color-white)] w-full md:w-[80%] xl:w-[60%] h-full flex items place-self-auto flex-col p-7 xl:p-12 min-h-[70%] rounded-xl gap-8 xl:gap-12'>
           <div className='flex items-center w-full h-full space-x-1.5 md:space-x-2 xl:space-x-3'>
             <img src="../registroGastos.png" alt="Icone registro de gastos" className='w-[17%] md:w-[15%] xl:w-[12%] 2xl:w-[10%]' />
             <h1 className='font-text-app text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl text-[var(--color-dark-green)]'>Registro de Gastos</h1>
@@ -178,12 +179,12 @@ const RegistroGastos = () => {
               <div key={gasto.id} className='flex flex-row justify-between items-center h-[10%] w-full my-8 md:my-12'>
                 <div>
                   <li className='text-[var(--color-dark-green)] font-text text-lg md:text-2xl xl:text-4xl'>
-                  <p>{gasto.descricao} : R$ {gasto.valor},00</p> 
+                  <p>{gasto.descricao} : R$ {gasto.valor},00 {gasto.id}</p> 
                   </li>
                 </div>
                 <div className='w-[10%] md:w-[8%] xl:w-[5%]'>
-                  <button onClick={() => deleteGasto(gasto.id)} className='w-full h-full'>
-                  <img src="../lixeira.png" alt="Icone Lixeira" className='h-[100%] w-[100%]' />
+                  <button onClick={() => deleteGasto(gasto.id)} className='w-full h-full cursor-pointer'>
+                  <img src="../lixeira.png" alt="Icone Lixeira" className='h-[100%] w-[100%] ' />
                   </button>
                 </div>
               </div>

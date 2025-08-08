@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { XMarkIcon, CheckIcon } from '@heroicons/react/24/solid'
 
 
 const DefinirMetas = () => {
@@ -122,7 +121,6 @@ const DefinirMetas = () => {
   const deleteMeta = async (id) => {
     setIsLoading(true)
     try {
-
       await axios.delete(`/metas/deletar-meta/${id}`)
       await fetchMetas()
     } catch (error) {
@@ -138,41 +136,44 @@ const DefinirMetas = () => {
       className=' h-full w-full flex flex-col  '>
       <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
         className='flex flex-col xl:flex-row h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-16 overflow-y-none items-center justify-around'>
-        <div className='m-8'>
-          <form onSubmit={registraMeta} action='submit' className='flex flex-col space-y-6 md:space-y-8 p-2'>
-            <h2 className='text-3xl lg:text-4xl xl:text-6xl text-center font-title-app text-[var(--color-white)]'>Definir Meta</h2>
-            <label htmlFor="descMeta" className='text-md text-[var(--color-white)] font-title-alt text-xl md:text-2xl lg:text-3xl xl:text-4xl ml-2'>Objetivo :</label>
-            <input type="text" maxLength={40} name="descMeta" id="descMeta" placeholder='Coloque sua meta' className='bg-[var(--color-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg md:text-xl xl:text-2xl  p-2 md:p-4' value={inputMeta} onChange={e => setInputMeta(e.target.value)} />
-            <label htmlFor="valorMeta" className='text-md text-[var(--color-white)] font-title-alt text-xl md:text-2xl lg:text-3xl xl:text-4xl ml-2'>Valor :</label>
-            <input type="text" maxLength={40} name="valorMeta" id="valorMeta" placeholder='Insira o Valor' className='bg-[var(--color-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg md:text-xl xl:text-2xl  p-2 md:p-4' value={inputValue} onChange={e => setInputValue(e.target.value)} />
-            <label htmlFor="dataMeta" className='text-md  text-[var(--color-white)] font-title-alt text-xl md:text-2xl lg:text-3xl xl:text-4xl ml-2'>Data limite :</label>
-            <input type="date" name="dataMeta" id="dataMeta" className='bg-[var(--color-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg md:text-xl xl:text-2xl p-2 md:p-4' value={inputData} onChange={e => setInputData(e.target.value)} />
-            <button type='submit' className="border-0 text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-3 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] transition-colors duration-400 ease-in-out w-[75%] text-center font-text-alt md:text-2xl xl:text-3xl xl:mb-4 xl:w-[60%] cursor-pointer self-center">Enviar</button>
+        
+       <div className='bg-[var(--color-white)] w-full md:w-[80%] xl:w-[60%] h-full flex items place-self-auto flex-col p-7 xl:p-12 min-h-[70%] rounded-xl gap-8 xl:gap-12'>
+          <div className='flex items-center w-full h-full space-x-1.5 md:space-x-2 xl:space-x-3'>
+            <img src="../metas.png" alt="Icone registro de gastos" className='w-[17%] md:w-[15%] xl:w-[12%] 2xl:w-[10%]' />
+            <h1 className='font-text-app text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl text-[var(--color-dark-green)]'>Definição de Metas</h1>
+          </div>
+          <form action="submit" onSubmit={registraMeta} className='flex flex-col gap-4 md:gap-6'>
+            <div className='flex flex-col gap-2 md:gap-3 justify-center items-center'>
+              <input type="text" maxLength={40} name="descMeta" id="descMeta" placeholder='Descreva a Meta' value={inputMeta} onChange={e => setInputMeta(e.target.value)} required className='bg-[var(--color-dark-green)] text-white rounded-2xl w-full md:w-[80%] p-2 md:text-lg xl:text-2xl xl:p-4' />
+              <input type="number" name="valorMeta" id="valorMeta" placeholder='Valor do seu Objetivo' value={inputValue} onChange={e => setInputValue(e.target.value)} className='bg-[var(--color-dark-green)] text-white rounded-2xl w-full md:w-[80%] p-2 md:text-lg xl:text-2xl xl:p-4' required />
+              <input type="date" name="dataMeta" id="dataMeta" value={inputData} onChange={e => setInputData(e.target.value)} className='bg-[var(--color-dark-green)] text-white rounded-2xl w-full md:w-[80%] p-2 md:text-lg xl:text-2xl xl:p-4' required />
+            </div>
+            <div className="flex justify-center">
+              <button type='submit' className='h-auto p-2 bg-[var(--color-dark-green)] text-[var(--color-black)] rounded-4xl cursor-pointer font-title-alt text-lg w-full md:w-[75%] 2xl:w-[50%] xl:text-xl xl:p-4'>Enviar</button>
+            </div>
+            
           </form>
-
-        </div>
-        <div className='flex flex-col bg-[var(--color-white)] space-y-4 md:space-y-6 xl:space-y-10 bg-none p-8 xl:p-12 rounded-4xl h-fit min-w-[50%] mt-8'>
-          <h2 className='text-2xl md:text-4xl xl:text-6xl text-center font-title-app text-[var(--color-green)]'>Metas Pendentes</h2>
-          <ul className='text-lg md:text-2xl lg:text-3xl xl:text-5xl text-[var(--color-black)] font-text-alt space-y-2 xl:space-y-12 list-disc m-4 xl:p-5'>
-            {metas.map((meta) => (
-              <div key={meta.id} className='flex flex-col bg-[var(--color-green)] justify-start rounded-3xl items-start space-y-4 p-4'>
-                <li className='text-[var(--color-white)] flex flex-col space-y-2 md:space-y-6 border-none p-1 rounded-4xl w-full' >
-                  <p>{meta.meta}</p>
-                  <p>R${meta.valor}</p>
-                  <p>{meta.data}</p>
-                </li>
-                <div className='flex space-x-4 justify-center w-full'>
-                  <button onClick={() => deleteMeta(meta.id)} className='bg-red-700 rounded-2xl'>
-                    <XMarkIcon className="h-10 md:h-15 w-10 md:w-15  text-white cursor-pointer" />
+          <div>
+            <ul>
+               {metas.map((meta) => (
+              <div key={meta.id} className='flex flex-row justify-between items-center h-[10%] w-full my-8 md:my-12'>
+                <div>
+                  <li className='text-[var(--color-dark-green)] font-text text-lg md:text-2xl xl:text-4xl'>
+                  <p>{meta.meta} R$ {meta.valor},00 ({meta.data})</p> 
+                  </li>
+                </div>
+                <div className='w-[25%] md:w-[12%] lg:w-[10%] xl:w-[5%]'>
+                  <button onClick={() => deleteMeta(meta.id)} className='w-full h-full cursor-pointer'>
+                  <img src="../lixeira.png" alt="Icone Lixeira" className='h-[100%] w-[100%]' />
                   </button>
                 </div>
               </div>
-            ))
-
-            }
-          </ul>
-
+            )
+            )}
+            </ul>
+          </div>
         </div>
+
 
       </div>
     </main>
