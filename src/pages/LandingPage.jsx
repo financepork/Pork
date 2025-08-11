@@ -6,7 +6,7 @@ import CardApresentacaoEsq from '../components/CardApresentacaoEsq'
 import AOS from 'aos';
 import { useEffect } from 'react';
 import CarouselLanding from '../components/CarouselLanding'
-import CardCarousel from '../components/CardCarousel'
+
 
 
 
