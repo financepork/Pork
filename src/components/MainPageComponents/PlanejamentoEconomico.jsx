@@ -85,7 +85,7 @@ const PlanejamentoEconomico = () => {
       setValueRenda(`${valorRenda}`);
     } catch (error) {
       isLoading(false)
-      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response?.data || error?.message || String(error));
     }
   }
 
@@ -100,7 +100,7 @@ const PlanejamentoEconomico = () => {
       setValueEco(valorEconomia);
     } catch (error) {
       isLoading(false)
-      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response?.data || error?.message || String(error));
     }
   }
 
@@ -132,7 +132,7 @@ const PlanejamentoEconomico = () => {
       return setValuePlan(valuePlan);
     } catch (error) {
       isLoading(false)
-      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response?.data || error?.message || String(error));
     }
   }
 
@@ -148,7 +148,7 @@ const PlanejamentoEconomico = () => {
       return setValueRenda(`${valueTyped.receita}`);
     } catch (error) {
       isLoading(false)
-      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response?.data || error?.message || String(error));
     }
 
   }
@@ -163,7 +163,7 @@ const PlanejamentoEconomico = () => {
     }
     catch (error) {
       isLoading(false)
-      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response?.data || error?.message || String(error));
     }
   }
 

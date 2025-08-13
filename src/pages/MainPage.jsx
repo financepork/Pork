@@ -43,7 +43,7 @@ const MainPage = () => {
       })
         setUserName(response.data.nome)
       } catch (error){
-        errorMessage('Erro ao contatar o servidor', error.response.data)
+        errorMessage('Erro ao contatar o servidor', error.response?.data)
       }
   }
 

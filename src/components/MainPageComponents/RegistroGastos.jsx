@@ -58,7 +58,7 @@ const RegistroGastos = () => {
   const fetchGastos = async () => {
 
     try {
-      const response = await axios.get('/despesas/consultar-despesas', {
+      const response = await axios.get('/despesas/consultar-despesas-completa', {
         withCredentials: true
       })
       const gastosGerais = [...response.data.todasDespesas]
@@ -66,7 +66,7 @@ const RegistroGastos = () => {
       return gastosGerais
     } catch (error) {
       setIsLoading(false)
-      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response?.data || error?.message || String(error));
       return [];
     }
 
@@ -114,7 +114,7 @@ const RegistroGastos = () => {
       })
     } catch (error) {
       setIsLoading(false)
-      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response?.data || error?.message || String(error));
     }
 
   }
@@ -145,7 +145,7 @@ const RegistroGastos = () => {
       pegaGastosTotais(gastosPegos)
     } catch (error) {
       setIsLoading(false)
-      errorMessage('Erro ao remover gasto, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao remover gasto, tente novamente', error.response?.data || error?.message || String(error));
     } finally {
       
       setIsLoading(false)

@@ -59,7 +59,7 @@ const DefinirMetas = () => {
       setMetas(response.data)
     } catch (error) {
       isLoading(false)
-      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response?.data || error?.message || String(error));
     }
   }
 
@@ -100,7 +100,7 @@ const DefinirMetas = () => {
       })
     } catch (error) {
       isLoading(false)
-      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response?.data || error?.message || String(error));
     }
   }
 
@@ -127,7 +127,7 @@ const DefinirMetas = () => {
       await fetchMetas()
     } catch (error) {
       setIsLoading(false)
-      errorMessage('Erro ao enviar remover meta, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao enviar remover meta, tente novamente', error.response?.data || error?.message || String(error));
     } finally {
       setIsLoading(false)
     }
