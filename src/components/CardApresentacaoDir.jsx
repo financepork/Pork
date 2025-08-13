@@ -14,7 +14,7 @@ const CardApresentacaoDir = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub
             data-aos-delay="000" 
             data-aos-duration="1500" 
             data-aos-easing="ease-in-out" 
-            className='bg-[var(--color-white)] flex mt-9 rounded-full p-3 w-[80%] h-auto xl:h-[320px]'
+            className='bg-[var(--color-white)] flex mt-9 rounded-full p-3 w-[95%] md:w-[80%] h-auto xl:h-[320px]'
         >
             <div className='flex flex-row items-center w-full'>
                 {/* Container da imagem - ESSENCIAL para Safari */}
@@ -31,7 +31,7 @@ const CardApresentacaoDir = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub
 
                 {/* Texto e ícones */}
                 <div className='flex flex-col justify-center ml-5 space-y-2 md:space-y-4 flex-1'>
-                    <div className='flex flex-col justify-center items-center md:space-y-1'>
+                    <div className='flex flex-col justify-center items-center md:space-y-3'>
                         <h1 className='text-md md:text-3xl xl:text-6xl font-title'>{DevName}</h1>
                         <h2 className='text-sm md:text-xl xl:text-3xl font-text text-[var(--color-green)] ml-1'>{DevStack}</h2>
                     </div>
