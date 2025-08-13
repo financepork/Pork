@@ -108,7 +108,7 @@ const Register = () => {
       sucessMessage()
       resetInputs()
     } catch (error) {
-      errorMessage(error.response.data)
+      errorMessage(error.response?.data)
     }
 
   }

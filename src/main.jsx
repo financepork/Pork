@@ -8,6 +8,7 @@ import 'aos/dist/aos.css';
 import Verified from './pages/Verified.jsx'
 import MainPage from './pages/MainPage.jsx'
 import ChangePassword from './pages/ChangePassword.jsx'
+import PrivateRoute from './components/PrivateRoute.jsx'
 import axios from 'axios'
 import './index.css'
 
@@ -23,7 +24,15 @@ createRoot(document.getElementById('root')).render(
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/verify" element={<Verified />} />
-        <Route path="/mainpage" element={<MainPage />} />
+
+        <Route path="/mainpage" 
+        element={
+        <PrivateRoute>
+          <MainPage />
+        </PrivateRoute>
+        
+        } />
+
         <Route path="/redefinir-senha" element={<ChangePassword />} />
       </Routes>
     </BrowserRouter>

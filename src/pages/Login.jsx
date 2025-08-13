@@ -91,7 +91,7 @@ const Login = () => {
           })
         } catch (error) {
           Swal.showValidationMessage(`
-    ${error.response.data}
+    ${error.response?.data}
       `);
         }
       },
@@ -142,7 +142,7 @@ const Login = () => {
       });
       navigate('/mainpage')
     } catch (error) {
-      errorMessage('Erro ao fazer login, tente novamente', error.response.data)
+      errorMessage('Erro ao fazer login, tente novamente', error.response?.data)
     }
   }
 
@@ -213,7 +213,6 @@ const Login = () => {
           </form>
           <div className='flex flex-col'>
             <div className='flex flex-col md:flex-row justify-center items-center'>
-              <button type='button' onClick={()=> goTo('/register')} className="border-0 text-center text-[var(--color-white)] rounded-2xl text-sm font-text md:text-lg xl:text-xl p-3 bg-none underline cursor-pointer ">Não se registrou?</button>
               <button type='button' onClick={() => resendEmail()} className="border-0 text-center text-[var(--color-white)] rounded-2xl text-sm font-text md:text-lg xl:text-xl p-3 bg-none underline cursor-pointer ">Verificar E-mail</button>
               <button type='button' onClick={()=> redefinePassword()} className="border-0 text-center text-[var(--color-white)] rounded-2xl text-sm font-text md:text-lg xl:text-xl p-3 bg-none underline cursor-pointer ">Redefinir Senha</button>
             </div>
