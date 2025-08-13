@@ -138,8 +138,9 @@ const RegistroGastos = () => {
   const deleteGasto = async (id) => {
     setIsLoading(true)
     try {
-      console.log(id)
-      await axios.delete(`/despesas/apagar-despesa/${id}`)
+      await axios.delete(`/despesas/apagar-despesa/${id}`, {
+        withCredentials: true
+      })
       const gastosPegos = await fetchGastos()
       pegaGastosTotais(gastosPegos)
     } catch (error) {
@@ -166,7 +167,7 @@ const RegistroGastos = () => {
           <form action="submit" onSubmit={listarGasto} className='flex flex-col gap-4 md:gap-6'>
             <div className='flex flex-col gap-2 md:gap-3 justify-center items-center'>
               <input type="text" maxLength={40} name="descGasto" id="descGasto" placeholder='Descreva o Gasto' value={inputDescGasto} onChange={e => setInputDescGasto(e.target.value)} required className='bg-[var(--color-dark-green)] text-white rounded-2xl w-full md:w-[80%] p-2 md:text-lg xl:text-2xl xl:p-4' />
-              <input type="number" name="valorGasto" id="valorGasto" placeholder='Valor do seu Gasto' value={inputValorGasto} onChange={e => setInputValorGasto(e.target.value)} className='bg-[var(--color-dark-green)] text-white rounded-2xl w-full md:w-[80%] p-2 md:text-lg xl:text-2xl xl:p-4' required />
+              <input type="number" name="valorGasto" id="valorGasto" placeholder='Valor do seu Gasto' value={inputValorGasto} onChange={e => setInputValorGasto(e.target.value)} step={0.01} className='bg-[var(--color-dark-green)] text-white rounded-2xl w-full md:w-[80%] p-2 md:text-lg xl:text-2xl xl:p-4' required />
             </div>
             <div className="flex justify-center">
               <button type='submit' className='h-auto p-2 bg-[var(--color-dark-green)] text-[var(--color-black)] rounded-4xl cursor-pointer font-title-alt text-lg w-full md:w-[75%] 2xl:w-[50%] xl:text-xl xl:p-4'>Enviar</button>
@@ -179,7 +180,7 @@ const RegistroGastos = () => {
               <div key={gasto.id} className='flex flex-row justify-between items-center h-[10%] w-full my-8 md:my-12'>
                 <div>
                   <li className='text-[var(--color-dark-green)] font-text text-lg md:text-2xl xl:text-4xl'>
-                  <p>{gasto.descricao} : R$ {gasto.valor},00 {gasto.id}</p> 
+                  <p>{gasto.descricao} : R$ {gasto.valor},00 </p> 
                   </li>
                 </div>
                 <div className='w-[10%] md:w-[8%] xl:w-[5%]'>

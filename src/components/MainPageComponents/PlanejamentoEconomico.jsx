@@ -28,7 +28,7 @@ const PlanejamentoEconomico = () => {
         Swal.showLoading();
       },
       customClass: {
-        popup: 'custom-swal' 
+        popup: 'loading-swal' 
       }
     });
   }
@@ -37,7 +37,7 @@ const PlanejamentoEconomico = () => {
     if (isLoading) {
       loadingMessage()
     } else {
-      Swal.getPopup() && Swal.getPopup().classList.contains('custom-swal')? Swal.close() : ''
+      Swal.getPopup() && Swal.getPopup().classList.contains('loading-swal')? Swal.close() : ''
     }
 
   }, [isLoading])

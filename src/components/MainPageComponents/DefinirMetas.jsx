@@ -121,10 +121,12 @@ const DefinirMetas = () => {
   const deleteMeta = async (id) => {
     setIsLoading(true)
     try {
-      await axios.delete(`/metas/deletar-meta/${id}`)
+      await axios.delete(`/metas/deletar-meta/${id}`, {
+        withCredentials: true
+      })
       await fetchMetas()
     } catch (error) {
-      isLoading(false)
+      setIsLoading(false)
       errorMessage('Erro ao enviar remover meta, tente novamente', error.response.data || error?.message || String(error));
     } finally {
       setIsLoading(false)
