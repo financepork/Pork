@@ -139,8 +139,8 @@ const DefinirMetas = () => {
       <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
         className='flex flex-col xl:flex-row h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-16 overflow-y-none items-center justify-around'>
         
-       <div className='bg-[var(--color-white)] w-full md:w-[80%] xl:w-[60%] h-full flex items place-self-auto flex-col p-7 xl:p-12 min-h-[70%] rounded-xl gap-8 xl:gap-12'>
-          <div className='flex items-center w-full h-full space-x-1.5 md:space-x-2 xl:space-x-3'>
+       <div className='bg-[var(--color-white)] w-full md:w-[80%] xl:w-[60%] h-full flex items place-self-auto flex-col p-7 xl:p-12 min-h-[70%] rounded-xl gap-8 xl:gap-16'>
+          <div className='flex items-center w-full h-full space-x-2 md:space-x-2 xl:space-x-4'>
             <img src="../metas.png" alt="Icone registro de gastos" className='w-[17%] md:w-[15%] xl:w-[12%] 2xl:w-[10%]' />
             <h1 className='font-text-app text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl text-[var(--color-dark-green)]'>Definição de Metas</h1>
           </div>
@@ -151,25 +151,28 @@ const DefinirMetas = () => {
               <input type="date" name="dataMeta" id="dataMeta" value={inputData} onChange={e => setInputData(e.target.value)} className='bg-[var(--color-dark-green)] text-white rounded-2xl w-full md:w-[80%] p-2 md:text-lg xl:text-2xl xl:p-4' required />
             </div>
             <div className="flex justify-center">
-              <button type='submit' className='h-auto p-2 bg-[var(--color-dark-green)] text-[var(--color-black)] rounded-4xl cursor-pointer font-title-alt text-lg w-full md:w-[75%] 2xl:w-[50%] xl:text-xl xl:p-4'>Enviar</button>
+              <button type='submit' className='h-auto p-2 bg-[var(--color-dark-green)] text-[var(--color-lgray)] rounded-4xl cursor-pointer font-title-app text-lg w-full md:w-[75%] 2xl:w-[50%] xl:text-xl xl:p-4'>Enviar</button>
             </div>
             
           </form>
           <div>
             <ul>
                {metas.map((meta) => (
-              <div key={meta.id} className='flex flex-row justify-between items-center h-[10%] w-full my-8 md:my-12'>
-                <div>
-                  <li className='text-[var(--color-dark-green)] font-text text-lg md:text-2xl xl:text-4xl'>
-                  <p>{meta.meta} R$ {meta.valor},00 ({meta.data})</p> 
-                  </li>
+              <li key={meta.id} className='flex flex-row justify-between items-center h-[12%] w-full my-6 md:my-12'>
+                <div className='text-[var(--color-dark-green)] font-text text-lg xl:space-y-2 md:text-2xl xl:text-4xl'>
+                  <div>
+                    <p>{meta.meta}</p> 
+                  </div>
+                  <div>
+                    <p>R$ {meta.valor},00 ({meta.data})</p>
+                  </div>       
                 </div>
-                <div className='w-[25%] md:w-[12%] lg:w-[10%] xl:w-[5%]'>
+                <div className='w-[13%] md:w-[10%] lg:w-[8%] xl:w-[5%]'>
                   <button onClick={() => deleteMeta(meta.id)} className='w-full h-full cursor-pointer'>
                   <img src="../lixeira.png" alt="Icone Lixeira" className='h-[100%] w-[100%]' />
                   </button>
                 </div>
-              </div>
+              </li>
             )
             )}
             </ul>
