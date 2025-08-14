@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Register from './pages/Register.jsx'
 import LandingPage from './pages/LandingPage.jsx'
 import Login from './pages/Login.jsx'
+import { AuthProvider } from './contexts/AuthContext.jsx'
 import 'aos/dist/aos.css';
 import Verified from './pages/Verified.jsx'
 import MainPage from './pages/MainPage.jsx'
@@ -19,6 +20,7 @@ axios.defaults.baseURL = 'https://financepork.site/api';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+    <AuthProvider>
       <Routes>
         <Route path="/" element={<LandingPage/>}/>
         <Route path="/register" element={<Register />} />
@@ -35,6 +37,7 @@ createRoot(document.getElementById('root')).render(
 
         <Route path="/redefinir-senha" element={<ChangePassword />} />
       </Routes>
+    </AuthProvider>  
     </BrowserRouter>
   </StrictMode>,
 )
