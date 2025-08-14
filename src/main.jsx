@@ -15,6 +15,7 @@ import './index.css'
 
 
 axios.defaults.baseURL = 'https://financepork.site/api';
+axios.defaults.withCredentials = true; // Configuração global para enviar cookies
 
 
 createRoot(document.getElementById('root')).render(
