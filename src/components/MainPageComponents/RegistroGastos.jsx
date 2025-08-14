@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { XMarkIcon, CheckIcon } from '@heroicons/react/24/solid'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
@@ -13,6 +12,8 @@ const RegistroGastos = () => {
 
   const [gastos, setGastos] = useState([])
 
+  const [gastosTotais ,setGastosTotais] = useState('')
+
   const [isLoading, setIsLoading] = useState(false)
 
   const loadingMessage = () => {
@@ -25,7 +26,7 @@ const RegistroGastos = () => {
         Swal.showLoading();
       },
       customClass: {
-        popup: 'custom-swal' 
+        popup: 'custom-swal'
       }
     });
   }
@@ -34,7 +35,7 @@ const RegistroGastos = () => {
     if (isLoading) {
       loadingMessage()
     } else {
-      Swal.getPopup() && Swal.getPopup().classList.contains('custom-swal')? Swal.close() : ''
+      Swal.getPopup() && Swal.getPopup().classList.contains('custom-swal') ? Swal.close() : ''
     }
 
   }, [isLoading])
@@ -55,23 +56,37 @@ const RegistroGastos = () => {
   }
 
   const fetchGastos = async () => {
-    
+
     try {
       const response = await axios.get('/despesas/consultar-despesas', {
         withCredentials: true
       })
-      const gastosGerais = [...response.data.todasDespesas]
+      const gastosGerais = [...response.data.list]
       setGastos([...gastosGerais])
+      return gastosGerais
     } catch (error) {
       setIsLoading(false)
-      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response?.data || error?.message || String(error));
+      return [];
     }
-    
+
+  }
+
+  const calculaGastosTotais = (gastos) => {
+    return gastos.reduce((acumulador, gasto) => {
+      return acumulador += gasto.valor
+    },0);
+  }
+
+  const pegaGastosTotais = (gastosBuscados) => {
+    const totalGastos = calculaGastosTotais(gastosBuscados)
+    setGastosTotais(totalGastos)
   }
 
   const getInitialValues = async () => {
     setIsLoading(true)
-    await fetchGastos()
+    const gastos = await fetchGastos()
+    pegaGastosTotais(gastos)
     setIsLoading(false)
   }
 
@@ -99,7 +114,7 @@ const RegistroGastos = () => {
       })
     } catch (error) {
       setIsLoading(false)
-      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response?.data || error?.message || String(error));
     }
 
   }
@@ -108,26 +123,33 @@ const RegistroGastos = () => {
     e.preventDefault();
     try {
       if (inputDescGasto === '' || inputValorGasto === '') return errorMessage('Por favor, preencha todos os campos', 'informações incompletas')
-    setIsLoading(true)
-    await sendGasto();
-    await fetchGastos();
-    limpaInputs();
+      setIsLoading(true)
+      await sendGasto();
+      const gastosPegos = await fetchGastos();
+      pegaGastosTotais(gastosPegos)
+      limpaInputs();
     } finally {
       setIsLoading(false)
+      
     }
-    
+
   }
 
   const deleteGasto = async (id) => {
     setIsLoading(true)
-    try{
-      await axios.delete(`/despesas/apagar-despesa/${id}`)
-      await fetchGastos()
+    try {
+      await axios.delete(`/despesas/apagar-despesa/${id}`, {
+        withCredentials: true
+      })
+      const gastosPegos = await fetchGastos()
+      pegaGastosTotais(gastosPegos)
     } catch (error) {
       setIsLoading(false)
-      errorMessage('Erro ao remover gasto, tente novamente', error.response.data || error?.message || String(error));
+      errorMessage('Erro ao remover gasto, tente novamente', error.response?.data || error?.message || String(error));
     } finally {
+      
       setIsLoading(false)
+
     }
   }
 
@@ -135,37 +157,50 @@ const RegistroGastos = () => {
     <main
       className=' h-full w-full flex flex-col  '>
       <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
-        className='flex flex-col xl:flex-row h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-16 overflow-y-none items-center justify-around'>
-        <div className='m-8'>
-          <form action="submit" onSubmit={listarGasto} className='flex flex-col space-y-6 md:space-y-8 p-2'>
-            <h2 className='text-3xl lg:text-4xl xl:text-6xl text-center font-title-app text-[var(--color-white)]'>Registrar Gasto</h2>
-            <label htmlFor="descGasto" className='text-md text-[var(--color-white)] font-title-alt text-xl md:text-2xl lg:text-3xl xl:text-4xl ml-2'>Descrição :</label>
-            <input type="text" maxLength={40} name="descGasto" id="descGasto" placeholder='Descreva seu Gasto' className='bg-[var(--color-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg md:text-xl xl:text-2xl  p-2 md:p-4' value={inputDescGasto} onChange={e => setInputDescGasto(e.target.value)} required />
-            <label htmlFor="valorGasto" className='text-md  text-[var(--color-white)] font-title-alt text-xl md:text-2xl lg:text-3xl xl:text-4xl ml-2'>Valor :</label>
-            <input type="number" name="valorGasto" id="valorGasto" placeholder='Valor Gasto' className='bg-[var(--color-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg md:text-xl xl:text-2xl p-2 md:p-4' value={inputValorGasto} onChange={e => setInputValorGasto(e.target.value)} required />
-            <button className="border-0 text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-3 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] transition-colors duration-400 ease-in-out w-[75%] text-center font-text-alt md:text-2xl xl:text-3xl xl:mb-4 xl:w-[60%] cursor-pointer self-center" type='submit'>Registrar</button>
+        className='flex flex-col xl:flex-row h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-8 xl:p-16 overflow-y-none items-center justify-around'>
+        
+        <div className='bg-[var(--color-white)] w-full md:w-[80%] xl:w-[60%] h-full flex items place-self-auto flex-col p-7 xl:p-12 min-h-[70%] rounded-xl gap-8 xl:gap-16'>
+          <div className='flex items-center w-full h-full space-x-1.5 md:space-x-2 xl:space-x-4'>
+            <img src="../registroGastos.png" alt="Icone registro de gastos" className='w-[17%] md:w-[15%] xl:w-[12%] 2xl:w-[10%]' />
+            <h1 className='font-text-app text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl text-[var(--color-dark-green)]'>Registro de Gastos</h1>
+          </div>
+          <form action="submit" onSubmit={listarGasto} className='flex flex-col gap-4 md:gap-6'>
+            <div className='flex flex-col gap-2 md:gap-3 justify-center items-center'>
+              <input type="text" maxLength={40} name="descGasto" id="descGasto" placeholder='Descreva o Gasto' value={inputDescGasto} onChange={e => setInputDescGasto(e.target.value)} required className='bg-[var(--color-dark-green)] text-white rounded-2xl w-full md:w-[80%] p-2 md:text-lg xl:text-2xl xl:p-4' />
+              <input type="number" name="valorGasto" id="valorGasto" placeholder='Valor do seu Gasto' value={inputValorGasto} onChange={e => setInputValorGasto(e.target.value)} step={0.01} className='bg-[var(--color-dark-green)] text-white rounded-2xl w-full md:w-[80%] p-2 md:text-lg xl:text-2xl xl:p-4' required  />
+            </div>
+            <div className="flex justify-center">
+              <button type='submit' className='h-auto p-2 bg-[var(--color-dark-green)] text-[var(--color-black)] rounded-4xl cursor-pointer font-title-alt text-lg w-full md:w-[75%] 2xl:w-[50%] xl:text-xl xl:p-4'>Enviar</button>
+            </div>
+            
           </form>
-
-        </div>
-        <div className='flex flex-col bg-[var(--color-white)] space-y-4 md:space-y-6 xl:space-y-10 bg-none p-8 xl:p-12 rounded-4xl h-fit min-w-[50%] mt-8 self-center items-center'>
-          <h2 className='text-2xl md:text-4xl xl:text-6xl text-center font-title-app text-[var(--color-green)]'>Gastos Registrados</h2>
-          <ul className='text-lg md:text-2xl lg:text-3xl xl:text-5xl text-[var(--color-black)] font-text-alt space-y-2 xl:space-y-12 list-disc m-4 xl:p-5' >
-            {gastos.map((gasto) => (
-              <div key={gasto.id} className='flex flex-row justify-center items-center space-y-4 '>
-                <li className='text-[var(--color-green)] flex flex-col space-y-4 p-4' >
-                  <p>Gasto: {gasto.descricao}</p>
-                  <p>Valor: {gasto.valor}</p>
-                </li>
-                <div className='flex space-x-4 justify-center w-full'>
-                  <button onClick={() => deleteGasto(gasto.id)} className='bg-red-700 rounded-2xl'>
-                    <XMarkIcon className="h-10 md:h-15 w-10 md:w-15  text-white cursor-pointer" />
+          <div>
+            <ul>
+               {gastos.map((gasto) => (
+              <li key={gasto.id} className='flex flex-row justify-between items-center h-[10%] w-full my-8 md:my-12'>
+                <div className='text-[var(--color-dark-green)] font-text text-lg xl:space-y-2 md:text-2xl xl:text-4xl'>
+                  <div>
+                    <p>{gasto.descricao}</p> 
+                  </div>
+                  <div>
+                    <p>R$ {gasto.valor}</p>
+                  </div>       
+                </div>
+                <div className='w-[10%] md:w-[8%] xl:w-[5%]'>
+                  <button onClick={() => deleteGasto(gasto.id)} className='w-full h-full cursor-pointer'>
+                  <img src="../lixeira.png" alt="Icone Lixeira" className='h-[100%] w-[100%] ' />
                   </button>
                 </div>
-              </div>
+              </li>
             )
             )}
-          </ul>
 
+            </ul>
+          </div>
+          <div className='flex flex-col gap-3 md:gap-5 xl:gap-6'>
+            <h1 className='text-[var(--color-dark-green)] font-title-alt text-3xl md:text-4xl xl:text-5xl'>Gastos Totais</h1>
+            <p className='text-[var(--color-green)] font-text-app text-2xl ml-1 md:text-3xl xl:text-4xl'>R$ {gastosTotais}</p>
+          </div>
         </div>
 
       </div>

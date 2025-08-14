@@ -6,14 +6,14 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-
-
+import { useAuth } from '../contexts/AuthContext';
 
 
 
 const Login = () => {
 
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [inputEmail, setInputEmail] = useState('')
 
@@ -91,7 +91,7 @@ const Login = () => {
           })
         } catch (error) {
           Swal.showValidationMessage(`
-    ${error.response.data}
+    ${error.response?.data}
       `);
         }
       },
@@ -108,15 +108,14 @@ const Login = () => {
   const redefinePassword = () => {
     msgRedefinePassword()
   }
-
-  const resendEmail = async () => {
+  const resendEmail = () => {
     msgResendEmail()
   }
 
 
   const errorMessage = (errorText, error) => {
     Swal.fire({
-      title: 'Ocorreu um Erro',
+      title: 'Erro!',
       text: errorText,
       icon: 'error',
       color: 'var(--color-red)',
@@ -129,30 +128,23 @@ const Login = () => {
     })
   }
 
- 
 
-  const sendLogin = async () => {
-    const dataUser = {
-      "email": inputEmail,
-      "senha": inputPassword
-    }
-    try {
-      await axios.post('/auth/login', dataUser, {
-        withCredentials: true
-      });
-      navigate('/mainpage')
-    } catch (error) {
-      errorMessage('Erro ao fazer login, tente novamente', error.response.data)
-    }
-  }
 
   const handleLogin = async (e) => {
     e.preventDefault()
-      await sendLogin();
-  }
 
-  const goTo = (url) => {
-    navigate(url)
+    if (!inputEmail || !inputPassword) {
+      errorMessage('Por favor, preencha todos os campos');
+      return;
+    }
+
+    const result = await login(inputEmail, inputPassword);
+
+    if (result.success) {
+      navigate('/mainpage');
+    } else {
+      errorMessage('Erro ao fazer login, tente novamente', result.error);
+    }
   }
 
 
@@ -213,7 +205,6 @@ const Login = () => {
           </form>
           <div className='flex flex-col'>
             <div className='flex flex-col md:flex-row justify-center items-center'>
-              <button type='button' onClick={()=> goTo('/register')} className="border-0 text-center text-[var(--color-white)] rounded-2xl text-sm font-text md:text-lg xl:text-xl p-3 bg-none underline cursor-pointer ">Não se registrou?</button>
               <button type='button' onClick={() => resendEmail()} className="border-0 text-center text-[var(--color-white)] rounded-2xl text-sm font-text md:text-lg xl:text-xl p-3 bg-none underline cursor-pointer ">Verificar E-mail</button>
               <button type='button' onClick={()=> redefinePassword()} className="border-0 text-center text-[var(--color-white)] rounded-2xl text-sm font-text md:text-lg xl:text-xl p-3 bg-none underline cursor-pointer ">Redefinir Senha</button>
             </div>

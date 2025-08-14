@@ -10,6 +10,8 @@ import { XMarkIcon } from '@heroicons/react/24/solid';
 import axios from 'axios'
 import HeaderPages from '../components/MainPageComponents/headerPages.jsx'
 import Swal from 'sweetalert2'
+import { useAuth } from '../contexts/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -21,37 +23,52 @@ const MainPage = () => {
 
   const [userName, setUserName] = useState('Usuário')
 
-  const errorMessage = (errorText,error) => {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const errorMessage = (errorText, error) => {
     Swal.fire({
-      title: 'Ocorreu um Erro',
-      text: errorText,
-      icon: 'error',
-      color: 'var(--color-red)',
-      background: 'var(--color-white)',
-      footer: error || String(error),
+      title: errorText,
+      text: error,
+      icon: "error",
       customClass: {
         popup: '!rounded-2xl !p-6 !shadow-xl',
-        confirmButton: '!text-white-500 !bg-red-500 !border-white  '
+        confirmButton: '!text-white-500 !bg-green-400 !border-white  ',
       }
-    })
+    });
   }
 
-  const fetchUsername = async () => {
-    try{
-        const response = await axios.get('/usuario/info', {
-        withCredentials: true
-      })
-        setUserName(response.data.nome)
-      } catch (error){
-        errorMessage('Erro ao contatar o servidor', error.response.data)
+  const handleLogout = async () => {
+    try {
+      const result = await logout();
+      if (result.success) {
+        navigate('/');
+      } else {
+        // Mesmo com erro no servidor, redireciona (estado já foi limpo)
+        navigate('/');
       }
+    } catch (error) {
+      console.error('Erro no logout:', error);
+      navigate('/');
+    }
   }
 
   useEffect(() => {
     AOS.init({ once: false }); // once:true anima só uma vez
   }, []);
 
-  useEffect(()=> {
+  useEffect(() => {
+    const fetchUsername = async () => {
+      try{
+          const response = await axios.get('/usuario/info', {
+          withCredentials: true
+        })
+          setUserName(response.data.nome)
+        } catch (error){
+          errorMessage('Erro ao contatar o servidor', error.response?.data)
+        }
+    }
+
     fetchUsername()
   }, []);
 
@@ -70,7 +87,7 @@ const MainPage = () => {
             </div>
             <div className='h-15 justify-center items-center flex'>
               <button className='h-15 md:h-18 xl:h-28 xl:mt-7 cursor-pointer' onClick={() => setOpenWindow('mainWindow')}>
-                <img src="./iconBranco.png" alt="Logo Pork" className='h-[90%]' />
+                <img src="/iconBranco.png" alt="Logo Pork" className='h-[90%]' />
               </button>
             </div>
           </div>
@@ -107,13 +124,18 @@ const MainPage = () => {
 
               </div>
               <div className='flex flex-col items-center w-full '>
-                <a href="/" className="border-0 text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-3 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] transition-colors duration-400 ease-in-out w-[75%] text-center font-text-alt md:text-2xl xl:text-3xl xl:mb-4 xl:w-[60%] cursor-pointer"><button>Sair</button></a>
+                <button
+                  onClick={handleLogout}
+                  className="border-0 text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-3 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] transition-colors duration-400 ease-in-out w-[75%] text-center font-text-alt md:text-2xl xl:text-3xl xl:mb-4 xl:w-[60%] cursor-pointer"
+                >
+                  Sair
+                </button>
               </div>
             </aside>
           )}
 
         </aside>
-        <div  data-aos="fade-right" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in">
+        <div  data-aos="fade-right" data-aos-delay="300" data-aos-duration="900" data-aos-easing="ease-in">
           {openWindow == 'mainWindow' && <HeaderPages firstLineText={"Bem Vindo,"} secLineText={userName} altText={"Seja bem-vindo ao Pork, seu Cofrinho Digital!"}/>
           || openWindow == 'PlanejamentoEconomico' && <HeaderPages firstLineText={"Planejamento"} secLineText={"Econômico"} altText={"Defina como você vai gerenciar seu dinheiro!"}/>
           || openWindow == 'RegistroGastos' && <HeaderPages firstLineText={"Registro de"} secLineText={"Gastos"} altText={"Organize suas despesas como ninguém!"}/>

@@ -160,7 +160,7 @@ const ChangePassword = () => {
                                     </ul>
                                 </div>
 
-                                <div className='flex flex-col w-full max-w-md space-y-1'>
+                                {/* <div className='flex flex-col w-full max-w-md space-y-1'>
 
                                     <label htmlFor="ConfirmarSenha" className='text-lg md:text-2xl lg:text-3xl xl:text-3xl font-title-alt ml-1 m-2 text-[var(--color-green)]'> Confirmar Senha </label>
                                     <div className='flex flex-row justify-between'>
@@ -182,7 +182,7 @@ const ChangePassword = () => {
                                             <FaEye className="text-gray-400 text-xl" />
                                         )}</button>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                             <button type='submit' className="border-0 text-[var(--color-white)] bg-[var(--color-green)] rounded-2xl text-md font-text md:text-xl xl:text-2xl p-3 hover:bg-[var(--color-white)] hover:text-[var(--color-black)] transition-colors duration-400 ease-in-out">Redefinir Senha</button>
                         </div>

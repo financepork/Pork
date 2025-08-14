@@ -108,7 +108,7 @@ const Register = () => {
       sucessMessage()
       resetInputs()
     } catch (error) {
-      errorMessage(error.response.data)
+      errorMessage(error.response?.data)
     }
 
   }
@@ -138,7 +138,7 @@ const Register = () => {
     <main>
       <Navbar />
       <div
-        className=' bg-[url("/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%]  min-h-screen flex justify-center items-center'>
+        className=' bg-[url("/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%]  min-h-screen flex justify-center items-center lg:p-6 py-4'>
         <form onSubmit={handleRegister}>
           <div className='flex flex-col bg-none shadow-lg 
      p-6 rounded-4xl m-4 space-y-6 xl:space-y-16 max-w-[90%] min-w-[80%]  animate-fade-up animate-duration-1000 animate-delay-100 animate-ease-in'>
@@ -202,7 +202,7 @@ const Register = () => {
                 {erroPassword && <p className='text-red text-sm md:text-md xl:text-lg font-title-alt ml-1 ' >Digite uma senha válida</p>}
                 <p className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 mt-6 text-[var(--color-green)] m-3'>A Senha precisa possuir 
                 </p>
-                 <ul className='space-y-2 m-4 text-sm lg:text-lg list-disc font-title-alt ml-1 text-[var(--color-green)]'>
+                 <ul className='space-y-2 m-4 text-sm  lg:text-lg list-disc font-text-app ml-1 text-[var(--color-green)]'>
                     <li>No Mínimo 8 caracteres</li>
                     <li>No Mínimo 1  letra Maiúscula e 1 letra Minúscula</li>
                     <li>No Mínimo 1  Número</li>

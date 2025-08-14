@@ -7,19 +7,19 @@ const CardApresentacaoEsq = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub
             data-aos-delay="000" 
             data-aos-duration="1500" 
             data-aos-easing="ease-in-out" 
-            className='bg-[var(--color-white)] rounded-full flex p-3 mt-9 h-auto w-[80%] xl:h-[320px]'
+            className='bg-[var(--color-white)] rounded-full flex p-3 mt-9 h-auto w-[95%] md:w-[80%] xl:h-[320px]'
         >
             <div className='flex flex-row items-center w-full'>
                 {/* Texto e ícones */}
                 <div className='flex flex-col justify-center mr-5 space-y-2 md:space-y-4 flex-1'>
-                    <div className='flex flex-col justify-center items-center md:space-y-1'>
+                    <div className='flex flex-col justify-center items-center md:space-y-3'>
                         <h1 className='text-md md:text-3xl xl:text-6xl font-title'>{DevName}</h1>
                         <h2 className='text-sm md:text-xl xl:text-3xl font-text text-[var(--color-green)] ml-1'>{DevStack}</h2>
                     </div>
                     <div className='flex justify-center space-x-2'>
-                        <a href={devInsta}><img src="./instagram.png" alt="Logo Instagram" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
-                        <a href={devGithub}><img src="./github.png" alt="Logo Github" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
-                        <a href={devLinkedin}><img src="./linkedin.png" alt="Logo Linkedin" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
+                        <a href={devInsta}><img src="/instagram.png" alt="Logo Instagram" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
+                        <a href={devGithub}><img src="/github.png" alt="Logo Github" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
+                        <a href={devLinkedin}><img src="/linkedin.png" alt="Logo Linkedin" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
                     </div>
                 </div>
                 
