@@ -6,7 +6,7 @@ import RegistroGastos from '../components/MainPageComponents/RegistroGastos.jsx'
 import DefinirMetas from '../components/MainPageComponents/DefinirMetas.jsx'
 import AOS from 'aos';
 import { useEffect } from 'react';
-import { XMarkIcon } from '@heroicons/react/24/solid';
+import { XMarkIcon } from '@heroicons/react/24/solid'
 import axios from 'axios'
 import HeaderPages from '../components/MainPageComponents/headerPages.jsx'
 import Swal from 'sweetalert2'
