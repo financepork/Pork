@@ -72,16 +72,6 @@ const RegistroGastos = () => {
 
   }
 
-  const calculaGastosTotais = (gastos) => {
-    return gastos.reduce((acumulador, gasto) => {
-      return acumulador += gasto.valor
-    },0);
-  }
-
-  const pegaGastosTotais = (gastosBuscados) => {
-    const totalGastos = calculaGastosTotais(gastosBuscados)
-    setGastosTotais(totalGastos)
-  }
 
   const getInitialValues = async () => {
     setIsLoading(true)
@@ -178,12 +168,12 @@ const RegistroGastos = () => {
             <ul>
                {gastos.map((gasto) => (
               <li key={gasto.id} className='flex flex-row justify-between items-center h-[10%] w-full my-8 md:my-12'>
-                <div className='text-[var(--color-dark-green)] font-text text-lg xl:space-y-2 md:text-2xl xl:text-4xl'>
+                <div className='text-[var(--color-dark-green)] font-text text-lg xl:space-y-2.5 md:text-2xl xl:text-4xl'>
                   <div>
-                    <p>{gasto.descricao}</p> 
+                    <p className='font-title-alt'>{gasto.descricao}</p> 
                   </div>
                   <div>
-                    <p>R$ {gasto.valor}</p>
+                    <p className='text-[var(--color-green)]'>R$ {gasto.valor}</p>
                   </div>       
                 </div>
                 <div className='w-[10%] md:w-[8%] xl:w-[5%]'>
@@ -196,10 +186,6 @@ const RegistroGastos = () => {
             )}
 
             </ul>
-          </div>
-          <div className='flex flex-col gap-3 md:gap-5 xl:gap-6'>
-            <h1 className='text-[var(--color-dark-green)] font-title-alt text-3xl md:text-4xl xl:text-5xl'>Gastos Totais</h1>
-            <p className='text-[var(--color-green)] font-text-app text-2xl ml-1 md:text-3xl xl:text-4xl'>R$ {gastosTotais}</p>
           </div>
         </div>
 

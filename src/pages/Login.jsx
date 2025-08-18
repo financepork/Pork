@@ -23,7 +23,7 @@ const Login = () => {
   
   const msgRedefinePassword = () => {
         Swal.fire({
-      title: "Precisamos do seu E-mail para redefinir sua senha, digite-o abaixo",
+      title: "Digite o E-mail para redefinir a senha",
       input: "text",
       inputAttributes: {
         autocapitalize: "off"

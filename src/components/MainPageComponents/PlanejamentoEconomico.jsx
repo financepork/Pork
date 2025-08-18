@@ -82,7 +82,7 @@ const PlanejamentoEconomico = () => {
         withCredentials: true
       })
       const valorRenda = response.data.valor;
-      setValueRenda(`${valorRenda}`);
+      setValueRenda(`R$${valorRenda}`);
     } catch (error) {
       isLoading(false)
       errorMessage('Erro ao receber informações do servidor, tente novamente', error.response?.data || error?.message || String(error));
@@ -97,7 +97,7 @@ const PlanejamentoEconomico = () => {
       const valorPlan = convertePlan(response.data.categoria);
       const valorEconomia = response.data.valor;
       setValuePlan(valorPlan);
-      setValueEco(valorEconomia);
+      setValueEco(`R$${valorEconomia}`);
     } catch (error) {
       isLoading(false)
       errorMessage('Erro ao receber informações do servidor, tente novamente', error.response?.data || error?.message || String(error));
@@ -191,11 +191,11 @@ const PlanejamentoEconomico = () => {
         <div className='flex p-5 md:p-10 lg:p-12 xl:p-16 xl:w-[60%] lg:w-[60%]  w-full bg-[var(--color-white)] max-h-[81%] rounded-4xl'>
           <div className='flex flex-col space-y-4 lg:space-y-6'>
             <h2 className='text-[var(--color-green)] font-title-app text-3xl md:text-4xl lg:text-5xl leading-relaxed'>Renda Mensal </h2>
-            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>R${valueRenda}</p>
+            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>{valueRenda}</p>
             <h2 className='text-[var(--color-green)] font-title-app text-3xl leading-relaxed  md:text-4xl lg:text-5xl'>Plano Selecionado </h2>
             <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>{valuePlan}</p>
             <h2 className='text-[var(--color-green)] font-title-app text-3xl leading-relaxed  md:text-4xl lg:text-5xl'>Economia Ideal </h2>
-            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>R${valueEco} /Mês</p>
+            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>{valueEco} /Mês</p>
           </div>
         </div>
         <form onSubmit={formaEconomia} className='flex flex-col items-center rounded-t-2xl space-y-6 p-4 '>

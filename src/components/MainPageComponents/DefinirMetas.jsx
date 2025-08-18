@@ -159,12 +159,12 @@ const DefinirMetas = () => {
             <ul>
                {metas.map((meta) => (
               <li key={meta.id} className='flex flex-row justify-between items-center h-[12%] w-full my-6 md:my-12'>
-                <div className='text-[var(--color-dark-green)] font-text text-lg xl:space-y-2 md:text-2xl xl:text-4xl'>
+                <div className='text-[var(--color-dark-green)] font-text text-lg xl:space-y-2.5 md:text-2xl xl:text-4xl'>
                   <div>
-                    <p>{meta.meta}</p> 
+                    <p className='font-title-alt'>{meta.meta}</p> 
                   </div>
                   <div>
-                    <p>R$ {meta.valor},00 ({meta.data})</p>
+                    <p  className='text-[var(--color-green)]'>R$ {meta.valor},00 <span className='text-[var(--color-dark-green)]'>( {meta.data} )</span></p>
                   </div>       
                 </div>
                 <div className='w-[13%] md:w-[10%] lg:w-[8%] xl:w-[5%]'>
