@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Input from '../components/FormsComponents/Input'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import Navbar from '../components/GeneralComponents/Navbar'
+import Footer from '../components/GeneralComponents/Footer'
 import Swal from 'sweetalert2'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios'
@@ -9,7 +9,7 @@ import axios from 'axios'
 
 
 
-const Register = () => {
+const RegisterPage = () => {
 
   const [inputNome, setInputNome] = useState('')
 
@@ -138,7 +138,7 @@ const Register = () => {
     <main>
       <Navbar />
       <div
-        className=' bg-[url("/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%]  min-h-screen flex justify-center items-center lg:p-6 py-4'>
+        className=' bg-[url("public/backgrounds/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%]  min-h-screen flex justify-center items-center lg:p-6 py-4'>
         <form onSubmit={handleRegister}>
           <div className='flex flex-col bg-none shadow-lg 
      p-6 rounded-4xl m-4 space-y-6 xl:space-y-16 max-w-[90%] min-w-[80%]  animate-fade-up animate-duration-1000 animate-delay-100 animate-ease-in'>
@@ -249,4 +249,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default RegisterPage

@@ -19,7 +19,7 @@ body {
     width: 100%;
 }
 
- :root {
+@theme {
     --color-green: oklch(76.5% 0.177 163.223);
     --color-beige: oklch(98.7% 0.022 95.277);
     --color-white: #ffffff;

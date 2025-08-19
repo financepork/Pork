@@ -1,9 +1,9 @@
 
 import { useState } from 'react'
-import MainWindow from '../components/MainPageComponents/MainWindow.jsx'
-import PlanejamentoEconomico from '../components/MainPageComponents/PlanejamentoEconomico.jsx'
-import RegistroGastos from '../components/MainPageComponents/RegistroGastos.jsx'
-import DefinirMetas from '../components/MainPageComponents/DefinirMetas.jsx'
+import MainWindow from '../components/MainPageComponents/MainPageWindows/MainWindow.jsx'
+import PlanejamentoEconomico from '../components/MainPageComponents/MainPageWindows/PlanejamentoEconomico.jsx'
+import RegistroGastos from '../components/MainPageComponents/MainPageWindows/RegistroGastos.jsx'
+import DefinirMetas from '../components/MainPageComponents/MainPageWindows/DefinirMetas.jsx'
 import AOS from 'aos';
 import { useEffect } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid'
@@ -12,7 +12,7 @@ import HeaderPages from '../components/MainPageComponents/headerPages.jsx'
 import Swal from 'sweetalert2'
 import { useAuth } from '../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
-import MeuPerfil from '../components/MainPageComponents/MeuPerfil.jsx'
+
 
 
 
@@ -124,13 +124,7 @@ const MainPage = () => {
                 }}
                   className=' text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer'>Metas de Economia </button>
 
-                  <button onClick={() => {
-                  setOpenWindow('meuPerfil');
-                  setIsOpen(false);
-                }}
-                  className=' text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer'> Meu Perfil </button>
-
-
+                  
               </div>
               <div className='flex flex-col items-center w-full '>
                 <button
@@ -149,7 +143,7 @@ const MainPage = () => {
           || openWindow == 'PlanejamentoEconomico' && <HeaderPages firstLineText={"Planejamento"} secLineText={"Econômico"} altText={"Defina como você vai gerenciar seu dinheiro!"}/>
           || openWindow == 'RegistroGastos' && <HeaderPages firstLineText={"Registro de"} secLineText={"Gastos"} altText={"Organize suas despesas como ninguém!"}/>
           || openWindow == 'DefinirMetas' && <HeaderPages firstLineText={"Metas"} secLineText={"e Objetivos"} altText={"Defina objetivos que incentivem a Economia de dinheiro!"}/>
-          || openWindow == 'meuPerfil' && <HeaderPages firstLineText={"Meu Perfil"} secLineText={""} altText={"Gerencie suas informações pessoais!"}/>}
+          }
         </div>
             
         
@@ -158,8 +152,7 @@ const MainPage = () => {
         {openWindow == 'mainWindow' && <MainWindow setOpenWindow={setOpenWindow} />
           || openWindow == 'PlanejamentoEconomico' && <PlanejamentoEconomico />
           || openWindow == 'RegistroGastos' && <RegistroGastos />
-          || openWindow == 'DefinirMetas' && <DefinirMetas />
-          || openWindow == 'meuPerfil' && <MeuPerfil />}
+          || openWindow == 'DefinirMetas' && <DefinirMetas />}
       </div>
     </main>
   )

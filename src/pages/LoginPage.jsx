@@ -1,6 +1,6 @@
-import Navbar from '../components/Navbar'
-import { useState } from 'react'
-import Footer from '../components/Footer'
+import Navbar from '../components/GeneralComponents/Navbar'
+import { useState, useEffect } from 'react'
+import Footer from '../components/GeneralComponents/Footer'
 import Input from '../components/FormsComponents/Input'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
@@ -10,9 +10,10 @@ import { useAuth } from '../contexts/AuthContext';
 
 
 
-const Login = () => {
+const LoginPage = () => {
 
   const navigate = useNavigate();
+
   const { login } = useAuth();
 
   const [inputEmail, setInputEmail] = useState('')
@@ -20,8 +21,35 @@ const Login = () => {
   const [inputPassword, setInputPassword] = useState('')
 
   const [viewPassword, setViewPassword] = useState(false)
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const loadingMessage = () => {
+      Swal.fire({
+        title: 'Verificando Login...',
+        text: 'Por favor, aguarde.',
+        allowOutsideClick: false,
+        showConfirmButton: false,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+        customClass: {
+          popup: 'custom-swal'
+        }
+      });
+    }
+
+   useEffect(() => {
+      if (isLoading) {
+        loadingMessage()
+      } else {
+        Swal.getPopup() && Swal.getPopup().classList.contains('custom-swal') ? Swal.close() : ''
+      }
+  
+    }, [isLoading])
   
   const msgRedefinePassword = () => {
+
         Swal.fire({
       title: "Digite o E-mail para redefinir a senha",
       input: "text",
@@ -36,7 +64,9 @@ const Login = () => {
         popup: '!rounded-2xl !p-6 !shadow-xl',
         confirmButton: '!text-white-500 !bg-green-400 !border-white  ',
         cancelButton: '!text-white-500 !bg-red-500 !border-white  ',
+
       },
+
       preConfirm: async (email) => {
         try {
           const emailUser = {
@@ -48,13 +78,13 @@ const Login = () => {
           });
 
         } catch (error) {
-          console.error('Erro na requisição:', error);
-          console.error('URL da requisição:', error.config?.url);
+          
           Swal.showValidationMessage(`
     ${error.response?.data || error.message}
       `);
         }
       },
+
       allowOutsideClick: () => !Swal.isLoading()
     }).then((result) => {
       if (result.isConfirmed) {
@@ -66,6 +96,7 @@ const Login = () => {
   }
 
   const msgResendEmail = () => {
+
     Swal.fire({
       title: "Digite o E-mail que deseja Verificar",
       input: "text",
@@ -95,6 +126,7 @@ const Login = () => {
       `);
         }
       },
+
       allowOutsideClick: () => !Swal.isLoading()
     }).then((result) => {
       if (result.isConfirmed) {
@@ -102,6 +134,7 @@ const Login = () => {
           title: `Pronto! Agora cheque o seu E-mail (Verificação expira em 10min)`,
         });
       }
+
     });
   }
 
@@ -133,16 +166,20 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault()
 
+    setIsLoading(true);
+
     if (!inputEmail || !inputPassword) {
       errorMessage('Por favor, preencha todos os campos');
       return;
     }
-
+    
     const result = await login(inputEmail, inputPassword);
 
     if (result.success) {
+      setIsLoading(false);
       navigate('/mainpage');
     } else {
+      setIsLoading(false)
       errorMessage('Erro ao fazer login, tente novamente', result.error);
     }
   }
@@ -151,7 +188,7 @@ const Login = () => {
   return (
     <main>
       <Navbar />
-      <div className=' bg-[url("/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%]  min-h-screen flex justify-center items-center'>
+      <div className=' bg-[url("public/backgrounds/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%]  min-h-screen flex justify-center items-center'>
         <div className='flex flex-col justify-center items-center'>
           <form onSubmit={handleLogin}>
             <div className='flex flex-col bg-none shadow-lg 
@@ -218,4 +255,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default LoginPage

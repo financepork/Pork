@@ -17,9 +17,9 @@ const CardApresentacaoEsq = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub
                         <h2 className='text-sm md:text-xl xl:text-3xl font-text text-[var(--color-green)] ml-1'>{DevStack}</h2>
                     </div>
                     <div className='flex justify-center space-x-2'>
-                        <a href={devInsta}><img src="/instagram.png" alt="Logo Instagram" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
-                        <a href={devGithub}><img src="/github.png" alt="Logo Github" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
-                        <a href={devLinkedin}><img src="/linkedin.png" alt="Logo Linkedin" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
+                        <a href={devInsta}><img src="public/icons/instagram.png" alt="Logo Instagram" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
+                        <a href={devGithub}><img src="public/icons/github.png" alt="Logo Github" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
+                        <a href={devLinkedin}><img src="public/icons/linkedin.png" alt="Logo Linkedin" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
                     </div>
                 </div>
                 

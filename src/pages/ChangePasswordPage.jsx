@@ -1,15 +1,16 @@
-import Navbar from '../components/Navbar'
+import Navbar from '../components/GeneralComponents/Navbar'
 import { useState } from 'react'
-import Footer from '../components/Footer'
+import Footer from '../components/GeneralComponents/Footer'
 import Input from '../components/FormsComponents/Input'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-const ChangePassword = () => {
+const ChangePasswordPage = () => {
 
     const [searchParams] = useSearchParams();
+    
     const token = searchParams.get('token');
 
     const navigate = useNavigate();
@@ -159,30 +160,6 @@ const ChangePassword = () => {
                                         <li>No Mínimo 1  Caractere Especial (Símbolos como: @, #, !...)</li>
                                     </ul>
                                 </div>
-
-                                {/* <div className='flex flex-col w-full max-w-md space-y-1'>
-
-                                    <label htmlFor="ConfirmarSenha" className='text-lg md:text-2xl lg:text-3xl xl:text-3xl font-title-alt ml-1 m-2 text-[var(--color-green)]'> Confirmar Senha </label>
-                                    <div className='flex flex-row justify-between'>
-                                        <Input
-                                            name="senha"
-                                            value={inputConfirmPassword}
-                                            onChange={e => setInputConfirmPassword(e.target.value)}
-                                            placeholder="Digite sua senha"
-                                            type={viewPassword ? 'text' : 'password'}
-                                            required
-                                        />
-                                        <button type='button' className=' inset-y-0 right-0 pr-4 flex items-center cursor-pointer' onClick={(e) => {
-                                            e.preventDefault()
-                                            setViewPassword(!viewPassword)
-                                        }
-                                        }>{viewPassword ? (
-                                            <FaEyeSlash className="text-gray-400 text-xl" />
-                                        ) : (
-                                            <FaEye className="text-gray-400 text-xl" />
-                                        )}</button>
-                                    </div>
-                                </div> */}
                             </div>
                             <button type='submit' className="border-0 text-[var(--color-white)] bg-[var(--color-green)] rounded-2xl text-md font-text md:text-xl xl:text-2xl p-3 hover:bg-[var(--color-white)] hover:text-[var(--color-black)] transition-colors duration-400 ease-in-out">Redefinir Senha</button>
                         </div>
@@ -195,4 +172,4 @@ const ChangePassword = () => {
     )
 }
 
-export default ChangePassword
+export default ChangePasswordPage
