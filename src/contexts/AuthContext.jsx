@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
             "senha": senha
         }
         try {
-            await axios.post('/auth/login', dataUser, {
+            await axios.post('/auth/FazerLogin', dataUser, {
                 withCredentials: true
             });
             setIsAuthenticated(true);

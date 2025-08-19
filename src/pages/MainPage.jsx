@@ -43,14 +43,14 @@ const MainPage = () => {
     try {
       const result = await logout();
       if (result.success) {
-        navigate('/');
+        navigate('/LandingPage');
       } else {
         // Mesmo com erro no servidor, redireciona (estado já foi limpo)
-        navigate('/');
+        navigate('/LandingPage');
       }
     } catch (error) {
       console.error('Erro no logout:', error);
-      navigate('/');
+      navigate('/LandingPage');
     }
   }
 

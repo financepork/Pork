@@ -177,7 +177,7 @@ const LoginPage = () => {
 
     if (result.success) {
       setIsLoading(false);
-      navigate('/mainpage');
+      navigate('/PaginaPrincipal');
     } else {
       setIsLoading(false)
       errorMessage('Erro ao fazer login, tente novamente', result.error);

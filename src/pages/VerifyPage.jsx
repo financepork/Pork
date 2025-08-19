@@ -58,7 +58,7 @@ const VerifyPage = () => {
             await axios.get(`/auth/verificar/${token}`, {
                 withCredentials: true
             })
-            navigate('/login')
+            navigate('/FazerLogin')
         } catch (error) {
             setIsLoading(false)
             errorMessage('Não foi possível enviar o E-mail de verificação', error)

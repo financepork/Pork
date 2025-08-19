@@ -23,12 +23,12 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
     <AuthProvider>
       <Routes>
-        <Route path="/" element={<LandingPage/>}/>
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/verify" element={<VerifyPage />} />
+        <Route path="/LandingPage" element={<LandingPage/>}/>
+        <Route path="/RegistrarConta" element={<RegisterPage />} />
+        <Route path="/FazerLogin" element={<LoginPage />} />
+        <Route path="/VerficarEmail" element={<VerifyPage />} />
 
-        <Route path="/mainpage" 
+        <Route path="/PaginaPrincipal" 
         element={
         <PrivateRoute>
           <MainPage />
