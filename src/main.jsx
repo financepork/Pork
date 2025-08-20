@@ -36,7 +36,7 @@ createRoot(document.getElementById('root')).render(
         
         } />
 
-        <Route path="/redefinir-senha" element={<ChangePasswordPage />} />
+        <Route path="/RedefinirSenha" element={<ChangePasswordPage />} />
       </Routes>
     </AuthProvider>  
     </BrowserRouter>
