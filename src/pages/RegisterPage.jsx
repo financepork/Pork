@@ -138,7 +138,7 @@ const RegisterPage = () => {
     <main>
       <Navbar />
       <div
-        className=' bg-[url("public/backgrounds/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%]  min-h-screen flex justify-center items-center lg:p-6 py-4'>
+        className=' bg-[url("/backgrounds/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%]  min-h-screen flex justify-center items-center lg:p-6 py-4'>
         <form onSubmit={handleRegister}>
           <div className='flex flex-col bg-none shadow-lg 
      p-6 rounded-4xl m-4 space-y-6 xl:space-y-16 max-w-[90%] min-w-[80%]  animate-fade-up animate-duration-1000 animate-delay-100 animate-ease-in'>

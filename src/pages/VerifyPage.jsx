@@ -74,7 +74,7 @@ const VerifyPage = () => {
         <div>
             <Navbar />
             <div
-                className=' bg-[url("public/backgrounds/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%] h-screen flex justify-center items-center '>
+                className=' bg-[url("/backgrounds/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%] h-screen flex justify-center items-center '>
                 <div className='flex flex-col justify-center items-center w-[90%] h-auto space-y-4 md:space-y-6'>
                     <h1 className='text-[var(--color-white)] text-center font-title-alt text-4xl md:text-6xl xl:text-7xl'>Você está quase lá!</h1>
                     <p className='text-[var(--color-green)] font-text-app text-center text-lg md:text-2xl lg:text-4xl'>

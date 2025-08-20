@@ -30,16 +30,15 @@ const CardApresentacaoDir = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub
                     />
                 </div>
 
-                {/* Texto e ícones */}
                 <div className='flex flex-col justify-center ml-5 space-y-2 md:space-y-4 flex-1'>
                     <div className='flex flex-col justify-center items-center md:space-y-3'>
                         <h1 className='text-md md:text-3xl xl:text-6xl font-title'>{DevName}</h1>
                         <h2 className='text-sm md:text-xl xl:text-3xl font-text text-[var(--color-green)] ml-1'>{DevStack}</h2>
                     </div>
                     <div className='flex justify-center space-x-2'>
-                        <a href={devInsta}><img src="public/icons/instagram.png" alt="Logo Instagram" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
-                        <a href={devGithub}><img src="public/icons/github.png" alt="Logo Github" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
-                        <a href={devLinkedin}><img src="public/icons/linkedin.png" alt="Logo Linkedin" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
+                        <a href={devInsta}  target="_blank" rel="noopener noreferrer"><img src="/icons/instagram.png" alt="Logo Instagram" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
+                        <a href={devGithub}  target="_blank" rel="noopener noreferrer"><img src="/icons/github.png" alt="Logo Github" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
+                        <a href={devLinkedin}  target="_blank" rel="noopener noreferrer"><img src="/icons/linkedin.png" alt="Logo Linkedin" className='h-6 md:h-8 xl:h-10 2xl:h-20' /></a>
                     </div>
                 </div>
             </div>

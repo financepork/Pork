@@ -188,7 +188,7 @@ const LoginPage = () => {
   return (
     <main>
       <Navbar />
-      <div className=' bg-[url("public/backgrounds/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%]  min-h-screen flex justify-center items-center'>
+      <div className=' bg-[url("/backgrounds/bg-cofrinho.png")] bg-no-repeat bg-[length:cover] bg-[position:80%_80%]  min-h-screen flex justify-center items-center'>
         <div className='flex flex-col justify-center items-center'>
           <form onSubmit={handleLogin}>
             <div className='flex flex-col bg-none shadow-lg 

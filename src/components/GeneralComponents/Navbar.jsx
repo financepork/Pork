@@ -9,7 +9,7 @@ const Navbar = () => {
     <header className='relative'>
       <nav className='flex justify-between bg-[var(--color-black)] text-[var(--color-white)] w-full h-auto p-3 md:p-4 lg:p-5 xl:p-6 border-nav xl:space-x-8 lg:px-12 xl:px-24  '>
         <a href='/' className='flex justify-center items-center text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl font-title space-x-1'>
-          <img src="public/icons/icon.png" alt="Icone Pork" className='h-9 md:h-12 xl:h-15 object-cover align-middle' />
+          <img src="/icons/icon.png" alt="Icone Pork" className='h-9 md:h-12 xl:h-15 object-cover align-middle' />
           <h1 className='align-middle'>Pork</h1>
         </a>
         <div className='hidden md:flex text-sm xl:text-lg 2xl:text-2xl text-[var(--color-white)] justify-center items-center space-x-3 font-text'>
