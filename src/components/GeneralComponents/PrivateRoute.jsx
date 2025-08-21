@@ -12,7 +12,7 @@ const PrivateRoute = ({ children }) => {
     }
 
     if (!isAuthenticated) {
-        return <Navigate to="/FazerLogin" replace state={{ from: location }} />
+        return <Navigate to="/fazer-login" replace state={{ from: location }} />
     }
     
     return children;

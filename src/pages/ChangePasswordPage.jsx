@@ -55,7 +55,7 @@ const ChangePasswordPage = () => {
             icon: 'success',
             confirmButtonText: 'OK'
         }).then(() => {
-            navigate('/FazerLogin');
+            navigate('/fazer-login');
         });
     }
 

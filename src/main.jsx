@@ -24,11 +24,11 @@ createRoot(document.getElementById('root')).render(
     <AuthProvider>
       <Routes>
         <Route path="/" element={<LandingPage/>}/>
-        <Route path="/RegistrarConta" element={<RegisterPage />} />
-        <Route path="/FazerLogin" element={<LoginPage />} />
-        <Route path="/VerficarEmail" element={<VerifyPage />} />
+        <Route path="/registrar-conta" element={<RegisterPage />} />
+        <Route path="/fazer-login" element={<LoginPage />} />
+        <Route path="/verificar-email" element={<VerifyPage />} />
 
-        <Route path="/PaginaPrincipal" 
+        <Route path="/pagina-principal" 
         element={
         <PrivateRoute>
           <MainPage />
@@ -36,7 +36,7 @@ createRoot(document.getElementById('root')).render(
         
         } />
 
-        <Route path="/RedefinirSenha" element={<ChangePasswordPage />} />
+        <Route path="/redefinir-senha" element={<ChangePasswordPage />} />
       </Routes>
     </AuthProvider>  
     </BrowserRouter>

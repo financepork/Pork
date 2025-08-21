@@ -10,7 +10,7 @@ function CarouselLanding() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 2,
     slidesToScroll: 1,
      centerPadding: "80px",
 

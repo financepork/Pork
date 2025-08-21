@@ -41,7 +41,7 @@ const LandingPage = () => {
           </div>
           <div
             className='flex space-x-3 font-text items-center h-auto'>
-            <a href="/RegistrarConta" className='bg-[var(--color-green)] border-0 p-2 font-text hover:text-[var(--color-green)] hover:bg-[var(--color-white)] shadow-md 
+            <a href="/registrar-conta" className='bg-[var(--color-green)] border-0 p-2 font-text hover:text-[var(--color-green)] hover:bg-[var(--color-white)] shadow-md 
           rounded-2xl transition-colors duration-400 ease-in-out w-[30%] xl:w-[15%] flex justify-center items-center text-md md:text-md xl:text-2xl min-h-13 lg:min-h-16'><button>Comece Já</button></a>
             <a href="https://github.com/dev-Chaves/Pork" target="_blank" rel="noopener noreferrer" className='border-3 rounded-2xl p-2 hover:bg-[var(--color-green)] hover:border-[var(--color-green)] text-[var(--color-white)] font-text shadow-md transition-colors duration-400 ease-in-out w-[30%] xl:w-[15%] xl:h-[100%] flex justify-center items-center text-md md:text-md xl:text-2xl min-h-13 lg:min-h-16 '>Repositório</a>
 
@@ -99,7 +99,7 @@ const LandingPage = () => {
           <div className='text-[var(--color-white)] flex flex-col justify-center space-y-3 md:space-y-4 xl:space-y-6  md:m-4 2xl:m-6'>
             <h2 className='text-center font-title-alt text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>A Economia deixou de ser um desafio </h2>
             <p className='text-center font-title-alt text-lg md:text-xl lg:text-2xl xl:text-3xl'>Apenas alguns cliques, sua vida financeira de cara nova</p>
-            <a href="/RegistrarConta" target="_blank" rel="noopener noreferrer" className='border-3 rounded-2xl p-2 hover:bg-[var(--color-white)] hover:border-transparent hover:text-[var(--color-green)] text-[var(--color-white)] font-text shadow-md transition-all duration-500 ease-in-out w-[60%] xl:w-[50%] 2xl:w-[40%] xl:h-[100%] flex justify-center items-center text-md md:text-md xl:text-2xl md:min-h-15 lg:text-lg self-center text-center'>Venha economizar</a>
+            <a href="/registrar-conta" target="_blank" rel="noopener noreferrer" className='border-3 rounded-2xl p-2 hover:bg-[var(--color-white)] hover:border-transparent hover:text-[var(--color-green)] text-[var(--color-white)] font-text shadow-md transition-all duration-500 ease-in-out w-[60%] xl:w-[50%] 2xl:w-[40%] xl:h-[100%] flex justify-center items-center text-md md:text-md xl:text-2xl md:min-h-15 lg:text-lg self-center text-center'>Venha economizar</a>
           </div>
           <div className=' md:w-[100%] xl:w-[100%] 2xl:w-[50%] h-full  m-4 flex justify-center items-center '>
             <img src="/svg/desafio.jpg" alt="Foto Economia" className='w-full max-w-[99%] xl:max-w-[80%] h-auto object-contain mx-auto rounded-3xl shadow-2xl' loading="lazy" />
