@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext' 
+import { useAuth } from '../../contexts/AuthContext' 
 import { useLocation } from 'react-router-dom'
 
 const PrivateRoute = ({ children }) => {
@@ -12,7 +12,7 @@ const PrivateRoute = ({ children }) => {
     }
 
     if (!isAuthenticated) {
-        return <Navigate to="/login" replace state={{ from: location }} />
+        return <Navigate to="/fazer-login" replace state={{ from: location }} />
     }
     
     return children;

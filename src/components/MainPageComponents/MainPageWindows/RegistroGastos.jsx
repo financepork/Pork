@@ -12,8 +12,6 @@ const RegistroGastos = () => {
 
   const [gastos, setGastos] = useState([])
 
-  const [gastosTotais ,setGastosTotais] = useState('')
-
   const [isLoading, setIsLoading] = useState(false)
 
   const loadingMessage = () => {
@@ -72,21 +70,10 @@ const RegistroGastos = () => {
 
   }
 
-  const calculaGastosTotais = (gastos) => {
-    return gastos.reduce((acumulador, gasto) => {
-      return acumulador += gasto.valor
-    },0);
-  }
-
-  const pegaGastosTotais = (gastosBuscados) => {
-    const totalGastos = calculaGastosTotais(gastosBuscados)
-    setGastosTotais(totalGastos)
-  }
 
   const getInitialValues = async () => {
     setIsLoading(true)
-    const gastos = await fetchGastos()
-    pegaGastosTotais(gastos)
+    await fetchGastos()
     setIsLoading(false)
   }
 
@@ -125,8 +112,7 @@ const RegistroGastos = () => {
       if (inputDescGasto === '' || inputValorGasto === '') return errorMessage('Por favor, preencha todos os campos', 'informações incompletas')
       setIsLoading(true)
       await sendGasto();
-      const gastosPegos = await fetchGastos();
-      pegaGastosTotais(gastosPegos)
+      await fetchGastos();
       limpaInputs();
     } finally {
       setIsLoading(false)
@@ -141,8 +127,7 @@ const RegistroGastos = () => {
       await axios.delete(`/despesas/apagar-despesa/${id}`, {
         withCredentials: true
       })
-      const gastosPegos = await fetchGastos()
-      pegaGastosTotais(gastosPegos)
+     await fetchGastos()
     } catch (error) {
       setIsLoading(false)
       errorMessage('Erro ao remover gasto, tente novamente', error.response?.data || error?.message || String(error));
@@ -161,7 +146,7 @@ const RegistroGastos = () => {
         
         <div className='bg-[var(--color-white)] w-full md:w-[80%] xl:w-[60%] h-full flex items place-self-auto flex-col p-7 xl:p-12 min-h-[70%] rounded-xl gap-8 xl:gap-16'>
           <div className='flex items-center w-full h-full space-x-1.5 md:space-x-2 xl:space-x-4'>
-            <img src="../registroGastos.png" alt="Icone registro de gastos" className='w-[17%] md:w-[15%] xl:w-[12%] 2xl:w-[10%]' />
+            <img src="/icons/registroGastos.png" alt="Icone registro de gastos" className='w-[17%] md:w-[15%] xl:w-[12%] 2xl:w-[10%]' />
             <h1 className='font-text-app text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl text-[var(--color-dark-green)]'>Registro de Gastos</h1>
           </div>
           <form action="submit" onSubmit={listarGasto} className='flex flex-col gap-4 md:gap-6'>
@@ -178,12 +163,12 @@ const RegistroGastos = () => {
             <ul>
                {gastos.map((gasto) => (
               <li key={gasto.id} className='flex flex-row justify-between items-center h-[10%] w-full my-8 md:my-12'>
-                <div className='text-[var(--color-dark-green)] font-text text-lg xl:space-y-2 md:text-2xl xl:text-4xl'>
+                <div className='text-[var(--color-dark-green)] font-text text-xl xl:space-y-2.5 md:text-3xl xl:text-4xl'>
                   <div>
-                    <p>{gasto.descricao}</p> 
+                    <p className='font-title-alt'>{gasto.descricao}</p> 
                   </div>
                   <div>
-                    <p>R$ {gasto.valor}</p>
+                    <p className='text-[var(--color-green)]'>R$ {gasto.valor}</p>
                   </div>       
                 </div>
                 <div className='w-[10%] md:w-[8%] xl:w-[5%]'>
@@ -196,10 +181,6 @@ const RegistroGastos = () => {
             )}
 
             </ul>
-          </div>
-          <div className='flex flex-col gap-3 md:gap-5 xl:gap-6'>
-            <h1 className='text-[var(--color-dark-green)] font-title-alt text-3xl md:text-4xl xl:text-5xl'>Gastos Totais</h1>
-            <p className='text-[var(--color-green)] font-text-app text-2xl ml-1 md:text-3xl xl:text-4xl'>R$ {gastosTotais}</p>
           </div>
         </div>
 

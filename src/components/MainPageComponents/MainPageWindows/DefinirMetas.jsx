@@ -141,7 +141,7 @@ const DefinirMetas = () => {
         
        <div className='bg-[var(--color-white)] w-full md:w-[80%] xl:w-[60%] h-full flex items place-self-auto flex-col p-7 xl:p-12 min-h-[70%] rounded-xl gap-8 xl:gap-16'>
           <div className='flex items-center w-full h-full space-x-2 md:space-x-2 xl:space-x-4'>
-            <img src="../metas.png" alt="Icone registro de gastos" className='w-[17%] md:w-[15%] xl:w-[12%] 2xl:w-[10%]' />
+            <img src="/icons/metas.png" alt="Icone registro de gastos" className='w-[17%] md:w-[15%] xl:w-[12%] 2xl:w-[10%]' />
             <h1 className='font-text-app text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl text-[var(--color-dark-green)]'>Definição de Metas</h1>
           </div>
           <form action="submit" onSubmit={registraMeta} className='flex flex-col gap-4 md:gap-6'>
@@ -159,12 +159,12 @@ const DefinirMetas = () => {
             <ul>
                {metas.map((meta) => (
               <li key={meta.id} className='flex flex-row justify-between items-center h-[12%] w-full my-6 md:my-12'>
-                <div className='text-[var(--color-dark-green)] font-text text-lg xl:space-y-2 md:text-2xl xl:text-4xl'>
+                <div className='text-[var(--color-dark-green)] font-text text-lg xl:space-y-2.5 md:text-2xl xl:text-4xl'>
                   <div>
-                    <p>{meta.meta}</p> 
+                    <p className='font-title-alt'>{meta.meta}</p> 
                   </div>
                   <div>
-                    <p>R$ {meta.valor},00 ({meta.data})</p>
+                    <p  className='text-[var(--color-green)]'>R$ {meta.valor},00 <span className='text-[var(--color-dark-green)]'>( {meta.data} )</span></p>
                   </div>       
                 </div>
                 <div className='w-[13%] md:w-[10%] lg:w-[8%] xl:w-[5%]'>

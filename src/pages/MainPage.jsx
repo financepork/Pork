@@ -1,17 +1,18 @@
 
 import { useState } from 'react'
-import MainWindow from '../components/MainPageComponents/MainWindow.jsx'
-import PlanejamentoEconomico from '../components/MainPageComponents/PlanejamentoEconomico.jsx'
-import RegistroGastos from '../components/MainPageComponents/RegistroGastos.jsx'
-import DefinirMetas from '../components/MainPageComponents/DefinirMetas.jsx'
+import MainWindow from '../components/MainPageComponents/MainPageWindows/MainWindow.jsx'
+import PlanejamentoEconomico from '../components/MainPageComponents/MainPageWindows/PlanejamentoEconomico.jsx'
+import RegistroGastos from '../components/MainPageComponents/MainPageWindows/RegistroGastos.jsx'
+import DefinirMetas from '../components/MainPageComponents/MainPageWindows/DefinirMetas.jsx'
 import AOS from 'aos';
 import { useEffect } from 'react';
-import { XMarkIcon } from '@heroicons/react/24/solid';
+import { XMarkIcon } from '@heroicons/react/24/solid'
 import axios from 'axios'
 import HeaderPages from '../components/MainPageComponents/headerPages.jsx'
 import Swal from 'sweetalert2'
 import { useAuth } from '../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
+
 
 
 
@@ -73,6 +74,7 @@ const MainPage = () => {
   }, []);
 
   return (
+
     <main>
       <header className='h-max-screen overflow-x-hidden bg-gradient-to-tr from-[var(--color-green)] to-[var(--color-dark-green)] rounded-b-2xl '>
         <aside className=''>
@@ -122,6 +124,7 @@ const MainPage = () => {
                 }}
                   className=' text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer'>Metas de Economia </button>
 
+                  
               </div>
               <div className='flex flex-col items-center w-full '>
                 <button
@@ -139,17 +142,18 @@ const MainPage = () => {
           {openWindow == 'mainWindow' && <HeaderPages firstLineText={"Bem Vindo,"} secLineText={userName} altText={"Seja bem-vindo ao Pork, seu Cofrinho Digital!"}/>
           || openWindow == 'PlanejamentoEconomico' && <HeaderPages firstLineText={"Planejamento"} secLineText={"Econômico"} altText={"Defina como você vai gerenciar seu dinheiro!"}/>
           || openWindow == 'RegistroGastos' && <HeaderPages firstLineText={"Registro de"} secLineText={"Gastos"} altText={"Organize suas despesas como ninguém!"}/>
-          || openWindow == 'DefinirMetas' && <HeaderPages firstLineText={"Metas"} secLineText={"e Objetivos"} altText={"Defina objetivos que incentivem a Economia de dinheiro!"}/> }
+          || openWindow == 'DefinirMetas' && <HeaderPages firstLineText={"Metas"} secLineText={"e Objetivos"} altText={"Defina objetivos que incentivem a Economia de dinheiro!"}/>
+          }
         </div>
             
         
       </header>
-      <main className=' min-h-screen h-auto '>
+      <div className=' min-h-screen h-auto '>
         {openWindow == 'mainWindow' && <MainWindow setOpenWindow={setOpenWindow} />
           || openWindow == 'PlanejamentoEconomico' && <PlanejamentoEconomico />
           || openWindow == 'RegistroGastos' && <RegistroGastos />
           || openWindow == 'DefinirMetas' && <DefinirMetas />}
-      </main>
+      </div>
     </main>
   )
 }
