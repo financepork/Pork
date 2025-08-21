@@ -28,7 +28,7 @@ const CardApresentacaoEsq = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub
                         src={DevImgSrc} 
                         alt="Foto Desenvolvedor" 
                         className='absolute inset-0 w-full h-full rounded-full object-cover border-2 border-[var(--color-green)]'
-                        loading="lazy"
+    
                         style={{
                             WebkitMaskImage: '-webkit-radial-gradient(white, black)' 
                         }}

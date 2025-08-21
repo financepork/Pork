@@ -132,6 +132,11 @@ const LoginPage = () => {
       if (result.isConfirmed) {
         Swal.fire({
           title: `Pronto! Agora cheque o seu E-mail (Verificação expira em 10min)`,
+           customClass: {
+        popup: '!rounded-2xl !p-6 !shadow-xl',
+        confirmButton: '!text-white-500 !bg-green-400 !border-white  ',
+        cancelButton: '!text-white-500 !bg-red-500 !border-white  ',
+      }
         });
       }
 

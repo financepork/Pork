@@ -62,7 +62,7 @@ const LandingPage = () => {
       <section className='bg-[var(--color-white)] h-auto w-full p-8 lg:p-12 '>
         <div className='flex flex-col md:flex-row justify-center 2xl:justify-around gap-3 lg:gap-4 xl:gap-5 2xl:gap-5  items-center h-auto w-full md:'>
           <div className=' md:w-[150%] xl:w-[100%] 2xl:w-[50%] h-full  m-4 flex justify-center items-center '>
-            <img src="/svg/economia.jpg" alt="Foto Economia" loading="lazy" className='w-full max-w-[99%] h-auto object-contain mx-auto rounded-3xl shadow-2xl' />
+            <img src="/svg/economia.jpg" alt="Foto Economia"  className='w-full max-w-[99%] h-auto object-contain mx-auto rounded-3xl shadow-2xl' />
           </div>
           <div className='text-[var(--color-green)] flex flex-col justify-center space-y-3 md:space-y-4 xl:space-y-6 md:m-4 2xl:m-12'>
             <h2 className='text-left font-title-alt text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>Economia de Dinheiro</h2>
@@ -78,14 +78,14 @@ const LandingPage = () => {
             <p className='text-left font-text-alt text-lg md:text-xl lg:text-2xl xl:text-3xl'> Personalize metas de acordo com os seus sonhos, monitore seus ganhos e despesas de uma forma que faça sentido. Tudo foi pensado para se adaptar a você.</p>
           </div>
           <div className=' md:w-[150%] xl:w-[100%] 2xl:w-[50%] h-full  m-4 flex justify-center items-center '>
-            <img src="/svg/experiencia.jpg" alt="Foto Economia" className='w-full max-w-[99%] h-auto object-contain mx-auto rounded-3xl shadow-2xl' loading="lazy" />
+            <img src="/svg/experiencia.jpg" alt="Foto Economia" className='w-full max-w-[99%] h-auto object-contain mx-auto rounded-3xl shadow-2xl' />
           </div>
         </div>
       </section>
       <section className='bg-[var(--color-chumbo)] h-auto w-full p-8 lg:p-12 '>
         <div className='flex flex-col md:flex-row justify-center 2xl:justify-around gap-3 lg:gap-4 xl:gap-5 2xl:gap-5  items-center h-auto w-full md:'>
           <div className=' md:w-[150%] xl:w-[100%] 2xl:w-[50%] h-full  m-4 flex justify-center items-center '>
-            <img src="/svg/organizacao.jpg" alt="Foto Economia" className='w-full max-w-[99%] h-auto object-contain mx-auto rounded-3xl shadow-2xl' loading="lazy"/>
+            <img src="/svg/organizacao.jpg" alt="Foto Economia" className='w-full max-w-[99%] h-auto object-contain mx-auto rounded-3xl shadow-2xl' />
           </div>
           <div className='text-[var(--color-white)] flex flex-col justify-center space-y-3 md:space-y-4 xl:space-y-6 md:m-4 2xl:m-12'>
             <h2 className='text-left font-title-alt text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>Organização Financeira</h2>
@@ -102,7 +102,7 @@ const LandingPage = () => {
             <a href="/registrar-conta" target="_blank" rel="noopener noreferrer" className='border-3 rounded-2xl p-2 hover:bg-[var(--color-white)] hover:border-transparent hover:text-[var(--color-green)] text-[var(--color-white)] font-text shadow-md transition-all duration-500 ease-in-out w-[60%] xl:w-[50%] 2xl:w-[40%] xl:h-[100%] flex justify-center items-center text-md md:text-md xl:text-2xl md:min-h-15 lg:text-lg self-center text-center'>Venha economizar</a>
           </div>
           <div className=' md:w-[100%] xl:w-[100%] 2xl:w-[50%] h-full  m-4 flex justify-center items-center '>
-            <img src="/svg/desafio.jpg" alt="Foto Economia" className='w-full max-w-[99%] xl:max-w-[80%] h-auto object-contain mx-auto rounded-3xl shadow-2xl' loading="lazy" />
+            <img src="/svg/desafio.jpg" alt="Foto Economia" className='w-full max-w-[99%] xl:max-w-[80%] h-auto object-contain mx-auto rounded-3xl shadow-2xl'  />
           </div>
         </div>
       </section>
