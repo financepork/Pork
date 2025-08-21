@@ -22,7 +22,6 @@ const CardApresentacaoDir = ({ DevName, DevStack, DevImgSrc, devInsta, devGithub
                     <img 
                         src={DevImgSrc} 
                         alt="Foto Desenvolvedor" 
-                        loading="lazy"
                         className='absolute inset-0 w-full h-full rounded-full object-cover border-2 border-[var(--color-green)]'
                         style={{
                             WebkitMaskImage: '-webkit-radial-gradient(white, black)' // Corrige border-radius no Safari
