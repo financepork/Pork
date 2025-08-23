@@ -9,13 +9,14 @@ import { useSearchParams } from 'react-router-dom'
 
 
 const VerifyPage = () => {
+  
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
 
   const loadingMessage = () => {
     Swal.fire({
-      title: 'Carregando Dados...',
+      title: 'Verificando Conta...',
       text: 'Por favor, aguarde.',
       allowOutsideClick: false,
       showConfirmButton: false,

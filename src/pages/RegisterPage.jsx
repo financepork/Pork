@@ -60,7 +60,7 @@ const RegisterPage = () => {
       iconColor: 'var(--color-white)',
       customClass: {
         popup: '!rounded-2xl !p-6 !shadow-xl',
-        confirmButton: '!text-green-500 !bg-white !border-white  '
+        confirmButton: '!text-green-500 !bg-white !border-none  '
       }
     })
   }
