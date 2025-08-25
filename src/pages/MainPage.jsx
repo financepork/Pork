@@ -89,13 +89,13 @@ const MainPage = () => {
             </div>
             <div className='h-15 justify-center items-center flex'>
               <button className='h-15 md:h-18 xl:h-28 xl:mt-7 cursor-pointer' onClick={() => setOpenWindow('mainWindow')}>
-                <img src="/iconBranco.png" alt="Logo Pork" className='h-[90%]' />
+                <img src="icons/iconBranco.png" alt="Logo Pork" className='h-[90%]' />
               </button>
             </div>
           </div>
 
           {isOpen && (
-            <aside data-aos="fade-right" data-aos-delay="200" data-aos-duration="800" data-aos-easing="ease-in-out" className='top-0 fixed w-[45%] md:w-[30%] h-full bg-nav-app text-white font-title-alt flex flex-col items-center space-y-3 py-4 shadow-md z-1  transition-all duration-300 ease-out justify-between'>
+            <aside data-aos="fade-right" data-aos-delay="200" data-aos-duration="800" data-aos-easing="ease-in-out" className='top-0 fixed w-[65%] md:w-[60%] lg:w-[35%] h-full bg-nav-app text-white font-title-alt flex flex-col items-center space-y-3 py-4 shadow-md z-1  transition-all duration-300 ease-out justify-between'>
               <div className='flex flex-col items-center justify-center mt-3.5'>
                 <button className={`${isOpen ? '' : 'hidden'} text-[var(--color-white)] flex flex-col justify-center items-center`} onClick={() => setIsOpen(false)}>
                   <XMarkIcon className="h-10 md:h-15 w-10 md:w-15  text-white cursor-pointer" />

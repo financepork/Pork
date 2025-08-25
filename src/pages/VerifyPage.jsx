@@ -53,18 +53,41 @@ const VerifyPage = () => {
     })
   }
 
+  const sucessMessage = () => {
+      Swal.fire({
+        title: 'Verificação completa!',
+        text: 'Agora você já pode fazer login',
+        icon: 'success',
+        color: 'var(--color-white)',
+        background: 'var(--color-green)',
+        confirmButtonText: 'Concluir',
+        iconColor: 'var(--color-white)',
+        customClass: {
+          popup: '!rounded-2xl !p-6 !shadow-xl',
+          confirmButton: '!text-green-500 !bg-white !border-none  '
+        }
+      }).then((result) => {
+        if (result.isConfirmed) navigate('/fazer-login');
+      })
+    }
+
   const [searchParams] = useSearchParams();
 
   const token = searchParams.get('token');
 
   const handleVerify = async () => {
 
+    if (!token) {
+            errorMessage('Token não encontrado na URL');
+            return;
+        }
+
     setIsLoading(true)
     try {
       await axios.get(`/auth/verificar?token=${token}`, {
         withCredentials: true
       })
-      navigate('/fazer-login')
+      sucessMessage()
     } catch (error) {
       setIsLoading(false)
       errorMessage('Não foi possível enviar o E-mail de verificação', error)

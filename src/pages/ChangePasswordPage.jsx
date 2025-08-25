@@ -54,9 +54,9 @@ const ChangePasswordPage = () => {
             text: 'Senha redefinida com sucesso!',
             icon: 'success',
             confirmButtonText: 'OK'
-        }).then(() => {
-            navigate('/fazer-login');
-        });
+        }).then((result) => {
+        if (result.isConfirmed) navigate('/fazer-login');
+      });
     }
 
     const handleSubmit = async (e) => {
