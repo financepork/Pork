@@ -15,7 +15,7 @@ import LandingPage from './pages/LandingPage.jsx'
 
 
 axios.defaults.baseURL = 'https://api.financepork.site';
-axios.defaults.withCredentials = true; // Configuração global para enviar cookies
+axios.defaults.withCredentials = true;  
 
 
 createRoot(document.getElementById('root')).render(
