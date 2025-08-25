@@ -11,6 +11,7 @@ import ChangePasswordPage from './pages/ChangePasswordPage.jsx'
 import PrivateRoute from './components/GeneralComponents/PrivateRoute.jsx'
 import axios from 'axios'
 import './index.css'
+import LandingPage from './pages/LandingPage.jsx'
 
 
 axios.defaults.baseURL = 'https://api.financepork.site';
