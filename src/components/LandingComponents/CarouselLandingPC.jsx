@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,7 +10,7 @@ function CarouselLandingMobile() {
   dots: true,
   infinite: true,
   speed: 500,
-  slidesToShow: 1, // padrão para telas grandes
+  slidesToShow: 2, // padrão para telas grandes
   slidesToScroll: 1,
   centerPadding: "80px",
   responsive: [
@@ -55,7 +55,7 @@ function CarouselLandingMobile() {
 
   return (
     <div className="py-10 w-full h-full m-4 mx-auto max-w-carousel ">
-      <Slider ref={sliderRef} {...settings}>
+      <Slider {...settings}>
         <div className="px-7 lg:p-10 xl:px-0">
           <CardCarousel titleText="Plano de Economia" imgSrc='/icons/3dIcons/planEco3d.png' contentText='Faça da economia parte de sua rotina, com a ajuda dos nossos planos personalizados ' />
         </div>
