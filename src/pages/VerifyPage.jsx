@@ -56,8 +56,7 @@ const VerifyPage = () => {
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token');
 
-  const handleVerify = async (e) => {
-    e.preventDefault()
+  const handleVerify = async () => {
     setIsLoading(true)
     try {
       await axios.get(`/auth/verificar/${token}`, {
@@ -85,7 +84,7 @@ const VerifyPage = () => {
           <p className='text-[var(--color-green)] font-text-app text-center text-lg md:text-2xl lg:text-4xl'>
             Só precisamos verificar seu E-mail
           </p>
-          <button onClick={e => handleVerify()} className='bg-[var(--color-green)] border-0 p-2 lg:p-4 font-text-app hover:text-[var(--color-green)] hover:bg-[var(--color-white)] shadow-md 
+          <button onClick={() => handleVerify()} className='bg-[var(--color-green)] border-0 p-2 lg:p-4 font-text-app hover:text-[var(--color-green)] hover:bg-[var(--color-white)] shadow-md 
                     rounded-2xl transition-colors duration-400 ease-in-out w-[50%] xl:w-[25%] flex justify-center items-center text-md md:text-3xl xl:text-3xl text-[var(--color-white)] '>Verificar</button>
 
         </div>
