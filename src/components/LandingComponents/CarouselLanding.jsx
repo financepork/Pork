@@ -55,7 +55,7 @@ function CarouselLandingMobile() {
 
   return (
     <div className="py-10 w-full h-full m-4 mx-auto max-w-carousel ">
-      <Slider ref={sliderRef} {...settings}>
+      <Slider  {...settings}>
         <div className="px-7 lg:p-10 xl:px-0">
           <CardCarousel titleText="Plano de Economia" imgSrc='/icons/3dIcons/planEco3d.png' contentText='Faça da economia parte de sua rotina, com a ajuda dos nossos planos personalizados ' />
         </div>
