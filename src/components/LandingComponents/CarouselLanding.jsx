@@ -10,9 +10,9 @@ function CarouselLanding() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 1,
-     centerPadding: "80px",
+     centerPadding: "20px",
 
     responsive: [
       {
@@ -33,7 +33,7 @@ function CarouselLanding() {
           slidesToScroll: 1,
           initialSlide: 1,
           centerMode: true,
-          centerPadding: "80px",
+          centerPadding: "60px",
         },
       },
       {
@@ -43,7 +43,7 @@ function CarouselLanding() {
           slidesToScroll: 1,
           initialSlide: 1,
           centerMode: true,
-          centerPadding: "60px",
+          centerPadding: "50px",
         },
       },
       {
@@ -53,7 +53,7 @@ function CarouselLanding() {
           slidesToScroll: 1,
           initialSlide: 1,
           centerMode: true,
-          centerPadding: "100px"
+          centerPadding: "100px" 
         },
       },
       {
