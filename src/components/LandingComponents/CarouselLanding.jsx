@@ -8,66 +8,55 @@ function CarouselLanding() {
 
   const sliderRef = useRef(null);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (sliderRef.current) {
-        sliderRef.current.slickGoTo(0); // força o recalculo
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-
   const settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 2, // padrão para telas grandes
-  slidesToScroll: 1,
-  centerPadding: "80px",
-  responsive: [
-    {
-      breakpoint: 1440,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        centerMode: true,
-        centerPadding: "100px"
-      }
-    },
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        centerMode: true,
-        centerPadding: "50px"
-      }
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        centerMode: true,
-        centerPadding: "60px"
-      }
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        centerMode: true,
-        centerPadding: "20px"
-      }
-    }
-  ]
-}
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2, // padrão para desktop
+    slidesToScroll: 1,
+    centerPadding: "80px",
+    responsive: [
+      {
+        breakpoint: 1440,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: true,
+          centerPadding: "100px"
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: true,
+          centerPadding: "50px"
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: true,
+          centerPadding: "40px"
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: true,
+          centerPadding: "20px"
+        },
+      },
+    ]
+  };
 
   return (
-    <div className="py-10 w-full h-full m-4 mx-auto max-w-carousel ">
+    <div className="py-10 w-full m-4 mx-auto">
       <Slider ref={sliderRef} {...settings}>
         <div className="px-7 lg:p-10 xl:px-0">
           <CardCarousel titleText="Plano de Economia" imgSrc='/icons/3dIcons/planEco3d.png' contentText='Faça da economia parte de sua rotina, com a ajuda dos nossos planos personalizados ' />
@@ -82,5 +71,4 @@ function CarouselLanding() {
     </div>
   );
 }
-
 export default CarouselLanding;
