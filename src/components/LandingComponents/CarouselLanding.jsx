@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CardCarousel from "./CardCarousel";
 
+
 function CarouselLandingMobile() {
 
   const settings = {
@@ -54,7 +55,7 @@ function CarouselLandingMobile() {
 }
 
   return (
-    <div className="py-10 w-full h-full m-4 mx-auto max-w-carousel ">
+    <div className="py-10 w-full m-4 mx-auto">
       <Slider ref={sliderRef} {...settings}>
         <div className="px-7 lg:p-10 xl:px-0">
           <CardCarousel titleText="Plano de Economia" imgSrc='/icons/3dIcons/planEco3d.png' contentText='Faça da economia parte de sua rotina, com a ajuda dos nossos planos personalizados ' />
@@ -70,4 +71,6 @@ function CarouselLandingMobile() {
   );
 }
 
+
 export default CarouselLandingMobile;
+
