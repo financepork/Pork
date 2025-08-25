@@ -173,7 +173,7 @@ const RegistroGastos = () => {
                 </div>
                 <div className='w-[10%] md:w-[8%] xl:w-[5%]'>
                   <button onClick={() => deleteGasto(gasto.id)} className='w-full h-full cursor-pointer'>
-                  <img src="../lixeira.png" alt="Icone Lixeira" className='h-[100%] w-[100%] ' />
+                  <img src="icons/lixeira.png" alt="Icone Lixeira" className='h-[100%] w-[100%] ' />
                   </button>
                 </div>
               </li>

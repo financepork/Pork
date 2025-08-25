@@ -59,6 +59,11 @@ const VerifyPage = () => {
 
   const handleVerify = async () => {
 
+    if (!token) {
+            errorMessage('Token não encontrado na URL');
+            return;
+        }
+
     setIsLoading(true)
     try {
       await axios.get(`/auth/verificar?token=${token}`, {

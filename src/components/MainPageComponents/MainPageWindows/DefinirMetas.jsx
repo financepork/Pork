@@ -169,7 +169,7 @@ const DefinirMetas = () => {
                 </div>
                 <div className='w-[13%] md:w-[10%] lg:w-[8%] xl:w-[5%]'>
                   <button onClick={() => deleteMeta(meta.id)} className='w-full h-full cursor-pointer'>
-                  <img src="../lixeira.png" alt="Icone Lixeira" className='h-[100%] w-[100%]' />
+                  <img src="icons/lixeira.png" alt="Icone Lixeira" className='h-[100%] w-[100%]' />
                   </button>
                 </div>
               </li>

@@ -89,7 +89,7 @@ const MainPage = () => {
             </div>
             <div className='h-15 justify-center items-center flex'>
               <button className='h-15 md:h-18 xl:h-28 xl:mt-7 cursor-pointer' onClick={() => setOpenWindow('mainWindow')}>
-                <img src="/iconBranco.png" alt="Logo Pork" className='h-[90%]' />
+                <img src="icons/iconBranco.png" alt="Logo Pork" className='h-[90%]' />
               </button>
             </div>
           </div>
