@@ -54,12 +54,14 @@ const VerifyPage = () => {
   }
 
   const [searchParams] = useSearchParams();
+
   const token = searchParams.get('token');
 
   const handleVerify = async () => {
+
     setIsLoading(true)
     try {
-      await axios.get(`/auth/verificar/${token}`, {
+      await axios.get(`/auth/verificar?token=${token}`, {
         withCredentials: true
       })
       navigate('/fazer-login')
