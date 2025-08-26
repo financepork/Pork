@@ -10,7 +10,7 @@ function CarouselLanding() {
   dots: true,
   infinite: true,
   speed: 500,
-  slidesToShow: 2, // padrão para telas grandes
+  slidesToShow: 1, // padrão para telas grandes
   slidesToScroll: 1,
   centerPadding: "80px",
   responsive: [
@@ -70,4 +70,6 @@ function CarouselLanding() {
   );
 }
 
-export default CarouselLanding;
+
+export default CarouselLandingMobile;
+
