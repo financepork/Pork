@@ -1,11 +1,10 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CardCarousel from "./CardCarousel";
 
-
-function CarouselLandingMobile() {
+function CarouselLanding() {
 
   const settings = {
   dots: true,
@@ -21,7 +20,7 @@ function CarouselLandingMobile() {
         slidesToShow: 1,
         slidesToScroll: 1,
         centerMode: true,
-        centerPadding: "100px"
+        centerPadding: "50px"
       }
     },
     {
