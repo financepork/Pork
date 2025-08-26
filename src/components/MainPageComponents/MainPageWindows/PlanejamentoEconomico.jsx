@@ -43,9 +43,9 @@ const PlanejamentoEconomico = () => {
   }, [isLoading])
 
   const optionsSelect = [
-    { value: 'HARD', label: 'Escorpião no Bolso' },
+    { value: 'HARD', label: 'Mão de Vaca' },
     { value: 'MID', label: 'Normal' },
-    { value: 'EASY', label: 'Mão de Vaca' }
+    { value: 'EASY', label: 'Escorpião no Bolso' }
   ]
 
   const errorMessage = (errorText, error) => {
@@ -66,13 +66,13 @@ const PlanejamentoEconomico = () => {
   const convertePlan = (plan) => {
     switch (plan) {
       case 'HARD':
-        return 'Escorpião no Bolso'
+        return 'Mão de Vaca'
 
       case 'MID':
         return 'Normal'
 
       case 'EASY':
-        return 'Mão de Vaca'
+        return 'Escorpião no Bolso'
     }
   }
 
@@ -218,9 +218,9 @@ const PlanejamentoEconomico = () => {
 
           <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl'>Descrição dos planos:</h2>
           <ul className='text-[var(--color-white)] font-text-app text-lg space-y-4 md:space-y-8 decoration-none list-disc md:text-xl lg:text-3xl '>
-            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Escorpião no Bolso </span><br /><br /> Destinado à usuários com uma quantidade maior de renda, podendo economizar mais dinheiro sem problemas</li>
+            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Mão de Vaca </span><br /><br /> Destinado à usuários que desejam o máximo de economia possível</li>
             <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Normal </span><br /><br />Destinado à Usuários que desejam economizar uma quantidade básica, sem exagero ou falta</li>
-            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)] '>Mão de Vaca </span><br /><br />Destinados à usuários que não tem uma renda tão alta, ou que não querem economizar muito dinheiro</li>
+            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)] '>Escorpião no Bolso</span><br /><br />Destinados à usuários que preferem gastar mais e economizar menos</li>
 
           </ul>
         </div>

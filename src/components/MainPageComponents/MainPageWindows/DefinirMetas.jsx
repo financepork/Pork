@@ -164,8 +164,11 @@ const DefinirMetas = () => {
                     <p className='font-title-alt'>{meta.meta}</p> 
                   </div>
                   <div>
-                    <p  className='text-[var(--color-green)]'>R$ {meta.valor},00 <span className='text-[var(--color-dark-green)]'>( {meta.data} )</span></p>
-                  </div>       
+                    <p  className='text-[var(--color-green)]'>R$ {meta.valor},00 </p>
+                  </div> 
+                  <div>
+                    <p className='text-[var(--color-dark-green)]'>( {meta.data} )</p>
+                  </div>      
                 </div>
                 <div className='w-[13%] md:w-[10%] lg:w-[8%] xl:w-[5%]'>
                   <button onClick={() => deleteMeta(meta.id)} className='w-full h-full cursor-pointer'>
