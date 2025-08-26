@@ -8,15 +8,37 @@ const PrivateRoute = ({ children }) => {
     const { isAuthenticated, isLoading, authProcess } = useAuth();
     const location = useLocation();
 
+     const loadingMessage = () => {
+    
+            Swal.fire({
+                title: 'Carregando Dados...',
+                text: 'Por favor, aguarde.',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+                customClass: {
+                    popup: 'custom-swal'
+                }
+            });
+    
+        }
+    
+        useEffect(() => {
+    
+            if (isLoading) {
+                loadingMessage()
+            } else {
+                Swal.getPopup() && Swal.getPopup().classList.contains('custom-swal') ? Swal.close() : ''
+            }
+    
+        }, [isLoading])
+
     useEffect(() => {
         authProcess();
     }, []);
 
-
-    // Enquanto está carregando, não renderiza nada (ou pode renderizar um loading)
-    if (isLoading) {
-        return null; // ou um componente de loading
-    }
 
     if (!isAuthenticated) {
         return <Navigate to="/fazer-login" replace state={{ from: location }} />

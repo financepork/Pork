@@ -48,6 +48,7 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated(true)
         } catch (error) {
             console.log(error)
+            setIsLoading(false)
             setIsAuthenticated(false)
             // Removido o navigate automático para não interferir no fluxo
         } finally {
@@ -87,9 +88,7 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    if (isLoading) {
-        return null
-    }
+    
 
     return (
         <AuthContext.Provider value={{

@@ -141,7 +141,7 @@ const DefinirMetas = () => {
         
        <div className='bg-[var(--color-white)] w-full md:w-[80%] xl:w-[60%] h-full flex items place-self-auto flex-col p-7 xl:p-12 min-h-[70%] rounded-xl gap-8 xl:gap-16'>
           <div className='flex items-center w-full h-full space-x-2 md:space-x-2 xl:space-x-4'>
-            <img src="/icons/metas.png" alt="Icone registro de gastos" className='w-[17%] md:w-[15%] xl:w-[12%] 2xl:w-[10%]' />
+            <img src="/icons/3dIcons/metas3d.png" alt="Icone registro de gastos" className='w-[17%] md:w-[15%] xl:w-[12%] 2xl:w-[10%]' />
             <h1 className='font-text-app text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl text-[var(--color-dark-green)]'>Definição de Metas</h1>
           </div>
           <form action="submit" onSubmit={registraMeta} className='flex flex-col gap-4 md:gap-6'>
