@@ -12,6 +12,7 @@ import CarouselLanding from '../components/LandingComponents/CarouselLanding'
 
 
 const LandingPage = () => {
+  
   useEffect(() => {
     AOS.init({ once: true }); // once:true anima só uma vez
   }, []);
