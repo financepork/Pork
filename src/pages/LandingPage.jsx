@@ -6,6 +6,7 @@ import CardApresentacaoEsq from '../components/LandingComponents/CardApresentaca
 import AOS from 'aos';
 import { useEffect } from 'react';
 import CarouselLanding from '../components/LandingComponents/CarouselLanding'
+import CarouselLandingMobile from '../components/LandingComponents/CarouselLandingMobile'
 
 
 
@@ -56,7 +57,10 @@ const LandingPage = () => {
             className='font-title-alt text-[var(--color-white)] mt-5 xl:mt-0 text-3xl md:text-5xl lg:text-6xl text-center'>Tudo o que você precisa e muito mais. </h1>
 
         </div>
-        <div className='w-full flex  justify-center items-center'>
+        <div className='w-full flex xl:hidden  justify-center items-center'>
+          <CarouselLandingMobile />
+        </div>
+        <div className='w-full xl:flex hidden  justify-center items-center'>
           <CarouselLanding />
         </div>
 
