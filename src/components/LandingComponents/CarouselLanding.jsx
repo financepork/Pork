@@ -71,5 +71,5 @@ function CarouselLanding() {
 }
 
 
-export default CarouselLandingMobile;
+export default CarouselLanding;
 
