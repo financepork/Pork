@@ -43,9 +43,9 @@ const PlanejamentoEconomico = () => {
   }, [isLoading])
 
   const optionsSelect = [
-    { value: 'HARD', label: 'Escorpião no Bolso' },
+    { value: 'HARD', label: 'Mão de Vaca' },
     { value: 'MID', label: 'Normal' },
-    { value: 'EASY', label: 'Mão de Vaca' }
+    { value: 'EASY', label: 'Escorpião no Bolso' }
   ]
 
   const errorMessage = (errorText, error) => {
@@ -66,13 +66,13 @@ const PlanejamentoEconomico = () => {
   const convertePlan = (plan) => {
     switch (plan) {
       case 'HARD':
-        return 'Escorpião no Bolso'
+        return 'Mão de Vaca'
 
       case 'MID':
         return 'Normal'
 
       case 'EASY':
-        return 'Mão de Vaca'
+        return 'Escorpião no Bolso'
     }
   }
 
@@ -207,8 +207,52 @@ const PlanejamentoEconomico = () => {
               options={optionsSelect}
               value={optionsSelect.find(opt => opt.value === inputPlan)}
               onChange={opt => setInputPlan(opt.value)}
+              placeholder="Selecione um Plano"
+              required
               className="w-[70%]"
-              placeholder="Selecione uma Opção"
+              classNames={{
+                control: () => 'bg-[var(--color-dark-green)] text-white rounded-2xl border-none min-h-[48px] focus:ring-2 focus:ring-[var(--color-green)]',
+                singleValue: () => 'text-white font-bold',
+                menu: () => 'bg-[var(--color-dark-green)] rounded-2xl',
+                option: ({ isSelected, isFocused }) =>
+                  `text-white cursor-pointer ${isSelected ? 'bg-[var(--color-green)]' : isFocused ? 'bg-[var(--color-dark-green)]' : ''}`,
+                placeholder: () => 'text-white opacity-70',
+              }}
+              styles={{
+                control: (base) => ({
+                  ...base,
+                  backgroundColor: 'var(--color-dark-green)',
+                  borderRadius: '1rem',
+                  border: 'none',
+                  color: 'white',
+                  minHeight: '48px',
+                }),
+                singleValue: (base) => ({
+                  ...base,
+                  color: 'white',
+                  fontWeight: 'bold',
+                }),
+                menu: (base) => ({
+                  ...base,
+                  backgroundColor: 'var(--color-dark-green)',
+                  color: 'white',
+                }),
+                option: (base, state) => ({
+                  ...base,
+                  backgroundColor: state.isSelected
+                    ? 'var(--color-green)'
+                    : state.isFocused
+                    ? 'var(--color-dark-green)'
+                    : 'var(--color-dark-green)',
+                  color: 'white',
+                  cursor: 'pointer',
+                }),
+                placeholder: (base) => ({
+                  ...base,
+                  color: 'white',
+                  opacity: 0.7,
+                }),
+              }}
             />
             <button type='submit' className="border-0 text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-3 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] transition-colors duration-400 ease-in-out w-[40%] md:w-[50%] text-center font-text-alt md:text-2xl xl:text-3xl xl:mb-4  cursor-pointer self-center">Registrar</button>
           </div>
@@ -218,9 +262,9 @@ const PlanejamentoEconomico = () => {
 
           <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl'>Descrição dos planos:</h2>
           <ul className='text-[var(--color-white)] font-text-app text-lg space-y-4 md:space-y-8 decoration-none list-disc md:text-xl lg:text-3xl '>
-            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Escorpião no Bolso </span><br /><br /> Destinado à usuários com uma quantidade maior de renda, podendo economizar mais dinheiro sem problemas</li>
+            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Mão de Vaca </span><br /><br /> Destinado à usuários que desejam o máximo de economia possível</li>
             <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Normal </span><br /><br />Destinado à Usuários que desejam economizar uma quantidade básica, sem exagero ou falta</li>
-            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)] '>Mão de Vaca </span><br /><br />Destinados à usuários que não tem uma renda tão alta, ou que não querem economizar muito dinheiro</li>
+            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)] '>Escorpião no Bolso</span><br /><br />Destinados à usuários que preferem gastar mais e economizar menos</li>
 
           </ul>
         </div>

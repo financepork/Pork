@@ -6,38 +6,39 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
 
-   const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [isLoading, setIsLoading] = useState(true); // Começa como true para verificar autenticação primeiro
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    const [isLoading, setIsLoading] = useState(false); // Começa como true para verificar autenticação primeiro
 
     const loadingMessage = () => {
 
         Swal.fire({
-          title: 'Carregando Dados...',
-          text: 'Por favor, aguarde.',
-          allowOutsideClick: false,
-          showConfirmButton: false,
-          didOpen: () => {
-            Swal.showLoading();
-          },
-          customClass: {
-            popup: 'custom-swal'
-          }
+            title: 'Carregando Dados...',
+            text: 'Por favor, aguarde.',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+            customClass: {
+                popup: 'custom-swal'
+            }
         });
 
-      }
-    
-      useEffect(() => {
+    }
+
+    useEffect(() => {
 
         if (isLoading) {
-          loadingMessage()
+            loadingMessage()
         } else {
-          Swal.getPopup() && Swal.getPopup().classList.contains('custom-swal') ? Swal.close() : ''
+            Swal.getPopup() && Swal.getPopup().classList.contains('custom-swal') ? Swal.close() : ''
         }
-    
-      }, [isLoading])
+
+    }, [isLoading])
 
     const authProcess = async () => {
-        
+
         setIsLoading(true)
 
         try {
@@ -47,6 +48,7 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated(true)
         } catch (error) {
             console.log(error)
+            setIsLoading(false)
             setIsAuthenticated(false)
             // Removido o navigate automático para não interferir no fluxo
         } finally {
@@ -86,23 +88,15 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    useEffect(() => {
-
-        authProcess();
-
-    }, [])
-
-    if(isLoading) {
-        return null 
-    }
+    
 
     return (
-        <AuthContext.Provider value={{ 
-            isAuthenticated, 
-            isLoading, 
-            login, 
-            logout, 
-            authProcess 
+        <AuthContext.Provider value={{
+            isAuthenticated,
+            isLoading,
+            login,
+            logout,
+            authProcess
         }}>
             {children}
         </AuthContext.Provider>
