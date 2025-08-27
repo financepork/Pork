@@ -103,13 +103,18 @@ const MainPage = () => {
                 </button>
               </div>
 
-              <div className='flex flex-col items-center  space-y-5 xl:space-y-10 font-text-alt'>
+              <div className='flex flex-col items-center   space-y-5 xl:space-y-13 font-text-alt'>
 
                 <button onClick={() => {
                   setOpenWindow('PlanejamentoEconomico');
                   setIsOpen(false);
                 }}
-                  className='text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer'>Plano Econômico</button>
+                  className=' text-[var(--color-white)]   hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer h-15'>
+                    <div className='flex h-[80%] gap-3 justify-center items-center '>
+                      <img src="/icons/planEcoBranco.png" alt="" className='h-[140%] lg:h-[200%]' />
+                      <p>Plano Econômico</p> 
+                    </div>
+                  </button>
 
                 <button onClick={() => {
                   setOpenWindow('RegistroGastos');
@@ -117,19 +122,34 @@ const MainPage = () => {
                 }
 
                 }
-                  className=' text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer'>Registro de Gastos</button>
+                  className=' text-[var(--color-white)]   hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer h-15'>
+                    <div className='flex h-[80%] gap-3 justify-center items-center '>
+                      <img src="/icons/registroGastosBranco.png" alt="" className='h-[140%] lg:h-[200%]' />
+                      <p>Registro de Gastos</p> 
+                    </div>
+                  </button>
 
                 <button onClick={() => {
                   setOpenWindow('DefinirMetas');
                   setIsOpen(false);
                 }}
-                  className=' text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer'>Metas de Economia </button>
+                  className=' text-[var(--color-white)]   hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer h-15'>
+                    <div className='flex h-[80%] gap-3 justify-center items-center '>
+                      <img src="/icons/metasBranco.png" alt="" className='h-[140%] lg:h-[200%]' />
+                      <p>Definição de Metas</p> 
+                    </div>
+                  </button>
 
                   <button onClick={() => {
                   setOpenWindow('MeuPerfil');
                   setIsOpen(false);
                 }}
-                  className=' text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer'>Meu Perfil </button>
+                  className=' text-[var(--color-white)]   hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer h-15'>
+                    <div className='flex h-[80%] gap-3 justify-center items-center '>
+                      <img src="/icons/perfilBranco.png" alt="" className='h-[140%] lg:h-[200%]' />
+                      <p>Meu Perfil</p> 
+                    </div>
+                  </button>
 
                   
               </div>

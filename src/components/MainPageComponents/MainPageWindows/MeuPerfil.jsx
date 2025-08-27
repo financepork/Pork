@@ -11,10 +11,10 @@ const MeuPerfil = () => {
 
                     <div className='space-y-2'>
                         <h2 className='text-2xl font-title-app text-[var(--color-green)]'>Valor Gasto esse Mês </h2>
-                        <p className='text-2xl font-title-app text-[var(--color-green)]'>R$900</p>
+                        <p className='text-3xl font-title-app text-[var(--color-green)]'>R$900,00</p>
                     </div>
                     <div>
-                        <h1 className='font-title-app text-2xl text-[var(--color-green)]'>
+                        <h1 className='font-title-app text-3xl text-[var(--color-green)]'>
                             Seus Gastos
                         </h1>
                         <div className='flex flex-row justify-between items-center w-full h-full space-x-4 '>
@@ -33,8 +33,8 @@ const MeuPerfil = () => {
                         </div>
 
                         <div className='space-y-2'>
-                            <h2 className='text-2xl font-title-app text-[var(--color-green)]'>Maior Gasto </h2>
-                            <p className='text-2xl font-title-app text-[var(--color-green)]'>R$100</p>
+                            <h2 className='text-3xl font-title-app text-[var(--color-green)]'>Maior Gasto </h2>
+                            <p className='text-3xl font-title-app text-[var(--color-green)]'>R$100,00</p>
                         </div>
 
                     </div>
