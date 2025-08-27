@@ -4,6 +4,7 @@ import MainWindow from '../components/MainPageComponents/MainPageWindows/MainWin
 import PlanejamentoEconomico from '../components/MainPageComponents/MainPageWindows/PlanejamentoEconomico.jsx'
 import RegistroGastos from '../components/MainPageComponents/MainPageWindows/RegistroGastos.jsx'
 import DefinirMetas from '../components/MainPageComponents/MainPageWindows/DefinirMetas.jsx'
+import MeuPerfil from '../components/MainPageComponents/MainPageWindows/MeuPerfil.jsx'
 import AOS from 'aos';
 import { useEffect } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid'
@@ -124,6 +125,12 @@ const MainPage = () => {
                 }}
                   className=' text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer'>Metas de Economia </button>
 
+                  <button onClick={() => {
+                  setOpenWindow('MeuPerfil');
+                  setIsOpen(false);
+                }}
+                  className=' text-[var(--color-white)]  hover:text-[var(--color-green)] hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer'>Meu Perfil </button>
+
                   
               </div>
               <div className='flex flex-col items-center w-full '>
@@ -143,7 +150,9 @@ const MainPage = () => {
           || openWindow == 'PlanejamentoEconomico' && <HeaderPages firstLineText={"Planejamento"} secLineText={"Econômico"} altText={"Defina como você vai gerenciar seu dinheiro!"}/>
           || openWindow == 'RegistroGastos' && <HeaderPages firstLineText={"Registro de"} secLineText={"Gastos"} altText={"Organize suas despesas como ninguém!"}/>
           || openWindow == 'DefinirMetas' && <HeaderPages firstLineText={"Metas"} secLineText={"e Objetivos"} altText={"Defina objetivos que incentivem a Economia de dinheiro!"}/>
-          }
+          || openWindow == 'MeuPerfil' && <HeaderPages firstLineText={"Seu Perfil,"} secLineText={userName} altText={"Veja aqui tudo sobre suas finanças!"}/>
+        }
+          
         </div>
             
         
@@ -152,7 +161,9 @@ const MainPage = () => {
         {openWindow == 'mainWindow' && <MainWindow setOpenWindow={setOpenWindow} />
           || openWindow == 'PlanejamentoEconomico' && <PlanejamentoEconomico />
           || openWindow == 'RegistroGastos' && <RegistroGastos />
-          || openWindow == 'DefinirMetas' && <DefinirMetas />}
+          || openWindow == 'DefinirMetas' && <DefinirMetas />
+          || openWindow == 'MeuPerfil' && <MeuPerfil />}
+
       </div>
     </main>
   )

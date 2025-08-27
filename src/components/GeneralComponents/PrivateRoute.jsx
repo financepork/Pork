@@ -2,6 +2,7 @@ import { Navigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import { useLocation } from 'react-router-dom'
 import { useEffect } from "react";
+import Swal from "sweetalert2";
 
 const PrivateRoute = ({ children }) => {
 
