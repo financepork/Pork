@@ -23,11 +23,11 @@ const MeuPerfil = () => {
                             </div>
                             <div className=' font-title-app text-md w-[35%] '>
                                 <ul className='space-y-2 flex flex-col justify-center items-start h-full w-full mr-6'>
-                                    <li className='flex flex-row h-full w-full  items-center gap-2'><img src="/icons/iconAlimentacao.png" alt="Icone Alimentacao" className='h-7' /> Alimentação</li>
-                                    <li className='flex flex-row h-full w-full  items-center gap-2'><img src="/icons/iconTransporte.png" alt="Icone Alimentacao" className='h-7' /> Transporte</li>
-                                    <li className='flex flex-row h-full w-full  items-center gap-2'><img src="/icons/iconLazer.png" alt="Icone Alimentacao" className='h-7' /> Lazer</li>
-                                    <li className='flex flex-row h-full w-full  items-center gap-2'><img src="/icons/iconContas.png" alt="Icone Alimentacao" className='h-7' /> Contas Básicas</li>
-                                    <li className='flex flex-row h-full w-full  items-center gap-2'><img src="/icons/iconOutros.png" alt="Icone Alimentacao" className='h-7' /> Outras</li>
+                                    <li className='flex flex-row h-full w-full  items-center gap-2 color-alimentacao '><img src="/icons/iconAlimentacao.png" alt="Icone Alimentacao" className='h-7' /> Alimentação</li>
+                                    <li className='flex flex-row h-full w-full  items-center gap-2 color-transporte'><img src="/icons/iconTransporte.png" alt="Icone Alimentacao" className='h-7' /> Transporte</li>
+                                    <li className='flex flex-row h-full w-full  items-center gap-2 color-lazer'><img src="/icons/iconLazer.png" alt="Icone Alimentacao" className='h-7' /> Lazer</li>
+                                    <li className='flex flex-row h-full w-full  items-center gap-2 color-contas'><img src="/icons/iconContas.png" alt="Icone Alimentacao" className='h-7' /> Contas Básicas</li>
+                                    <li className='flex flex-row h-full w-full  items-center gap-2 color-outros'><img src="/icons/iconOutros.png" alt="Icone Alimentacao" className='h-7' /> Outras</li>
                                 </ul>
                             </div>
                         </div>
