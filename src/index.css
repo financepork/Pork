@@ -113,6 +113,25 @@ body {
     .max-w-carousel {
         max-width: 90rem;
     }
+
+    .color-alimentacao {
+        color:oklch(50.5% 0.213 27.518);
+    }
+
+    .color-transporte{
+        color: oklch(84.5% 0.143 164.978);
+    }
+    .color-lazer{
+        color: oklch(37.9% 0.146 265.522);
+    }
+
+    .color-contas{
+        color: oklch(85.2% 0.199 91.936);
+    }
+
+    .color-outros{
+        color: oklch(47% 0.157 37.304);
+    }
 }
 
 @layer base {
