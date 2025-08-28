@@ -74,6 +74,39 @@ const MainPage = () => {
     fetchUsername()
   }, []);
 
+   useEffect(() => {
+   
+    history.pushState(null, document.title, window.location.href);
+
+    const handlePopState = () => {
+      
+
+      
+      Swal.fire({
+        title: 'Certeza que deseja sair agora?',
+        text: "Se você sair, sua sessão pode ser encerrada.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, sair',
+        cancelButtonText: 'Não, continuar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.close()
+        } else {
+          navigate('/');
+        }
+      });
+    };
+
+    
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
+
   return (
 
     <main>
