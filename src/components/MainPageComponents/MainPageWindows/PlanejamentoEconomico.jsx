@@ -145,7 +145,7 @@ const PlanejamentoEconomico = () => {
       await axios.put('/despesas/atualizar-receita', valueTyped, {
         withCredentials: true
       });
-      return setValueRenda(`${valueTyped.receita}`);
+      return setValueRenda(`R$${valueTyped.receita}`);
     } catch (error) {
       isLoading(false)
       errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response?.data || error?.message || String(error));
@@ -159,7 +159,7 @@ const PlanejamentoEconomico = () => {
         withCredentials: true
       })
       const planEco = response.data.valor
-      setValueEco(`${planEco}`)
+      setValueEco(`R$${planEco}`)
     }
     catch (error) {
       isLoading(false)
@@ -201,7 +201,7 @@ const PlanejamentoEconomico = () => {
         <form onSubmit={formaEconomia} className='flex flex-col items-center rounded-t-2xl space-y-6 p-4 '>
           <div className='flex flex-col items-center rounded-t-2xl space-y-6 xl:space-y-10 p-4 '>
             <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl xl:text-6xl' >Renda </h2>
-            <input type="number" name="renda" id="renda" placeholder='Insira sua Renda' className='bg-[var(--color-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg xl:text-2xl xl:h-15  xl:w-110 p-2' value={inputRenda} onChange={e => setInputRenda(e.target.value)} />
+            <input type="number" name="renda" id="renda" placeholder='Insira sua Renda' className='bg-[var(--color-dark-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg xl:text-2xl xl:h-15  xl:w-110 p-2' value={inputRenda} onChange={e => setInputRenda(e.target.value)} />
             <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl'>Planejamento Escolhido</h2>
             <Select
               options={optionsSelect}
