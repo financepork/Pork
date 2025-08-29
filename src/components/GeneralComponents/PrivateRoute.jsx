@@ -36,17 +36,12 @@ const PrivateRoute = ({ children }) => {
     
         }, [isLoading])
 
-    useEffect(() => {
-        authProcess();
-    }, []);
-
     if (isLoading) {
-    return null; // ou um componente de loading
-}
-
+        return null; 
+    }
 
     if (!isAuthenticated) {
-        return <Navigate to="/fazer-login" replace state={{ from: location }} />
+        return <Navigate to="/fazer-login" replace state={{ from: location }} />;
     }
 
     return children;

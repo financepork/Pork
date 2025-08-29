@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const [isLoading, setIsLoading] = useState(false); // Começa como true para verificar autenticação primeiro
+    const [isLoading, setIsLoading] = useState(true); 
 
     const loadingMessage = () => {
 
@@ -50,12 +50,15 @@ export const AuthProvider = ({ children }) => {
             console.log(error)
             setIsLoading(false)
             setIsAuthenticated(false)
-            // Removido o navigate automático para não interferir no fluxo
         } finally {
             setIsLoading(false)
         }
 
     }
+
+    useEffect(() => {
+        authProcess();
+    }, []);
 
     const login = async (email, senha) => {
         const dataUser = {
@@ -82,7 +85,6 @@ export const AuthProvider = ({ children }) => {
             return { success: true };
         } catch (error) {
             console.log('Erro no logout:', error);
-            // Mesmo com erro, limpa o estado local
             setIsAuthenticated(false);
             return { success: false, error: error.response?.data };
         }
