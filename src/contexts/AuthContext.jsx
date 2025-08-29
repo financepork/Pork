@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const [isLoading, setIsLoading] = useState(false); // Começa como true para verificar autenticação primeiro
+    const [isLoading, setIsLoading] = useState(true); 
 
     const loadingMessage = () => {
 
@@ -37,6 +37,10 @@ export const AuthProvider = ({ children }) => {
 
     }, [isLoading])
 
+    useEffect(() => {
+        authProcess();
+    }, []);
+
     const authProcess = async () => {
 
         setIsLoading(true)
@@ -50,7 +54,6 @@ export const AuthProvider = ({ children }) => {
             console.log(error)
             setIsLoading(false)
             setIsAuthenticated(false)
-            // Removido o navigate automático para não interferir no fluxo
         } finally {
             setIsLoading(false)
         }
