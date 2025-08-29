@@ -40,6 +40,10 @@ const PrivateRoute = ({ children }) => {
         authProcess();
     }, []);
 
+    if (isLoading) {
+    return null; // ou um componente de loading
+}
+
 
     if (!isAuthenticated) {
         return <Navigate to="/fazer-login" replace state={{ from: location }} />

@@ -74,6 +74,39 @@ const MainPage = () => {
     fetchUsername()
   }, []);
 
+   useEffect(() => {
+   
+    history.pushState(null, document.title, window.location.href);
+
+    const handlePopState = () => {
+      
+
+      
+      Swal.fire({
+        title: 'Certeza que deseja sair agora?',
+        text: "Se você sair, sua sessão pode ser encerrada.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6', // colocar var de cor local
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, sair',
+        cancelButtonText: 'Não, continuar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.close()
+        } else {
+          navigate('/');
+        }
+      });
+    };
+
+    
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
+
   return (
 
     <main>
@@ -103,7 +136,7 @@ const MainPage = () => {
                 </button>
               </div>
 
-              <div className='flex flex-col items-center   space-y-5 xl:space-y-13 font-text-alt'>
+              <div className='flex flex-col items-start   space-y-5 xl:space-y-13 font-text-alt'>
 
                 <button onClick={() => {
                   setOpenWindow('PlanejamentoEconomico');
@@ -147,7 +180,7 @@ const MainPage = () => {
                   className=' text-[var(--color-white)]   hover:bg-[var(--color-chumbo)] transition-colors duration-800 ease-in-out rounded-2xl p-4 text-xl md:text-2xl xl:text-4xl cursor-pointer h-15'>
                     <div className='flex h-[80%] gap-3 justify-center items-center '>
                       <img src="/icons/perfilBranco.png" alt="" className='h-[140%] lg:h-[200%]' />
-                      <p>Meu Perfil</p> 
+                      <p>Perfil Econômico</p> 
                     </div>
                   </button>
 

@@ -20,7 +20,7 @@ const MainWindow = ({setOpenWindow}) => {
                  
           <CardWindow titleText="Definição de Metas" imgSrc='/icons/metas.png' windowOpen={'DefinirMetas'} setOpenWindow={setOpenWindow} />
 
-          <CardWindow titleText="Meu Perfil Econômico" imgSrc='/icons/perfil.png' windowOpen={'MeuPerfil'} setOpenWindow={setOpenWindow} />
+          <CardWindow titleText="Perfil Econômico" imgSrc='/icons/perfil.png' windowOpen={'MeuPerfil'} setOpenWindow={setOpenWindow} />
       
       </div>
     </main>
