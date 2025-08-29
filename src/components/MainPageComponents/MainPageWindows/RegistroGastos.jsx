@@ -13,9 +13,11 @@ const RegistroGastos = () => {
 
   const [gastos, setGastos] = useState([])
 
+  const [inputMesGastos, setInputMesGastos] = useState('')
+
   const [isLoading, setIsLoading] = useState(false)
 
-  const [inputPlan, setInputPlan] = useState('')
+  const [inputCategoria, setInputCategoria] = useState('')
 
   const optionsSelect = [
     { value: 'Alimentação', label: 'Alimentação' },
@@ -23,6 +25,21 @@ const RegistroGastos = () => {
     { value: 'Lazer', label: 'Lazer' },
     { value: 'Contas Básicas', label: 'Contas Básicas' },
     { value: 'Outras', label: 'Outras' }
+  ]
+
+  const optionsMeses = [
+    { value: 1, label: 'Janeiro'},
+    { value: 2, label: 'Fevereiro'},
+    { value: 3, label: 'Março'},
+    { value: 4, label: 'Abril'},
+    { value: 5, label: 'Maio'},
+    { value: 6, label: 'Junho'},
+    { value: 7, label: 'Julho'},
+    { value: 8, label: 'Agosto'},
+    { value: 9, label: 'Setembro'},
+    { value: 10, label: 'Outubro'},
+    { value: 11, label: 'Novembro'},
+    { value: 12, label: 'Dezembro'},
   ]
 
   const loadingMessage = () => {
@@ -166,8 +183,8 @@ const RegistroGastos = () => {
               <input type="number" name="valorGasto" id="valorGasto" placeholder='Valor do seu Gasto' value={inputValorGasto} onChange={e => setInputValorGasto(e.target.value)} step={0.01} className='bg-[var(--color-dark-green)] text-white rounded-2xl w-full md:w-[80%] p-2 md:text-lg xl:text-2xl xl:p-4' required />
               <Select
                 options={optionsSelect}
-                value={optionsSelect.find(opt => opt.value === inputPlan)}
-                onChange={opt => setInputPlan(opt.value)}
+                value={optionsSelect.find(opt => opt.value === inputCategoria)}
+                onChange={opt => setInputCategoria(opt.value)}
                 placeholder="Categoria Do Gasto"
                 required
                 className="w-[70%]"
@@ -216,6 +233,18 @@ const RegistroGastos = () => {
                 }}
               />
             </div>
+            <form className='flex flex-row w-full h-full p-4'>
+               <Select
+                options={optionsMeses}
+                value={optionsMeses.find(opt => opt.value === inputMesGastos)}
+                onChange={opt => setInputMesGastos(opt.value)}
+                placeholder="Categoria Do Gasto"
+                required
+                className="w-[70%]"
+                />
+                <img src="/icons/iconLupa.png" alt="Icone Lupa de busca" />
+
+            </form>
             <div className="flex justify-center">
               <button type='submit' className='h-auto p-2 bg-[var(--color-dark-green)] text-[var(--color-black)] rounded-4xl cursor-pointer font-title-alt text-lg w-full md:w-[75%] 2xl:w-[50%] xl:text-xl xl:p-4'>Enviar</button>
             </div>
