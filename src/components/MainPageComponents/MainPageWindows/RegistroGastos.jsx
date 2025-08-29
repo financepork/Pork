@@ -187,7 +187,7 @@ const RegistroGastos = () => {
                 onChange={opt => setInputCategoria(opt.value)}
                 placeholder="Categoria Do Gasto"
                 required
-                className="w-[70%]"
+                className="w-[100%] md:w-[80%] xl:h-20 "
                 classNames={{
                   control: () => 'bg-[var(--color-dark-green)] text-white rounded-2xl border-none min-h-[48px] focus:ring-2 focus:ring-[var(--color-green)]',
                   singleValue: () => 'text-white font-bold',
@@ -233,48 +233,71 @@ const RegistroGastos = () => {
                 }}
               />
             </div>
-            <form className='flex flex-row w-full h-full p-4'>
-               <Select
-                options={optionsMeses}
-                value={optionsMeses.find(opt => opt.value === inputMesGastos)}
-                onChange={opt => setInputMesGastos(opt.value)}
-                placeholder="Categoria Do Gasto"
-                required
-                className="w-[70%]"
-                />
-                <img src="/icons/iconLupa.png" alt="Icone Lupa de busca" />
-
-            </form>
+            
             <div className="flex justify-center">
-              <button type='submit' className='h-auto p-2 bg-[var(--color-dark-green)] text-[var(--color-black)] rounded-4xl cursor-pointer font-title-alt text-lg w-full md:w-[75%] 2xl:w-[50%] xl:text-xl xl:p-4'>Enviar</button>
+              <button type='submit' className='h-auto p-2 bg-[var(--color-dark-green)] text-[var(--color-white)] rounded-4xl cursor-pointer font-text-app text-lg w-full md:w-[75%] 2xl:w-[50%] xl:text-xl xl:p-4'>Enviar</button>
             </div>
 
           </form>
-          <div>
-            <ul>
-              {gastos.map((gasto) => (
-                <li key={gasto.id} className='flex flex-row justify-between items-center h-[10%] w-full my-8 md:my-12'>
-                  <div className='text-[var(--color-dark-green)] font-text text-xl xl:space-y-2.5 md:text-3xl xl:text-4xl'>
-                    <div>
-                      <p className='font-title-alt'>{gasto.descricao}</p>
-                    </div>
-                    <div>
-                      <p className='text-[var(--color-green)]'>R$ {gasto.valor}</p>
-                    </div>
-                  </div>
-                  <div className='w-[10%] md:w-[8%] xl:w-[5%]'>
-                    <button onClick={() => deleteGasto(gasto.id)} className='w-full h-full cursor-pointer'>
-                      <img src="icons/lixeira.png" alt="Icone Lixeira" className='h-[100%] w-[100%] ' />
-                    </button>
-                  </div>
-                </li>
-              )
-              )}
+          <form className='flex flex-col w-full h-full p-4 space-y-6 md:mt-5 lg:space-y-10'>
+              <h1 className='font-title-app text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl text-[var(--color-dark-green)]'>Buscar Gasto</h1>
+              <div className='flex flex-row w-full h-full justify-start items-center space-x-2 md:space-x-4'>
+                 <Select
+                options={optionsMeses}
+                value={optionsMeses.find(opt => opt.value === inputMesGastos)}
+                onChange={opt => setInputMesGastos(opt.value)}
+                placeholder="Selecione o Mês"
+                required
+                className='w-[140%] md:w-[60%]'
+                classNames={{
+                  control: () => 'bg-[var(--color-dark-green)] text-white rounded-2xl border-none min-h-[48px]  focus:ring-2 focus:ring-[var(--color-green)]',
+                  singleValue: () => 'text-white font-bold',
+                  menu: () => 'bg-[var(--color-dark-green)] rounded-2xl',
+                  option: ({ isSelected, isFocused }) =>
+                    `text-white cursor-pointer ${isSelected ? 'bg-[var(--color-green)]' : isFocused ? 'bg-[var(--color-dark-green)]' : ''}`,
+                  placeholder: () => 'text-white opacity-70',
+                }}
+                styles={{
+                  control: (base) => ({
+                    ...base,
+                    backgroundColor: 'var(--color-dark-green)',
+                    borderRadius: '1rem',
+                    border: 'none',
+                    color: 'white',
+                    minHeight: '48px',
+                  }),
+                  singleValue: (base) => ({
+                    ...base,
+                    color: 'white',
+                    fontWeight: 'bold',
+                  }),
+                  menu: (base) => ({
+                    ...base,
+                    backgroundColor: 'var(--color-dark-green)',
+                    color: 'white',
+                  }),
+                  option: (base, state) => ({
+                    ...base,
+                    backgroundColor: state.isSelected
+                      ? 'var(--color-green)'
+                      : state.isFocused
+                        ? 'var(--color-dark-green)'
+                        : 'var(--color-dark-green)',
+                    color: 'white',
+                    cursor: 'pointer',
+                  }),
+                  placeholder: (base) => ({
+                    ...base,
+                    color: 'white',
+                    opacity: 0.7,
+                  }),
+                }}
+                />
+                <img src="/icons/iconLupa.png" alt="Icone Lupa de busca" className='w-[12%] md:w-[8%] lg:w-[6%] xl:w-[5%]'/>
 
-            </ul>
-          </div>
+              </div>
+            </form>
         </div>
-
       </div>
     </main>
   )

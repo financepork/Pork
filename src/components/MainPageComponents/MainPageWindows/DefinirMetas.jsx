@@ -137,7 +137,7 @@ const DefinirMetas = () => {
     <main
       className=' h-full w-full flex flex-col  '>
       <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
-        className='flex flex-col xl:flex-row h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-16 overflow-y-none items-center justify-around'>
+        className='flex flex-col xl:flex-row h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-12 overflow-y-none items-center justify-around'>
         
        <div className='bg-[var(--color-white)] w-full md:w-[80%] xl:w-[60%] h-full flex items place-self-auto flex-col p-7 xl:p-12 min-h-[70%] rounded-xl gap-8 xl:gap-16'>
           <div className='flex items-center w-full h-full space-x-2 md:space-x-2 xl:space-x-4'>
