@@ -2,12 +2,14 @@ import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 
 
 
+
+
 const data = [
   { name: 'Alimentação', value: 500 },
   { name: 'Transporte', value: 400 },
   { name: 'Lazer', value: 300 },
-  {name: 'Contas Básicas', value: 200 },
-  { name: 'Outros', value: 150 },
+  {name: 'Contas Básicas', value: 400 },
+  { name: 'Outros', value: 400 },
 ];
 
 const RADIAN = Math.PI / 180;
@@ -20,7 +22,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
   const y = cy + radius * Math.sin(-(midAngle ?? 0) * RADIAN);
 
   return (
-    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" className='text-sm self-center text-center '>
       {`${((percent ?? 1) * 100).toFixed(0)}%`}
     </text>
   );
@@ -40,6 +42,7 @@ const ChartGastos = () => {
           outerRadius={80}
           fill="#8884d8"
           dataKey="value"
+          stroke="var(--color-chumbo)" 
         >
           {data.map((entry, index) => (
             <Cell key={`cell-${entry.name}`} fill={COLORS[index % COLORS.length]} />

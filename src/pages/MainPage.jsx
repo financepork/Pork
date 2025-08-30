@@ -87,15 +87,16 @@ const MainPage = () => {
         text: "Se você sair, sua sessão pode ser encerrada.",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6', // colocar var de cor local
+        allowOutsideClick: false,
+        confirmButtonColor: 'var(--color-green)', // colocar var de cor local
         cancelButtonColor: '#d33',
         confirmButtonText: 'Sim, sair',
         cancelButtonText: 'Não, continuar'
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.close()
+          navigate('/')
         } else {
-          navigate('/');
+          Swal.close();
         }
       });
     };

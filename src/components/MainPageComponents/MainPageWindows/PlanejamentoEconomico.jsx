@@ -6,12 +6,6 @@ import Swal from 'sweetalert2'
 
 const PlanejamentoEconomico = () => {
 
-  const [valueRenda, setValueRenda] = useState('Nenhum valor inserido')
-
-  const [valuePlan, setValuePlan] = useState('Nenhum Plano Selecionado')
-
-  const [valueEco, setValueEco] = useState('-')
-
   const [inputRenda, setInputRenda] = useState('')
 
   const [inputPlan, setInputPlan] = useState('')
@@ -28,7 +22,7 @@ const PlanejamentoEconomico = () => {
         Swal.showLoading();
       },
       customClass: {
-        popup: 'loading-swal' 
+        popup: 'loading-swal'
       }
     });
   }
@@ -37,7 +31,7 @@ const PlanejamentoEconomico = () => {
     if (isLoading) {
       loadingMessage()
     } else {
-      Swal.getPopup() && Swal.getPopup().classList.contains('loading-swal')? Swal.close() : ''
+      Swal.getPopup() && Swal.getPopup().classList.contains('loading-swal') ? Swal.close() : ''
     }
 
   }, [isLoading])
@@ -48,76 +42,6 @@ const PlanejamentoEconomico = () => {
     { value: 'EASY', label: 'Escorpião no Bolso' }
   ]
 
-  const errorMessage = (errorText, error) => {
-    Swal.fire({
-      title: 'Ocorreu um Erro',
-      text: errorText,
-      icon: 'error',
-      color: 'var(--color-red)',
-      background: 'var(--color-white)',
-      footer: error || String(error),
-      customClass: {
-        popup: '!rounded-2xl !p-6 !shadow-xl',
-        confirmButton: '!text-white-500 !bg-red-500 !border-white  '
-      }
-    })
-  }
-
-  const convertePlan = (plan) => {
-    switch (plan) {
-      case 'HARD':
-        return 'Mão de Vaca'
-
-      case 'MID':
-        return 'Normal'
-
-      case 'EASY':
-        return 'Escorpião no Bolso'
-    }
-  }
-
-  const getRenda = async () => {
-    try {
-      const response = await axios.get('/despesas/consultar-receita', {
-        withCredentials: true
-      })
-      const valorRenda = response.data.valor;
-      setValueRenda(`R$${valorRenda}`);
-    } catch (error) {
-      isLoading(false)
-      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response?.data || error?.message || String(error));
-    }
-  }
-
-  const getPlan = async () => {
-    try {
-      const response = await axios.get('/investimento/consultar-investimento', {
-        withCredentials: true
-      })
-      const valorPlan = convertePlan(response.data.categoria);
-      const valorEconomia = response.data.valor;
-      setValuePlan(valorPlan);
-      setValueEco(`R$${valorEconomia}`);
-    } catch (error) {
-      isLoading(false)
-      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response?.data || error?.message || String(error));
-    }
-  }
-
-  const getInitialValues = async () => {
-    try {
-      setIsLoading(true);
-      await getRenda();
-      await getPlan();
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
-
-  useEffect(() => {
-    getInitialValues();
-  }, [])
 
   const setarPlan = async () => {
     if (inputPlan === null || inputPlan === '') return
@@ -128,8 +52,6 @@ const PlanejamentoEconomico = () => {
       await axios.put('/investimento/alterar-investimento', planTyped, {
         withCredentials: true
       });
-      const valuePlan = convertePlan(inputPlan)
-      return setValuePlan(valuePlan);
     } catch (error) {
       isLoading(false)
       errorMessage('Erro ao receber informações do servidor, tente novamente', error.response?.data || error?.message || String(error));
@@ -137,7 +59,7 @@ const PlanejamentoEconomico = () => {
   }
 
   const setarValor = async () => {
-    if(inputRenda === null || inputRenda === '') return
+    if (inputRenda === null || inputRenda === '') return
     const valueTyped = {
       "receita": inputRenda
     }
@@ -145,7 +67,6 @@ const PlanejamentoEconomico = () => {
       await axios.put('/despesas/atualizar-receita', valueTyped, {
         withCredentials: true
       });
-      return setValueRenda(`R$${valueTyped.receita}`);
     } catch (error) {
       isLoading(false)
       errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response?.data || error?.message || String(error));
@@ -153,19 +74,7 @@ const PlanejamentoEconomico = () => {
 
   }
 
-  const geraEconomia = async () => {
-    try {
-      const response = await axios.get('/investimento/consultar-investimento', {
-        withCredentials: true
-      })
-      const planEco = response.data.valor
-      setValueEco(`R$${planEco}`)
-    }
-    catch (error) {
-      isLoading(false)
-      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response?.data || error?.message || String(error));
-    }
-  }
+ 
 
   const formaEconomia = async (e) => {
     e.preventDefault();
@@ -183,35 +92,29 @@ const PlanejamentoEconomico = () => {
 
 
   return (
-    
+
     <main
       className=' h-full w-full flex flex-col mb-32  '>
       <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
-        className='flex flex-wrap h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-16 space-y-8 overflow-y-none justify-center 2xl:justify-around  '>
-        <div className='flex p-5 md:p-10 lg:p-12 xl:p-16 xl:w-[60%] lg:w-[60%]  w-full bg-[var(--color-white)] max-h-[81%] rounded-4xl'>
-          <div className='flex flex-col space-y-4 lg:space-y-6'>
-            <h2 className='text-[var(--color-green)] font-title-app text-3xl md:text-4xl lg:text-5xl leading-relaxed'>Renda Mensal </h2>
-            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>{valueRenda}</p>
-            <h2 className='text-[var(--color-green)] font-title-app text-3xl leading-relaxed  md:text-4xl lg:text-5xl'>Plano Selecionado </h2>
-            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>{valuePlan}</p>
-            <h2 className='text-[var(--color-green)] font-title-app text-3xl leading-relaxed  md:text-4xl lg:text-5xl'>Economia Ideal </h2>
-            <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>{valueEco} /Mês</p>
+        className='flex flex-wrap h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-8 space-y-8 overflow-y-none justify-center 2xl:justify-around  '>
+        <div className='bg-[var(--color-chumbo)] w-full md:w-[80%] xl:w-[60%] h-full flex items place-self-auto flex-col p-7 xl:p-12 min-h-[70%] rounded-xl gap-8 xl:gap-16'>
+          <div className='flex items-center w-full h-full space-x-2 md:space-x-2 xl:space-x-4'>
+            <img src="/icons/3dIcons/planEco3d.png" alt="Icone Planejamento Economico" className='w-[17%] md:w-[15%] xl:w-[12%] 2xl:w-[10%]' />
+            <h1 className='font-text-app text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl text-[var(--color-dark-green)]'>Definição de Renda</h1>
           </div>
-        </div>
-        <form onSubmit={formaEconomia} className='flex flex-col items-center rounded-t-2xl space-y-6 p-4 '>
-          <div className='flex flex-col items-center rounded-t-2xl space-y-6 xl:space-y-10 p-4 '>
-            <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl xl:text-6xl' >Renda </h2>
-            <input type="number" name="renda" id="renda" placeholder='Insira sua Renda' className='bg-[var(--color-dark-green)] text-[var(--color-white)] font-title-alt rounded-2xl text-lg xl:text-2xl xl:h-15  xl:w-110 p-2' value={inputRenda} onChange={e => setInputRenda(e.target.value)} />
-            <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl'>Planejamento Escolhido</h2>
+          <form action="submit" onSubmit={formaEconomia} className='flex flex-col gap-4 md:gap-6'>
+            <div className='flex flex-col gap-2 md:gap-3 justify-center items-center'>
+              <input type="text" maxLength={40} name="valorRenda" id="ValorRenda" placeholder='Insira sua Renda' value={inputRenda} onChange={e => setInputRenda(e.target.value)} required className='bg-[var(--color-dark-green)] text-white rounded-2xl w-full md:w-[80%] p-2 md:text-lg xl:text-2xl xl:p-4' />
+              <h2 className='text-[var(--color-dark-green)] font-title-app text-2xl md:text-4xl lg:text-4xl xl:text-5xl my-4 lg:my-8'>Planejamento Escolhido</h2>
             <Select
               options={optionsSelect}
               value={optionsSelect.find(opt => opt.value === inputPlan)}
               onChange={opt => setInputPlan(opt.value)}
               placeholder="Selecione um Plano"
               required
-              className="w-[70%]"
+              className="w-[100%] md:w-[80%] shadow-2xl "
               classNames={{
-                control: () => 'bg-[var(--color-dark-green)] text-white rounded-2xl border-none min-h-[48px] focus:ring-2 focus:ring-[var(--color-green)]',
+                control: () => 'bg-[var(--color-dark-green)] text-white rounded-2xl border-none min-h-[48px]  focus:ring-2 focus:ring-[var(--color-green)]',
                 singleValue: () => 'text-white font-bold',
                 menu: () => 'bg-[var(--color-dark-green)] rounded-2xl',
                 option: ({ isSelected, isFocused }) =>
@@ -242,8 +145,8 @@ const PlanejamentoEconomico = () => {
                   backgroundColor: state.isSelected
                     ? 'var(--color-green)'
                     : state.isFocused
-                    ? 'var(--color-dark-green)'
-                    : 'var(--color-dark-green)',
+                      ? 'var(--color-dark-green)'
+                      : 'var(--color-dark-green)',
                   color: 'white',
                   cursor: 'pointer',
                 }),
@@ -254,22 +157,13 @@ const PlanejamentoEconomico = () => {
                 }),
               }}
             />
-            <button type='submit' className="border-0 text-[var(--color-black)] bg-[var(--color-white)] rounded-2xl p-3 hover:bg-[var(--color-green)] hover:text-[var(--color-white)] transition-colors duration-400 ease-in-out w-[40%] md:w-[50%] text-center font-text-alt md:text-2xl xl:text-3xl xl:mb-4  cursor-pointer self-center">Registrar</button>
-          </div>
-        </form>
-        <div
-          className='flex flex-col items-center rounded-t-2xl space-y-6 md:space-y-10 lg:space-y-14 p-4 '>
+              
+            </div>
+            <div className="flex justify-center">
+              <button type='submit' className='h-auto p-2 bg-[var(--color-dark-green)] text-[var(--color-white)] rounded-4xl cursor-pointer font-text-app text-lg w-full md:w-[75%] 2xl:w-[50%] xl:text-xl xl:p-4'>Enviar</button>
+            </div>
 
-          <h2 className='text-[var(--color-white)] font-title-app text-2xl md:text-4xl lg:text-5xl'>Descrição dos planos:</h2>
-          <ul className='text-[var(--color-white)] font-text-app text-lg space-y-4 md:space-y-8 decoration-none list-disc md:text-xl lg:text-3xl '>
-            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Mão de Vaca </span><br /><br /> Destinado à usuários que desejam o máximo de economia possível</li>
-            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)]'>Normal </span><br /><br />Destinado à Usuários que desejam economizar uma quantidade básica, sem exagero ou falta</li>
-            <li><span className='font-title-alt text-xl md:text-2xl lg:text-3xl m-2 text-[var(--color-green)] '>Escorpião no Bolso</span><br /><br />Destinados à usuários que preferem gastar mais e economizar menos</li>
-
-          </ul>
-        </div>
-        <div>
-
+          </form>
         </div>
 
       </div>
