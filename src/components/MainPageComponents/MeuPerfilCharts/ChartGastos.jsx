@@ -2,6 +2,8 @@ import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 
 
 
+
+
 const data = [
   { name: 'Alimentação', value: 500 },
   { name: 'Transporte', value: 400 },
