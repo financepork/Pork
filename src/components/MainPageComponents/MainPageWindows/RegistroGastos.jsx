@@ -170,24 +170,24 @@ const RegistroGastos = () => {
     <main
       className=' h-full w-full flex flex-col  '>
       <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
-        className='flex flex-col xl:flex-row h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-8 xl:p-16 overflow-y-none items-center justify-around'>
+        className='flex flex-col xl:flex-row h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-8 xl:p-16 overflow-y-none items-center  justify-around lg:justify-start'>
 
-        <div className='bg-[var(--color-white)] w-full md:w-[80%] xl:w-[60%] h-full flex items place-self-auto flex-col p-7 xl:p-12 min-h-[70%] rounded-xl gap-8 xl:gap-16'>
+        <div className='bg-[var(--color-chumbo)] w-full md:w-[70%] xl:w-[40%] h-full flex  flex-col p-7 xl:p-12 min-h-[70%] rounded-xl gap-8 xl:gap-16'>
           <div className='flex items-center w-full h-full space-x-1.5 md:space-x-2 xl:space-x-4'>
             <img src="/icons/3dIcons/registroGastos3d.png" alt="Icone registro de gastos" className='w-[17%] md:w-[15%] xl:w-[12%] 2xl:w-[10%]' />
             <h1 className='font-title-app text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl text-[var(--color-dark-green)]'>Registro de Gastos</h1>
           </div>
           <form action="submit" onSubmit={listarGasto} className='flex flex-col gap-4 md:gap-6'>
             <div className='flex flex-col gap-4 md:gap-3 justify-center items-center'>
-              <input type="text" maxLength={40} name="descGasto" id="descGasto" placeholder='Descreva o Gasto' value={inputDescGasto} onChange={e => setInputDescGasto(e.target.value)} required className='bg-[var(--color-dark-green)] text-white rounded-2xl w-full md:w-[80%] p-2 md:text-lg xl:text-2xl xl:p-4' />
-              <input type="number" name="valorGasto" id="valorGasto" placeholder='Valor do seu Gasto' value={inputValorGasto} onChange={e => setInputValorGasto(e.target.value)} step={0.01} className='bg-[var(--color-dark-green)] text-white rounded-2xl w-full md:w-[80%] p-2 md:text-lg xl:text-2xl xl:p-4' required />
+              <input type="text" maxLength={40} name="descGasto" id="descGasto" placeholder='Descreva o Gasto' value={inputDescGasto} onChange={e => setInputDescGasto(e.target.value)} required className='bg-[var(--color-dark-green)] text-white rounded-2xl w-full md:w-[80%] p-2 md:text-lg xl:text-2xl xl:p-4 shadow-2xl' />
+              <input type="number" name="valorGasto" id="valorGasto" placeholder='Valor do seu Gasto' value={inputValorGasto} onChange={e => setInputValorGasto(e.target.value)} step={0.01} className='bg-[var(--color-dark-green)] text-white rounded-2xl w-full md:w-[80%] p-2 md:text-lg xl:text-2xl xl:p-4 shadow-2xl' required />
               <Select
                 options={optionsSelect}
                 value={optionsSelect.find(opt => opt.value === inputCategoria)}
                 onChange={opt => setInputCategoria(opt.value)}
                 placeholder="Categoria Do Gasto"
                 required
-                className="w-[100%] md:w-[80%] xl:h-20 "
+                className="w-[100%] md:w-[80%] shadow-2xl "
                 classNames={{
                   control: () => 'bg-[var(--color-dark-green)] text-white rounded-2xl border-none min-h-[48px] focus:ring-2 focus:ring-[var(--color-green)]',
                   singleValue: () => 'text-white font-bold',
@@ -248,7 +248,7 @@ const RegistroGastos = () => {
                 onChange={opt => setInputMesGastos(opt.value)}
                 placeholder="Selecione o Mês"
                 required
-                className='w-[140%] md:w-[60%]'
+                className='w-[140%] md:w-[60%] shadow-2xl'
                 classNames={{
                   control: () => 'bg-[var(--color-dark-green)] text-white rounded-2xl border-none min-h-[48px]  focus:ring-2 focus:ring-[var(--color-green)]',
                   singleValue: () => 'text-white font-bold',
