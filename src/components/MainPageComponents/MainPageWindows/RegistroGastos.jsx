@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import Select from 'react-select'
+import Gasto from '../Gasto'
 
 
 
@@ -26,7 +27,7 @@ const RegistroGastos = () => {
     { value: 'TRANSPORTE', label: 'Transporte' },
     { value: 'LAZER', label: 'Lazer' },
     { value: 'CONTAS', label: 'Contas Básicas' },
-    { value: 'OUTRAS', label: 'Outras' }
+    { value: 'OUTROS', label: 'Outras' }
   ]
 
   const optionsMeses = [
@@ -192,6 +193,25 @@ const RegistroGastos = () => {
     setIsLoading(false)
   }
 
+  const rotulaGastos = (gasto) => {
+    switch (gasto.categoria) {
+      case 'ALIMENTACAO':
+        return <Gasto gasto={gasto} imgPath='icons/iconAlimentacao.png' mainTextColor='color-alimentacao'  />
+
+      case 'TRANSPORTE':
+        return <Gasto gasto={gasto} imgPath='icons/iconTransporte.png' mainTextColor='color-transporte' />
+
+      case 'LAZER':
+        return <Gasto gasto={gasto} imgPath='icons/iconLazer.png' mainTextColor='color-lazer'  />
+
+      case 'CONTAS':
+        return <Gasto gasto={gasto} imgPath='icons/iconContas.png' mainTextColor='color-contas'  />
+
+      case 'OUTROS': 
+        return <Gasto gasto={gasto} imgPath='icons/iconOutros.png' mainTextColor='color-outros'/>
+    }
+  }
+
 
   return (
     <main
@@ -336,15 +356,8 @@ const RegistroGastos = () => {
             <ul>
               {gastos.map((gasto) => (
                 <li key={gasto.id} className='flex flex-row justify-between items-center h-[10%] w-full my-8 md:my-12'>
-                  <div className='text-[var(--color-dark-green)] font-text text-xl xl:space-y-2.5 md:text-3xl xl:text-4xl'>
-                    <div>
-                      <p className='font-title-alt'>{gasto.descricao}</p>
-                    </div>
-                    <div>
-                      <p className='text-[var(--color-green)]'>R$ {gasto.valor}</p>
-                    </div>
-                  </div>
-                  <div className='w-[10%] md:w-[8%] xl:w-[5%]'>
+                  {rotulaGastos(gasto)}
+                  <div className='w-[20%] md:w-[16%] xl:w-[10%]'>
                     <button onClick={() => deleteGasto(gasto.id)} className='w-full h-full cursor-pointer'>
                       <img src="icons/lixeira.png" alt="Icone Lixeira" className='h-[100%] w-[100%] ' />
                     </button>
