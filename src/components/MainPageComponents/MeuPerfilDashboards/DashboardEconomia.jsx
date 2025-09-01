@@ -116,9 +116,9 @@ const DashboardEconomia = () => {
     }, [])
 
     return (
-        <div className='flex flex-col p-6 md:p-10 lg:p-12 xl:p-16 xl:w-[60%] lg:w-[60%] h-full  w-full bg-[var(--color-chumbo)] max-h-[81%] rounded-xl'>
+        <div className='bg-[var(--color-chumbo)] w-full md:w-[80%] xl:w-[60%] h-full flex items place-self-auto flex-col p-8 xl:p-12 min-h-[70%] rounded-xl gap-4 xl:gap-16'>
             <div className='m-2'>
-                <h1 className='font-title-app text-3xl text-[var(--color-green)]'>
+                <h1 className='font-title-app text-3xl md:text-4xl xl:text-5xl text-[var(--color-green)] md:mb-4'>
                     Seu Planejamento Econômico
                 </h1>
             </div>
@@ -129,23 +129,23 @@ const DashboardEconomia = () => {
                 } 
                 <div className=' font-title-app text-md w-[60%] '>
                     <ul>
-                        <li className='flex flex-row items-center text-[var(--color-green)]'><div className='h-[20px] w-[20px] bg-[var(--color-green)] rounded-sm m-2 ' /> Economia</li>
-                        <li className='flex flex-row items-center text-[var(--color-dark-green)]'><div className='h-[20px] w-[20px] bg-[var(--color-dark-green)] rounded-sm m-2 text-center' /> Valor Livre</li>
+                        <li className='flex flex-row font-text-app items-center text-[var(--color-green)] md:text-lg xl:text-xl'><div className='h-[20px] w-[20px] md:h-[25px] md:w-[25px] bg-[var(--color-green)] rounded-sm m-2 xl:w-[30px] xl:h-[30px]  ' /> Economia</li>
+                        <li className='flex flex-row font-text-app items-center text-[var(--color-dark-green)] md:text-lg xl:text-xl'><div className='h-[20px] w-[20px] bg-[var(--color-dark-green)] rounded-sm m-2 text-center md:h-[25px] md:w-[25px] xl:w-[30px] xl:h-[30px]' /> Valor Livre</li>
                     </ul>
                 </div>
             </div>
             <div className='flex flex-col flex-wrap space-y-4 lg:space-y-6'>
-                <div  className='flex flex-row items-center gap-3 '>
-                    <h2 className='text-[var(--color-green)] font-title-app text-2xl md:text-4xl lg:text-5xl leading-relaxed'>Renda Mensal </h2>
-                    <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>R${valueRenda}</p>
+                <div  className='flex flex-row items-center gap-3 lg:gap-5  '>
+                    <h2 className='text-[var(--color-green)] font-title-app text-2xl md:text-4xl  leading-relaxed'>Renda Mensal </h2>
+                    <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl '>R${valueRenda}</p>
                 </div>
-                <div  className='flex flex-row items-center gap-3 '>
-                    <h2 className='text-[var(--color-green)] font-title-app text-2xl leading-relaxed  md:text-4xl lg:text-5xl'>Plano  </h2>
-                <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>{valuePlan}</p>
+                <div  className='flex flex-row items-center gap-3 lg:gap-5 '>
+                    <h2 className='text-[var(--color-green)] font-title-app text-2xl leading-relaxed  md:text-4xl '>Plano  </h2>
+                <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl '>{valuePlan}</p>
                 </div>
-                <div className='flex flex-row items-center gap-3 '>
-                    <h2 className='text-[var(--color-green)] font-title-app text-2xl leading-relaxed  md:text-4xl lg:text-5xl'>Economia Ideal </h2>
-                <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl lg:text-4xl'>R${valueEco}/Mês</p>
+                <div className='flex flex-row items-center gap-3 lg:gap-5 '>
+                    <h2 className='text-[var(--color-green)] font-title-app text-2xl leading-relaxed  md:text-4xl '>Economia Ideal </h2>
+                <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl '>R${valueEco}/Mês</p>
                 </div>
             </div>
             

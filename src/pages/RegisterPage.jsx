@@ -200,17 +200,7 @@ const RegisterPage = () => {
                   )}</button>
                 </div>
                 {erroPassword && <p className='text-red text-sm md:text-md xl:text-lg font-title-alt ml-1 ' >Digite uma senha válida</p>}
-                <p className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 mt-6 text-[var(--color-green)] m-3'>A Senha precisa possuir 
-                </p>
-                 <ul className='space-y-2 m-4 text-sm  lg:text-lg list-disc font-text-app ml-1 text-[var(--color-green)]'>
-                    <li>No Mínimo 8 caracteres</li>
-                    <li>No Mínimo 1  letra Maiúscula e 1 letra Minúscula</li>
-                    <li>No Mínimo 1  Número</li>
-                    <li>No Mínimo 1  Caractere Especial (Símbolos como: @, #, !...)</li>
-                  </ul>
-
-              </div>
-              <div className='flex flex-col w-full max-w-md space-y-1'>
+                <div className='flex flex-col w-full max-w-md space-y-1'>
 
                 <label htmlFor="Confirmar Senha" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>Confirmar Senha </label>
                 <div className='flex flex-row justify-between'>
@@ -235,6 +225,16 @@ const RegisterPage = () => {
                 {erroConfirmPassword && <p className='text-red text-sm md:text-md xl:text-lg font-title-alt ml-1 ' >Digite as senhas iguais</p>}
                 
               </div>
+                <p className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 mt-6 text-[var(--color-green)] m-3'>A Senha precisa possuir 
+                </p>
+                 <ul className='space-y-2 m-4 text-sm  lg:text-lg list-disc font-text-app ml-1 text-[var(--color-green)]'>
+                    <li>No Mínimo 8 caracteres</li>
+                    <li>No Mínimo 1  letra Maiúscula e 1 letra Minúscula</li>
+                    <li>No Mínimo 1  Número</li>
+                    <li>No Mínimo 1  Caractere Especial (Símbolos como: @, #, !...)</li>
+                  </ul>
+              </div>
+              
             </div>
 
             <button type='submit' className="border-0 text-[var(--color-white)] bg-[var(--color-green)] rounded-2xl text-md font-text md:text-xl xl:text-2xl p-3 hover:bg-[var(--color-white)] 

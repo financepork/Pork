@@ -12,6 +12,22 @@ const PlanejamentoEconomico = () => {
 
   const [isLoading, setIsLoading] = useState(false)
 
+  const sucessMessage = () => {
+      Swal.fire({
+        title: 'Planejamento feito!',
+        text: 'Verifique seu Perfil para ver sua Economia',
+        icon: 'success',
+        color: 'var(--color-white)',
+        background: 'var(--color-green)',
+        confirmButtonText: 'Concluir',
+        iconColor: 'var(--color-white)',
+        customClass: {
+          popup: '!rounded-2xl !p-6 !shadow-xl',
+          confirmButton: '!text-green-500 !bg-white !border-none  '
+        }
+      })
+    }
+
   const loadingMessage = () => {
     Swal.fire({
       title: 'Carregando...',
@@ -83,6 +99,7 @@ const PlanejamentoEconomico = () => {
       await setarValor();
       await setarPlan();
       await geraEconomia();
+      sucessMessage()
     } finally {
       setIsLoading(false)
     }
@@ -160,7 +177,7 @@ const PlanejamentoEconomico = () => {
               
             </div>
             <div className="flex justify-center">
-              <button type='submit' className='h-auto p-2 bg-[var(--color-dark-green)] text-[var(--color-white)] rounded-4xl cursor-pointer font-text-app text-lg w-full md:w-[75%] 2xl:w-[50%] xl:text-xl xl:p-4'>Enviar</button>
+              <button type='submit' className='h-auto p-2 bg-[var(--color-dark-green)] text-[var(--color-white)] rounded-xl cursor-pointer font-text-app text-lg w-full md:w-[75%] 2xl:w-[50%] xl:text-xl xl:p-4'>Enviar</button>
             </div>
 
           </form>

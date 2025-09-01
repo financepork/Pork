@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import Select from 'react-select'
+import Gasto from '../Gasto'
 
 
 
@@ -26,7 +27,7 @@ const RegistroGastos = () => {
     { value: 'TRANSPORTE', label: 'Transporte' },
     { value: 'LAZER', label: 'Lazer' },
     { value: 'CONTAS', label: 'Contas Básicas' },
-    { value: 'OUTRAS', label: 'Outras' }
+    { value: 'OUTROS', label: 'Outras' }
   ]
 
   const optionsMeses = [
@@ -124,7 +125,6 @@ const RegistroGastos = () => {
         "categoria": inputCategoria
       }
     ]
-    console.log(inputCategoria)
     try {
       await axios.post('/despesas/anotar-despesas', gastoEnviado, {
         withCredentials: true
@@ -190,6 +190,25 @@ const RegistroGastos = () => {
     setIsLoading(true)
     await fetchGastos(pageNumber)
     setIsLoading(false)
+  }
+
+  const rotulaGastos = (gasto) => {
+    switch (gasto.categoria) {
+      case 'ALIMENTACAO':
+        return <Gasto gasto={gasto} imgPath='icons/iconAlimentacao.png'  />
+
+      case 'TRANSPORTE':
+        return <Gasto gasto={gasto} imgPath='icons/iconTransporte.png'  />
+
+      case 'LAZER':
+        return <Gasto gasto={gasto} imgPath='icons/iconLazer.png'   />
+
+      case 'CONTAS':
+        return <Gasto gasto={gasto} imgPath='icons/iconContas.png'   />
+
+      case 'OUTROS': 
+        return <Gasto gasto={gasto} imgPath='icons/iconOutros.png' />
+    }
   }
 
 
@@ -262,7 +281,7 @@ const RegistroGastos = () => {
             </div>
 
             <div className="flex justify-center">
-              <button type='submit' className='h-auto p-2 bg-[var(--color-dark-green)] text-[var(--color-white)] rounded-4xl cursor-pointer font-text-app text-lg w-full md:w-[75%] 2xl:w-[50%] xl:text-xl xl:p-4'>Listar</button>
+              <button type='submit' className='h-auto p-2 bg-[var(--color-dark-green)] text-[var(--color-white)] rounded-xl cursor-pointer font-text-app text-lg w-full md:w-[75%] 2xl:w-[50%] xl:text-xl xl:p-4'>Listar</button>
             </div>
 
           </form>
@@ -336,15 +355,8 @@ const RegistroGastos = () => {
             <ul>
               {gastos.map((gasto) => (
                 <li key={gasto.id} className='flex flex-row justify-between items-center h-[10%] w-full my-8 md:my-12'>
-                  <div className='text-[var(--color-dark-green)] font-text text-xl xl:space-y-2.5 md:text-3xl xl:text-4xl'>
-                    <div>
-                      <p className='font-title-alt'>{gasto.descricao}</p>
-                    </div>
-                    <div>
-                      <p className='text-[var(--color-green)]'>R$ {gasto.valor}</p>
-                    </div>
-                  </div>
-                  <div className='w-[10%] md:w-[8%] xl:w-[5%]'>
+                  {rotulaGastos(gasto)}
+                  <div className='w-[20%] md:w-[16%] xl:w-[10%]'>
                     <button onClick={() => deleteGasto(gasto.id)} className='w-full h-full cursor-pointer'>
                       <img src="icons/lixeira.png" alt="Icone Lixeira" className='h-[100%] w-[100%] ' />
                     </button>
@@ -357,23 +369,23 @@ const RegistroGastos = () => {
           </div>
           <div className='flex flex-row w-full h-full justify-center items-center text-[var(--color-green)] font-text-app text-lg gap-4'>
             <button className={`${pageOpen === 0 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto p-1 px-2 rounded-lg`}
-              onClick={e => changePageMetas(0)}>
+              onClick={() => changePageMetas(0)}>
               1
             </button>
             <button className={`${pageOpen === 1 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto  p-1 px-2 rounded-lg`}
-              onClick={e => changePageMetas(1)}>
+              onClick={() => changePageMetas(1)}>
               2
             </button>
             <button className={`${pageOpen === 2 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto  p-1 px-2 rounded-lg`}
-              onClick={e => changePageMetas(2)}>
+              onClick={() => changePageMetas(2)}>
               3
             </button>
             <button className={`${pageOpen === 3 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto  p-1 px-2 rounded-lg`}
-              onClick={e => changePageMetas(3)}>
+              onClick={() => changePageMetas(3)}>
               4
             </button>
             <button className={`${pageOpen === 4 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto  p-1 px-2 rounded-lg`}
-              onClick={e => changePageMetas(4)}>
+              onClick={() => changePageMetas(4)}>
               5
             </button>
           </div>
