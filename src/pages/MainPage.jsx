@@ -80,8 +80,6 @@ const MainPage = () => {
 
     const handlePopState = () => {
       
-
-      
       Swal.fire({
         title: 'Certeza que deseja sair agora?',
         text: "Se você sair, sua sessão pode ser encerrada.",

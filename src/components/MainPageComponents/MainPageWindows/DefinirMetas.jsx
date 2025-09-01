@@ -79,7 +79,7 @@ const DefinirMetas = () => {
 
   useEffect(() => {
     getInitialValues()
-  }, [])
+  },[])
 
   const limpaInputs = () => {
     setInputData('')
@@ -200,23 +200,23 @@ const DefinirMetas = () => {
           </div>
           <div className='flex flex-row w-full h-full justify-center items-center text-[var(--color-green)] font-text-app text-lg gap-4'>
             <button className={`${pageOpen === 0 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto p-1 px-2 rounded-lg`}
-              onClick={e => changePageMetas(0)}>
+              onClick={() => changePageMetas(0)}>
               1
             </button>
             <button className={`${pageOpen === 1 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto  p-1 px-2 rounded-lg`}
-              onClick={e => changePageMetas(1)}>
+              onClick={() => changePageMetas(1)}>
               2
             </button>
             <button className={`${pageOpen === 2 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto  p-1 px-2 rounded-lg`}
-              onClick={e => changePageMetas(2)}>
+              onClick={() => changePageMetas(2)}>
               3
             </button>
             <button className={`${pageOpen === 3 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto  p-1 px-2 rounded-lg`}
-              onClick={e => changePageMetas(3)}>
+              onClick={() => changePageMetas(3)}>
               4
             </button>
             <button className={`${pageOpen === 4 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto  p-1 px-2 rounded-lg`}
-              onClick={e => changePageMetas(4)}>
+              onClick={() => changePageMetas(4)}>
               5
             </button>
           </div>

@@ -8,7 +8,7 @@ const data = [
   { name: 'Alimentação', value: 500 },
   { name: 'Transporte', value: 400 },
   { name: 'Lazer', value: 300 },
-  {name: 'Contas Básicas', value: 400 },
+  { name: 'Contas Básicas', value: 400 },
   { name: 'Outros', value: 400 },
 ];
 
@@ -31,25 +31,25 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
 const ChartGastos = () => {
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <PieChart width={500} height={500}>
-        <Pie
-          data={data}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          label={renderCustomizedLabel}
-          outerRadius={80}
-          fill="#8884d8"
-          dataKey="value"
-          stroke="var(--color-chumbo)" 
-        >
-          {data.map((entry, index) => (
-            <Cell key={`cell-${entry.name}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-      </PieChart>
-    </ResponsiveContainer>
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart >
+          <Pie
+            data={data}
+            cx="50%"
+            cy="50%"
+            labelLine={false}
+            label={renderCustomizedLabel}
+            outerRadius="90%"
+            fill="#8884d8"
+            dataKey="value"
+            stroke="var(--color-chumbo)"
+          >
+            {data.map((entry, index) => (
+              <Cell key={`cell-${entry.name}`} fill={COLORS[index % COLORS.length]} />
+            ))}
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
   );
 };
 
