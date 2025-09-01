@@ -173,7 +173,7 @@ const RegistroGastos = () => {
     setIsLoading(true)
     if (inputMesGastos === '' || inputMesGastos === null) return errorMessage('Por favor, selecione um mês', 'informações incompletas')
     try {
-      const response = await axios.get(`/despesas/consultar-despesas-mes?mes=${inputMesGastos}`, {
+      const response = await axios.get(`/despesas/consultar-despesas-por-mes?mes=${inputMesGastos}`, {
         withCredentials: true
       })
       setGastos([...response.data.list])
