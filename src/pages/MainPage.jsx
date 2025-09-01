@@ -112,11 +112,11 @@ const MainPage = () => {
       <header className='h-max-screen overflow-x-hidden bg-gradient-to-tr from-[var(--color-green)] to-[var(--color-dark-green)] rounded-b-2xl '>
         <aside className=''>
           <div className='flex justify-between items-center h-auto p-2 ml-2 bg-none'>
-            <div>
+            <div className='m-2 xl:m-6'>
               <button className={`${isOpen ? 'hidden' : ''} text-[var(--color-white)] flex flex-col justify-center items-center cursor-pointer`} onClick={() => setIsOpen(true)}>
-                <span className='h-1 md:h-1.5 xl:h-2 w-6 md:w-8 xl:w-12 bg-[var(--color-white)] transition-all duration-300 rounded-4xl'></span>
-                <span className='h-1 md:h-1.5 xl:h-2 w-6 md:w-8 xl:w-12 bg-[var(--color-white)] my-1 transition-all duration-300 rounded-4xl'></span>
-                <span className='h-1 md:h-1.5 xl:h-2 w-6 md:w-8 xl:w-12 bg-[var(--color-white)] transition-all duration-300 rounded-4xl'></span>
+                <span className='h-1 md:h-1.5 xl:h-2 w-8 md:w-10 xl:w-14 bg-[var(--color-white)] transition-all duration-300 rounded-4xl'></span>
+                <span className='h-1 md:h-1.5 xl:h-2 w-8 md:w-10 xl:w-14 bg-[var(--color-white)] my-1 transition-all duration-300 rounded-4xl'></span>
+                <span className='h-1 md:h-1.5 xl:h-2 w-8 md:w-10 xl:w-14 bg-[var(--color-white)] transition-all duration-300 rounded-4xl'></span>
               </button>
 
             </div>

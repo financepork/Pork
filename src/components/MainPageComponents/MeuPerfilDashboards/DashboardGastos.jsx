@@ -8,7 +8,7 @@ const DashboardGastos = () => {
 
             <div>
                 <div className='m-2'>
-                    <h1 className='font-title-app text-3xl md:text-4xl text-[var(--color-green)] md:mb-4'>
+                    <h1 className='font-title-app text-3xl md:text-4xl lg:text-5xl text-[var(--color-green)] md:mb-4'>
                     Seus Gastos
                 </h1>
                 </div>
