@@ -355,10 +355,10 @@ const RegistroGastos = () => {
             <ul>
               {gastos.map((gasto) => (
                 <li key={gasto.id} className='flex flex-row justify-between items-center h-[10%] w-full my-8 md:my-12'>
-                  {rotulaGastos(gasto)}
-                  <div className='w-[20%] md:w-[16%] xl:w-[10%]'>
-                    <button onClick={() => deleteGasto(gasto.id)} className='w-full h-full cursor-pointer'>
-                      <img src="icons/lixeira.png" alt="Icone Lixeira" className='h-[100%] w-[100%] ' />
+                    {rotulaGastos(gasto)}
+                  <div className=' max-w-[10%]'>
+                    <button onClick={() => deleteGasto(gasto.id)} className='w-full  h-full cursor-pointer'>
+                      <img src="icons/lixeira.png" alt="Icone Lixeira" className='h-full w-full ' />
                     </button>
                   </div>
                 </li>
