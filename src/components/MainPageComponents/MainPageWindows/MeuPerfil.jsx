@@ -1,7 +1,7 @@
 import React from 'react'
 import DashboardGastos from '../MeuPerfilDashboards/DashboardGastos'
 import DashboardEconomia from '../MeuPerfilDashboards/DashboardEconomia'
-import Select from 'react-select/dist/declarations/src/Select'
+import Select from 'react-select'
 
 
 const MeuPerfil = () => {
