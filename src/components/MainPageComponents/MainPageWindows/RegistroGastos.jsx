@@ -192,7 +192,7 @@ const RegistroGastos = () => {
     setIsLoading(false)
   }
 
-  const rotulaGastos = (gasto) => {
+   const rotulaGastos = (gasto) => {
     switch (gasto.categoria) {
       case 'ALIMENTACAO':
         return <Gasto gasto={gasto} imgPath='icons/iconAlimentacao.png'  />

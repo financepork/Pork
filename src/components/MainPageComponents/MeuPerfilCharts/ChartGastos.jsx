@@ -1,17 +1,6 @@
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 
 
-
-
-
-const data = [
-  { name: 'Alimentação', value: 500 },
-  { name: 'Transporte', value: 400 },
-  { name: 'Lazer', value: 300 },
-  { name: 'Contas Básicas', value: 400 },
-  { name: 'Outros', value: 400 },
-];
-
 const RADIAN = Math.PI / 180;
 const COLORS = ['oklch(50.5% 0.213 27.518)', 'oklch(84.5% 0.143 164.978)', 'oklch(37.9% 0.146 265.522)', 'oklch(85.2% 0.199 91.936)', 'oklch(47% 0.157 37.304)'];
 
@@ -29,7 +18,16 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 };
 
 
-const ChartGastos = () => {
+const ChartGastos = ({valueAlimentacao, valueContas, valueLazer, valueTransporte, valueOutros}) => {
+
+  const data = [
+  { name: 'Alimentação', value: Number(valueAlimentacao) },
+  { name: 'Transporte', value: Number(valueTransporte) },
+  { name: 'Lazer', value: Number(valueLazer) },
+  { name: 'Contas Básicas', value: Number(valueContas)},
+  { name: 'Outros', value: Number(valueOutros) },
+];
+
   return (
       <ResponsiveContainer width="100%" height="100%">
         <PieChart >
