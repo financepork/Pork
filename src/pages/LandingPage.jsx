@@ -117,7 +117,7 @@ const LandingPage = () => {
           <div className='mt-5 ml-5 flex md:justify-center items-center xl:m-10 max-w-[80%] self-center'>
             <h1 className='text-[var(--color-white)] font-title-alt text-3xl md:text-5xl xl:text-6xl'>Conheça os <span className='text-[var(--color-green)]'>Desenvolvedores</span></h1>
           </div>
-          <CardApresentacaoDir DevName="Bernardo Soares" DevStack="Front-end Developer" DevImgSrc='/svg/fotodevsoares.jpg' devInsta='https://www.instagram.com/__soaresbernardo/' devGithub='https://github.com/Dev-Soares' devLinkedin='https://www.linkedin.com/in/bernardo-soares-150096364' />
+          <CardApresentacaoDir DevName="Bernardo Soares" DevStack="Front-end Developer" DevImgSrc='/svg/fotoDevSoares.png' devInsta='https://www.instagram.com/__soaresbernardo/' devGithub='https://github.com/Dev-Soares' devLinkedin='https://www.linkedin.com/in/bernardo-soares-150096364' />
           <CardApresentacaoEsq DevName="João Vitor Chaves" DevStack="Back-end Developer" DevImgSrc='/svg/fotoDevChaves.jpg' devGithub='https://github.com/dev-Chaves' devInsta='https://www.instagram.com/user_joaocs/' devLinkedin='https://www.linkedin.com/in/jo%C3%A3o-vitor-chaves-silva-9412912b7' />
         </div>
 

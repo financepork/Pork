@@ -5,7 +5,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 
 
-const DashboardEconomia = () => {
+const DashboardEconomia = ({mesEscolhido}) => {
 
     const [valueRenda, setValueRenda] = useState('0,00')
 
@@ -48,7 +48,7 @@ const DashboardEconomia = () => {
             icon: 'error',
             color: 'var(--color-red)',
             background: 'var(--color-white)',
-            footer: error || String(error),
+            footer: error.message || String(error),
             customClass: {
                 popup: '!rounded-2xl !p-6 !shadow-xl',
                 confirmButton: '!text-white-500 !bg-red-500 !border-white  '
@@ -78,7 +78,7 @@ const DashboardEconomia = () => {
             setValueRenda(Number(valorRenda));
         } catch (error) {
             isLoading(false)
-            errorMessage('Erro ao receber informações do servidor, tente novamente', error.response?.data || error?.message || String(error));
+            errorMessage('Erro ao receber informações do servidor, tente novamente',  error );
         }
     }
 
@@ -94,7 +94,7 @@ const DashboardEconomia = () => {
             return valorEconomia
         } catch (error) {
             isLoading(false)
-            errorMessage('Erro ao receber informações do servidor, tente novamente', error.response?.data || error?.message || String(error));
+            errorMessage('Erro ao receber informações do servidor, tente novamente',  error );
         }
     }
 
@@ -113,7 +113,7 @@ const DashboardEconomia = () => {
 
     useEffect(() => {
         getInitialValues();
-    }, [])
+    }, [mesEscolhido])
 
     return (
         <div className='bg-[var(--color-chumbo)] w-full md:w-[80%] xl:w-[60%] h-full flex items place-self-auto flex-col p-8 xl:p-12 min-h-[70%] rounded-xl gap-4 xl:gap-16'>

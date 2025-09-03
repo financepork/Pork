@@ -12,6 +12,8 @@ function CarouselLanding() {
   speed: 500,
   slidesToShow: 2, // padrão para telas grandes
   slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 3000,
   centerPadding: "80px",
   responsive: [
     {

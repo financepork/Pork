@@ -80,7 +80,7 @@ const LoginPage = () => {
         } catch (error) {
           
           Swal.showValidationMessage(`
-    ${error.response?.data || error.message}
+    ${error.message}
       `);
         }
       },
@@ -158,7 +158,7 @@ const LoginPage = () => {
       icon: 'error',
       color: 'var(--color-red)',
       background: 'var(--color-white)',
-      footer: error || String(error),
+      footer: error.message || String(error),
       customClass: {
         popup: '!rounded-2xl !p-6 !shadow-xl',
         confirmButton: '!text-white-500 !bg-red-500 !border-white  '

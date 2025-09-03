@@ -76,7 +76,7 @@ const RegistroGastos = () => {
       icon: 'error',
       color: 'var(--color-red)',
       background: 'var(--color-white)',
-      footer: error || String(error),
+      footer: error.message || String(error),
       customClass: {
         popup: '!rounded-2xl !p-6 !shadow-xl',
         confirmButton: '!text-white-500 !bg-red-500 !border-white  '
@@ -84,7 +84,7 @@ const RegistroGastos = () => {
     })
   }
 
-  const fetchGastos = async ({ pageNumber }) => {
+  const fetchGastos = async ( pageNumber ) => {
 
     try {
       const response = await axios.get(`/despesas/consultar-despesas-paginada?page=${pageNumber}&size=5&sort=criadoEm,desc`, {
@@ -94,7 +94,7 @@ const RegistroGastos = () => {
       setGastos([...response.data.content])
     } catch (error) {
       setIsLoading(false)
-      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response?.data || error?.message || String(error));
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente',  error );
       return [];
     }
 
@@ -131,7 +131,7 @@ const RegistroGastos = () => {
       })
     } catch (error) {
       setIsLoading(false)
-      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response?.data || error?.message || String(error));
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente',  error );
     }
 
   }
@@ -160,7 +160,7 @@ const RegistroGastos = () => {
       await fetchGastos(0)
     } catch (error) {
       setIsLoading(false)
-      errorMessage('Erro ao remover gasto, tente novamente', error.response?.data || error?.message || String(error));
+      errorMessage('Erro ao remover gasto, tente novamente',  error );
     } finally {
 
       setIsLoading(false)
@@ -173,26 +173,26 @@ const RegistroGastos = () => {
     setIsLoading(true)
     if (inputMesGastos === '' || inputMesGastos === null) return errorMessage('Por favor, selecione um mês', 'informações incompletas')
     try {
-      const response = await axios.get(`/despesas/consultar-despesas-mes?mes=${inputMesGastos}`, {
+      const response = await axios.get(`/despesas/consultar-despesas-por-mes?mes=${inputMesGastos}`, {
         withCredentials: true
       })
       setGastos([...response.data.list])
     } catch (error) {
       setIsLoading(false)
-      errorMessage('Erro ao buscar gastos do mês, tente novamente', error.response?.data || error?.message || String(error));
+      errorMessage('Erro ao buscar gastos do mês, tente novamente',  error );
     } finally {
       setIsLoading(false)
     }
   }
 
-  const changePageMetas = async (pageNumber) => {
+  const changePageGastos = async (pageNumber) => {
     setPageOpen(pageNumber)
     setIsLoading(true)
     await fetchGastos(pageNumber)
     setIsLoading(false)
   }
 
-  const rotulaGastos = (gasto) => {
+   const rotulaGastos = (gasto) => {
     switch (gasto.categoria) {
       case 'ALIMENTACAO':
         return <Gasto gasto={gasto} imgPath='icons/iconAlimentacao.png'  />
@@ -249,7 +249,7 @@ const RegistroGastos = () => {
                     borderRadius: '1rem',
                     border: 'none',
                     color: 'white',
-                    minHeight: '48px',
+                    minHeight: '64px',
                   }),
                   singleValue: (base) => ({
                     ...base,
@@ -310,7 +310,7 @@ const RegistroGastos = () => {
                     borderRadius: '1rem',
                     border: 'none',
                     color: 'white',
-                    minHeight: '48px',
+                    minHeight: '64px',
                   }),
                   singleValue: (base) => ({
                     ...base,
@@ -355,10 +355,10 @@ const RegistroGastos = () => {
             <ul>
               {gastos.map((gasto) => (
                 <li key={gasto.id} className='flex flex-row justify-between items-center h-[10%] w-full my-8 md:my-12'>
-                  {rotulaGastos(gasto)}
-                  <div className='w-[20%] md:w-[16%] xl:w-[10%]'>
-                    <button onClick={() => deleteGasto(gasto.id)} className='w-full h-full cursor-pointer'>
-                      <img src="icons/lixeira.png" alt="Icone Lixeira" className='h-[100%] w-[100%] ' />
+                    {rotulaGastos(gasto)}
+                  <div className=' max-w-[10%]'>
+                    <button onClick={() => deleteGasto(gasto.id)} className='w-full  h-full cursor-pointer'>
+                      <img src="icons/lixeira.png" alt="Icone Lixeira" className='h-full w-full ' />
                     </button>
                   </div>
                 </li>
@@ -369,23 +369,23 @@ const RegistroGastos = () => {
           </div>
           <div className='flex flex-row w-full h-full justify-center items-center text-[var(--color-green)] font-text-app text-lg gap-4'>
             <button className={`${pageOpen === 0 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto p-1 px-2 rounded-lg`}
-              onClick={() => changePageMetas(0)}>
+              onClick={() => changePageGastos(0)}>
               1
             </button>
             <button className={`${pageOpen === 1 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto  p-1 px-2 rounded-lg`}
-              onClick={() => changePageMetas(1)}>
+              onClick={() => changePageGastos(1)}>
               2
             </button>
             <button className={`${pageOpen === 2 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto  p-1 px-2 rounded-lg`}
-              onClick={() => changePageMetas(2)}>
+              onClick={() => changePageGastos(2)}>
               3
             </button>
             <button className={`${pageOpen === 3 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto  p-1 px-2 rounded-lg`}
-              onClick={() => changePageMetas(3)}>
+              onClick={() => changePageGastos(3)}>
               4
             </button>
             <button className={`${pageOpen === 4 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto  p-1 px-2 rounded-lg`}
-              onClick={() => changePageMetas(4)}>
+              onClick={() => changePageGastos(4)}>
               5
             </button>
           </div>
