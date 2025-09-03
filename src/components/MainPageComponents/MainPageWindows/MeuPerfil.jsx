@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import DashboardGastos from '../MeuPerfilDashboards/DashboardGastos'
 import DashboardEconomia from '../MeuPerfilDashboards/DashboardEconomia'
 import Select from 'react-select'
@@ -6,23 +6,42 @@ import Select from 'react-select'
 
 const MeuPerfil = () => {
 
-    const [inputMes, setInputMes] = useState(mesAtual)
+    const [inputMes, setInputMes] = useState(0)
 
-    const diaAtual = new Date();
+    useEffect(() => {
+      const diaAtual = new Date();
+      const mesAtual = diaAtual.getMonth() + 1
+      setInputMes(mesAtual)
+    },[])
 
-    const mesAtual = diaAtual.toLocaleString('pt-BR', { month: 'long'})
+    const optionsMeses = [
+    { value: 1, label: 'Janeiro' },
+    { value: 2, label: 'Fevereiro' },
+    { value: 3, label: 'Março' },
+    { value: 4, label: 'Abril' },
+    { value: 5, label: 'Maio' },
+    { value: 6, label: 'Junho' },
+    { value: 7, label: 'Julho' },
+    { value: 8, label: 'Agosto' },
+    { value: 9, label: 'Setembro' },
+    { value: 10, label: 'Outubro' },
+    { value: 11, label: 'Novembro' },
+    { value: 12, label: 'Dezembro' },
+  ]
+    
 
 
     return (
         <main
             className=' h-full w-full flex flex-col  '>
-            <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
-                className='flex flex-col xl:flex-row h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-5 py-8 overflow-y-none items-center justify-around xl:items-start gap-4 xl:p-12'>
-                <Select
-                options={optionsSelect}
-                value={optionsSelect.find(opt => opt.value === inputMes)}
+            <div //data-aos="fade-up" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
+                className='flex flex-col h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-5 py-8 overflow-y-none items-center justify-center xl:items-start gap-4 xl:p-12'>
+                  <div className='w-[40%] xl:px-12 '>
+                    <Select
+                options={optionsMeses}
+                value={optionsMeses.find(opt => opt.value === inputMes)}
                 onChange={opt => setInputMes(opt.value)}
-                placeholder={mesAtual}
+                placeholder="Mês Atual"
                 required
                 className="w-[100%] md:w-[80%] shadow-2xl "
                 classNames={{
@@ -40,7 +59,7 @@ const MeuPerfil = () => {
                     borderRadius: '1rem',
                     border: 'none',
                     color: 'white',
-                    minHeight: '48px',
+                    minHeight: '64px',
                   }),
                   singleValue: (base) => ({
                     ...base,
@@ -69,8 +88,12 @@ const MeuPerfil = () => {
                   }),
                 }}
               />
-                <DashboardEconomia />
-                <DashboardGastos />
+                  </div>
+                <div className='flex flex-col xl:flex-row h-[100%] w-full  xl:rounded-t-4xl p-5 py-8 overflow-y-none items-center justify-around xl:items-start gap-4 xl:p-12'>
+                  <DashboardEconomia mesEscolhido={inputMes}/>
+                <DashboardGastos mesEscolhido={inputMes} />
+                </div>
+                
             </div>
         </main>
     )

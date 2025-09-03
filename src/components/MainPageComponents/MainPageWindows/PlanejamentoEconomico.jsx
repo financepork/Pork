@@ -12,6 +12,21 @@ const PlanejamentoEconomico = () => {
 
   const [isLoading, setIsLoading] = useState(false)
 
+   const errorMessage = (errorText, error) => {
+      Swal.fire({
+        title: 'Ocorreu um Erro',
+        text: errorText,
+        icon: 'error',
+        color: 'var(--color-red)',
+        background: 'var(--color-white)',
+        footer: error.message || String(error),
+        customClass: {
+          popup: '!rounded-2xl !p-6 !shadow-xl',
+          confirmButton: '!text-white-500 !bg-red-500 !border-white  '
+        }
+      })
+    }
+
   const sucessMessage = () => {
       Swal.fire({
         title: 'Planejamento feito!',
@@ -70,7 +85,7 @@ const PlanejamentoEconomico = () => {
       });
     } catch (error) {
       isLoading(false)
-      errorMessage('Erro ao receber informações do servidor, tente novamente', error.response?.data || error?.message || String(error));
+      errorMessage('Erro ao receber informações do servidor, tente novamente',  error );
     }
   }
 
@@ -85,7 +100,7 @@ const PlanejamentoEconomico = () => {
       });
     } catch (error) {
       isLoading(false)
-      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response?.data || error?.message || String(error));
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente',  error );
     }
 
   }
@@ -98,7 +113,7 @@ const PlanejamentoEconomico = () => {
       setIsLoading(true)
       await setarValor();
       await setarPlan();
-      await geraEconomia();
+      setIsLoading(false)
       sucessMessage()
     } finally {
       setIsLoading(false)

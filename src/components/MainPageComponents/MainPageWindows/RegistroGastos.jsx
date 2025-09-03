@@ -76,7 +76,7 @@ const RegistroGastos = () => {
       icon: 'error',
       color: 'var(--color-red)',
       background: 'var(--color-white)',
-      footer: error || String(error),
+      footer: error.message || String(error),
       customClass: {
         popup: '!rounded-2xl !p-6 !shadow-xl',
         confirmButton: '!text-white-500 !bg-red-500 !border-white  '
@@ -94,7 +94,7 @@ const RegistroGastos = () => {
       setGastos([...response.data.content])
     } catch (error) {
       setIsLoading(false)
-      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response?.data || error?.message || String(error));
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente',  error );
       return [];
     }
 
@@ -131,7 +131,7 @@ const RegistroGastos = () => {
       })
     } catch (error) {
       setIsLoading(false)
-      errorMessage('Erro ao enviar informações ao servidor, tente novamente', error.response?.data || error?.message || String(error));
+      errorMessage('Erro ao enviar informações ao servidor, tente novamente',  error );
     }
 
   }
@@ -160,7 +160,7 @@ const RegistroGastos = () => {
       await fetchGastos(0)
     } catch (error) {
       setIsLoading(false)
-      errorMessage('Erro ao remover gasto, tente novamente', error.response?.data || error?.message || String(error));
+      errorMessage('Erro ao remover gasto, tente novamente',  error );
     } finally {
 
       setIsLoading(false)
@@ -179,13 +179,13 @@ const RegistroGastos = () => {
       setGastos([...response.data.list])
     } catch (error) {
       setIsLoading(false)
-      errorMessage('Erro ao buscar gastos do mês, tente novamente', error.response?.data || error?.message || String(error));
+      errorMessage('Erro ao buscar gastos do mês, tente novamente',  error );
     } finally {
       setIsLoading(false)
     }
   }
 
-  const changePageMetas = async (pageNumber) => {
+  const changePageGastos = async (pageNumber) => {
     setPageOpen(pageNumber)
     setIsLoading(true)
     await fetchGastos(pageNumber)
@@ -249,7 +249,7 @@ const RegistroGastos = () => {
                     borderRadius: '1rem',
                     border: 'none',
                     color: 'white',
-                    minHeight: '48px',
+                    minHeight: '64px',
                   }),
                   singleValue: (base) => ({
                     ...base,
@@ -310,7 +310,7 @@ const RegistroGastos = () => {
                     borderRadius: '1rem',
                     border: 'none',
                     color: 'white',
-                    minHeight: '48px',
+                    minHeight: '64px',
                   }),
                   singleValue: (base) => ({
                     ...base,
@@ -369,23 +369,23 @@ const RegistroGastos = () => {
           </div>
           <div className='flex flex-row w-full h-full justify-center items-center text-[var(--color-green)] font-text-app text-lg gap-4'>
             <button className={`${pageOpen === 0 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto p-1 px-2 rounded-lg`}
-              onClick={() => changePageMetas(0)}>
+              onClick={() => changePageGastos(0)}>
               1
             </button>
             <button className={`${pageOpen === 1 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto  p-1 px-2 rounded-lg`}
-              onClick={() => changePageMetas(1)}>
+              onClick={() => changePageGastos(1)}>
               2
             </button>
             <button className={`${pageOpen === 2 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto  p-1 px-2 rounded-lg`}
-              onClick={() => changePageMetas(2)}>
+              onClick={() => changePageGastos(2)}>
               3
             </button>
             <button className={`${pageOpen === 3 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto  p-1 px-2 rounded-lg`}
-              onClick={() => changePageMetas(3)}>
+              onClick={() => changePageGastos(3)}>
               4
             </button>
             <button className={`${pageOpen === 4 ? 'bg-[var(--color-light-black)]' : 'bg-none'} w-auto h-auto  p-1 px-2 rounded-lg`}
-              onClick={() => changePageMetas(4)}>
+              onClick={() => changePageGastos(4)}>
               5
             </button>
           </div>

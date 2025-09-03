@@ -29,7 +29,7 @@ const DashboardGastos = ({ mesEscolhido }) => {
             icon: 'error',
             color: 'var(--color-red)',
             background: 'var(--color-white)',
-            footer: error || String(error),
+            footer: error.message || String(error),
             customClass: {
                 popup: '!rounded-2xl !p-6 !shadow-xl',
                 confirmButton: '!text-white-500 !bg-red-500 !border-white  '
@@ -88,7 +88,7 @@ const DashboardGastos = ({ mesEscolhido }) => {
             });
             setMaioresGastosMes([...response.data.list]);
         } catch (error) {
-            errorMessage('Erro ao receber informações do servidor, tente novamente', error.response?.data || error?.message || String(error));
+            errorMessage('Erro ao receber informações do servidor, tente novamente',  error );
         };
 
     }
@@ -99,7 +99,7 @@ const DashboardGastos = ({ mesEscolhido }) => {
             const response = await axios.get(`/despesas/consultar-despesas-total-por-categoria-mes?categoria=${categoria}&mes=${mesEscolhido}`)
             return response
         } catch (error) {
-            errorMessage('Erro ao receber informações do servidor, tente novamente', error.response?.data || error?.message || String(error));
+            errorMessage('Erro ao receber informações do servidor, tente novamente',  error );
         };
 
     }
@@ -170,7 +170,7 @@ const DashboardGastos = ({ mesEscolhido }) => {
                 </div>
                 <div className='space-y-2 flex flex-row items-center gap-3 lg:gap-5 '>
                     <h2 className='text-3xl md:text-4xl font-title-app text-[var(--color-green)]'>Valor Gasto esse Mês </h2>
-                    <p className='text-2xl md:text-3xl font-title-app text-[var(--color-dark-green)]'>{totalGasto}</p>
+                    <p className='text-2xl md:text-3xl font-title-app text-[var(--color-dark-green)]'>teste</p>
                 </div>
             </div>
 
