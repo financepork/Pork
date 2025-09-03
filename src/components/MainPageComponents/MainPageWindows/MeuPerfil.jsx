@@ -30,8 +30,8 @@ const MeuPerfil = () => {
         <main
             className=' h-full w-full flex flex-col  '>
             <div //data-aos="fade-up" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
-                className='flex flex-col h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-5 py-8 overflow-y-none items-center justify-center xl:items-start gap-4 xl:p-12'>
-                  <div className='w-[40%] xl:px-12 '>
+                className='flex flex-col h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-2 overflow-y-none items-center justify-center xl:items-start gap-4 xl:p-8'>
+                  <div className='w-[80%] lg:w-[40%] xl:px-12 mt-4 '>
                     <Select
                 options={optionsMeses}
                 onChange={opt => setInputMes(opt.value)}

@@ -65,7 +65,7 @@ const DashboardEconomia = ({mesEscolhido}) => {
                 return 'Normal'
 
             case 'EASY':
-                return 'Escorpião no Bolso'
+                return 'Gastador'
         }
     }
 
@@ -144,7 +144,7 @@ const DashboardEconomia = ({mesEscolhido}) => {
                 <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl '>{valuePlan}</p>
                 </div>
                 <div className='flex flex-row items-center gap-3 lg:gap-5 '>
-                    <h2 className='text-[var(--color-green)] font-title-app text-2xl leading-relaxed  md:text-4xl '>Economia Ideal </h2>
+                    <h2 className='text-[var(--color-green)] font-title-app text-2xl leading-relaxed  md:text-4xl '>Economia</h2>
                 <p className='text-[var(--color-dark-green)] font-title-app text-2xl  md:text-3xl '>R${valueEco}/Mês</p>
                 </div>
             </div>

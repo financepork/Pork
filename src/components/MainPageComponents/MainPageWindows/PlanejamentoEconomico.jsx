@@ -70,7 +70,7 @@ const PlanejamentoEconomico = () => {
   const optionsSelect = [
     { value: 'HARD', label: 'Mão de Vaca' },
     { value: 'MID', label: 'Normal' },
-    { value: 'EASY', label: 'Escorpião no Bolso' }
+    { value: 'EASY', label: 'Gastador' }
   ]
 
 
@@ -128,7 +128,7 @@ const PlanejamentoEconomico = () => {
     <main
       className=' h-full w-full flex flex-col mb-32  '>
       <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="900" data-aos-easing="ease-in"
-        className='flex flex-wrap h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-8 space-y-8 overflow-y-none justify-center 2xl:justify-around  '>
+        className='flex flex-col lg:flex-row h-[100%] w-full bg-[var(--color-black)] rounded-t-2xl xl:rounded-t-4xl p-8 space-y-8 overflow-y-none justify-around items-center lg:items-start gap-3 lg:gap-6'>
         <div className='bg-[var(--color-chumbo)] w-full md:w-[80%] xl:w-[60%] h-full flex items place-self-auto flex-col p-7 xl:p-12 min-h-[70%] rounded-xl gap-8 xl:gap-16'>
           <div className='flex items-center w-full h-full space-x-2 md:space-x-2 xl:space-x-4'>
             <img src="/icons/3dIcons/planEco3d.png" alt="Icone Planejamento Economico" className='w-[17%] md:w-[15%] xl:w-[12%] 2xl:w-[10%]' />
@@ -160,7 +160,7 @@ const PlanejamentoEconomico = () => {
                   borderRadius: '1rem',
                   border: 'none',
                   color: 'white',
-                  minHeight: '48px',
+                  minHeight: '64px',
                 }),
                 singleValue: (base) => ({
                   ...base,
@@ -197,7 +197,23 @@ const PlanejamentoEconomico = () => {
 
           </form>
         </div>
+         <div
+          className='w-full md:w-[80%] xl:w-[60%] h-full flex items place-self-auto flex-col p-7 xl:p-12 min-h-[70%] rounded-xl gap-8 xl:gap-16 bg-[var(--color-chumbo)]'>
 
+          <h2 className='text-[var(--color-dark-green)] font-title-app text-2xl md:text-3xl lg:text-4xl xl:text-5xl m-4 self-center'>Descrição dos planos</h2>
+          <div className='flex flex-col items-start mt-4 space-y-4 md:space-y-6 lg:space-y-8'>
+            <h3 className='text-[var(--color-dark-green)] font-title-app text-2xl md:text-3xl xl:text-4xl ml-2'>Mão de Vaca</h3>
+            <p className='text-[var(--color-white)] font-text-app text-lg md:text-xl xl:text-2xl'>Destinado à usuários que desejam economizar mais e atingir grandes metas econômicas </p>
+          </div>
+          <div className='flex flex-col items-start mt-4 space-y-4 md:space-y-6 lg:space-y-8'>
+            <h3 className='text-[var(--color-dark-green)] font-title-app text-2xl md:text-3xl xl:text-4xl ml-2'>Normal</h3>
+            <p className='text-[var(--color-white)] font-text-app text-lg md:text-xl xl:text-2xl'>Entrega uma economia padrão, nem muito, nem pouco, para usuários que procuram equilíbrio</p>
+          </div>
+          <div className='flex flex-col items-start mt-4 space-y-4 md:space-y-6 lg:space-y-8'>
+            <h3 className='text-[var(--color-dark-green)] font-title-app text-2xl md:text-3xl xl:text-4xl ml-2'>Gastador</h3>
+            <p className='text-[var(--color-white)] font-text-app text-lg md:text-xl xl:text-2xl'>Destinado à usuários que desejam gastar mais, sobrando menos pra economizar</p>
+          </div>
+        </div>
       </div>
     </main>
 
