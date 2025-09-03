@@ -155,7 +155,7 @@ const DashboardGastos = ({ mesEscolhido }) => {
         setarGastoTotalMes()
         setDataLoaded(true)
         setIsLoading(false)
-    })
+    },[mesEscolhido])
 
 
     return (
@@ -188,13 +188,13 @@ const DashboardGastos = ({ mesEscolhido }) => {
 
 
             </div>
-            <div className='space-y-4 md:space-y-5 md:mt-4'>
-                <div className='space-y-2 flex flex-row items-center gap-3 lg:gap-5 '>
+            <div className='space-y-4 md:space-y-8 md:mt-4'>
+                <div className=' flex flex-col w-full mb-3  gap-3 lg:gap-6 m-2 '>
                     <h2 className='text-3xl md:text-4xl font-title-app text-[var(--color-green)]'>Maior Gasto </h2>
                     {dataLoaded &&
-                        <ul>
+                        <ul className='m-4 mb-8 items-center justify-center'>
                             {maioresGastosMes.map((gasto) => (
-                                <li key={gasto.id} className='flex flex-row justify-between items-center h-[10%] w-full my-8 md:my-12'>
+                                <li key={gasto.id} className='flex flex-row justify-between items-center h-[10%] w-full '>
                                     {rotulaGastos(gasto)}
                                 </li>
                             )
@@ -203,9 +203,9 @@ const DashboardGastos = ({ mesEscolhido }) => {
                     }
 
                 </div>
-                <div className='space-y-2 flex flex-row items-center gap-3 lg:gap-5 '>
-                    <h2 className='text-3xl md:text-4xl font-title-app text-[var(--color-green)]'>Valor Gasto esse Mês </h2>
-                    <p className='text-2xl md:text-3xl font-title-app text-[var(--color-dark-green)]'>{gastoTotalMes}</p>
+                <div className='space-y-2 flex flex-col  gap-3 lg:gap-5 m-2'>
+                    <h2 className='text-3xl md:text-4xl font-title-app text-[var(--color-green)]'>Total Gasto</h2>
+                    <p className='text-3xl md:text-4xl font-title-app text-[var(--color-dark-green)]'>R$ {gastoTotalMes}</p>
                 </div>
             </div>
 
