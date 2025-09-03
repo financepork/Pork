@@ -159,7 +159,7 @@ const DashboardGastos = ({ mesEscolhido }) => {
 
 
     return (
-        <div className='bg-[var(--color-chumbo)] w-full md:w-[80%] xl:w-[60%] h-full flex items place-self-auto flex-col p-8 xl:p-12 min-h-[70%] rounded-xl gap-4 xl:gap-16 '>
+        <div className='bg-[var(--color-chumbo)] w-full md:w-[80%] xl:w-[60%] h-full flex items place-self-auto flex-col p-10 xl:p-12 min-h-[70%] rounded-xl gap-4 xl:gap-16 '>
 
 
             <div>
