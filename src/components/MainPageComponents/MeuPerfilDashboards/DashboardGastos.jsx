@@ -22,6 +22,8 @@ const DashboardGastos = ({ mesEscolhido }) => {
 
     const [valueOutras, setValueOutras] = useState(0)
 
+    const [gastoTotalMes, setGastoTotalMes] = useState(0)
+
     const errorMessage = (errorText, error) => {
         Swal.fire({
             title: 'Ocorreu um Erro',
@@ -36,6 +38,7 @@ const DashboardGastos = ({ mesEscolhido }) => {
             }
         })
     }
+
 
     const loadingMessage = () => {
         Swal.fire({
@@ -86,8 +89,9 @@ const DashboardGastos = ({ mesEscolhido }) => {
             const response = await axios.get(`/despesas/consultar-maiores-gastos-no-mes?mes=${mesEscolhido}`, {
                 withCredentials: true
             });
-            setMaioresGastosMes([...response.data.list]);
+            setMaioresGastosMes([...response.data]);
         } catch (error) {
+            setIsLoading(false)
             errorMessage('Erro ao receber informações do servidor, tente novamente', error);
         };
 
@@ -95,48 +99,63 @@ const DashboardGastos = ({ mesEscolhido }) => {
 
     const getGastosPorCategoria = async (categoria) => {
 
-        try {
-            const response = await axios.get(`/despesas/consultar-despesas-total-por-categoria-mes?categoria=${categoria}&mes=${mesEscolhido}`)
-            return response
-        } catch (error) {
-            errorMessage('Erro ao receber informações do servidor, tente novamente', error);
-        };
+        const response = await axios.get(`/despesas/consultar-despesas-total-por-categoria-mes?categoria=${categoria}&mes=${mesEscolhido}`, {
+            withCredentials: true
+        }
+        )
+        return response.data
 
     }
 
-        const setGastosTodasCategorias = async () => {
-            try {
-                const [
-                    resAlimentacao,
-                    resTransporte,
-                    resLazer,
-                    resContas,
-                    resOutras,
-                ] = await Promise.all([
-                    getGastosPorCategoria("ALIMENTACAO"),
-                    getGastosPorCategoria("TRANSPORTE"),
-                    getGastosPorCategoria("LAZER"),
-                    getGastosPorCategoria("CONTAS"),
-                    getGastosPorCategoria("OUTROS"),
-                ]);
+    const setGastosTodasCategorias = async () => {
+    try {
+        const [
+            resAlimentacao,
+            resTransporte,
+            resLazer,
+            resContas,
+            resOutras,
+        ] = await Promise.all([
+            getGastosPorCategoria("ALIMENTACAO"),
+            getGastosPorCategoria("TRANSPORTE"),
+            getGastosPorCategoria("LAZER"),
+            getGastosPorCategoria("CONTAS"),
+            getGastosPorCategoria("OUTROS"),
+        ]);
+        
+        setValueAlimentacao(resAlimentacao);
+        setValueTransporte(resTransporte);
+        setValueLazer(resLazer);
+        setValueContas(resContas);
+        setValueOutras(resOutras);
 
-                setValueAlimentacao(resAlimentacao.data.total);
-                setValueTransporte(resTransporte.data.total);
-                setValueLazer(resLazer.data.total);
-                setValueContas(resContas.data.total);
-                setValueOutras(resOutras.data.total);
-            } catch (error) {
-                errorMessage('Erro ao buscar gastos por categoria', error);
-            }
-        };
+    } catch (error) {
+        setIsLoading(false);
+        errorMessage('Erro ao buscar gastos por categoria', error);
+    }
+};
+
+
+    const setarGastoTotalMes = async () => {
+        try {
+            const response = await axios.get(`/despesas/consultar-despesa-total-por-mes?mes=${mesEscolhido}`, {
+                withCredentials: true
+            })
+            setGastoTotalMes(response.data)
+        } catch (error) {
+            setIsLoading(false)
+            errorMessage('Erro ao receber informações do servidor, tente novamente', error);
+        }
+    }
 
     useEffect(() => {
         setIsLoading(true)
         getMaiorGasto()
         setGastosTodasCategorias()
+        setarGastoTotalMes()
         setDataLoaded(true)
         setIsLoading(false)
-    }, [mesEscolhido])
+    })
 
 
     return (
@@ -186,7 +205,7 @@ const DashboardGastos = ({ mesEscolhido }) => {
                 </div>
                 <div className='space-y-2 flex flex-row items-center gap-3 lg:gap-5 '>
                     <h2 className='text-3xl md:text-4xl font-title-app text-[var(--color-green)]'>Valor Gasto esse Mês </h2>
-                    <p className='text-2xl md:text-3xl font-title-app text-[var(--color-dark-green)]'>teste</p>
+                    <p className='text-2xl md:text-3xl font-title-app text-[var(--color-dark-green)]'>{gastoTotalMes}</p>
                 </div>
             </div>
 

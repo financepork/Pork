@@ -6,13 +6,8 @@ import Select from 'react-select'
 
 const MeuPerfil = () => {
 
-    const [inputMes, setInputMes] = useState(0)
+    const [inputMes, setInputMes] = useState(new Date().getMonth() + 1)
 
-    useEffect(() => {
-      const diaAtual = new Date();
-      const mesAtual = diaAtual.getMonth() + 1
-      setInputMes(mesAtual)
-    },[])
 
     const optionsMeses = [
     { value: 1, label: 'Janeiro' },
@@ -39,7 +34,6 @@ const MeuPerfil = () => {
                   <div className='w-[40%] xl:px-12 '>
                     <Select
                 options={optionsMeses}
-                value={optionsMeses.find(opt => opt.value === inputMes)}
                 onChange={opt => setInputMes(opt.value)}
                 placeholder="Mês Atual"
                 required
@@ -90,7 +84,7 @@ const MeuPerfil = () => {
               />
                   </div>
                 <div className='flex flex-col xl:flex-row h-[100%] w-full  xl:rounded-t-4xl p-5 py-8 overflow-y-none items-center justify-around xl:items-start gap-4 xl:p-12'>
-                  <DashboardEconomia mesEscolhido={inputMes}/>
+                <DashboardEconomia mesEscolhido={inputMes}/>
                 <DashboardGastos mesEscolhido={inputMes} />
                 </div>
                 
