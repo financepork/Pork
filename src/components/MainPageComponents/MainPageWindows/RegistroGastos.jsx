@@ -84,7 +84,7 @@ const RegistroGastos = () => {
     })
   }
 
-  const fetchGastos = async ({ pageNumber }) => {
+  const fetchGastos = async ( pageNumber ) => {
 
     try {
       const response = await axios.get(`/despesas/consultar-despesas-paginada?page=${pageNumber}&size=5&sort=criadoEm,desc`, {

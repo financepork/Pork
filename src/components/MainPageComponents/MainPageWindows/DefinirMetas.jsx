@@ -63,7 +63,7 @@ const DefinirMetas = () => {
       })
       setMetas(response.data.content)
     } catch (error) {
-      isLoading(false)
+      setIsLoading(false)
       errorMessage('Erro ao receber informações do servidor, tente novamente',  error );
     }
   }
@@ -104,7 +104,7 @@ const DefinirMetas = () => {
         withCredentials: true
       })
     } catch (error) {
-      isLoading(false)
+      setIsLoading(false)
       errorMessage('Erro ao enviar informações ao servidor, tente novamente', error?.message || String(error));
     }
   }

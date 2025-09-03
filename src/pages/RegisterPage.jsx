@@ -149,12 +149,12 @@ const RegisterPage = () => {
             <div className='flex flex-col justify-center items-center space-y-8 '>
               <div className='flex flex-col w-full max-w-md space-y-1 lg:space-y-2'>
 
-                <label htmlFor="Nome Completo" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>Nome Completo </label>
+                <label htmlFor="Nome Completo" className='text-lg md:text-2xl xl:text-3xl font-title-alt ml-1 text-[var(--color-green)]'>Nome </label>
                 <Input
                   name="nome"
                   value={inputNome}
                   onChange={e => setInputNome(e.target.value)}
-                  onBlur={(e) => validateName(e.target.value)}
+                
                   placeholder="Digite seu nome"
                   required
                 />
@@ -169,7 +169,6 @@ const RegisterPage = () => {
                   name="email"
                   value={inputEmail}
                   onChange={e => setInputEmail(e.target.value)}
-                  onBlur={(e) => validateEmail(e.target.value)}
                   placeholder="Example@gmail.com"
                   type='email'
                   required

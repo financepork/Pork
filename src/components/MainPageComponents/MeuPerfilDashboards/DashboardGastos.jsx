@@ -61,24 +61,24 @@ const DashboardGastos = ({ mesEscolhido }) => {
 
     }, [isLoading])
 
-     const rotulaGastos = (gasto) => {
+    const rotulaGastos = (gasto) => {
         switch (gasto.categoria) {
-          case 'ALIMENTACAO':
-            return <Gasto gasto={gasto} imgPath='icons/iconAlimentacao.png'  />
-    
-          case 'TRANSPORTE':
-            return <Gasto gasto={gasto} imgPath='icons/iconTransporte.png'  />
-    
-          case 'LAZER':
-            return <Gasto gasto={gasto} imgPath='icons/iconLazer.png'   />
-    
-          case 'CONTAS':
-            return <Gasto gasto={gasto} imgPath='icons/iconContas.png'   />
-    
-          case 'OUTROS': 
-            return <Gasto gasto={gasto} imgPath='icons/iconOutros.png' />
+            case 'ALIMENTACAO':
+                return <Gasto gasto={gasto} imgPath='icons/iconAlimentacao.png' />
+
+            case 'TRANSPORTE':
+                return <Gasto gasto={gasto} imgPath='icons/iconTransporte.png' />
+
+            case 'LAZER':
+                return <Gasto gasto={gasto} imgPath='icons/iconLazer.png' />
+
+            case 'CONTAS':
+                return <Gasto gasto={gasto} imgPath='icons/iconContas.png' />
+
+            case 'OUTROS':
+                return <Gasto gasto={gasto} imgPath='icons/iconOutros.png' />
         }
-      }
+    }
 
     const getMaiorGasto = async () => {
 
@@ -88,7 +88,7 @@ const DashboardGastos = ({ mesEscolhido }) => {
             });
             setMaioresGastosMes([...response.data.list]);
         } catch (error) {
-            errorMessage('Erro ao receber informações do servidor, tente novamente',  error );
+            errorMessage('Erro ao receber informações do servidor, tente novamente', error);
         };
 
     }
@@ -99,20 +99,36 @@ const DashboardGastos = ({ mesEscolhido }) => {
             const response = await axios.get(`/despesas/consultar-despesas-total-por-categoria-mes?categoria=${categoria}&mes=${mesEscolhido}`)
             return response
         } catch (error) {
-            errorMessage('Erro ao receber informações do servidor, tente novamente',  error );
+            errorMessage('Erro ao receber informações do servidor, tente novamente', error);
         };
 
     }
 
-    const setGastosTodasCategorias = () => {
+        const setGastosTodasCategorias = async () => {
+            try {
+                const [
+                    resAlimentacao,
+                    resTransporte,
+                    resLazer,
+                    resContas,
+                    resOutras,
+                ] = await Promise.all([
+                    getGastosPorCategoria("ALIMENTACAO"),
+                    getGastosPorCategoria("TRANSPORTE"),
+                    getGastosPorCategoria("LAZER"),
+                    getGastosPorCategoria("CONTAS"),
+                    getGastosPorCategoria("OUTROS"),
+                ]);
 
-        setValueAlimentacao(getGastosPorCategoria("ALIMENTACAO"));
-        setValueTransporte(getGastosPorCategoria("TRANSPORTE"));
-        setValueLazer(getGastosPorCategoria("LAZER"));
-        setValueContas(getGastosPorCategoria("CONTAS"));
-        setValueOutras(getGastosPorCategoria("OUTRAS"));
-
-    }
+                setValueAlimentacao(resAlimentacao.data.total);
+                setValueTransporte(resTransporte.data.total);
+                setValueLazer(resLazer.data.total);
+                setValueContas(resContas.data.total);
+                setValueOutras(resOutras.data.total);
+            } catch (error) {
+                errorMessage('Erro ao buscar gastos por categoria', error);
+            }
+        };
 
     useEffect(() => {
         setIsLoading(true)
