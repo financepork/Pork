@@ -1,102 +1,102 @@
+<h1 align="center">
+  <br>
+  🐷 <br>
+  Pork - Seu Auxiliar Financeiro Digital
+  <br>
+</h1>
 
-Pork: Seu Cofrinho Digital
-Este projeto é uma ferramenta de gestão financeira digital, desenvolvida para ajudar os usuários a controlar gastos, economizar dinheiro e atingir metas financeiras. O "Pork" atua como um auxiliar financeiro digital que oferece organização e praticidade.
+<h4 align="center">A economia deixou de ser um desafio.</h4>
 
-Recursos Principais
-Plano de Economia: Oferece planos de economia personalizados para auxiliar o usuário a fazer da economia parte da rotina.
+<p align="center">
+  <a href="#-sobre">Sobre</a> •
+  <a href="#-features">Features</a> •
+  <a href="#-tech-stack">Tech Stack</a> •
+  <a href="#-como-executar">Como Executar</a> •
+  <a href="#-autores">Autores</a>
+</p>
 
-Registro de Gastos: Permite registrar e organizar despesas.
+<p align="center">
+  <img src="https://img.shields.io/badge/status-active-success.svg?style=flat-square&color=2E8B57" alt="Status">
+  <img src="https://img.shields.io/badge/react-v19-blue?style=flat-square&logo=react" alt="React">
+  <img src="https://img.shields.io/badge/vite-v7-purple?style=flat-square&logo=vite" alt="Vite">
+  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License">
+</p>
 
-Metas de Economia: Permite a definição de objetivos para motivar o usuário a economizar dinheiro.
+<br>
 
-Organização Financeira: Oferece uma visão clara de onde o dinheiro está sendo gasto, com a capacidade de categorizar despesas e gerenciar contas em um só lugar.
+## 🔖 Sobre
 
-Experiência Individual: As metas podem ser personalizadas de acordo com os sonhos de cada usuário.
+O **Pork** é uma plataforma de gestão financeira moderna projetada para transformar a maneira como você lida com o seu dinheiro. Mais do que uma planilha, é um "cofrinho digital" inteligente que auxilia no controle de gastos, definição de metas e planejamento econômico.
 
-Tecnologias e Dependências
-O projeto foi construído utilizando as seguintes tecnologias:
+Desenvolvido com foco em **UX** (User Experience), o projeto oferece uma interface intuitiva para que qualquer pessoa consiga organizar suas finanças sem complexidade.
 
-Frontend
-React
+---
 
-Vite
+## ✨ Features
 
-Axios: Para chamadas de API
+* **💰 Planos de Economia:** Estratégias predefinidas para transformar a economia em um hábito.
+* **📊 Dashboards Visuais:** Acompanhe sua evolução com gráficos interativos e dinâmicos.
+* **🎯 Metas Personalizadas:** Crie objetivos financeiros baseados nos seus sonhos reais.
+* **📝 Registro de Gastos:** Categorização simples de despesas para saber exatamente para onde seu dinheiro vai.
+* **🔐 Segurança:** Autenticação robusta com gestão de sessão e cookies seguros.
 
-SweetAlert2: Para mensagens de alerta
+---
 
-React Router DOM: Para navegação entre páginas
+## 🚀 Tech Stack
 
-Tailwind CSS: Para estilos e design
+O projeto utiliza as tecnologias mais recentes do ecossistema React para garantir performance e manutenibilidade.
 
-AOS: Para animações
+| Categoria | Tecnologias |
+| :--- | :--- |
+| **Core** | `React 19` `Vite` `React Router DOM` |
+| **Estilização** | `Tailwind CSS v4` `Tailwindcss-animated` `React Icons` |
+| **UI/UX** | `SweetAlert2` (Modais) `AOS` (Animações de Scroll) `React Slick` (Carrossel) |
+| **Dados** | `Axios` (API Client) `Recharts` (Gráficos) |
 
-React Icons: Para ícones
+---
 
-React Slick: Para carrosséis
+📂 Estrutura do Projeto
 
-Eslint: Para padronização de código
+src/
+├── components/          # Componentes modulares (Forms, Landing, Dashboard)
+├── contexts/            # Gerenciamento de estado global (AuthContext)
+├── pages/               # Páginas principais (Login, Register, Main)
+├── public/              # Assets estáticos (Imagens, Ícones 3D)
+└── main.jsx             # Ponto de entrada da aplicação
+👨‍💻 Autores
+<table align="center"> <tr> <td align="center"> <a href="https://github.com/Dev-Soares"> <img src="https://www.google.com/search?q=https://avatars.githubusercontent.com/Dev-Soares" width="100px;" alt="Foto Bernardo Soares"/>
 
-Estrutura do Projeto
-O projeto é estruturado em diferentes páginas e componentes, conforme a necessidade de navegação e reusabilidade.
 
-Páginas
-LandingPage.jsx: Página de apresentação do projeto
+<sub><b>Bernardo Soares</b></sub> </a>
 
-LoginPage.jsx: Página de login
 
-RegisterPage.jsx: Página de registro
+<a href="https://www.linkedin.com/in/bernardo-soares-150096364" title="LinkedIn">🟦 LinkedIn</a> </td> <td align="center"> <a href="https://github.com/dev-Chaves"> <img src="https://www.google.com/search?q=https://avatars.githubusercontent.com/dev-Chaves" width="100px;" alt="Foto João Vitor Chaves"/>
 
-MainPage.jsx: A página principal onde os usuários podem acessar as funcionalidades
 
-VerifyPage.jsx: Página de verificação de e-mail
+<sub><b>João Vitor Chaves</b></sub> </a>
 
-ChangePasswordPage.jsx: Página para redefinir a senha
 
-Componentes
-Navbar.jsx e Footer.jsx: Componentes de navegação e rodapé
+<a href="https://www.linkedin.com/in/jo%C3%A3o-vitor-chaves-silva-9412912b7" title="LinkedIn">🟦 LinkedIn</a> </td> </tr> </table>
 
-Input.jsx: Componente de campo de entrada
+<p align="center"> Feito com ❤️ por Devs Pork </p>
 
-PrivateRoute.jsx: Componente para proteger rotas
+## 💻 Como Executar
 
-CardApresentacaoEsq.jsx e CardApresentacaoDir.jsx: Cards de apresentação dos desenvolvedores
+### Pré-requisitos
 
-CarouselLanding.jsx e CarouselLandingMobile.jsx: Carrosséis para a página de aterragem
+Certifique-se de ter o **Node.js** e um gerenciador de pacotes (**npm** ou **yarn**) instalados.
 
-CardWindow.jsx e headerPages.jsx: Componentes para a MainPage
+### Passo a passo
 
-Como Executar o Projeto
-Instale as dependências:
+```bash
+# 1. Clone o repositório
+$ git clone [https://github.com/dev-Chaves/Pork.git](https://github.com/dev-Chaves/Pork.git)
 
-Bash
+# 2. Entre na pasta do projeto
+$ cd Pork
 
-npm install
-Execute o servidor de desenvolvimento:
+# 3. Instale as dependências
+$ npm install
 
-Bash
-
-npm run dev
-Acesse a aplicação:
-Abra seu navegador e acesse a URL fornecida pelo Vite.
-
-Para compilar o projeto para produção, utilize o seguinte comando:
-
-Bash
-
-npm run build
-Desenvolvedores
-Bernardo Soares
-
-Função: Desenvolvedor Front-end
-
-Redes sociais: Instagram, GitHub, LinkedIn
-
-João Vitor Chaves
-
-Função: Desenvolvedor Back-end
-
-Redes sociais: Instagram, GitHub, LinkedIn
-
-Notas Técnicas
-O sistema de autenticação foi corrigido para garantir a persistência da sessão e um fluxo de login e logout mais suave. As correções incluem a refatoração do contexto de autenticação, a correção do componente de rota privada e a configuração global do Axios para enviar cookies automaticamente com as credenciais. Além disso, as referências de imagem foram atualizadas para caminhos absolutos para garantir o carregamento correto em todos os ambientes.
+# 4. Inicie o servidor de desenvolvimento
+$ npm run dev
