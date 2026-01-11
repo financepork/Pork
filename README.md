@@ -78,16 +78,16 @@ The application implements a secure authentication flow designed for production 
 
 ## Project Structure
 
-src/
-├── components/          # Modular React Components
-│   ├── FormsComponents/    # Inputs, Buttons
-│   ├── GeneralComponents/  # Navbar, Footer, PrivateRoute
-│   ├── LandingComponents/  # Hero, Cards, Carousels
-│   └── MainPageComponents/ # Dashboard Widgets, Charts, Modals
-├── contexts/            # Global State (Auth, Alerts)
-├── pages/               # Application Views (Login, Register, Dashboard)
-├── public/              # Static Assets (Icons, Backgrounds)
-└── main.jsx             # Entry Point
+- 📂 **src/**
+  - 📂 **components/** — *Modular React Components*
+    - 📁 **FormsComponents/** — *Inputs, Buttons*
+    - 📁 **GeneralComponents/** — *Navbar, Footer, PrivateRoute*
+    - 📁 **LandingComponents/** — *Hero, Cards, Carousels*
+    - 📁 **MainPageComponents/** — *Dashboard Widgets, Charts, Modals*
+  - 📂 **contexts/** — *Global State (Auth, Alerts)*
+  - 📂 **pages/** — *Application Views (Login, Register, Dashboard)*
+  - 📂 **public/** — *Static Assets (Icons, Backgrounds)*
+  - 📄 **main.jsx** — *Entry Point*
 
 ## Getting Started
 
