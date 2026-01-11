@@ -55,31 +55,6 @@ O projeto utiliza as tecnologias mais recentes do ecossistema React para garanti
 
 ---
 
-📂 Estrutura do Projeto
-
-src/
-├── components/          # Componentes modulares (Forms, Landing, Dashboard)
-├── contexts/            # Gerenciamento de estado global (AuthContext)
-├── pages/               # Páginas principais (Login, Register, Main)
-├── public/              # Assets estáticos (Imagens, Ícones 3D)
-└── main.jsx             # Ponto de entrada da aplicação
-👨‍💻 Autores
-<table align="center"> <tr> <td align="center"> <a href="https://github.com/Dev-Soares"> <img src="https://www.google.com/search?q=https://avatars.githubusercontent.com/Dev-Soares" width="100px;" alt="Foto Bernardo Soares"/>
-
-
-<sub><b>Bernardo Soares</b></sub> </a>
-
-
-<a href="https://www.linkedin.com/in/bernardo-soares-150096364" title="LinkedIn">🟦 LinkedIn</a> </td> <td align="center"> <a href="https://github.com/dev-Chaves"> <img src="https://www.google.com/search?q=https://avatars.githubusercontent.com/dev-Chaves" width="100px;" alt="Foto João Vitor Chaves"/>
-
-
-<sub><b>João Vitor Chaves</b></sub> </a>
-
-
-<a href="https://www.linkedin.com/in/jo%C3%A3o-vitor-chaves-silva-9412912b7" title="LinkedIn">🟦 LinkedIn</a> </td> </tr> </table>
-
-<p align="center"> Feito com ❤️ por Devs Pork </p>
-
 ## 💻 Como Executar
 
 ### Pré-requisitos
