@@ -65,7 +65,7 @@ This project leverages the latest advancements in the JavaScript ecosystem to en
 
 ---
 
-## 🔐 Authentication & Security
+##  Authentication & Security
 
 The application implements a secure authentication flow designed for production environments:
 
