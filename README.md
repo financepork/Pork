@@ -1,77 +1,124 @@
 <h1 align="center">
   <br>
   🐷 <br>
-  Pork - Seu Auxiliar Financeiro Digital
+  Pork - Your Digital Piggy Bank
   <br>
 </h1>
 
-<h4 align="center">A economia deixou de ser um desafio.</h4>
+<h4 align="center">A modern financial assistant to manage expenses, save money, and achieve your dreams.</h4>
 
 <p align="center">
-  <a href="#-sobre">Sobre</a> •
-  <a href="#-features">Features</a> •
+  <a href="#-about">About</a> •
+  <a href="#-key-features">Features</a> •
   <a href="#-tech-stack">Tech Stack</a> •
-  <a href="#-como-executar">Como Executar</a> •
-  <a href="#-autores">Autores</a>
+  <a href="#-authentication">Authentication</a> •
+  <a href="#-getting-started">Getting Started</a> •
+  <a href="#-authors">Authors</a>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/status-active-success.svg?style=flat-square&color=2E8B57" alt="Status">
   <img src="https://img.shields.io/badge/react-v19-blue?style=flat-square&logo=react" alt="React">
   <img src="https://img.shields.io/badge/vite-v7-purple?style=flat-square&logo=vite" alt="Vite">
-  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License">
+  <img src="https://img.shields.io/badge/tailwindcss-v4-38B2AC?style=flat-square&logo=tailwindcss" alt="TailwindCSS">
+  <img src="https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square" alt="License">
 </p>
 
 <br>
 
-## 🔖 Sobre
+##  About
 
-O **Pork** é uma plataforma de gestão financeira moderna projetada para transformar a maneira como você lida com o seu dinheiro. Mais do que uma planilha, é um "cofrinho digital" inteligente que auxilia no controle de gastos, definição de metas e planejamento econômico.
+**Pork** is a comprehensive digital financial management platform designed to transform how users interact with their money. More than just a spreadsheet, it acts as an intelligent "digital piggy bank," providing tools for expense control, goal setting, and personalized economic planning.
 
-Desenvolvido com foco em **UX** (User Experience), o projeto oferece uma interface intuitiva para que qualquer pessoa consiga organizar suas finanças sem complexidade.
-
----
-
-## ✨ Features
-
-* **💰 Planos de Economia:** Estratégias predefinidas para transformar a economia em um hábito.
-* **📊 Dashboards Visuais:** Acompanhe sua evolução com gráficos interativos e dinâmicos.
-* **🎯 Metas Personalizadas:** Crie objetivos financeiros baseados nos seus sonhos reais.
-* **📝 Registro de Gastos:** Categorização simples de despesas para saber exatamente para onde seu dinheiro vai.
-* **🔐 Segurança:** Autenticação robusta com gestão de sessão e cookies seguros.
+Built with a focus on **User Experience (UX)** and **Performance**, the application features a responsive design, fluid animations, and real-time data visualization to make financial organization an engaging habit rather than a chore.
 
 ---
 
-## 🚀 Tech Stack
+##  Key Features
 
-O projeto utiliza as tecnologias mais recentes do ecossistema React para garantir performance e manutenibilidade.
+* ** Smart Savings Plans:** Personalized strategies (Easy, Medium, Hard) adapting to the user's financial reality.
+* ** Interactive Dashboards:** Visual data representation using **Recharts** to track spending habits and savings progress.
+* ** Expense Tracking:** Easy logging and categorization of daily expenses (Food, Transport, Leisure, etc.).
+* ** Custom Goals:** Define and track specific financial objectives to stay motivated.
+* ** Robust Security:** Advanced authentication system ensuring data privacy and session persistence.
 
-| Categoria | Tecnologias |
+---
+
+##  Tech Stack
+
+This project leverages the latest advancements in the JavaScript ecosystem to ensure speed, scalability, and maintainability.
+
+### Frontend
+| Technology | Description |
 | :--- | :--- |
-| **Core** | `React 19` `Vite` `React Router DOM` |
-| **Estilização** | `Tailwind CSS v4` `Tailwindcss-animated` `React Icons` |
-| **UI/UX** | `SweetAlert2` (Modais) `AOS` (Animações de Scroll) `React Slick` (Carrossel) |
-| **Dados** | `Axios` (API Client) `Recharts` (Gráficos) |
+| **React 19** | The latest core library for building user interfaces. |
+| **Vite** | Next-generation frontend tooling for ultra-fast builds. |
+| **Tailwind CSS v4** | Utility-first CSS framework for rapid and modern styling. |
+| **Axios** | Promise-based HTTP client for API communication. |
+| **Recharts** | Composable charting library for React components. |
+| **SweetAlert2** | Beautiful, responsive, and customizable replacement for popup boxes. |
+| **AOS & Tailwind-Animated** | Libraries for scroll animations and micro-interactions. |
+
+### Architecture & State
+* **Context API:** Global state management for Authentication (`AuthContext`) and Alerts (`AlertContext`).
+* **React Router DOM v7:** Client-side routing with protected routes (`PrivateRoute`).
 
 ---
 
-## 💻 Como Executar
+## 🔐 Authentication & Security
 
-### Pré-requisitos
+The application implements a secure authentication flow designed for production environments:
 
-Certifique-se de ter o **Node.js** e um gerenciador de pacotes (**npm** ou **yarn**) instalados.
+* **HttpOnly Cookies:** Sessions are managed via secure cookies, preventing XSS attacks on tokens.
+* **Global Axios Config:** `withCredentials: true` is enabled globally to ensure seamless cookie transmission.
+* **Protected Routes:** A dedicated High-Order Component (HOC) intercepts unauthorized access attempts, redirecting users to the login flow while preserving navigation history.
+* **Session Persistence:** Users remain logged in even after refreshing the page, thanks to the synchronized state management between the backend session and the frontend Context.
 
-### Passo a passo
+---
 
+## Project Structure
+
+src/
+├── components/          # Modular React Components
+│   ├── FormsComponents/    # Inputs, Buttons
+│   ├── GeneralComponents/  # Navbar, Footer, PrivateRoute
+│   ├── LandingComponents/  # Hero, Cards, Carousels
+│   └── MainPageComponents/ # Dashboard Widgets, Charts, Modals
+├── contexts/            # Global State (Auth, Alerts)
+├── pages/               # Application Views (Login, Register, Dashboard)
+├── public/              # Static Assets (Icons, Backgrounds)
+└── main.jsx             # Entry Point
+
+## Getting Started
+
+Follow these steps to set up the project locally.
+
+### Prerequisites
+* **Node.js** (v18 or higher)
+* **npm** or **yarn**
+
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/dev-Chaves/Pork.git](https://github.com/dev-Chaves/Pork.git)
+    cd Pork
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+4.  **Access the application:**
+    Open your browser and navigate to the URL shown in the terminal (usually `http://localhost:5173`).
+
+### Build for Production
+To create an optimized build for deployment:
 ```bash
-# 1. Clone o repositório
-$ git clone [https://github.com/dev-Chaves/Pork.git](https://github.com/dev-Chaves/Pork.git)
-
-# 2. Entre na pasta do projeto
-$ cd Pork
-
-# 3. Instale as dependências
-$ npm install
-
-# 4. Inicie o servidor de desenvolvimento
-$ npm run dev
+npm run build
