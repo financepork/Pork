@@ -19,7 +19,6 @@ export default function LandingPage() {
         <HowItWorksSection />
         <SectionDivider />
         <DataInsightsSection />
-        <SectionDivider />
         <CTASectionBottom />
       </main>
       <LandingFooter />

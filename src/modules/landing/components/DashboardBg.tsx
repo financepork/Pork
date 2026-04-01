@@ -28,8 +28,9 @@ const categories = [
 
 const chartValueSets = [
   [18, 34, 26, 48, 38, 62, 54, 72, 60, 84, 70, 88],
-  [22, 30, 32, 44, 42, 58, 60, 68, 66, 80, 76, 92],
-  [16, 38, 22, 52, 34, 66, 48, 76, 56, 88, 64, 86],
+  [30, 22, 44, 32, 58, 42, 72, 56, 80, 64, 92, 78],
+  [12, 42, 18, 56, 30, 70, 44, 82, 52, 90, 60, 95],
+  [24, 28, 38, 40, 50, 54, 66, 62, 74, 78, 82, 90],
 ]
 
 const statSets = [
@@ -147,43 +148,45 @@ function AreaChart({ values }: { values: number[] }) {
   )
 }
 
-function DonutChart({ pct }: { pct: number }) {
-  const gap = 3
-  const filled = pct - gap / 2
-  const empty = 100 - pct - gap / 2
+function DonutChart({ segments }: { segments: { pct: number; color: string }[] }) {
+  const size = 120
+  const stroke = 12
+  const radius = (size - stroke) / 2
+  const circumference = 2 * Math.PI * radius
+  const gapSize = 4
+
+  let offset = 0
+  const arcs = segments.map((seg) => {
+    const len = (seg.pct / 100) * circumference - gapSize
+    const dashOffset = -offset
+    offset += (seg.pct / 100) * circumference
+    return { ...seg, len, dashOffset, gapLen: circumference - len }
+  })
 
   return (
-    <div className="relative flex items-center justify-center flex-shrink-0">
-      <motion.div
-        className="w-24 h-24 sm:w-32 sm:h-32 rounded-full"
-        style={{
-          background: `conic-gradient(
-            #22c55e 0% ${filled}%,
-            transparent ${filled}% ${filled + gap}%,
-            #262626 ${filled + gap}% ${filled + gap + empty}%,
-            transparent ${filled + gap + empty}% 100%
-          )`,
-          WebkitMask: 'radial-gradient(circle at center, transparent 46%, black 47%)',
-          mask: 'radial-gradient(circle at center, transparent 46%, black 47%)',
-        }}
-        initial={false}
-        animate={{ rotate: [0, 2, -2, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-      />
+    <div className="relative flex items-center justify-center shrink-0 w-24 h-24 sm:w-32 sm:h-32">
+      <svg width="100%" height="100%" viewBox={`0 0 ${size} ${size}`}>
+        <circle
+          cx={size / 2} cy={size / 2} r={radius}
+          fill="none" stroke="#262626" strokeWidth={stroke}
+        />
+        {arcs.map((arc, i) => (
+          <motion.circle
+            key={i}
+            cx={size / 2} cy={size / 2} r={radius}
+            fill="none" stroke={arc.color} strokeWidth={stroke}
+            strokeLinecap="round"
+            strokeDasharray={`${arc.len} ${arc.gapLen}`}
+            style={{ transform: 'rotate(-90deg)', transformOrigin: 'center' }}
+            initial={false}
+            animate={{ strokeDashoffset: arc.dashOffset }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          />
+        ))}
+      </svg>
       <div className="absolute flex flex-col items-center leading-tight">
-        <AnimatePresence mode="wait">
-          <motion.span
-            key={pct}
-            className="text-lg sm:text-xl font-semibold text-neutral-100"
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.3 }}
-          >
-            {pct}%
-          </motion.span>
-        </AnimatePresence>
-        <span className="text-[9px] sm:text-[10px] text-neutral-500 mt-0.5">da meta</span>
+        <span className="text-lg sm:text-xl font-semibold text-neutral-100">100%</span>
+        <span className="text-[9px] sm:text-[10px] text-neutral-500 mt-0.5">gastos</span>
       </div>
     </div>
   )
@@ -195,7 +198,7 @@ export default function DashboardBg() {
   const goals = useDataCycle(goalSets)
   const chartValues = useDataCycle(chartValueSets)
   const stats = useDataCycle(statSets)
-  const donutPct = useDataCycle([68, 72, 76])
+  const donutSegments = categories.map(({ pct, color }) => ({ pct, color }))
 
   const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
 
@@ -311,7 +314,7 @@ export default function DashboardBg() {
           <div className="flex flex-col gap-3">
             <p className="text-[10px] sm:text-[11px] font-medium text-neutral-600 uppercase tracking-widest">Distribuição</p>
             <div className="flex flex-col items-center sm:flex-row sm:items-center gap-3 sm:gap-5">
-              <DonutChart pct={donutPct} />
+              <DonutChart segments={donutSegments} />
               <div className="flex flex-row flex-wrap justify-center gap-x-3 gap-y-1 sm:flex-col sm:gap-2 sm:flex-1">
                 {categories.map(({ label, pct, color }) => (
                   <div key={label} className="flex items-center gap-1.5">
