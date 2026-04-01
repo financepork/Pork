@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { ChartLine, Target, Wallet, CalendarCheck } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
 import { fadeUp, stagger, scaleIn } from '@/lib/animations'
@@ -46,41 +46,53 @@ const features = [
 
 export default function FeaturesSection() {
   const [active, setActive] = useState(0)
-  const [paused, setPaused] = useState(false)
   const [progress, setProgress] = useState(0)
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
-  const progressRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const pausedRef = useRef(false)
+  const elapsedRef = useRef(0)
+  const lastTickRef = useRef(0)
+  const rafRef = useRef<number>(0)
 
   const current = features[active]
   const Icon = current.icon
 
-  const startCycle = () => {
-    if (intervalRef.current) clearInterval(intervalRef.current)
-    if (progressRef.current) clearInterval(progressRef.current)
-    setProgress(0)
+  const tick = useCallback(() => {
+    const now = performance.now()
+    if (!pausedRef.current) {
+      elapsedRef.current += now - lastTickRef.current
+    }
+    lastTickRef.current = now
 
-    const startTime = Date.now()
-    progressRef.current = setInterval(() => {
-      const elapsed = Date.now() - startTime
-      setProgress(Math.min((elapsed / INTERVAL) * 100, 100))
-    }, 16)
+    const pct = Math.min((elapsedRef.current / INTERVAL) * 100, 100)
+    setProgress(pct)
 
-    intervalRef.current = setInterval(() => {
+    if (elapsedRef.current >= INTERVAL) {
+      elapsedRef.current = 0
       setActive((prev) => (prev + 1) % features.length)
-    }, INTERVAL)
-  }
+    }
+
+    rafRef.current = requestAnimationFrame(tick)
+  }, [])
 
   useEffect(() => {
-    if (!paused) startCycle()
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current)
-      if (progressRef.current) clearInterval(progressRef.current)
-    }
-  }, [paused, active])
+    lastTickRef.current = performance.now()
+    rafRef.current = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(rafRef.current)
+  }, [tick])
+
+  const handlePause = () => {
+    pausedRef.current = true
+  }
+
+  const handleResume = () => {
+    pausedRef.current = false
+    lastTickRef.current = performance.now()
+  }
 
   const handleSelect = (i: number) => {
     setActive(i)
-    setPaused(false)
+    elapsedRef.current = 0
+    setProgress(0)
+    lastTickRef.current = performance.now()
   }
 
   return (
@@ -136,14 +148,14 @@ export default function FeaturesSection() {
         >
 
           {/* Left — selector */}
-          <div className="border-r border-neutral-800/60">
+          <div className="border-b lg:border-b-0 lg:border-r border-neutral-800/60">
             {features.map(({ num, title, tag }, i) => (
               <button
                 key={num}
                 onClick={() => handleSelect(i)}
-                onMouseEnter={() => setPaused(true)}
-                onMouseLeave={() => setPaused(false)}
-                className={`w-full text-left px-8 py-6 flex items-center gap-5 border-b border-neutral-800/40 last:border-0 transition-colors duration-200 group relative ${
+                onMouseEnter={handlePause}
+                onMouseLeave={handleResume}
+                className={`w-full text-left px-5 py-4 lg:px-8 lg:py-6 flex items-center gap-4 lg:gap-5 border-b border-neutral-800/40 last:border-0 transition-colors duration-200 group relative ${
                   active === i ? 'bg-neutral-900/80' : 'hover:bg-neutral-900/40'
                 }`}
               >
@@ -152,9 +164,8 @@ export default function FeaturesSection() {
                   <div
                     className="absolute left-0 bottom-0 w-full bg-brand transition-none"
                     style={{
-                      height: active === i ? `${100 - progress}%` : '0%',
+                      height: active === i ? `${progress}%` : '0%',
                       top: 0,
-                      bottom: 'auto',
                     }}
                   />
                 </div>
@@ -176,7 +187,7 @@ export default function FeaturesSection() {
                   >
                     {title}
                   </p>
-                  <p className="text-xs text-neutral-700 mt-0.5">{tag}</p>
+                  <p className="text-xs text-neutral-500 mt-0.5">{tag}</p>
                 </div>
               </button>
             ))}
@@ -184,9 +195,9 @@ export default function FeaturesSection() {
 
           {/* Right — content */}
           <div
-            className="bg-neutral-950/60 p-10 flex flex-col justify-between gap-10"
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
+            className="bg-neutral-950/60 p-6 lg:p-10 flex flex-col justify-between gap-6 lg:gap-10"
+            onMouseEnter={handlePause}
+            onMouseLeave={handleResume}
           >
             <div className="flex flex-col gap-6">
               <div className="flex items-center justify-between">
@@ -214,7 +225,7 @@ export default function FeaturesSection() {
             <div className="flex items-end justify-between">
               <div className="border-l-2 border-brand pl-4">
                 <p className="text-2xl font-black text-neutral-100">{current.stat.value}</p>
-                <p className="text-xs text-neutral-600 mt-0.5">{current.stat.label}</p>
+                <p className="text-xs text-neutral-400 mt-0.5">{current.stat.label}</p>
               </div>
 
               <div className="flex gap-1.5 items-center">
