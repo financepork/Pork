@@ -5,6 +5,13 @@ import { fadeUp, fadeIn, stagger, scaleIn } from '@/lib/animations'
 
 export default function CTASectionBottom() {
   return (
+    <>
+      {/* Gradient transition from dark to green */}
+      <div
+        className="h-40 sm:h-56 pointer-events-none"
+        style={{ background: 'linear-gradient(to bottom, #0a0a0a, #22c55e)' }}
+      />
+
     <motion.section
       className="relative min-h-screen flex flex-col overflow-hidden bg-brand"
       initial="hidden"
@@ -75,5 +82,6 @@ export default function CTASectionBottom() {
       </motion.div>
 
     </motion.section>
+    </>
   )
 }

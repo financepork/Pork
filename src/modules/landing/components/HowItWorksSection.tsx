@@ -51,11 +51,11 @@ export default function HowItWorksSection() {
             <p className="text-neutral-300 text-sm leading-relaxed max-w-xs">
               Sem cartão de crédito, sem burocracia. Só seu e-mail e uma senha — e você já está dentro.
             </p>
-            <span className="text-brand text-sm font-semibold">Grátis para sempre →</span>
+            
           </motion.div>
           <motion.div className="relative z-10 flex justify-center lg:justify-end" variants={fadeRight}>
             <div className="bg-neutral-900 border border-neutral-800/60 rounded-2xl p-6 w-full max-w-sm">
-              <div className="flex items-center gap-3 mb-5">
+              <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-brand/15 border border-brand/20 flex items-center justify-center">
                   <span className="text-brand text-sm">✓</span>
                 </div>
@@ -63,13 +63,6 @@ export default function HowItWorksSection() {
                   <p className="text-sm font-semibold text-neutral-100">Conta criada!</p>
                   <p className="text-xs text-neutral-400">Bem-vindo ao Pork</p>
                 </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                {['E-mail verificado', 'Perfil configurado', 'Dashboard liberado'].map((item) => (
-                  <div key={item}>
-                    <span className="text-xs text-neutral-300">{item}</span>
-                  </div>
-                ))}
               </div>
             </div>
           </motion.div>
@@ -114,7 +107,7 @@ export default function HowItWorksSection() {
             <p className="text-neutral-300 text-sm leading-relaxed max-w-xs">
               Categorize cada despesa, defina objetivos com prazo e veja exatamente pra onde seu dinheiro vai.
             </p>
-            <span className="text-brand text-sm font-semibold">Controle total →</span>
+            
           </motion.div>
         </motion.div>
 
@@ -137,7 +130,7 @@ export default function HowItWorksSection() {
             <p className="text-neutral-300 text-sm leading-relaxed max-w-xs">
               Acompanhe a evolução no dashboard, ajuste o planejamento e celebre cada meta batida.
             </p>
-            <span className="text-brand text-sm font-semibold">+ R$ 1.840,00 economizados →</span>
+           
           </motion.div>
           <motion.div className="relative z-10 flex justify-center lg:justify-end" variants={fadeRight}>
             <div className="bg-neutral-900 border border-neutral-800/60 rounded-2xl p-6 w-full max-w-sm">
