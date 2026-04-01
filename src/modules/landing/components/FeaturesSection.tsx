@@ -155,7 +155,6 @@ export default function FeaturesSection() {
                       height: active === i ? `${100 - progress}%` : '0%',
                       top: 0,
                       bottom: 'auto',
-                      height: active === i ? `${progress}%` : '0%',
                     }}
                   />
                 </div>
