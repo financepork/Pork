@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowRight, ArrowLeft, Eye, EyeSlash } from '@phosphor-icons/react'
 import { Link } from 'react-router-dom'
@@ -30,6 +30,10 @@ export default function SignupForm() {
   const { step, direction, next, back, formData, updateField, submit, isLastStep } = useSignUp()
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
+  const shouldAutoFocus = useMemo(
+    () => typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches,
+    [],
+  )
 
   const current = STEPS[step]
 
@@ -45,7 +49,7 @@ export default function SignupForm() {
     <motion.div
       className="min-h-dvh w-full flex flex-col overflow-hidden relative"
       animate={{ backgroundColor: current.bg }}
-      transition={{ duration: 0.5, ease }}
+      transition={{ duration: 0.5}}
     >
       <style>{`
         .signup-input:focus { border-color: ${current.accent} !important; }
@@ -102,7 +106,7 @@ export default function SignupForm() {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.4, ease }}
+              transition={{ duration: 0.4}}
             >
               <h1
                 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-10 leading-tight"
@@ -114,7 +118,7 @@ export default function SignupForm() {
               {/* Step 0 — Nome */}
               {step === 0 && (
                 <input
-                  autoFocus
+                  autoFocus={shouldAutoFocus}
                   type="text"
                   autoComplete="name"
                   placeholder="Seu nome"
@@ -128,7 +132,7 @@ export default function SignupForm() {
               {/* Step 1 — Email */}
               {step === 1 && (
                 <input
-                  autoFocus
+                  autoFocus={shouldAutoFocus}
                   type="email"
                   autoComplete="email"
                   placeholder="seu@email.com"
@@ -151,7 +155,7 @@ export default function SignupForm() {
                     </label>
                     <div className="relative">
                       <input
-                        autoFocus
+                        autoFocus={shouldAutoFocus}
                         type={showPassword ? 'text' : 'password'}
                         autoComplete="new-password"
                         placeholder="••••••••"
@@ -212,7 +216,7 @@ export default function SignupForm() {
                     R$
                   </span>
                   <input
-                    autoFocus
+                    autoFocus={shouldAutoFocus}
                     type="text"
                     inputMode="numeric"
                     placeholder="0,00"
