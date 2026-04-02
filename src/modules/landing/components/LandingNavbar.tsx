@@ -55,7 +55,7 @@ export default function LandingNavbar() {
                 <button
                   key={link.href}
                   onClick={() => scrollTo(link.href)}
-                  className="relative whitespace-nowrap text-[13px] text-neutral-400 hover:text-neutral-100 transition-all duration-200 px-5 py-2 rounded-full overflow-hidden group/link"
+                  className="relative cursor-pointer whitespace-nowrap text-[13px] text-neutral-100 hover:text-white transition-all duration-200 px-5 py-2 rounded-full overflow-hidden group/link"
                 >
                   <span className="absolute inset-0 bg-neutral-700/0 group-hover/link:bg-neutral-700/50 rounded-full transition-all duration-200 scale-75 group-hover/link:scale-100" />
                   <span className="relative">{link.label}</span>
@@ -69,18 +69,18 @@ export default function LandingNavbar() {
         <div className="hidden md:flex items-center justify-end gap-3">
           <Link
             to="/login"
-            className="relative text-[13px] font-medium text-neutral-400 hover:text-neutral-100 transition-colors duration-200 px-4 py-2 group/entrar"
+            className="relative cursor-pointer text-[13px] font-medium text-neutral-100 hover:text-white transition-colors duration-200 px-4 py-2 group/entrar"
           >
             <span>Entrar</span>
-            <span className="absolute bottom-1.5 left-4 right-4 h-px bg-brand scale-x-0 group-hover/entrar:scale-x-100 transition-transform duration-250 origin-left" />
+            <span className="absolute bottom-1.5 left-4 right-4 h-0.5 bg-brand scale-x-0 group-hover/entrar:scale-x-100 transition-transform duration-250 origin-left" />
           </Link>
 
           <Link
             to="/register"
-            className="text-[13px] font-semibold bg-brand text-neutral-950 px-6 py-2.5 rounded-full
+            className="cursor-pointer text-[13px] font-semibold bg-brand text-neutral-950 px-6 py-2.5 rounded-full
               transition-all duration-200
-              hover:bg-brand-light hover:scale-105 hover:shadow-[0_0_20px_rgba(34,197,94,0.45)]
-              active:scale-95"
+              hover:bg-brand-light hover:translate-y-[-2px] hover:shadow-[0_4px_15px_rgba(34,197,94,0.2)]
+              "
           >
             Criar conta
           </Link>
@@ -89,7 +89,7 @@ export default function LandingNavbar() {
         {/* Mobile hamburger */}
         <div className="md:hidden flex justify-end col-start-3">
           <button
-            className="text-neutral-400 hover:text-neutral-100 transition-colors p-1"
+            className="cursor-pointer text-neutral-100 hover:text-white transition-colors p-1"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Abrir menu"
           >
@@ -125,7 +125,7 @@ export default function LandingNavbar() {
                 <motion.button
                   key={link.href}
                   onClick={() => { setMenuOpen(false); setTimeout(() => scrollTo(link.href), 300) }}
-                  className="flex items-center justify-between py-5 border-b border-neutral-800/40 text-left"
+                  className="cursor-pointer flex items-center justify-between py-5 border-b border-neutral-800/40 text-left"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
@@ -135,7 +135,7 @@ export default function LandingNavbar() {
                     <span className="text-2xl font-semibold text-neutral-100 tracking-tight">
                       {link.label}
                     </span>
-                    <span className="text-xs text-neutral-400">
+                    <span className="text-xs text-neutral-100/90">
                       {link.sub}
                     </span>
                   </div>
@@ -157,7 +157,7 @@ export default function LandingNavbar() {
               <Link
                 to="/register"
                 onClick={() => setMenuOpen(false)}
-                className="group flex items-center justify-center gap-3 bg-brand hover:bg-brand-light text-neutral-950 font-bold py-4 rounded-xl text-base transition-all duration-200 hover:shadow-[0_0_30px_rgba(34,197,94,0.4)] active:scale-[0.98]"
+                className="group cursor-pointer flex items-center justify-center gap-3 bg-brand hover:bg-brand-light text-neutral-950 font-bold py-4 rounded-xl text-base transition-all duration-200 hover:shadow-[0_0_30px_rgba(34,197,94,0.4)] active:scale-[0.98]"
               >
                 Criar conta grátis
                 <ArrowRight weight="bold" size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
@@ -166,7 +166,7 @@ export default function LandingNavbar() {
               <Link
                 to="/login"
                 onClick={() => setMenuOpen(false)}
-                className="text-sm font-medium text-neutral-500 hover:text-neutral-100 transition-colors py-2 text-center"
+                className="cursor-pointer text-sm font-medium text-neutral-100 hover:text-white transition-colors py-2 text-center"
               >
                 Já tem conta? <span className="text-brand">Entrar</span>
               </Link>

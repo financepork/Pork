@@ -62,7 +62,7 @@ export default function LoginForm() {
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-0 bottom-2.5 text-neutral-400 hover:text-neutral-200 transition-colors duration-200"
+            className="absolute right-0 bottom-2.5 cursor-pointer text-neutral-400 hover:text-neutral-200 transition-colors duration-200"
             aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
           >
             {showPassword ? <EyeSlash size={18} /> : <Eye size={18} />}
@@ -76,7 +76,9 @@ export default function LoginForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full flex items-center justify-center gap-2.5 bg-brand hover:bg-brand-light text-neutral-950 font-semibold py-3.5 rounded-lg text-sm transition-all duration-200 hover:shadow-[0_0_24px_rgba(34,197,94,0.35)] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none"
+          className="w-full flex items-center justify-center gap-2.5 bg-brand hover:bg-brand-light text-neutral-950 
+          font-semibold py-3.5 rounded-lg text-sm transition-all duration-200 cursor-pointer
+            disabled:opacity-50 disabled:pointer-events-none"
         >
           {isSubmitting ? (
             <span className="w-4 h-4 border-2 border-neutral-950/30 border-t-neutral-950 rounded-full animate-spin" />

@@ -74,7 +74,9 @@ export default function HeroSection() {
           <motion.div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5 pt-2" variants={fadeUp}>
             <Link
               to="/register"
-              className="inline-flex items-center gap-2.5 bg-brand hover:bg-brand-light text-neutral-950 font-semibold px-7 py-3.5 rounded-lg text-sm transition-all duration-200 hover:shadow-[0_0_24px_rgba(34,197,94,0.4)] active:scale-95"
+              className="inline-flex items-center gap-2.5 bg-brand hover:bg-brand-light
+               text-neutral-950 font-semibold px-7 py-3.5 text-sm transition-all 
+               duration-400 hover:shadow-[0_0_24px_rgba(34,197,94,0.2)] rounded-3xl hover:translate-y-[-2px]"
             >
               Começar grátis
               <ArrowRight weight="bold" size={14} />

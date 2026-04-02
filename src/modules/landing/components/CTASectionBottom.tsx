@@ -15,7 +15,7 @@ export default function CTASectionBottom() {
     >
 
       {/* Headline — takes up most of the space */}
-      <div className="flex-1 flex flex-col justify-center px-6 pr-10 sm:px-10 lg:mt-20 lg:px-16 py-16 sm:py-24 lg:py-32">
+      <div className="flex-1 flex flex-col justify-center px-4 pr-10 sm:px-10 lg:mt-20 lg:px-16 py-16 sm:py-24 lg:py-32">
         <motion.h2
           className="tracking-tight text-neutral-950"
           style={{
@@ -62,7 +62,8 @@ export default function CTASectionBottom() {
         <motion.div variants={scaleIn}>
           <Link
             to="/register"
-            className="group inline-flex items-center gap-3 font-bold px-7 py-4 sm:px-10 sm:py-5 rounded-xl text-sm sm:text-base transition-all duration-200 active:scale-95 whitespace-nowrap shrink-0 hover:scale-105 hover:shadow-[0_8px_40px_rgba(0,0,0,0.35)]"
+            className="group inline-flex items-center gap-3 font-bold px-7 py-4 sm:px-10 sm:py-5 rounded-3xl text-sm sm:text-base transition-all
+             duration-200  whitespace-nowrap shrink-0   hover:translate-y-[-2px] bg-neutral-950 text-white"
             style={{
               background: '#0a0a0a',
               color: '#22c55e',

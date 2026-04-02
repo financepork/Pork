@@ -24,8 +24,6 @@ const slideVariants = {
   exit: (dir: number) => ({ x: dir > 0 ? -200 : 200, opacity: 0 }),
 }
 
-const ease = [0.22, 1, 0.36, 1]
-
 export default function SignupForm() {
   const { step, direction, next, back, formData, updateField, submit, isLastStep } = useSignUp()
   const [showPassword, setShowPassword] = useState(false)
@@ -75,7 +73,7 @@ export default function SignupForm() {
             <button
               type="button"
               onClick={back}
-              className="flex items-center gap-2 text-base font-semibold text-white hover:text-white/80 transition-colors"
+              className="cursor-pointer mb-15 flex items-center gap-2 text-base font-semibold text-white hover:text-white/80 transition-colors"
             >
               <ArrowLeft size={20} weight="bold" />
               Voltar
@@ -167,7 +165,7 @@ export default function SignupForm() {
                       <button
                         type="button"
                         onClick={() => setShowPassword(v => !v)}
-                        className="absolute right-0 bottom-3 opacity-40 hover:opacity-100 transition-opacity"
+                        className="absolute right-0 bottom-3 cursor-pointer mb-15 opacity-40 hover:opacity-100 transition-opacity"
                         style={{ color: current.text }}
                         aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
                       >
@@ -195,7 +193,7 @@ export default function SignupForm() {
                       <button
                         type="button"
                         onClick={() => setShowConfirm(v => !v)}
-                        className="absolute right-0 bottom-3 opacity-40 hover:opacity-100 transition-opacity"
+                        className="absolute right-0 bottom-3 cursor-pointer mb-15 opacity-40 hover:opacity-100 transition-opacity"
                         style={{ color: current.text }}
                         aria-label={showConfirm ? 'Ocultar senha' : 'Mostrar senha'}
                       >
@@ -238,7 +236,7 @@ export default function SignupForm() {
                         key={option.value}
                         type="button"
                         onClick={() => updateField('savingsProfile', option.value)}
-                        className="w-full text-left p-4 sm:p-5 rounded-xl border-2 transition-all duration-300"
+                        className="cursor-pointer mb-15 w-full text-left p-4 sm:p-5 rounded-xl border-2 transition-all duration-300"
                         style={{
                           borderColor: selected ? current.accent : `${current.text}20`,
                           backgroundColor: selected ? `${current.accent}15` : 'transparent',
@@ -263,7 +261,7 @@ export default function SignupForm() {
           <button
             type="button"
             onClick={handleNext}
-            className="w-full flex items-center justify-center gap-2.5 font-semibold py-3.5 sm:py-4 rounded-xl text-sm tracking-wide transition-all duration-200 active:scale-[0.97]"
+            className="cursor-pointer mb-15 w-full flex items-center justify-center gap-2.5 font-semibold py-3.5 sm:py-4 rounded-xl text-sm tracking-wide transition-all duration-200 active:scale-[0.97]"
             style={{ backgroundColor: current.text, color: current.bg }}
           >
             {isLastStep ? 'Criar conta' : 'Continuar'}

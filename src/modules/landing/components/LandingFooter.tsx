@@ -30,8 +30,11 @@ export default function LandingFooter() {
     >
       {/* Subtle top glow */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px"
-        style={{ background: 'linear-gradient(90deg, transparent, rgba(34,197,94,0.3), transparent)' }}
+        className="absolute top-0 left-1/2 -translate-x-1/2 h-px"
+        style={{
+          width: '600px',
+          background: 'linear-gradient(90deg, transparent, rgba(34,197,94,0.3), transparent)',
+        }}
       />
 
       <div className="mx-auto max-w-6xl px-6 pt-16 sm:pt-20 pb-8">
@@ -46,7 +49,7 @@ export default function LandingFooter() {
               <img
                 src="/icon.png"
                 alt="Pork"
-                className="w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200"
+                className="cursor-pointer w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200"
               />
             </Link>
             <p
@@ -55,7 +58,7 @@ export default function LandingFooter() {
             >
               Seu dinheiro no controle.
               <br />
-              <span className="text-neutral-400">Simples, direto e gratuito.</span>
+              <span className="text-neutral-100/90">Simples, direto e gratuito.</span>
             </p>
           </div>
 
@@ -66,10 +69,10 @@ export default function LandingFooter() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-2.5 px-5 py-3 rounded-full bg-neutral-900/80 border border-neutral-800/50 hover:border-neutral-700 transition-all duration-200"
+                className="group cursor-pointer flex items-center gap-2.5 px-5 py-3 rounded-full bg-neutral-900/80 border border-neutral-800/50 hover:border-neutral-700 transition-all duration-200"
               >
-                <Icon size={20} weight="bold" className="text-neutral-500 group-hover:text-neutral-200 transition-colors" />
-                <span className="text-sm text-neutral-400 group-hover:text-neutral-100 transition-colors">
+                <Icon size={20} weight="bold" className="text-neutral-100/90 group-hover:text-white transition-colors" />
+                <span className="text-sm text-neutral-100/90 group-hover:text-white transition-colors">
                   {label}
                 </span>
               </a>
@@ -88,7 +91,7 @@ export default function LandingFooter() {
               <button
                 key={id}
                 onClick={() => scrollTo(id)}
-                className="group flex items-center gap-1.5 text-sm text-neutral-400 hover:text-neutral-100 transition-colors duration-200"
+                className="group cursor-pointer flex items-center gap-1.5 text-sm text-neutral-100/90 hover:text-white transition-colors duration-200"
               >
                 {label}
                 <ArrowUpRight size={12} weight="bold" className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-brand" />
@@ -100,13 +103,13 @@ export default function LandingFooter() {
           <div className="flex items-center gap-3">
             <Link
               to="/login"
-              className="text-xs text-neutral-300 hover:text-neutral-100 transition-colors duration-200 px-4 py-2"
+              className="cursor-pointer text-xs text-neutral-100/90 hover:text-white transition-colors duration-200 px-4 py-2"
             >
               Entrar
             </Link>
             <Link
               to="/register"
-              className="text-xs font-semibold bg-brand/10 text-brand border border-brand/20 hover:bg-brand/20 px-5 py-2 rounded-full transition-all duration-200"
+              className="cursor-pointer text-xs font-semibold bg-brand/10 text-brand border border-brand/20 hover:bg-brand/20 px-5 py-2 rounded-full transition-all duration-200"
             >
               Criar conta
             </Link>
@@ -118,10 +121,10 @@ export default function LandingFooter() {
           className="pt-6 border-t border-neutral-800/20 flex flex-col sm:flex-row items-center justify-between gap-3"
           variants={fadeUp}
         >
-          <p className="text-[11px] text-neutral-500">
+          <p className="text-[11px] text-neutral-100/80">
             © 2025 Bernardo Soares & João Vitor Chaves
           </p>
-          <p className="text-[11px] text-neutral-600 font-mono">v0.0.1</p>
+          <p className="text-[11px] text-neutral-100/70 font-mono">v0.0.1</p>
         </motion.div>
 
       </div>
