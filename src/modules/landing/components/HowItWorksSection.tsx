@@ -56,8 +56,8 @@ export default function HowItWorksSection() {
           <motion.div className="relative z-10 flex justify-center lg:justify-end" variants={fadeRight}>
             <div className="bg-neutral-900 border border-neutral-800/60 rounded-2xl p-6 w-full max-w-sm">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-brand/15 border border-brand/20 flex items-center justify-center">
-                  <span className="text-brand text-sm">✓</span>
+                <div className="w-14 h-14 rounded-full bg-brand/15 border border-brand/20 flex items-center justify-center">
+                  <img src="/icon.png" alt="Pork" className="w-10 h-10 object-contain" />
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-neutral-100">Conta criada!</p>

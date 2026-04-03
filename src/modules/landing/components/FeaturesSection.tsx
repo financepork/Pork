@@ -206,6 +206,21 @@ export default function FeaturesSection() {
                 {current.description}
               </p>
             </div>
+
+            <div className="mt-auto flex gap-2 items-center self-end">
+              {features.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => handleSelect(i)}
+                  aria-label={`Ir para card ${i + 1}`}
+                  className={`rounded-full transition-all duration-300 ${
+                    active === i
+                      ? 'w-6 h-2 bg-brand'
+                      : 'w-2 h-2 bg-neutral-700 hover:bg-neutral-500'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
 
         </motion.div>
