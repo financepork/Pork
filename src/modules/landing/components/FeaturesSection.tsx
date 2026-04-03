@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { ChartLine, Target, Wallet, CalendarCheck } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
 import { fadeUp, stagger, scaleIn } from '@/lib/animations'
 
@@ -12,8 +11,6 @@ const features = [
     tag: 'Registro diário',
     description:
       'Registre e categorize cada despesa do dia a dia. Alimentação, transporte, lazer e muito mais. Entenda exatamente pra onde seu dinheiro vai — sem surpresas no fim do mês.',
-    icon: Wallet,
-    stat: { value: '5+', label: 'categorias de gastos' },
   },
   {
     num: '02',
@@ -21,8 +18,6 @@ const features = [
     tag: 'Objetivos',
     description:
       'Defina objetivos com valor e prazo. Acompanhe seu progresso em tempo real com barras visuais e celebre cada conquista no caminho até a liberdade financeira.',
-    icon: Target,
-    stat: { value: '100%', label: 'visual e intuitivo' },
   },
   {
     num: '03',
@@ -30,8 +25,6 @@ const features = [
     tag: 'Estratégia',
     description:
       'Estratégias personalizadas em três níveis — Fácil, Médio e Difícil. Adaptadas à sua realidade financeira para que você consiga manter o ritmo sem desistir.',
-    icon: CalendarCheck,
-    stat: { value: '3', label: 'níveis de dificuldade' },
   },
   {
     num: '04',
@@ -39,8 +32,6 @@ const features = [
     tag: 'Visão geral',
     description:
       'Visualize todos os seus dados em um único painel. Gráficos de evolução, distribuição por categoria e resumo mensal para decisões mais inteligentes.',
-    icon: ChartLine,
-    stat: { value: '↑', label: 'dados em tempo real' },
   },
 ]
 
@@ -53,8 +44,6 @@ export default function FeaturesSection() {
   const rafRef = useRef<number>(0)
 
   const current = features[active]
-  const Icon = current.icon
-
   const tick = useCallback(() => {
     const now = performance.now()
     if (!pausedRef.current) {
@@ -195,18 +184,15 @@ export default function FeaturesSection() {
 
           {/* Right — content */}
           <div
-            className="bg-neutral-950/60 p-6 lg:p-10 flex flex-col justify-between gap-6 lg:gap-10"
+            className="bg-neutral-950/60 p-6 lg:p-10 flex flex-col justify-start gap-6 lg:gap-8"
             onMouseEnter={handlePause}
             onMouseLeave={handleResume}
           >
             <div className="flex flex-col gap-6">
-              <div className="flex items-center justify-between">
+              <div>
                 <span className="text-xs font-semibold text-brand/60 uppercase tracking-[0.18em]">
                   {current.tag}
                 </span>
-                <div className="w-9 h-9 bg-brand/8 border border-brand/15 rounded-lg flex items-center justify-center">
-                  <Icon weight="duotone" className="text-brand" size={18} />
-                </div>
               </div>
 
               <h3
@@ -219,28 +205,6 @@ export default function FeaturesSection() {
               <p className="text-neutral-400 leading-relaxed text-sm max-w-md">
                 {current.description}
               </p>
-            </div>
-
-            {/* Stat + dots */}
-            <div className="flex items-end justify-between">
-              <div className="border-l-2 border-brand pl-4">
-                <p className="text-2xl font-black text-neutral-100">{current.stat.value}</p>
-                <p className="text-xs text-neutral-400 mt-0.5">{current.stat.label}</p>
-              </div>
-
-              <div className="flex gap-1.5 items-center">
-                {features.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => handleSelect(i)}
-                    className={`rounded-full transition-all duration-300 ${
-                      active === i
-                        ? 'w-5 h-1.5 bg-brand'
-                        : 'w-1.5 h-1.5 bg-neutral-700 hover:bg-neutral-500'
-                    }`}
-                  />
-                ))}
-              </div>
             </div>
           </div>
 

@@ -69,10 +69,11 @@ export default function LandingNavbar() {
         <div className="hidden md:flex items-center justify-end gap-3">
           <Link
             to="/login"
-            className="relative cursor-pointer text-[13px] font-medium text-neutral-100 hover:text-white transition-colors duration-200 px-4 py-2 group/entrar"
+            className="relative isolate overflow-hidden cursor-pointer text-[13px] font-semibold text-neutral-100 px-4 py-2 rounded-full border border-neutral-700/70 transition-all duration-300 hover:text-white hover:border-brand/70 hover:shadow-[0_0_20px_rgba(34,197,94,0.22)] hover:-translate-y-0.5 group/entrar"
           >
-            <span>Entrar</span>
-            <span className="absolute bottom-1.5 left-4 right-4 h-0.5 bg-brand scale-x-0 group-hover/entrar:scale-x-100 transition-transform duration-250 origin-left" />
+            <span className="absolute inset-0 rounded-full bg-gradient-to-r from-brand/0 via-brand/20 to-brand/0 -translate-x-[120%] group-hover/entrar:translate-x-[120%] transition-transform duration-700 ease-out" />
+            <span className="absolute inset-0 rounded-full bg-neutral-800/30 group-hover/entrar:bg-neutral-800/65 transition-colors duration-300" />
+            <span className="relative z-10">Entrar</span>
           </Link>
 
           <Link
