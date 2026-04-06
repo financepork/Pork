@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
 import DashboardBg from './DashboardBg'
-import { fadeUp, fadeLeft, fadeRight, stagger, scaleIn } from '@/lib/animations'
+import { fadeUp, stagger } from '@/lib/animations'
 
 export default function HeroSection() {
   return (
