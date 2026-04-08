@@ -6,7 +6,7 @@ import {
   deleteExpenseService,
 } from '../service/expensesService'
 import { getCurrentMonthYear } from '@/shared/utils/date'
-import toast from 'react-hot-toast'
+import { showToast } from '@/shared/components/Toast'
 
 export function useExpenses() {
   const now = getCurrentMonthYear()
@@ -47,13 +47,15 @@ export function useExpenses() {
       setExpenses(prev => [expense, ...prev].sort((a, b) => b.date.localeCompare(a.date)))
     }
     setIsAddOpen(false)
-    toast.success('Gasto registrado')
+    showToast.success('Gasto registrado', {
+      description: 'Seu gasto foi adicionado ao mês.',
+    })
   }
 
   const removeExpense = async (id: string) => {
     await deleteExpenseService(id)
     setExpenses(prev => prev.filter(e => e.id !== id))
-    toast.success('Gasto removido')
+    showToast.success('Gasto removido')
   }
 
   const filtered = activeCategory

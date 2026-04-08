@@ -11,7 +11,7 @@ export default function CategoryFilter({ active, onChange, available }: Props) {
   if (available.length === 0) return null
 
   return (
-    <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+    <div className="flex flex-wrap gap-2">
       <button
         onClick={() => onChange(null)}
         className={`cursor-pointer shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 border

@@ -1,22 +1,23 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { HandWavingIcon } from '@phosphor-icons/react'
 import { stagger, fadeUp } from '@/lib/animations'
 import { useUser } from '@/shared/contexts/userContext'
-import GreetingHeader from '@/modules/home/components/GreetingHeader'
 import BalanceCard from '@/modules/home/components/BalanceCard'
 import QuickActions from '@/modules/home/components/QuickActions'
 import RecentExpenses from '@/modules/home/components/RecentExpenses'
 import ActiveGoals from '@/modules/home/components/ActiveGoals'
 import AddExpenseSheet from '@/modules/expenses/components/AddExpenseSheet'
 import AddGoalSheet from '@/modules/goals/components/AddGoalSheet'
+import PageHeader from '@/shared/components/PageHeader'
 import { findRecentExpensesService, createExpenseService, findAllExpensesService } from '@/modules/expenses/service/expensesService'
 import { findAllGoalsService, createGoalService } from '@/modules/goals/service/goalsService'
 import type { Expense } from '@/modules/expenses/types/expense'
 import type { Goal } from '@/modules/goals/types/goal'
 import type { CreateExpenseData } from '@/modules/expenses/types/expense'
 import type { CreateGoalData } from '@/modules/goals/types/goal'
-import { getCurrentMonthYear } from '@/shared/utils/date'
-import toast from 'react-hot-toast'
+import { getCurrentMonthYear, getGreeting } from '@/shared/utils/date'
+import { showToast } from '@/shared/components/Toast'
 
 export default function HomePage() {
   const { user } = useUser()
@@ -49,14 +50,18 @@ export default function HomePage() {
     setRecentExpenses(recent)
     setMonthlyExpenses(monthly.reduce((s, e) => s + e.amount, 0))
     setIsAddExpenseOpen(false)
-    toast.success('Gasto registrado')
+    showToast.success('Gasto registrado', {
+      description: 'Seu gasto foi adicionado ao mês.',
+    })
   }
 
   const handleAddGoal = async (data: CreateGoalData) => {
     const goal = await createGoalService(data)
     setGoals(prev => [...prev, goal])
     setIsAddGoalOpen(false)
-    toast.success('Meta criada')
+    showToast.success('Meta criada', {
+      description: 'Sua nova meta está pronta para receber depósitos.',
+    })
   }
 
   return (
@@ -64,15 +69,11 @@ export default function HomePage() {
       <div className="overflow-y-auto min-h-dvh pb-32">
         <div className="max-w-6xl mx-auto px-5 lg:px-10">
 
-          {/* Page header — full width, anchors the whole page */}
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            animate="show"
-            className="pt-10 lg:pt-14 pb-8 lg:pb-10"
-          >
-            {user && <GreetingHeader name={user.name} />}
-          </motion.div>
+          <PageHeader
+            icon={HandWavingIcon}
+            title={`${getGreeting()}, ${user?.name?.split(' ')[0] ?? 'convidado'}`}
+            description={`Hoje é ${new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })}. Veja como estão suas finanças.`}
+          />
 
           {/* Content grid */}
           <div className="lg:grid lg:grid-cols-[1fr_1.2fr] lg:gap-12 lg:items-start">

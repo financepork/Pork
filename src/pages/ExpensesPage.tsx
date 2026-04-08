@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion'
-import { Plus } from '@phosphor-icons/react'
+import { Plus, CurrencyDollarIcon } from '@phosphor-icons/react'
 import { stagger, fadeUp } from '@/lib/animations'
 import { useExpenses } from '@/modules/expenses/hooks/useExpenses'
 import MonthSelector from '@/modules/expenses/components/MonthSelector'
 import ExpenseSummary from '@/modules/expenses/components/ExpenseSummary'
 import CategoryFilter from '@/modules/expenses/components/CategoryFilter'
+import ExpenseCharts from '@/modules/expenses/components/ExpenseCharts'
 import ExpenseList from '@/modules/expenses/components/ExpenseList'
 import AddExpenseSheet from '@/modules/expenses/components/AddExpenseSheet'
+import PageHeader from '@/shared/components/PageHeader'
 import type { ExpenseCategory } from '@/modules/expenses/types/expense'
 
 export default function ExpensesPage() {
@@ -33,7 +35,13 @@ export default function ExpensesPage() {
   return (
     <>
       <div className="overflow-y-auto min-h-dvh pb-32">
-        <div className="max-w-6xl mx-auto px-5 lg:px-10 pt-8 lg:pt-12">
+        <div className="max-w-6xl mx-auto px-5 lg:px-10">
+
+          <PageHeader
+            icon={CurrencyDollarIcon}
+            title="Seus gastos"
+            description="Acompanhe no detalhe onde seu dinheiro está indo e mantenha o controle do mês."
+          />
 
           <div className="lg:grid lg:grid-cols-[320px_1fr] lg:gap-10 lg:items-start">
 
@@ -60,16 +68,6 @@ export default function ExpensesPage() {
                 </motion.div>
               )}
 
-              {availableCategories.length > 1 && (
-                <motion.div variants={fadeUp}>
-                  <CategoryFilter
-                    active={activeCategory}
-                    onChange={setActiveCategory}
-                    available={availableCategories}
-                  />
-                </motion.div>
-              )}
-
               {/* Add button inline on desktop */}
               <motion.div variants={fadeUp} className="hidden lg:block">
                 <button
@@ -84,19 +82,46 @@ export default function ExpensesPage() {
 
             {/* RIGHT — list */}
             <motion.div
-              variants={fadeUp}
+              variants={stagger}
               initial="hidden"
               animate="show"
-              className="mt-6 lg:mt-0"
+              className="mt-6 lg:mt-0 space-y-5"
             >
-              <ExpenseList
-                expenses={expenses}
-                loading={loading}
-                onDelete={removeExpense}
-              />
+              {availableCategories.length > 1 && (
+                <motion.div variants={fadeUp}>
+                  <CategoryFilter
+                    active={activeCategory}
+                    onChange={setActiveCategory}
+                    available={availableCategories}
+                  />
+                </motion.div>
+              )}
+
+              <motion.div variants={fadeUp}>
+                <ExpenseList
+                  expenses={expenses}
+                  loading={loading}
+                  onDelete={removeExpense}
+                />
+              </motion.div>
             </motion.div>
 
           </div>
+
+          {!loading && allExpenses.length > 0 && (
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              className="mt-8 lg:mt-12"
+            >
+              <ExpenseCharts
+                expenses={allExpenses}
+                year={year}
+                month={month}
+              />
+            </motion.div>
+          )}
         </div>
       </div>
 

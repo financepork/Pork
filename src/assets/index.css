@@ -26,3 +26,66 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* ── Custom scrollbar ───────────────────────────────────────────── */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #22c55e #141414;
+}
+
+/* WebKit (Chrome, Edge, Safari) */
+*::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+*::-webkit-scrollbar-track {
+  background:
+    linear-gradient(to right, transparent 0, transparent 6px, #141414 6px, #141414 8px, transparent 8px);
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background:
+    linear-gradient(180deg, #4ade80 0%, #22c55e 50%, #16a34a 100%);
+  background-clip: padding-box;
+  border: 4px solid transparent;
+  border-radius: 9999px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 0 10px rgba(34, 197, 94, 0.25);
+  min-height: 48px;
+  transition: box-shadow 200ms ease;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.25),
+    0 0 14px rgba(34, 197, 94, 0.55);
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.3),
+    0 0 18px rgba(34, 197, 94, 0.7);
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Horizontal tracks need the gradient rotated */
+*::-webkit-scrollbar:horizontal {
+  background:
+    linear-gradient(to bottom, transparent 0, transparent 6px, #141414 6px, #141414 8px, transparent 8px);
+}
+
+/* Hide scrollbar utility (for opt-out cases like chip rows) */
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

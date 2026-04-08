@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { AxiosError } from 'axios'
-import toast from 'react-hot-toast'
+import { showToast } from '@/shared/components/Toast'
 import { signInService } from '../service/signInService'
 import type { SignInPayload } from '../types/signIn'
 
@@ -13,13 +13,13 @@ export function useSignIn() {
     mutationFn: (payload: SignInPayload) => signInService(payload),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['me'] })
-      toast.success('Bem-vindo de volta!')
+      showToast.success('Bem-vindo de volta!')
       navigate('/dashboard/home')
     },
     onError: (error: AxiosError<{ message?: string }>) => {
       const message =
         error.response?.data?.message ?? 'E-mail ou senha inválidos'
-      toast.error(message)
+      showToast.error('Falha ao entrar', { description: message })
     },
   })
 }

@@ -15,17 +15,7 @@ createRoot(document.getElementById('root')!).render(
       <BrowserRouter>
         <UserProvider>
           <App />
-          <Toaster
-            position="top-right"
-            toastOptions={{
-              style: {
-                background: '#171717',
-                color: '#f5f5f5',
-                border: '1px solid #262626',
-                fontFamily: 'Inter, sans-serif',
-              },
-            }}
-          />
+          <Toaster position="top-right" />
         </UserProvider>
       </BrowserRouter>
     </QueryClientProvider>

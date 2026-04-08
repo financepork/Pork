@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import type { User, UpdateUserData } from '../types/user'
 import { getUserService, updateUserService } from '../service/getUserService'
-import toast from 'react-hot-toast'
+import { showToast } from '@/shared/components/Toast'
 
 export function useGetUser() {
   const [user, setUser] = useState<User | null>(null)
@@ -19,7 +19,9 @@ export function useGetUser() {
     const updated = await updateUserService(data)
     setUser(updated)
     setIsEditOpen(false)
-    toast.success('Perfil atualizado')
+    showToast.success('Perfil atualizado', {
+      description: 'Suas informações foram salvas com sucesso.',
+    })
   }
 
   return { user, loading, updateUser, isEditOpen, setIsEditOpen }

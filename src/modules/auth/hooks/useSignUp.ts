@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { AxiosError } from 'axios'
-import toast from 'react-hot-toast'
+import { showToast } from '@/shared/components/Toast'
 import { signUpService } from '../service/signUpService'
 import { signInService } from '../service/signInService'
 import type { SignUpPayload } from '../types/signUp'
@@ -33,13 +33,15 @@ export function useSignUp() {
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['me'] })
-      toast.success('Conta criada com sucesso!')
+      showToast.success('Conta criada com sucesso!', {
+        description: 'Bem-vindo ao Pork. Vamos começar a economizar!',
+      })
       navigate('/dashboard/home')
     },
     onError: (error: AxiosError<{ message?: string | string[] }>) => {
       const raw = error.response?.data?.message
       const message = Array.isArray(raw) ? raw[0] : raw ?? 'Erro ao criar conta'
-      toast.error(message)
+      showToast.error('Erro ao criar conta', { description: message })
     },
   })
 }

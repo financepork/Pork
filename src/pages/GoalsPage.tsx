@@ -1,11 +1,12 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { Plus, Spinner } from '@phosphor-icons/react'
+import { Plus, Spinner, TargetIcon } from '@phosphor-icons/react'
 import { stagger, fadeUp } from '@/lib/animations'
 import { useGoals } from '@/modules/goals/hooks/useGoals'
 import GoalCard from '@/modules/goals/components/GoalCard'
 import GoalsOverview from '@/modules/goals/components/GoalsOverview'
 import AddGoalSheet from '@/modules/goals/components/AddGoalSheet'
 import DepositSheet from '@/modules/goals/components/DepositSheet'
+import PageHeader from '@/shared/components/PageHeader'
 
 export default function GoalsPage() {
   const {
@@ -27,7 +28,13 @@ export default function GoalsPage() {
   return (
     <>
       <div className="overflow-y-auto min-h-dvh pb-32">
-        <div className="max-w-6xl mx-auto px-5 lg:px-10 pt-8 lg:pt-12">
+        <div className="max-w-6xl mx-auto px-5 lg:px-10">
+
+          <PageHeader
+            icon={TargetIcon}
+            title="Seus objetivos"
+            description="Transforme sonhos em planos. Defina metas e veja seu progresso crescer a cada depósito."
+          />
 
           <div className="lg:grid lg:grid-cols-[300px_1fr] lg:gap-10 lg:items-start">
 
