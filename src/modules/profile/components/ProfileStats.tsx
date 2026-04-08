@@ -10,16 +10,10 @@ interface Props {
 }
 
 export default function ProfileStats({ user, totalGoals, completedGoals }: Props) {
-  const memberSince = new Date(user.createdAt + 'T00:00:00').toLocaleDateString('pt-BR', {
-    month: 'long',
-    year: 'numeric',
-  })
-
   const stats = [
     { label: 'Salário mensal', value: formatCurrency(user.monthlyIncome) },
     { label: 'Metas ativas',   value: String(totalGoals - completedGoals) },
     { label: 'Metas concluídas', value: String(completedGoals) },
-    { label: 'Membro desde',   value: memberSince },
   ]
 
   return (

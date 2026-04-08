@@ -1,8 +1,11 @@
 import { useMemo, useState } from 'react'
+import { useForm, Controller, type Path } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowRight, ArrowLeft, Eye, EyeSlash } from '@phosphor-icons/react'
 import { Link } from 'react-router-dom'
 import { useSignUp } from '../hooks/useSignUp'
+import { signUpSchema, type SignUpSchema } from '../schemas/signUp.schema'
 
 const STEPS = [
   { bg: '#0a0a0a', text: '#f5f5f5', accent: '#22c55e', question: 'Como podemos te chamar?' },
@@ -10,6 +13,14 @@ const STEPS = [
   { bg: '#171717', text: '#f5f5f5', accent: '#4ade80', question: 'Crie uma senha segura' },
   { bg: '#166534', text: '#ffffff', accent: '#4ade80', question: 'Quanto você ganha por mês?' },
   { bg: '#0a0a0a', text: '#f5f5f5', accent: '#22c55e', question: 'Qual seu perfil de economia?' },
+]
+
+const STEP_FIELDS: Path<SignUpSchema>[][] = [
+  ['name'],
+  ['email'],
+  ['password', 'confirmPassword'],
+  ['monthlyIncome'],
+  ['savingsProfile'],
 ]
 
 const PROFILES = [
@@ -25,7 +36,9 @@ const slideVariants = {
 }
 
 export default function SignupForm() {
-  const { step, direction, next, back, formData, updateField, submit, isLastStep } = useSignUp()
+  const signUp = useSignUp()
+  const [step, setStep] = useState(0)
+  const [direction, setDirection] = useState(1)
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
   const shouldAutoFocus = useMemo(
@@ -33,21 +46,64 @@ export default function SignupForm() {
     [],
   )
 
-  const current = STEPS[step]
+  const {
+    register,
+    handleSubmit,
+    control,
+    trigger,
+    formState: { errors },
+  } = useForm<SignUpSchema>({
+    resolver: zodResolver(signUpSchema),
+    mode: 'onChange',
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      monthlyIncome: '',
+      savingsProfile: undefined,
+    },
+  })
 
-  const handleNext = () => {
+  const current = STEPS[step]
+  const isLastStep = step === STEPS.length - 1
+  const isSubmitting = signUp.isPending
+
+  const onSubmit = (data: SignUpSchema) => {
+    signUp.mutate(data)
+  }
+
+  const handleNext = async () => {
+    const valid = await trigger(STEP_FIELDS[step])
+    if (!valid) return
+
     if (isLastStep) {
-      submit()
+      handleSubmit(onSubmit)()
     } else {
-      next()
+      setDirection(1)
+      setStep(s => s + 1)
     }
   }
 
+  const handleBack = () => {
+    if (step > 0) {
+      setDirection(-1)
+      setStep(s => s - 1)
+    }
+  }
+
+  const stepError = (() => {
+    const field = STEP_FIELDS[step].find(f => errors[f])
+    if (!field) return null
+    return errors[field]?.message as string | undefined
+  })()
+
   return (
-    <motion.div
+    <motion.form
+      onSubmit={handleSubmit(onSubmit)}
       className="min-h-dvh w-full flex flex-col overflow-hidden relative"
       animate={{ backgroundColor: current.bg }}
-      transition={{ duration: 0.5}}
+      transition={{ duration: 0.5 }}
     >
       <style>{`
         .signup-input:focus { border-color: ${current.accent} !important; }
@@ -72,7 +128,7 @@ export default function SignupForm() {
           {step > 0 ? (
             <button
               type="button"
-              onClick={back}
+              onClick={handleBack}
               className="cursor-pointer mb-15 flex items-center gap-2 text-base font-semibold text-white hover:text-white/80 transition-colors"
             >
               <ArrowLeft size={20} weight="bold" />
@@ -104,7 +160,7 @@ export default function SignupForm() {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.4}}
+              transition={{ duration: 0.4 }}
             >
               <h1
                 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-10 leading-tight"
@@ -120,10 +176,9 @@ export default function SignupForm() {
                   type="text"
                   autoComplete="name"
                   placeholder="Seu nome"
-                  value={formData.name}
-                  onChange={e => updateField('name', e.target.value)}
                   className="signup-input w-full text-lg sm:text-xl pb-3 border-b-2 outline-none transition-colors duration-300 bg-transparent"
                   style={{ color: current.text, borderColor: `${current.text}30` }}
+                  {...register('name')}
                 />
               )}
 
@@ -134,10 +189,9 @@ export default function SignupForm() {
                   type="email"
                   autoComplete="email"
                   placeholder="seu@email.com"
-                  value={formData.email}
-                  onChange={e => updateField('email', e.target.value)}
                   className="signup-input w-full text-lg sm:text-xl pb-3 border-b-2 outline-none transition-colors duration-300 bg-transparent"
                   style={{ color: current.text, borderColor: `${current.text}30` }}
+                  {...register('email')}
                 />
               )}
 
@@ -157,10 +211,9 @@ export default function SignupForm() {
                         type={showPassword ? 'text' : 'password'}
                         autoComplete="new-password"
                         placeholder="••••••••"
-                        value={formData.password}
-                        onChange={e => updateField('password', e.target.value)}
                         className="signup-input w-full text-lg pb-3 border-b-2 outline-none transition-colors duration-300 bg-transparent pr-10"
                         style={{ color: current.text, borderColor: `${current.text}30` }}
+                        {...register('password')}
                       />
                       <button
                         type="button"
@@ -185,10 +238,9 @@ export default function SignupForm() {
                         type={showConfirm ? 'text' : 'password'}
                         autoComplete="new-password"
                         placeholder="••••••••"
-                        value={formData.confirmPassword}
-                        onChange={e => updateField('confirmPassword', e.target.value)}
                         className="signup-input w-full text-lg pb-3 border-b-2 outline-none transition-colors duration-300 bg-transparent pr-10"
                         style={{ color: current.text, borderColor: `${current.text}30` }}
+                        {...register('confirmPassword')}
                       />
                       <button
                         type="button"
@@ -218,37 +270,51 @@ export default function SignupForm() {
                     type="text"
                     inputMode="numeric"
                     placeholder="0,00"
-                    value={formData.monthlyIncome}
-                    onChange={e => updateField('monthlyIncome', e.target.value)}
                     className="signup-input w-full text-2xl sm:text-3xl font-semibold pb-3 border-b-2 outline-none transition-colors duration-300 bg-transparent"
                     style={{ color: current.text, borderColor: `${current.text}30` }}
+                    {...register('monthlyIncome')}
                   />
                 </div>
               )}
 
               {/* Step 4 — Perfil */}
               {step === 4 && (
-                <div className="flex flex-col gap-3">
-                  {PROFILES.map(option => {
-                    const selected = formData.savingsProfile === option.value
-                    return (
-                      <button
-                        key={option.value}
-                        type="button"
-                        onClick={() => updateField('savingsProfile', option.value)}
-                        className="cursor-pointer mb-15 w-full text-left p-4 sm:p-5 rounded-xl border-2 transition-all duration-300"
-                        style={{
-                          borderColor: selected ? current.accent : `${current.text}20`,
-                          backgroundColor: selected ? `${current.accent}15` : 'transparent',
-                          color: current.text,
-                        }}
-                      >
-                        <span className="block text-base font-semibold">{option.label}</span>
-                        <span className="block text-sm mt-1 opacity-50">{option.desc}</span>
-                      </button>
-                    )
-                  })}
-                </div>
+                <Controller
+                  control={control}
+                  name="savingsProfile"
+                  render={({ field }) => (
+                    <div className="flex flex-col gap-3">
+                      {PROFILES.map(option => {
+                        const selected = field.value === option.value
+                        return (
+                          <button
+                            key={option.value}
+                            type="button"
+                            onClick={() => field.onChange(option.value)}
+                            className="cursor-pointer mb-15 w-full text-left p-4 sm:p-5 rounded-xl border-2 transition-all duration-300"
+                            style={{
+                              borderColor: selected ? current.accent : `${current.text}20`,
+                              backgroundColor: selected ? `${current.accent}15` : 'transparent',
+                              color: current.text,
+                            }}
+                          >
+                            <span className="block text-base font-semibold">{option.label}</span>
+                            <span className="block text-sm mt-1 opacity-50">{option.desc}</span>
+                          </button>
+                        )
+                      })}
+                    </div>
+                  )}
+                />
+              )}
+
+              {stepError && (
+                <p
+                  className="mt-4 text-sm font-medium"
+                  style={{ color: current.accent }}
+                >
+                  {stepError}
+                </p>
               )}
             </motion.div>
           </AnimatePresence>
@@ -261,14 +327,24 @@ export default function SignupForm() {
           <button
             type="button"
             onClick={handleNext}
-            className="cursor-pointer mb-15 w-full flex items-center justify-center gap-2.5 font-semibold py-3.5 sm:py-4 rounded-xl text-sm tracking-wide transition-all duration-200 active:scale-[0.97]"
+            disabled={isSubmitting}
+            className="cursor-pointer mb-15 w-full flex items-center justify-center gap-2.5 font-semibold py-3.5 sm:py-4 rounded-xl text-sm tracking-wide transition-all duration-200 active:scale-[0.97] disabled:opacity-60 disabled:pointer-events-none"
             style={{ backgroundColor: current.text, color: current.bg }}
           >
-            {isLastStep ? 'Criar conta' : 'Continuar'}
-            <ArrowRight weight="bold" size={16} />
+            {isSubmitting ? (
+              <span
+                className="w-4 h-4 border-2 rounded-full animate-spin"
+                style={{ borderColor: `${current.bg}30`, borderTopColor: current.bg }}
+              />
+            ) : (
+              <>
+                {isLastStep ? 'Criar conta' : 'Continuar'}
+                <ArrowRight weight="bold" size={16} />
+              </>
+            )}
           </button>
         </div>
       </div>
-    </motion.div>
+    </motion.form>
   )
 }

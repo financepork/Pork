@@ -24,7 +24,7 @@ export default function ActiveGoals({ goals }: Props) {
           <p className="text-xs text-neutral-500 mt-0.5">{active.length} em andamento</p>
         </div>
         <button
-          onClick={() => navigate('/main-page/goals')}
+          onClick={() => navigate('/dashboard/goals')}
           className="cursor-pointer flex items-center gap-1.5 text-xs font-medium text-neutral-400 hover:text-brand transition-colors duration-150 mb-0.5"
         >
           ver todas
@@ -40,7 +40,7 @@ export default function ActiveGoals({ goals }: Props) {
             <motion.li
               key={goal.id}
               variants={fadeUp}
-              onClick={() => navigate('/main-page/goals')}
+              onClick={() => navigate('/dashboard/goals')}
               className="cursor-pointer px-4 py-4 rounded-xl bg-neutral-900 border border-neutral-800/40 hover:border-neutral-700/60 transition-colors duration-150"
             >
               <div className="flex items-center justify-between mb-3">

@@ -6,7 +6,6 @@ let mockUser: User = {
   email: 'lucas@email.com',
   monthlyIncome: 6000,
   savingsProfile: 'intermediario',
-  createdAt: '2025-01-15',
 }
 
 export async function getUserService(): Promise<User> {

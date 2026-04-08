@@ -15,7 +15,7 @@ export default function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<SignupPage />} />
 
-      <Route path="/main-page" element={<MainLayout />}>
+      <Route path="/dashboard" element={<MainLayout />}>
         <Route index element={<Navigate to="home" replace />} />
         <Route path="home" element={<HomePage />} />
         <Route path="expenses" element={<ExpensesPage />} />

@@ -1,8 +1,18 @@
-export interface SignUpFormData {
+export type Plan = 'BASICO' | 'PADRAO' | 'AVANCADO'
+
+export interface SignUpPayload {
   name: string
   email: string
   password: string
-  confirmPassword: string
-  monthlyIncome: string
-  savingsProfile: 'basico' | 'intermediario' | 'avancado' | ''
+  salary: number
+  plan: Plan
+}
+
+export interface SignUpResponse {
+  id: string
+  name: string
+  email: string
+  salary: number
+  economy: number
+  plan: Plan
 }

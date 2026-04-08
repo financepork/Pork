@@ -30,7 +30,7 @@ export default function QuickActions({ onAddExpense, onAddGoal }: Props) {
       </button>
 
       <button
-        onClick={() => navigate('/main-page/expenses')}
+        onClick={() => navigate('/dashboard/expenses')}
         className="cursor-pointer w-12 flex items-center justify-center bg-neutral-800/60 hover:bg-neutral-800 active:scale-[0.97] text-neutral-400 hover:text-neutral-100 rounded-xl transition-all duration-150 border border-neutral-800"
         aria-label="Ver todos os gastos"
       >

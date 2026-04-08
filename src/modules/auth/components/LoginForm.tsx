@@ -1,24 +1,27 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Eye, EyeSlash, ArrowRight } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
 import { fadeUp } from '@/lib/animations'
-
-interface LoginFormData {
-  email: string
-  password: string
-}
+import { useSignIn } from '../hooks/useSignIn'
+import { signInSchema, type SignInSchema } from '../schemas/signIn.schema'
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
+  const signIn = useSignIn()
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<LoginFormData>()
+    formState: { errors },
+  } = useForm<SignInSchema>({
+    resolver: zodResolver(signInSchema),
+  })
 
-  const onSubmit = async (data: LoginFormData) => {
-    console.log(data)
+  const isSubmitting = signIn.isPending
+
+  const onSubmit = (data: SignInSchema) => {
+    signIn.mutate(data)
   }
 
   return (
@@ -34,10 +37,7 @@ export default function LoginForm() {
           autoComplete="email"
           placeholder="seu@email.com"
           className="w-full bg-transparent text-neutral-100 text-sm pb-2.5 border-b border-neutral-800 focus:border-brand outline-none transition-colors duration-300 placeholder:text-neutral-700"
-          {...register('email', {
-            required: 'Informe seu e-mail',
-            pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'E-mail inválido' },
-          })}
+          {...register('email')}
         />
         {errors.email && <p className="text-xs text-red-400 mt-1.5">{errors.email.message}</p>}
       </motion.div>
@@ -54,10 +54,7 @@ export default function LoginForm() {
             autoComplete="current-password"
             placeholder="••••••••"
             className="w-full bg-transparent text-neutral-100 text-sm pb-2.5 border-b border-neutral-800 focus:border-brand outline-none transition-colors duration-300 placeholder:text-neutral-700 pr-10"
-            {...register('password', {
-              required: 'Informe sua senha',
-              minLength: { value: 6, message: 'Mínimo 6 caracteres' },
-            })}
+            {...register('password')}
           />
           <button
             type="button"

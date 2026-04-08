@@ -1,7 +1,8 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext } from 'react'
 import type { ReactNode } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
 import type { User } from '@/modules/profile/types/user'
-import { getUserService } from '@/modules/profile/service/getUserService'
+import { useFindMe, meQueryKey } from '@/shared/hooks/useFindMe'
 
 interface UserContextValue {
   user: User | null
@@ -12,20 +13,15 @@ interface UserContextValue {
 const UserContext = createContext<UserContextValue | null>(null)
 
 export function UserProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
-  const [loading, setLoading] = useState(true)
+  const queryClient = useQueryClient()
+  const { data, isLoading } = useFindMe()
 
   const refreshUser = async () => {
-    const data = await getUserService()
-    setUser(data)
+    await queryClient.invalidateQueries({ queryKey: meQueryKey })
   }
 
-  useEffect(() => {
-    refreshUser().finally(() => setLoading(false))
-  }, [])
-
   return (
-    <UserContext.Provider value={{ user, loading, refreshUser }}>
+    <UserContext.Provider value={{ user: data ?? null, loading: isLoading, refreshUser }}>
       {children}
     </UserContext.Provider>
   )

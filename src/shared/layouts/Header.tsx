@@ -1,10 +1,10 @@
 import { useLocation } from 'react-router-dom'
 
 const TITLES: Record<string, string> = {
-  '/main-page/home':     'Início',
-  '/main-page/expenses': 'Gastos',
-  '/main-page/goals':    'Metas',
-  '/main-page/profile':  'Perfil',
+  '/dashboard/home':     'Início',
+  '/dashboard/expenses': 'Gastos',
+  '/dashboard/goals':    'Metas',
+  '/dashboard/profile':  'Perfil',
 }
 
 export default function Header() {

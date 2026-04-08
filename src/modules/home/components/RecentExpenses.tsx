@@ -25,7 +25,7 @@ export default function RecentExpenses({ expenses }: Props) {
           <p className="text-xs text-neutral-500 mt-0.5">{expenses.length} transações recentes</p>
         </div>
         <button
-          onClick={() => navigate('/main-page/expenses')}
+          onClick={() => navigate('/dashboard/expenses')}
           className="cursor-pointer flex items-center gap-1.5 text-xs font-medium text-neutral-400 hover:text-brand transition-colors duration-150 mb-0.5"
         >
           ver todos

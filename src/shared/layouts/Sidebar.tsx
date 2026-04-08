@@ -3,10 +3,10 @@ import { House, CurrencyDollar, Target, User } from '@phosphor-icons/react'
 import { useUser } from '@/shared/contexts/userContext'
 
 const NAV_ITEMS = [
-  { to: '/main-page/home',     label: 'Início',  Icon: House          },
-  { to: '/main-page/expenses', label: 'Gastos',  Icon: CurrencyDollar },
-  { to: '/main-page/goals',    label: 'Metas',   Icon: Target         },
-  { to: '/main-page/profile',  label: 'Perfil',  Icon: User           },
+  { to: '/dashboard/home',     label: 'Início',  Icon: House          },
+  { to: '/dashboard/expenses', label: 'Gastos',  Icon: CurrencyDollar },
+  { to: '/dashboard/goals',    label: 'Metas',   Icon: Target         },
+  { to: '/dashboard/profile',  label: 'Perfil',  Icon: User           },
 ]
 
 export default function Sidebar() {

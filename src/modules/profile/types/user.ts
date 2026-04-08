@@ -4,7 +4,6 @@ export interface User {
   email: string
   monthlyIncome: number
   savingsProfile: 'basico' | 'intermediario' | 'avancado'
-  createdAt: string
 }
 
 export interface UpdateUserData {
