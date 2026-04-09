@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Sheet from '@/shared/components/Sheet'
-import type { CreateExpenseData, ExpenseCategory } from '../types/expense'
+import type { ExpenseCategory } from '../types/expense'
 import { CATEGORY_LABELS, CATEGORY_COLORS } from '../types/expense'
+import type { CreateExpense } from '../types/createExpense'
 
 interface Props {
   isOpen: boolean
   onClose: () => void
-  onAdd: (data: CreateExpenseData) => Promise<void>
+  onAdd: (data: CreateExpense) => Promise<void>
 }
 
 const CATEGORIES = Object.keys(CATEGORY_LABELS) as ExpenseCategory[]

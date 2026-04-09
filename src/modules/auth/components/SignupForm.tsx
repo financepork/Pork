@@ -218,11 +218,11 @@ export default function SignupForm() {
                       <button
                         type="button"
                         onClick={() => setShowPassword(v => !v)}
-                        className="absolute right-0 bottom-3 cursor-pointer mb-15 opacity-40 hover:opacity-100 transition-opacity"
+                        className="absolute right-0 inset-y-0 flex items-center cursor-pointer opacity-40 hover:opacity-100 transition-opacity"
                         style={{ color: current.text }}
                         aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
                       >
-                        {showPassword ? <EyeSlash size={20} /> : <Eye size={20} />}
+                        {showPassword ? <EyeSlash size={24} /> : <Eye size={24} />}
                       </button>
                     </div>
                   </div>
@@ -245,11 +245,11 @@ export default function SignupForm() {
                       <button
                         type="button"
                         onClick={() => setShowConfirm(v => !v)}
-                        className="absolute right-0 bottom-3 cursor-pointer mb-15 opacity-40 hover:opacity-100 transition-opacity"
+                        className="absolute right-0 inset-y-0 flex items-center cursor-pointer opacity-40 hover:opacity-100 transition-opacity"
                         style={{ color: current.text }}
                         aria-label={showConfirm ? 'Ocultar senha' : 'Mostrar senha'}
                       >
-                        {showConfirm ? <EyeSlash size={20} /> : <Eye size={20} />}
+                        {showConfirm ? <EyeSlash size={24} /> : <Eye size={24} />}
                       </button>
                     </div>
                   </div>

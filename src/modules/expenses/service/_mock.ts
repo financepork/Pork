@@ -1,6 +1,6 @@
-import type { Expense, CreateExpenseData } from '../types/expense'
+import type { Expense } from '../types/expense'
 
-let mockExpenses: Expense[] = [
+export let mockExpenses: Expense[] = [
   { id: '1',  title: 'Aluguel',        category: 'moradia',     amount: 1500.00, date: '2026-04-01' },
   { id: '2',  title: 'Farmácia',       category: 'saude',       amount: 67.20,  date: '2026-04-02' },
   { id: '3',  title: 'Cinema',         category: 'lazer',       amount: 48.00,  date: '2026-04-03' },
@@ -20,25 +20,19 @@ let mockExpenses: Expense[] = [
 
 let nextId = 16
 
-export async function findAllExpensesService(year: number, month: number): Promise<Expense[]> {
-  const prefix = `${year}-${String(month).padStart(2, '0')}`
-  return mockExpenses
-    .filter(e => e.date.startsWith(prefix))
-    .sort((a, b) => b.date.localeCompare(a.date))
-}
-
-export async function findRecentExpensesService(limit = 4): Promise<Expense[]> {
-  return [...mockExpenses]
-    .sort((a, b) => b.date.localeCompare(a.date))
-    .slice(0, limit)
-}
-
-export async function createExpenseService(data: CreateExpenseData): Promise<Expense> {
-  const expense: Expense = { id: String(nextId++), ...data }
+export function addMockExpense(expense: Expense) {
   mockExpenses = [expense, ...mockExpenses]
-  return expense
 }
 
-export async function deleteExpenseService(id: string): Promise<void> {
+export function removeMockExpense(id: string) {
   mockExpenses = mockExpenses.filter(e => e.id !== id)
+}
+
+export function updateMockExpense(id: string, data: Partial<Expense>) {
+  mockExpenses = mockExpenses.map(e => e.id === id ? { ...e, ...data } : e)
+  return mockExpenses.find(e => e.id === id)!
+}
+
+export function nextMockId() {
+  return String(nextId++)
 }

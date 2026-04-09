@@ -1,18 +1,8 @@
-import type { User, UpdateUserData } from '../types/user'
-
-let mockUser: User = {
-  id: '1',
-  name: 'Lucas',
-  email: 'lucas@email.com',
-  monthlyIncome: 6000,
-  savingsProfile: 'intermediario',
-}
+import { findMeService } from '@/shared/services/findMeService'
+import type { User } from '../types/user'
 
 export async function getUserService(): Promise<User> {
-  return { ...mockUser }
-}
-
-export async function updateUserService(data: UpdateUserData): Promise<User> {
-  mockUser = { ...mockUser, ...data }
-  return { ...mockUser }
+  const user = await findMeService()
+  if (!user) throw new Error('Usuário não encontrado')
+  return user
 }

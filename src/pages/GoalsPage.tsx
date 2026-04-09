@@ -1,7 +1,14 @@
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Plus, Spinner, TargetIcon } from '@phosphor-icons/react'
+import { useQueryClient } from '@tanstack/react-query'
 import { stagger, fadeUp } from '@/lib/animations'
-import { useGoals } from '@/modules/goals/hooks/useGoals'
+import { useFindAllGoals } from '@/modules/goals/hooks/useFindAllGoals'
+import { useCreateGoal } from '@/modules/goals/hooks/useCreateGoal'
+import { deleteGoalService } from '@/modules/goals/service/deleteGoalService'
+import { depositGoalService } from '@/modules/goals/service/depositGoalService'
+import type { Goal } from '@/modules/goals/types/goal'
+import type { CreateGoal } from '@/modules/goals/types/createGoal'
 import GoalCard from '@/modules/goals/components/GoalCard'
 import GoalsOverview from '@/modules/goals/components/GoalsOverview'
 import AddGoalSheet from '@/modules/goals/components/AddGoalSheet'
@@ -9,21 +16,34 @@ import DepositSheet from '@/modules/goals/components/DepositSheet'
 import PageHeader from '@/shared/components/PageHeader'
 
 export default function GoalsPage() {
-  const {
-    goals,
-    loading,
-    totalSaved,
-    totalTarget,
-    addGoal,
-    deposit,
-    removeGoal,
-    isAddOpen,
-    setIsAddOpen,
-    depositTarget,
-    setDepositTarget,
-  } = useGoals()
+  const queryClient = useQueryClient()
+  const { data: goals = [], isLoading: loading } = useFindAllGoals()
+  const createGoal = useCreateGoal()
 
-  const completedCount = goals.filter(g => g.savedAmount >= g.targetAmount).length
+  const [isAddOpen, setIsAddOpen] = useState(false)
+  const [depositTarget, setDepositTarget] = useState<Goal | null>(null)
+
+  const totalSaved = goals.reduce((s, g) => s + g.currentAmount, 0)
+  const totalTarget = goals.reduce((s, g) => s + g.targetAmount, 0)
+  const completedCount = goals.filter(g => g.achieved).length
+
+  const addGoal = async (data: CreateGoal) => {
+    await createGoal.mutateAsync(data)
+    setIsAddOpen(false)
+  }
+
+  const deposit = async (goalId: string, amount: number) => {
+    const goal = goals.find(g => g.id === goalId)
+    if (!goal) return
+    await depositGoalService(goalId, goal.currentAmount, amount)
+    queryClient.invalidateQueries({ queryKey: ['goals'] })
+    setDepositTarget(null)
+  }
+
+  const removeGoal = async (id: string) => {
+    await deleteGoalService(id)
+    queryClient.invalidateQueries({ queryKey: ['goals'] })
+  }
 
   return (
     <>
@@ -38,7 +58,6 @@ export default function GoalsPage() {
 
           <div className="lg:grid lg:grid-cols-[300px_1fr] lg:gap-10 lg:items-start">
 
-            {/* LEFT — overview + add (sticky) */}
             <motion.div
               variants={stagger}
               initial="hidden"
@@ -64,7 +83,6 @@ export default function GoalsPage() {
               </motion.div>
             </motion.div>
 
-            {/* RIGHT — cards grid */}
             <div className="mt-6 lg:mt-0">
               {loading ? (
                 <div className="flex justify-center py-16">
@@ -106,7 +124,6 @@ export default function GoalsPage() {
         </div>
       </div>
 
-      {/* FAB — mobile only */}
       <button
         onClick={() => setIsAddOpen(true)}
         className="lg:hidden cursor-pointer fixed bottom-24 right-5 w-14 h-14 rounded-2xl bg-brand hover:bg-brand-light active:scale-95 text-neutral-950 shadow-lg shadow-brand/20 flex items-center justify-center transition-all duration-150 z-20"

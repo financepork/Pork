@@ -1,8 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { HandWavingIcon } from '@phosphor-icons/react'
 import { stagger, fadeUp } from '@/lib/animations'
 import { useUser } from '@/shared/contexts/userContext'
+import { useFindAllExpenses } from '@/modules/expenses/hooks/useFindAllExpenses'
+import { useCreateExpense } from '@/modules/expenses/hooks/useCreateExpense'
+import { useFindAllGoals } from '@/modules/goals/hooks/useFindAllGoals'
+import { useCreateGoal } from '@/modules/goals/hooks/useCreateGoal'
+import type { CreateExpense } from '@/modules/expenses/types/createExpense'
+import type { CreateGoal } from '@/modules/goals/types/createGoal'
 import BalanceCard from '@/modules/home/components/BalanceCard'
 import QuickActions from '@/modules/home/components/QuickActions'
 import RecentExpenses from '@/modules/home/components/RecentExpenses'
@@ -10,58 +16,37 @@ import ActiveGoals from '@/modules/home/components/ActiveGoals'
 import AddExpenseSheet from '@/modules/expenses/components/AddExpenseSheet'
 import AddGoalSheet from '@/modules/goals/components/AddGoalSheet'
 import PageHeader from '@/shared/components/PageHeader'
-import { findRecentExpensesService, createExpenseService, findAllExpensesService } from '@/modules/expenses/service/expensesService'
-import { findAllGoalsService, createGoalService } from '@/modules/goals/service/goalsService'
-import type { Expense } from '@/modules/expenses/types/expense'
-import type { Goal } from '@/modules/goals/types/goal'
-import type { CreateExpenseData } from '@/modules/expenses/types/expense'
-import type { CreateGoalData } from '@/modules/goals/types/goal'
 import { getCurrentMonthYear, getGreeting } from '@/shared/utils/date'
 import { showToast } from '@/shared/components/Toast'
 
 export default function HomePage() {
   const { user } = useUser()
-  const [recentExpenses, setRecentExpenses] = useState<Expense[]>([])
-  const [goals, setGoals] = useState<Goal[]>([])
-  const [monthlyExpenses, setMonthlyExpenses] = useState(0)
   const [isAddExpenseOpen, setIsAddExpenseOpen] = useState(false)
   const [isAddGoalOpen, setIsAddGoalOpen] = useState(false)
 
-  useEffect(() => {
-    const { year, month } = getCurrentMonthYear()
-    Promise.all([
-      findRecentExpensesService(4),
-      findAllGoalsService(),
-      findAllExpensesService(year, month),
-    ]).then(([recent, allGoals, monthly]) => {
-      setRecentExpenses(recent)
-      setGoals(allGoals)
-      setMonthlyExpenses(monthly.reduce((s, e) => s + e.amount, 0))
-    })
-  }, [])
+  const { year, month } = getCurrentMonthYear()
+  const prefix = `${year}-${String(month).padStart(2, '0')}`
 
-  const handleAddExpense = async (data: CreateExpenseData) => {
-    await createExpenseService(data)
-    const { year, month } = getCurrentMonthYear()
-    const [recent, monthly] = await Promise.all([
-      findRecentExpensesService(4),
-      findAllExpensesService(year, month),
-    ])
-    setRecentExpenses(recent)
-    setMonthlyExpenses(monthly.reduce((s, e) => s + e.amount, 0))
+  const { data: allExpenses = [] } = useFindAllExpenses()
+  const { data: goals = [] } = useFindAllGoals()
+  const createExpense = useCreateExpense()
+  const createGoal = useCreateGoal()
+
+  const recentExpenses = [...allExpenses].slice(0, 4)
+  const monthlyExpenses = allExpenses
+    .filter(e => e.date.startsWith(prefix))
+    .reduce((s, e) => s + e.amount, 0)
+
+  const handleAddExpense = async (data: CreateExpense) => {
+    await createExpense.mutateAsync(data)
     setIsAddExpenseOpen(false)
-    showToast.success('Gasto registrado', {
-      description: 'Seu gasto foi adicionado ao mês.',
-    })
+    showToast.success('Gasto registrado', { description: 'Seu gasto foi adicionado ao mês.' })
   }
 
-  const handleAddGoal = async (data: CreateGoalData) => {
-    const goal = await createGoalService(data)
-    setGoals(prev => [...prev, goal])
+  const handleAddGoal = async (data: CreateGoal) => {
+    await createGoal.mutateAsync(data)
     setIsAddGoalOpen(false)
-    showToast.success('Meta criada', {
-      description: 'Sua nova meta está pronta para receber depósitos.',
-    })
+    showToast.success('Meta criada', { description: 'Sua nova meta está pronta para receber depósitos.' })
   }
 
   return (
@@ -75,10 +60,8 @@ export default function HomePage() {
             description={`Hoje é ${new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })}. Veja como estão suas finanças.`}
           />
 
-          {/* Content grid */}
           <div className="lg:grid lg:grid-cols-[1fr_1.2fr] lg:gap-12 lg:items-start">
 
-            {/* LEFT — financial summary */}
             <motion.div
               variants={stagger}
               initial="hidden"
@@ -95,7 +78,6 @@ export default function HomePage() {
               />
             </motion.div>
 
-            {/* RIGHT — feed */}
             <motion.div
               variants={stagger}
               initial="hidden"

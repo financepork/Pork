@@ -62,7 +62,7 @@ export default function LoginForm() {
             className="absolute right-0 bottom-2.5 cursor-pointer text-neutral-400 hover:text-neutral-200 transition-colors duration-200"
             aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
           >
-            {showPassword ? <EyeSlash size={18} /> : <Eye size={18} />}
+            {showPassword ? <EyeSlash size={24} /> : <Eye size={24} />}
           </button>
         </div>
         {errors.password && <p className="text-xs text-red-400 mt-1.5">{errors.password.message}</p>}

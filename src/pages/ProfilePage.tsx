@@ -1,29 +1,35 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Spinner, UserCircleIcon } from '@phosphor-icons/react'
 import { stagger } from '@/lib/animations'
 import { useGetUser } from '@/modules/profile/hooks/useGetUser'
-import { useGoals } from '@/modules/goals/hooks/useGoals'
+import { useUpdateUser } from '@/modules/profile/hooks/useUpdateUser'
+import { useDeleteUser } from '@/modules/profile/hooks/useDeleteUser'
+import { useFindAllGoals } from '@/modules/goals/hooks/useFindAllGoals'
+import type { UpdateUserData } from '@/modules/profile/types/user'
 import ProfileHeader from '@/modules/profile/components/ProfileHeader'
 import ProfileStats from '@/modules/profile/components/ProfileStats'
 import ProfileActions from '@/modules/profile/components/ProfileActions'
 import EditProfileSheet from '@/modules/profile/components/EditProfileSheet'
 import PageHeader from '@/shared/components/PageHeader'
-import { showToast } from '@/shared/components/Toast'
 
 export default function ProfilePage() {
-  const { user, loading, updateUser, isEditOpen, setIsEditOpen } = useGetUser()
-  const { goals } = useGoals()
+  const { data: user, isLoading: loading } = useGetUser()
+  const { data: goals = [] } = useFindAllGoals()
+  const updateUser = useUpdateUser(user?.id ?? '')
+  const deleteUser = useDeleteUser(user?.id ?? '')
 
-  const completedGoals = goals.filter(g => g.savedAmount >= g.targetAmount).length
+  const [isEditOpen, setIsEditOpen] = useState(false)
 
-  const handleLogout = () => {
-    showToast.info('Até logo!', { description: 'Esperamos te ver em breve.' })
+  const completedGoals = goals.filter(g => g.achieved).length
+
+  const handleUpdate = async (data: UpdateUserData) => {
+    await updateUser.mutateAsync(data)
+    setIsEditOpen(false)
   }
 
-  const handleDeleteAccount = () => {
-    showToast.warning('Funcionalidade em breve', {
-      description: 'A exclusão de conta ainda está em desenvolvimento.',
-    })
+  const handleDeleteAccount = async () => {
+    await deleteUser.mutateAsync()
   }
 
   if (loading) {
@@ -49,7 +55,6 @@ export default function ProfilePage() {
 
           <div className="lg:grid lg:grid-cols-[340px_1fr] lg:gap-10 lg:items-start">
 
-            {/* LEFT — identity + stats (sticky) */}
             <motion.div
               variants={stagger}
               initial="hidden"
@@ -64,7 +69,6 @@ export default function ProfilePage() {
               />
             </motion.div>
 
-            {/* RIGHT — settings */}
             <motion.div
               variants={stagger}
               initial="hidden"
@@ -72,7 +76,7 @@ export default function ProfilePage() {
               className="mt-6 lg:mt-0"
             >
               <ProfileActions
-                onLogout={handleLogout}
+                onLogout={() => {}}
                 onDeleteAccount={handleDeleteAccount}
               />
             </motion.div>
@@ -85,7 +89,7 @@ export default function ProfilePage() {
         isOpen={isEditOpen}
         user={user}
         onClose={() => setIsEditOpen(false)}
-        onUpdate={updateUser}
+        onUpdate={handleUpdate}
       />
     </>
   )

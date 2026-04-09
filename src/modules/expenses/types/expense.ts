@@ -16,14 +16,6 @@ export interface Expense {
   note?: string
 }
 
-export interface CreateExpenseData {
-  title: string
-  category: ExpenseCategory
-  amount: number
-  date: string
-  note?: string
-}
-
 export const CATEGORY_LABELS: Record<ExpenseCategory, string> = {
   alimentacao: 'Alimentação',
   transporte: 'Transporte',

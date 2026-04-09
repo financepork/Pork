@@ -1,21 +1,10 @@
 export interface Goal {
   id: string
-  title: string
+  name: string
   targetAmount: number
-  savedAmount: number
+  currentAmount: number
   deadline?: string
-  emoji: string
+  achieved: boolean
   createdAt: string
-}
-
-export interface CreateGoalData {
-  title: string
-  targetAmount: number
-  deadline?: string
-  emoji?: string
-}
-
-export interface DepositGoalData {
-  goalId: string
-  amount: number
+  updatedAt: string
 }

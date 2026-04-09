@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Sheet from '@/shared/components/Sheet'
-import type { CreateGoalData } from '../types/goal'
+import type { CreateGoal } from '../types/createGoal'
 
 interface Props {
   isOpen: boolean
   onClose: () => void
-  onAdd: (data: CreateGoalData) => Promise<void>
+  onAdd: (data: CreateGoal) => Promise<void>
 }
 
 const EMOJIS = ['🎯', '✈️', '🏠', '📱', '🚗', '📚', '💻', '🎸', '🏋️', '🛡️', '💍', '🌴']
@@ -21,10 +21,9 @@ export default function AddGoalSheet({ isOpen, onClose, onAdd }: Props) {
 
   const submit = async (data: { title: string; targetAmount: string; deadline?: string }) => {
     await onAdd({
-      title: data.title,
+      name: data.title,
       targetAmount: parseFloat(data.targetAmount.replace(',', '.')),
       deadline: data.deadline || undefined,
-      emoji: selectedEmoji,
     })
     reset()
     setSelectedEmoji('🎯')
