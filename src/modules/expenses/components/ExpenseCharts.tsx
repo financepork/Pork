@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { fadeUp } from '@/lib/animations'
 import { formatCurrency } from '@/shared/utils/currency'
-import { CATEGORY_COLORS, CATEGORY_LABELS } from '../types/expense'
+import { CATEGORY_COLORS, CATEGORY_ICONS, CATEGORY_LABELS } from '../types/expense'
 import type { Expense, ExpenseCategory } from '../types/expense'
 
 interface Props {
@@ -186,10 +186,11 @@ export default function ExpenseCharts({ expenses, year, month }: Props) {
           <div className="flex-1 min-w-0 space-y-2">
             {categories.slice(0, 5).map(([cat, value]) => {
               const c = CATEGORY_COLORS[cat]
+              const Icon = CATEGORY_ICONS[cat]
               const pct = Math.round((value / total) * 100)
               return (
                 <div key={cat} className="flex items-center gap-2 min-w-0">
-                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${c.dot}`} />
+                  <Icon size={13} className={`${c.text} shrink-0`} weight="duotone" />
                   <span className="text-xs text-neutral-400 truncate flex-1">
                     {CATEGORY_LABELS[cat]}
                   </span>

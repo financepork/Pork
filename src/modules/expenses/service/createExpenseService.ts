@@ -1,9 +1,8 @@
+import { api } from '@/api/axios'
 import type { Expense } from '../types/expense'
 import type { CreateExpense } from '../types/createExpense'
-import { addMockExpense, nextMockId } from './_mock'
 
 export const createExpenseService = async (data: CreateExpense): Promise<Expense> => {
-  const expense: Expense = { id: nextMockId(), ...data }
-  addMockExpense(expense)
-  return expense
+  const { data: created } = await api.post<Expense>('/expense', data)
+  return created
 }

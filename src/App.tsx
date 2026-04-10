@@ -7,6 +7,7 @@ import HomePage from '@/pages/HomePage'
 import ExpensesPage from '@/pages/ExpensesPage'
 import GoalsPage from '@/pages/GoalsPage'
 import ProfilePage from '@/pages/ProfilePage'
+import ProtectedRoute from '@/shared/components/ProtectedRoute'
 
 export default function App() {
   return (
@@ -15,12 +16,14 @@ export default function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<SignupPage />} />
 
-      <Route path="/dashboard" element={<MainLayout />}>
-        <Route index element={<Navigate to="home" replace />} />
-        <Route path="home" element={<HomePage />} />
-        <Route path="expenses" element={<ExpensesPage />} />
-        <Route path="goals" element={<GoalsPage />} />
-        <Route path="profile" element={<ProfilePage />} />
+      <Route element={<ProtectedRoute />}>
+        <Route path="/dashboard" element={<MainLayout />}>
+          <Route index element={<Navigate to="home" replace />} />
+          <Route path="home" element={<HomePage />} />
+          <Route path="expenses" element={<ExpensesPage />} />
+          <Route path="goals" element={<GoalsPage />} />
+          <Route path="profile" element={<ProfilePage />} />
+        </Route>
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />

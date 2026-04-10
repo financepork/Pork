@@ -1,95 +1,59 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Spinner, UserCircleIcon } from '@phosphor-icons/react'
-import { stagger } from '@/lib/animations'
-import { useGetUser } from '@/modules/profile/hooks/useGetUser'
-import { useUpdateUser } from '@/modules/profile/hooks/useUpdateUser'
-import { useDeleteUser } from '@/modules/profile/hooks/useDeleteUser'
-import { useFindAllGoals } from '@/modules/goals/hooks/useFindAllGoals'
-import type { UpdateUserData } from '@/modules/profile/types/user'
-import ProfileHeader from '@/modules/profile/components/ProfileHeader'
+import { UserCircleIcon } from '@phosphor-icons/react'
+import { stagger, fadeUp } from '@/lib/animations'
+import { useUser } from '@/shared/contexts/userContext'
+import { useLogout } from '@/modules/auth/hooks/useLogout'
 import ProfileStats from '@/modules/profile/components/ProfileStats'
 import ProfileActions from '@/modules/profile/components/ProfileActions'
-import EditProfileSheet from '@/modules/profile/components/EditProfileSheet'
+import EditFinancialsSheet from '@/modules/profile/components/EditFinancialsSheet'
 import PageHeader from '@/shared/components/PageHeader'
+import ProfileSkeleton from '@/modules/profile/skeletons/ProfileSkeleton'
 
 export default function ProfilePage() {
-  const { data: user, isLoading: loading } = useGetUser()
-  const { data: goals = [] } = useFindAllGoals()
-  const updateUser = useUpdateUser(user?.id ?? '')
-  const deleteUser = useDeleteUser(user?.id ?? '')
+
+  const { user, loading } = useUser()
+  const logout = useLogout()
 
   const [isEditOpen, setIsEditOpen] = useState(false)
 
-  const completedGoals = goals.filter(g => g.achieved).length
-
-  const handleUpdate = async (data: UpdateUserData) => {
-    await updateUser.mutateAsync(data)
-    setIsEditOpen(false)
-  }
-
-  const handleDeleteAccount = async () => {
-    await deleteUser.mutateAsync()
-  }
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-dvh">
-        <Spinner size={24} className="text-neutral-600 animate-spin" />
-      </div>
-    )
-  }
-
+  if (loading) return <ProfileSkeleton />
   if (!user) return null
 
   return (
     <>
       <div className="overflow-y-auto min-h-dvh pb-32">
-        <div className="max-w-6xl mx-auto px-5 lg:px-10">
+        <div className="max-w-xl mx-auto px-5 lg:px-10">
 
           <PageHeader
             icon={UserCircleIcon}
             title={`Olá, ${user.name.split(' ')[0]}`}
-            description="Gerencie suas informações pessoais, preferências e configurações da conta."
+            description="Gerencie suas informações e acompanhe seu progresso financeiro."
           />
 
-          <div className="lg:grid lg:grid-cols-[340px_1fr] lg:gap-10 lg:items-start">
-
-            <motion.div
-              variants={stagger}
-              initial="hidden"
-              animate="show"
-              className="space-y-5 lg:sticky lg:top-8"
-            >
-              <ProfileHeader user={user} onEdit={() => setIsEditOpen(true)} />
-              <ProfileStats
-                user={user}
-                totalGoals={goals.length}
-                completedGoals={completedGoals}
-              />
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            animate="show"
+            className="space-y-5"
+          >
+            {/* Identity */}
+            <motion.div variants={fadeUp} className="px-1">
+              <p className="text-lg font-semibold text-neutral-100">{user.name}</p>
+              <p className="text-sm text-neutral-500 mt-0.5">{user.email}</p>
             </motion.div>
 
-            <motion.div
-              variants={stagger}
-              initial="hidden"
-              animate="show"
-              className="mt-6 lg:mt-0"
-            >
-              <ProfileActions
-                onLogout={() => {}}
-                onDeleteAccount={handleDeleteAccount}
-              />
-            </motion.div>
+            <ProfileStats user={user} onEdit={() => setIsEditOpen(true)} />
+            <ProfileActions onLogout={() => logout.mutate()} />
+          </motion.div>
 
-          </div>
         </div>
       </div>
 
-      <EditProfileSheet
+      <EditFinancialsSheet
         isOpen={isEditOpen}
         user={user}
         onClose={() => setIsEditOpen(false)}
-        onUpdate={handleUpdate}
       />
     </>
   )

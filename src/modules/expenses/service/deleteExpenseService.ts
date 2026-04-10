@@ -1,5 +1,5 @@
-import { removeMockExpense } from './_mock'
+import { api } from '@/api/axios'
 
 export const deleteExpenseService = async (id: string): Promise<void> => {
-  removeMockExpense(id)
+  await api.delete(`/expense/${id}`)
 }

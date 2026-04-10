@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Sheet from '@/shared/components/Sheet'
 import type { ExpenseCategory } from '../types/expense'
-import { CATEGORY_LABELS, CATEGORY_COLORS } from '../types/expense'
+import { CATEGORY_COLORS, CATEGORY_ICONS, CATEGORY_LABELS } from '../types/expense'
 import type { CreateExpense } from '../types/createExpense'
 
 interface Props {
@@ -101,6 +101,7 @@ export default function AddExpenseSheet({ isOpen, onClose, onAdd }: Props) {
           <div className="flex flex-wrap gap-2">
             {CATEGORIES.map(cat => {
               const c = CATEGORY_COLORS[cat]
+              const Icon = CATEGORY_ICONS[cat]
               const isSelected = selectedCat === cat
               return (
                 <button
@@ -113,7 +114,7 @@ export default function AddExpenseSheet({ isOpen, onClose, onAdd }: Props) {
                       : 'bg-transparent text-neutral-500 border-neutral-800 hover:border-neutral-600'
                     }`}
                 >
-                  <span className={`w-1.5 h-1.5 rounded-full ${c.dot}`} />
+                  <Icon size={12} weight="duotone" />
                   {CATEGORY_LABELS[cat]}
                 </button>
               )

@@ -27,7 +27,7 @@ export function formatShortDate(dateStr: string): string {
 }
 
 export function formatDeadline(dateStr: string): string {
-  const date = new Date(dateStr + 'T00:00:00')
+  const date = new Date(dateStr.slice(0, 10) + 'T00:00:00')
   return date.toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' })
 }
 

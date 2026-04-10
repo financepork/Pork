@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { Trash } from '@phosphor-icons/react'
+import { TrashIcon } from '@phosphor-icons/react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { formatCurrency } from '@/shared/utils/currency'
-import { CATEGORY_COLORS, CATEGORY_LABELS } from '../types/expense'
+import { CATEGORY_COLORS, CATEGORY_ICONS, CATEGORY_LABELS } from '../types/expense'
 import type { Expense } from '../types/expense'
 
 interface Props {
@@ -13,12 +13,13 @@ interface Props {
 export default function ExpenseItem({ expense, onDelete }: Props) {
   const [confirming, setConfirming] = useState(false)
   const colors = CATEGORY_COLORS[expense.category]
+  const Icon = CATEGORY_ICONS[expense.category]
 
   return (
     <div className="flex items-center gap-3 px-4 py-3.5 rounded-xl bg-neutral-900 border border-neutral-800/50 hover:border-neutral-700/50 transition-colors duration-150 group">
-      {/* Category dot */}
-      <div className={`w-9 h-9 rounded-xl ${colors.bg} flex items-center justify-center shrink-0`}>
-        <span className={`w-2 h-2 rounded-full ${colors.dot}`} />
+      {/* Category icon */}
+      <div className={`w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center shrink-0`}>
+        <Icon size={24} className={colors.text} weight="duotone" />
       </div>
 
       {/* Info */}
@@ -65,7 +66,7 @@ export default function ExpenseItem({ expense, onDelete }: Props) {
               onClick={() => setConfirming(true)}
               aria-label="Remover gasto"
             >
-              <Trash size={14} />
+              <TrashIcon size={14} />
             </motion.button>
           )}
         </AnimatePresence>

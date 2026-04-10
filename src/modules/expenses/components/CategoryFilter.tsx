@@ -1,5 +1,5 @@
 import type { ExpenseCategory } from '../types/expense'
-import { CATEGORY_LABELS, CATEGORY_COLORS } from '../types/expense'
+import { CATEGORY_COLORS, CATEGORY_ICONS, CATEGORY_LABELS } from '../types/expense'
 
 interface Props {
   active: ExpenseCategory | null
@@ -25,6 +25,7 @@ export default function CategoryFilter({ active, onChange, available }: Props) {
 
       {available.map(cat => {
         const c = CATEGORY_COLORS[cat]
+        const Icon = CATEGORY_ICONS[cat]
         const isActive = active === cat
         return (
           <button
@@ -36,7 +37,7 @@ export default function CategoryFilter({ active, onChange, available }: Props) {
                 : 'bg-transparent text-neutral-400 border-neutral-800 hover:border-neutral-600 hover:text-neutral-200'
               }`}
           >
-            <span className={`w-1.5 h-1.5 rounded-full ${c.dot}`} />
+            <Icon size={12} weight="duotone" />
             {CATEGORY_LABELS[cat]}
           </button>
         )

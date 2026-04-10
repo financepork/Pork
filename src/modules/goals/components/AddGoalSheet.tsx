@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Sheet from '@/shared/components/Sheet'
 import type { CreateGoal } from '../types/createGoal'
@@ -9,59 +8,30 @@ interface Props {
   onAdd: (data: CreateGoal) => Promise<void>
 }
 
-const EMOJIS = ['🎯', '✈️', '🏠', '📱', '🚗', '📚', '💻', '🎸', '🏋️', '🛡️', '💍', '🌴']
-
 export default function AddGoalSheet({ isOpen, onClose, onAdd }: Props) {
-  const [selectedEmoji, setSelectedEmoji] = useState('🎯')
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<{
-    title: string
+    name: string
     targetAmount: string
-    deadline?: string
+    deadline: string
   }>()
 
-  const submit = async (data: { title: string; targetAmount: string; deadline?: string }) => {
+  const submit = async (data: { name: string; targetAmount: string; deadline: string }) => {
     await onAdd({
-      name: data.title,
+      name: data.name,
       targetAmount: parseFloat(data.targetAmount.replace(',', '.')),
-      deadline: data.deadline || undefined,
+      deadline: data.deadline,
     })
     reset()
-    setSelectedEmoji('🎯')
   }
 
   const handleClose = () => {
     reset()
-    setSelectedEmoji('🎯')
     onClose()
   }
 
   return (
     <Sheet isOpen={isOpen} onClose={handleClose} title="Nova meta">
       <form onSubmit={handleSubmit(submit)} className="flex flex-col gap-5">
-        {/* Emoji picker */}
-        <div>
-          <label className="block text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-2.5">
-            Ícone
-          </label>
-          <div className="flex flex-wrap gap-2">
-            {EMOJIS.map(emoji => (
-              <button
-                key={emoji}
-                type="button"
-                onClick={() => setSelectedEmoji(emoji)}
-                className={`cursor-pointer w-9 h-9 rounded-xl text-lg flex items-center justify-center transition-all duration-150
-                  ${selectedEmoji === emoji
-                    ? 'bg-brand/20 border border-brand/40 scale-110'
-                    : 'bg-neutral-800 border border-neutral-700 hover:bg-neutral-700'
-                  }`}
-              >
-                {emoji}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Title */}
         <div>
           <label className="block text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-2">
             Objetivo
@@ -71,12 +41,11 @@ export default function AddGoalSheet({ isOpen, onClose, onAdd }: Props) {
             autoComplete="off"
             placeholder="Ex: Viagem para Paris…"
             className="w-full bg-transparent text-neutral-100 text-sm pb-2 border-b border-neutral-700 focus:border-brand outline-none transition-colors duration-200 placeholder:text-neutral-700"
-            {...register('title', { required: 'Informe um objetivo' })}
+            {...register('name', { required: 'Informe um objetivo' })}
           />
-          {errors.title && <p className="text-xs text-red-400 mt-1">{errors.title.message}</p>}
+          {errors.name && <p className="text-xs text-red-400 mt-1">{errors.name.message}</p>}
         </div>
 
-        {/* Amount + deadline */}
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-2">
@@ -97,13 +66,14 @@ export default function AddGoalSheet({ isOpen, onClose, onAdd }: Props) {
 
           <div>
             <label className="block text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-2">
-              Prazo (opcional)
+              Prazo
             </label>
             <input
               type="date"
               className="w-full bg-transparent text-neutral-100 text-sm pb-2 border-b border-neutral-700 focus:border-brand outline-none transition-colors duration-200 [color-scheme:dark]"
-              {...register('deadline')}
+              {...register('deadline', { required: 'Informe um prazo' })}
             />
+            {errors.deadline && <p className="text-xs text-red-400 mt-1">{errors.deadline.message}</p>}
           </div>
         </div>
 

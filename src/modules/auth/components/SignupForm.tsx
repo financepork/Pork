@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useForm, Controller, type Path } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowRight, ArrowLeft, Eye, EyeSlash } from '@phosphor-icons/react'
+import { ArrowRight, ArrowLeft, Eye, EyeSlash, Leaf, ChartLineUp, RocketLaunch } from '@phosphor-icons/react'
 import { Link } from 'react-router-dom'
 import { useSignUp } from '../hooks/useSignUp'
 import { signUpSchema, type SignUpSchema } from '../schemas/signUp.schema'
@@ -24,9 +24,9 @@ const STEP_FIELDS: Path<SignUpSchema>[][] = [
 ]
 
 const PROFILES = [
-  { value: 'basico' as const, label: 'Básico', desc: 'Estou começando a organizar minhas finanças' },
-  { value: 'intermediario' as const, label: 'Intermediário', desc: 'Já tenho noção, quero melhorar' },
-  { value: 'avancado' as const, label: 'Avançado', desc: 'Tenho controle e quero otimizar' },
+  { value: 'basico' as const, label: 'Básico', desc: 'Estou começando a organizar minhas finanças', icon: Leaf },
+  { value: 'intermediario' as const, label: 'Intermediário', desc: 'Já tenho noção, quero melhorar', icon: ChartLineUp },
+  { value: 'avancado' as const, label: 'Avançado', desc: 'Tenho controle e quero otimizar', icon: RocketLaunch },
 ]
 
 const slideVariants = {
@@ -51,6 +51,8 @@ export default function SignupForm() {
     handleSubmit,
     control,
     trigger,
+    watch,
+    setError,
     formState: { errors },
   } = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema),
@@ -76,6 +78,15 @@ export default function SignupForm() {
   const handleNext = async () => {
     const valid = await trigger(STEP_FIELDS[step])
     if (!valid) return
+
+    if (step === 2) {
+      const pw = watch('password')
+      const cpw = watch('confirmPassword')
+      if (pw !== cpw) {
+        setError('confirmPassword', { message: 'As senhas não coincidem' })
+        return
+      }
+    }
 
     if (isLastStep) {
       handleSubmit(onSubmit)()
@@ -122,14 +133,14 @@ export default function SignupForm() {
         ))}
       </div>
 
-      {/* Top bar: back + login link */}
+      {/* Top bar */}
       <div className="flex items-center justify-between px-6 pt-5 sm:px-10">
         <div>
           {step > 0 ? (
             <button
               type="button"
               onClick={handleBack}
-              className="cursor-pointer mb-15 flex items-center gap-2 text-base font-semibold text-white hover:text-white/80 transition-colors"
+              className="cursor-pointer flex items-center gap-2 text-base font-semibold text-white hover:text-white/80 transition-colors"
             >
               <ArrowLeft size={20} weight="bold" />
               Voltar
@@ -163,7 +174,7 @@ export default function SignupForm() {
               transition={{ duration: 0.4 }}
             >
               <h1
-                className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-10 leading-tight"
+                className="text-3xl sm:text-4xl font-bold mb-8 leading-tight"
                 style={{ color: current.text }}
               >
                 {current.question}
@@ -197,7 +208,7 @@ export default function SignupForm() {
 
               {/* Step 2 — Senha */}
               {step === 2 && (
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-5">
                   <div>
                     <label
                       className="block text-xs font-semibold uppercase tracking-widest mb-2.5 opacity-50"
@@ -283,23 +294,40 @@ export default function SignupForm() {
                   control={control}
                   name="savingsProfile"
                   render={({ field }) => (
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-2.5">
                       {PROFILES.map(option => {
+                        const Icon = option.icon
                         const selected = field.value === option.value
                         return (
                           <button
                             key={option.value}
                             type="button"
                             onClick={() => field.onChange(option.value)}
-                            className="cursor-pointer mb-15 w-full text-left p-4 sm:p-5 rounded-xl border-2 transition-all duration-300"
+                            className="cursor-pointer w-full text-left px-4 py-3.5 rounded-xl border-2 transition-all duration-300 flex items-center gap-3"
                             style={{
                               borderColor: selected ? current.accent : `${current.text}20`,
                               backgroundColor: selected ? `${current.accent}15` : 'transparent',
                               color: current.text,
                             }}
                           >
-                            <span className="block text-base font-semibold">{option.label}</span>
-                            <span className="block text-sm mt-1 opacity-50">{option.desc}</span>
+                            <div
+                              className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                              style={{ backgroundColor: selected ? `${current.accent}25` : `${current.text}10` }}
+                            >
+                              <Icon size={16} weight="duotone" style={{ color: selected ? current.accent : current.text, opacity: selected ? 1 : 0.4 }} />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <span className="block text-sm font-semibold">{option.label}</span>
+                              <span className="block text-xs mt-0.5 opacity-50">{option.desc}</span>
+                            </div>
+                            <div
+                              className="w-4 h-4 rounded-full border-2 shrink-0 flex items-center justify-center transition-colors duration-150"
+                              style={{ borderColor: selected ? current.accent : `${current.text}30` }}
+                            >
+                              {selected && (
+                                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: current.accent }} />
+                              )}
+                            </div>
                           </button>
                         )
                       })}
@@ -328,7 +356,7 @@ export default function SignupForm() {
             type="button"
             onClick={handleNext}
             disabled={isSubmitting}
-            className="cursor-pointer mb-15 w-full flex items-center justify-center gap-2.5 font-semibold py-3.5 sm:py-4 rounded-xl text-sm tracking-wide transition-all duration-200 active:scale-[0.97] disabled:opacity-60 disabled:pointer-events-none"
+            className="cursor-pointer w-full flex items-center justify-center gap-2.5 font-semibold py-3.5 sm:py-4 rounded-xl text-sm tracking-wide transition-all duration-200 active:scale-[0.97] disabled:opacity-60 disabled:pointer-events-none"
             style={{ backgroundColor: current.text, color: current.bg }}
           >
             {isSubmitting ? (

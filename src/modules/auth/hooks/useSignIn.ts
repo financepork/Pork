@@ -12,7 +12,7 @@ export function useSignIn() {
   return useMutation({
     mutationFn: (payload: SignInPayload) => signInService(payload),
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ['me'] })
+      await queryClient.refetchQueries({ queryKey: ['me'] })
       showToast.success('Bem-vindo de volta!')
       navigate('/dashboard/home')
     },

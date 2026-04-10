@@ -1,5 +1,5 @@
-import { removeMockGoal } from './_mock'
+import { api } from '@/api/axios'
 
 export const deleteGoalService = async (id: string): Promise<void> => {
-  removeMockGoal(id)
+  await api.delete(`/goal/${id}`)
 }

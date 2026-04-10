@@ -11,17 +11,17 @@ interface UpdateUserPayload {
 }
 
 const PLAN_MAP: Record<NonNullable<UpdateUserData['savingsProfile']>, Plan> = {
-  basico: 'BASICO',
+  basico:       'BASICO',
   intermediario: 'PADRAO',
-  avancado: 'AVANCADO',
+  avancado:     'AVANCADO',
 }
 
 export async function updateUserService(id: string, data: UpdateUserData): Promise<User> {
   const payload: UpdateUserPayload = {
-    name: data.name,
-    email: data.email,
+    name:   data.name,
+    email:  data.email,
     salary: data.monthlyIncome,
-    plan: data.savingsProfile ? PLAN_MAP[data.savingsProfile] : undefined,
+    plan:   data.savingsProfile ? PLAN_MAP[data.savingsProfile] : undefined,
   }
 
   const { data: updated } = await api.patch<{

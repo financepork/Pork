@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
-import { ArrowRight } from '@phosphor-icons/react'
+import { ArrowRightIcon } from '@phosphor-icons/react'
 import { stagger, fadeUp } from '@/lib/animations'
 import { formatCurrency } from '@/shared/utils/currency'
 import { formatRelativeDate } from '@/shared/utils/date'
-import { CATEGORY_COLORS, CATEGORY_LABELS } from '@/modules/expenses/types/expense'
+import { CATEGORY_COLORS, CATEGORY_ICONS, CATEGORY_LABELS } from '@/modules/expenses/types/expense'
 import type { Expense } from '@/modules/expenses/types/expense'
 import { useNavigate } from 'react-router-dom'
 
@@ -29,7 +29,7 @@ export default function RecentExpenses({ expenses }: Props) {
           className="cursor-pointer flex items-center gap-1.5 text-xs font-medium text-neutral-400 hover:text-brand transition-colors duration-150 mb-0.5"
         >
           ver todos
-          <ArrowRight size={13} weight="bold" />
+          <ArrowRightIcon size={13} weight="bold" />
         </button>
       </div>
 
@@ -41,6 +41,7 @@ export default function RecentExpenses({ expenses }: Props) {
       >
         {expenses.map(expense => {
           const colors = CATEGORY_COLORS[expense.category]
+          const Icon = CATEGORY_ICONS[expense.category]
           return (
             <motion.li
               key={expense.id}
@@ -48,7 +49,7 @@ export default function RecentExpenses({ expenses }: Props) {
               className="flex items-center gap-3 px-4 py-3.5 rounded-xl bg-neutral-900 border border-neutral-800/40 hover:border-neutral-700/60 transition-colors duration-150"
             >
               <div className={`w-9 h-9 rounded-xl ${colors.bg} flex items-center justify-center shrink-0`}>
-                <span className={`w-2 h-2 rounded-full ${colors.dot}`} />
+                <Icon size={16} className={colors.text} weight="duotone" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-neutral-100 truncate">{expense.title}</p>

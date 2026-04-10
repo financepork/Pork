@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Plus, Spinner, TargetIcon } from '@phosphor-icons/react'
+import { PlusIcon, TargetIcon } from '@phosphor-icons/react'
 import { useQueryClient } from '@tanstack/react-query'
 import { stagger, fadeUp } from '@/lib/animations'
 import { useFindAllGoals } from '@/modules/goals/hooks/useFindAllGoals'
@@ -14,6 +14,7 @@ import GoalsOverview from '@/modules/goals/components/GoalsOverview'
 import AddGoalSheet from '@/modules/goals/components/AddGoalSheet'
 import DepositSheet from '@/modules/goals/components/DepositSheet'
 import PageHeader from '@/shared/components/PageHeader'
+import GoalsSkeleton from '@/modules/goals/skeletons/GoalsSkeleton'
 
 export default function GoalsPage() {
   const queryClient = useQueryClient()
@@ -77,7 +78,7 @@ export default function GoalsPage() {
                   onClick={() => setIsAddOpen(true)}
                   className="cursor-pointer w-full flex items-center justify-center gap-2 bg-brand hover:bg-brand-light active:scale-[0.98] text-neutral-950 font-semibold py-3 rounded-xl text-sm transition-all duration-150"
                 >
-                  <Plus size={16} weight="bold" />
+                  <PlusIcon size={16} weight="bold" />
                   Nova meta
                 </button>
               </motion.div>
@@ -85,9 +86,7 @@ export default function GoalsPage() {
 
             <div className="mt-6 lg:mt-0">
               {loading ? (
-                <div className="flex justify-center py-16">
-                  <Spinner size={24} className="text-neutral-600 animate-spin" />
-                </div>
+                <GoalsSkeleton />
               ) : goals.length === 0 ? (
                 <motion.div
                   variants={fadeUp}
@@ -95,7 +94,9 @@ export default function GoalsPage() {
                   animate="show"
                   className="flex flex-col items-center justify-center py-20 text-center"
                 >
-                  <p className="text-5xl mb-3">🎯</p>
+                  <div className="w-12 h-12 rounded-2xl bg-neutral-800 flex items-center justify-center mb-3">
+                    <TargetIcon size={24} className="text-neutral-500" weight="duotone" />
+                  </div>
                   <p className="text-sm font-medium text-neutral-300">Nenhuma meta ainda</p>
                   <p className="text-xs text-neutral-600 mt-1">Crie sua primeira meta de economia</p>
                 </motion.div>
@@ -129,7 +130,7 @@ export default function GoalsPage() {
         className="lg:hidden cursor-pointer fixed bottom-24 right-5 w-14 h-14 rounded-2xl bg-brand hover:bg-brand-light active:scale-95 text-neutral-950 shadow-lg shadow-brand/20 flex items-center justify-center transition-all duration-150 z-20"
         aria-label="Nova meta"
       >
-        <Plus size={22} weight="bold" />
+        <PlusIcon size={22} weight="bold" />
       </button>
 
       <AddGoalSheet

@@ -7,6 +7,7 @@ import { useFindMe, meQueryKey } from '@/shared/hooks/useFindMe'
 interface UserContextValue {
   user: User | null
   loading: boolean
+  isLogged: boolean
   refreshUser: () => Promise<void>
 }
 
@@ -21,7 +22,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <UserContext.Provider value={{ user: data ?? null, loading: isLoading, refreshUser }}>
+    <UserContext.Provider value={{ user: data ?? null, loading: isLoading, isLogged: !isLoading && data != null, refreshUser }}>
       {children}
     </UserContext.Provider>
   )

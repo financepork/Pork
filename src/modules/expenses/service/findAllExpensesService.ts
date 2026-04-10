@@ -1,6 +1,7 @@
+import { api } from '@/api/axios'
 import type { Expense } from '../types/expense'
-import { mockExpenses } from './_mock'
 
 export const findAllExpensesService = async (): Promise<Expense[]> => {
-  return [...mockExpenses].sort((a, b) => b.date.localeCompare(a.date))
+  const { data } = await api.get<Expense[]>('/expense')
+  return data
 }

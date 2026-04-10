@@ -16,6 +16,7 @@ import ActiveGoals from '@/modules/home/components/ActiveGoals'
 import AddExpenseSheet from '@/modules/expenses/components/AddExpenseSheet'
 import AddGoalSheet from '@/modules/goals/components/AddGoalSheet'
 import PageHeader from '@/shared/components/PageHeader'
+import HomeSkeleton from '@/modules/home/skeletons/HomeSkeleton'
 import { getCurrentMonthYear, getGreeting } from '@/shared/utils/date'
 import { showToast } from '@/shared/components/Toast'
 
@@ -27,10 +28,12 @@ export default function HomePage() {
   const { year, month } = getCurrentMonthYear()
   const prefix = `${year}-${String(month).padStart(2, '0')}`
 
-  const { data: allExpenses = [] } = useFindAllExpenses()
-  const { data: goals = [] } = useFindAllGoals()
+  const { data: allExpenses = [], isLoading: loadingExpenses } = useFindAllExpenses()
+  const { data: goals = [], isLoading: loadingGoals } = useFindAllGoals()
   const createExpense = useCreateExpense()
   const createGoal = useCreateGoal()
+
+  if (loadingExpenses || loadingGoals) return <HomeSkeleton />
 
   const recentExpenses = [...allExpenses].slice(0, 4)
   const monthlyExpenses = allExpenses

@@ -3,6 +3,7 @@ export interface User {
   name: string
   email: string
   monthlyIncome: number
+  monthlySavings: number
   savingsProfile: 'basico' | 'intermediario' | 'avancado'
 }
 

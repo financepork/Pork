@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form'
+import { TargetIcon } from '@phosphor-icons/react'
 import Sheet from '@/shared/components/Sheet'
 import { formatCurrency } from '@/shared/utils/currency'
 import type { Goal } from '../types/goal'
@@ -10,7 +11,7 @@ interface Props {
 }
 
 export default function DepositSheet({ goal, onClose, onDeposit }: Props) {
-  const remaining = goal ? goal.targetAmount - goal.savedAmount : 0
+  const remaining = goal ? goal.targetAmount - goal.currentAmount : 0
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<{ amount: string }>()
 
   const submit = async (data: { amount: string }) => {
@@ -29,9 +30,11 @@ export default function DepositSheet({ goal, onClose, onDeposit }: Props) {
       {goal && (
         <form onSubmit={handleSubmit(submit)} className="flex flex-col gap-5">
           <div className="flex items-center gap-3 p-4 rounded-xl bg-neutral-800/60 border border-neutral-700/50">
-            <span className="text-2xl">{goal.emoji}</span>
+            <div className="w-9 h-9 rounded-xl bg-neutral-700 flex items-center justify-center shrink-0">
+              <TargetIcon size={16} className="text-neutral-400" weight="duotone" />
+            </div>
             <div>
-              <p className="text-sm font-semibold text-neutral-100">{goal.title}</p>
+              <p className="text-sm font-semibold text-neutral-100">{goal.name}</p>
               <p className="text-xs text-neutral-500">
                 Faltam {formatCurrency(remaining)} para concluir
               </p>

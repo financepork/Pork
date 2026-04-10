@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { Spinner } from '@phosphor-icons/react'
+import { ReceiptIcon } from '@phosphor-icons/react'
 import { staggerFast, fadeUp } from '@/lib/animations'
 import ExpenseItem from './ExpenseItem'
 import type { Expense } from '../types/expense'
@@ -7,7 +7,6 @@ import { formatShortDate } from '@/shared/utils/date'
 
 interface Props {
   expenses: Expense[]
-  loading: boolean
   onDelete: (id: string) => void
 }
 
@@ -21,19 +20,13 @@ function groupByDate(expenses: Expense[]): [string, Expense[]][] {
   return [...map.entries()].sort((a, b) => b[0].localeCompare(a[0]))
 }
 
-export default function ExpenseList({ expenses, loading, onDelete }: Props) {
-  if (loading) {
-    return (
-      <div className="flex justify-center py-12">
-        <Spinner size={24} className="text-neutral-600 animate-spin" />
-      </div>
-    )
-  }
-
+export default function ExpenseList({ expenses, onDelete }: Props) {
   if (expenses.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <p className="text-4xl mb-3">🧾</p>
+        <div className="w-12 h-12 rounded-2xl bg-neutral-800 flex items-center justify-center mb-3">
+          <ReceiptIcon size={24} className="text-neutral-500" weight="duotone" />
+        </div>
         <p className="text-sm font-medium text-neutral-300">Nenhum gasto registrado</p>
         <p className="text-xs text-neutral-600 mt-1">Adicione seu primeiro gasto do mês</p>
       </div>

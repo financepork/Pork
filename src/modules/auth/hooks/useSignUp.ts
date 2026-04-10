@@ -32,7 +32,7 @@ export function useSignUp() {
       await signInService({ email: payload.email, password: payload.password })
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ['me'] })
+      await queryClient.refetchQueries({ queryKey: ['me'] })
       showToast.success('Conta criada com sucesso!', {
         description: 'Bem-vindo ao Pork. Vamos começar a economizar!',
       })

@@ -15,6 +15,7 @@ import ExpenseCharts from '@/modules/expenses/components/ExpenseCharts'
 import ExpenseList from '@/modules/expenses/components/ExpenseList'
 import AddExpenseSheet from '@/modules/expenses/components/AddExpenseSheet'
 import PageHeader from '@/shared/components/PageHeader'
+import ExpensesSkeleton from '@/modules/expenses/skeletons/ExpensesSkeleton'
 import { getCurrentMonthYear } from '@/shared/utils/date'
 
 export default function ExpensesPage() {
@@ -28,6 +29,8 @@ export default function ExpensesPage() {
 
   const { data: allData = [], isLoading: loading } = useFindAllExpenses()
   const createExpense = useCreateExpense()
+
+  if (loading) return <ExpensesSkeleton />
 
   const prefix = `${year}-${String(month).padStart(2, '0')}`
   const allExpenses = allData.filter(e => e.date.startsWith(prefix))
@@ -124,7 +127,6 @@ export default function ExpensesPage() {
               <motion.div variants={fadeUp}>
                 <ExpenseList
                   expenses={expenses}
-                  loading={loading}
                   onDelete={removeExpense}
                 />
               </motion.div>
