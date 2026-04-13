@@ -13,9 +13,10 @@ interface Props {
 function groupByDate(expenses: Expense[]): [string, Expense[]][] {
   const map = new Map<string, Expense[]>()
   for (const e of expenses) {
-    const list = map.get(e.date) ?? []
+    const key = e.date.slice(0, 10)
+    const list = map.get(key) ?? []
     list.push(e)
-    map.set(e.date, list)
+    map.set(key, list)
   }
   return [...map.entries()].sort((a, b) => b[0].localeCompare(a[0]))
 }

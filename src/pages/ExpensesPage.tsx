@@ -139,9 +139,9 @@ export default function ExpensesPage() {
               variants={fadeUp}
               initial="hidden"
               animate="show"
-              className="mt-8 lg:mt-12"
+              className="mt-8 lg:mt-12 flex"
             >
-              <ExpenseCharts expenses={allExpenses} year={year} month={month} />
+              <ExpenseCharts expenses={allExpenses} />
             </motion.div>
           )}
         </div>

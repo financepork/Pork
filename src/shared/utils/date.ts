@@ -1,5 +1,5 @@
 export function formatRelativeDate(dateStr: string): string {
-  const date = new Date(dateStr + 'T00:00:00')
+  const date = new Date(dateStr.slice(0, 10) + 'T00:00:00')
   const today = new Date()
   today.setHours(0, 0, 0, 0)
   const yesterday = new Date(today)
@@ -17,12 +17,12 @@ export function formatMonthYear(year: number, month: number): string {
 }
 
 export function formatFullDate(dateStr: string): string {
-  const date = new Date(dateStr + 'T00:00:00')
+  const date = new Date(dateStr.slice(0, 10) + 'T00:00:00')
   return date.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })
 }
 
 export function formatShortDate(dateStr: string): string {
-  const date = new Date(dateStr + 'T00:00:00')
+  const date = new Date(dateStr.slice(0, 10) + 'T00:00:00')
   return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' })
 }
 
